@@ -1,0 +1,417 @@
+---
+// src/components/BlocksClima.astro
+import { Image } from "astro:assets";
+import climaVideo from "../assets/video/aspirador.mp4";
+import dataDB from "../../db.json"; 
+
+import aspirador1 from "../assets/categories/aspirador1.avif";
+import aspirador2 from "../assets/categories/aspirador2.avif";
+import aspirador3 from "../assets/categories/aspirador3.avif";
+import aspirador4 from "../assets/categories/aspirador4.avif";
+import aspirador5 from "../assets/categories/aspirador5.png";
+
+import aspiradorVertical from "../assets/categories/aspirador_vertical.jpg";
+import robotAspirador from "../assets/categories/robot_aspirador.jpg";
+import aireAcondicionado from "../assets/categories/aire_acondicionado.jpg";
+import purificadorHumidificador from "../assets/categories/purificador_humidificador.jpg";
+import deshumidificador from "../assets/categories/deshumidificador.jpg";
+import ventilador from "../assets/categories/ventilador.jpg";
+import robotLimpiacristales from "../assets/categories/robot_limpiacristales.jpg";
+import bgTexture from "../assets/categories/texture.jpg";
+
+// Создаем массив картинок, чтобы отрендерить их в цикле
+const slideImages = [
+  aspiradorVertical,
+  robotAspirador,
+  aireAcondicionado,
+  purificadorHumidificador,
+  deshumidificador,
+  ventilador,
+  robotLimpiacristales,
+];
+
+const climaHomeSlides = dataDB.climaHomeSlides;
+const blockContent = dataDB.home.block_clima; 
+---
+
+<!-- ======================================================== -->
+<!-- 1. ПОЛНОЭКРАННОЕ ГЛАВНОЕ ВИДЕО                           -->
+<!-- ======================================================== -->
+<section
+  class="w-full mb-0 relative h-[80vh] min-h-125 sm:h-[85vh] md:h-[90vh] bg-black overflow-hidden select-none z-10 left-0 right-0"
+>
+  {/* Фоновое видео */}
+  <video
+    src={climaVideo}
+    autoplay
+    loop
+    muted
+    playsinline
+    class="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
+  >
+  </video>
+
+  {/* Тёмный оверлей для читаемости текста */}
+  <div class="absolute inset-0 bg-black/30 z-10"></div>
+
+  {/* Контент поверх видео */}
+  <div
+    class="absolute inset-0 z-20 max-w-7xl mx-auto px-6 sm:px-8 md:px-12 flex flex-col justify-center"
+  >
+    <div class="max-w-xl text-white">
+      {/* Подзаголовок / Название линейки */}
+      <span
+        class="block text-sm sm:text-base font-bold tracking-wider text-[#40c3e5] uppercase mb-3"
+      >
+        {blockContent.hero.badge}
+      </span>
+
+      {/* Главный заголовок */}
+      <h2
+        class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4"
+        set:html={blockContent.hero.title}
+      />
+
+      {/* Короткое описание */}
+      <p
+        class="text-sm sm:text-base md:text-lg text-slate-200/90 font-light leading-relaxed mb-6 max-w-md"
+      >
+        {blockContent.hero.description}
+      </p>
+
+      {/* Блок с ценой */}
+      <div class="mb-6">
+        <span class="block text-3xl sm:text-4xl font-bold tracking-tight">
+          {blockContent.hero.price}
+        </span>
+        <span
+          class="block text-xs sm:text-sm text-slate-300/80 font-light mt-1"
+        >
+          {blockContent.hero.price_note}
+        </span>
+      </div>
+
+      {/* Кнопка действия */}
+      <div class="mb-6">
+        <a
+          href="#productos"
+          class="inline-block px-8 py-3 rounded-full border border-white text-sm font-medium text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 ease-in-out transform hover:scale-[1.02] shadow-lg"
+        >
+          {blockContent.hero.button}
+        </a>
+      </div>
+
+      {/* Мелкий текст внизу */}
+      <div
+        class="flex items-center gap-2 text-xs sm:text-sm text-slate-300/90 font-light"
+      >
+        {/* Иконка (SVG) */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+          ></path>
+        </svg>
+        <span>{blockContent.hero.shipping}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 2. СЕКЦИЯ С КАРТОЧКАМИ ТОВАРОВ (ТЁМНЫЙ ФОН)              -->
+<!-- ======================================================== -->
+<section
+  class="w-full bg-[#141414] text-white py-16 sm:py-24 px-4 sm:px-6 md:px-8 selection:bg-white selection:text-black"
+>
+  <div class="w-full">
+    <div class="max-w-5xl mx-auto text-center mb-16 md:mb-24">
+      <h3
+        class="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide leading-relaxed text-slate-100 px-4"
+      >
+        {blockContent.products_intro.text}
+      </h3>
+    </div>
+
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-[#2a2a2a] bg-[#141414]"
+    >
+      {
+        blockContent.products.map((product, index) => (
+          <div class="group relative flex flex-col overflow-hidden bg-[#141414] p-6 border border-[#2a2a2a] transition-all duration-500 hover:bg-[#1a1a1a]">
+            <div class="aspect-square w-full overflow-hidden flex items-center justify-center bg-black/20 rounded-sm">
+              <Image
+                src={
+                  index === 0
+                    ? aspirador1
+                    : index === 1
+                      ? aspirador2
+                      : index === 2
+                        ? aspirador3
+                        : aspirador4
+                }
+                alt={product.alt}
+                class="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="absolute bottom-0 left-0 w-full h-0.5 bg-[#c2949c] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 3. СЕКЦИЯ: ТРЕХКОЛОНОЧНОЕ ПРЕМИАЛЬНОЕ ОПИСАНИЕ ЛИНЕЕК    -->
+<!-- ======================================================== -->
+<section
+  class="w-full bg-[#141414] text-white py-16 sm:py-24 px-6 sm:px-8 md:px-16 selection:bg-white selection:text-black"
+>
+  <div
+    class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-24 items-start"
+  >
+    <!-- Левая колонка: Крупный заголовок -->
+    <div class="lg:col-span-1">
+      <h2
+        class="text-3xl sm:text-4xl md:text-5xl font-light tracking-widest leading-tight uppercase text-slate-100"
+      >
+        {blockContent.description_section.title}
+      </h2>
+    </div>
+
+    <!-- Правая колонка: Описание через цикл -->
+    <div
+      class="lg:col-span-2 space-y-8 text-base sm:text-lg text-slate-300 font-light leading-relaxed tracking-wide"
+    >
+      {
+        blockContent.description_section.paragraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 4. СЕКЦИЯ: SISTEMAS DE ALTA GAMA                         -->
+<!-- ======================================================== -->
+<section
+  class="w-full bg-[#141414] text-white flex flex-col lg:flex-row items-stretch select-none pb-16 sm:pb-24"
+>
+  <!-- Левая половина: Текстовый контент -->
+  <div
+    class="w-full lg:w-1/2 flex flex-col justify-center py-12 sm:py-20 px-8 sm:px-12 md:px-20 lg:px-24 bg-[#141414] order-2 lg:order-1"
+  >
+    <div class="max-w-xl">
+      <h2
+        class="text-3xl sm:text-4xl font-light tracking-wide uppercase text-slate-100 mb-6 sm:mb-8"
+      >
+        {blockContent.alta_gama.title}
+      </h2>
+      <p
+        class="text-base sm:text-lg text-slate-300 font-light leading-relaxed tracking-wide"
+      >
+        {blockContent.alta_gama.description}
+      </p>
+    </div>
+  </div>
+
+  <!-- Правая половина: Изображение -->
+  <div
+    class="w-full lg:w-1/2 relative min-h-80 sm:min-h-100 h-auto lg:h-full overflow-hidden bg-[#141414] flex items-center justify-center order-1 lg:order-2"
+  >
+    <Image
+      src={aspirador5}
+      alt="Diseño exclusivo de Climatización Premium"
+      class="w-full h-full object-cover object-center lg:absolute lg:inset-0"
+      loading="lazy"
+    />
+    <div
+      class="absolute inset-0 bg-linear-to-r from-[#141414] via-transparent to-transparent hidden lg:block w-16"
+    >
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 5. СЕКЦИЯ: ИНТЕРАКТИВНЫЙ FADE-СЛАЙДЕР С ТЕКСТОМ          -->
+<!-- ======================================================== -->
+<section
+  class="bg-[#141414] text-white py-16 sm:py-24 px-6 sm:px-8 md:px-16 relative overflow-hidden select-none border-t border-[#2a2a2a]"
+>
+  <div
+    class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-150"
+  >
+    <!-- Левый блок: Текст и навигация -->
+    <div
+      class="lg:col-span-5 flex flex-col justify-center h-full min-h-87.5 z-10"
+    >
+      <!-- Контейнер с текстом -->
+      <div
+        id="slider-text-container"
+        class="space-y-6 transition-all duration-300"
+      >
+        <h2
+          id="slider-title"
+          class="text-4xl sm:text-5xl font-light tracking-wide uppercase text-slate-100"
+        >
+          {blockContent.interactive_slider.default_title}
+        </h2>
+        <p
+          id="slider-description"
+          class="text-base sm:text-2xl text-slate-300 font-light leading-relaxed tracking-wide max-w-xl min-h-30"
+        >
+          {blockContent.interactive_slider.default_description}
+        </p>
+
+        <div class="flex items-center gap-4 pt-4">
+          <button
+            id="prev-slide-btn"
+            class="w-12 h-12 rounded-full border border-slate-600 flex items-center justify-center text-slate-400 hover:text-white hover:border-white transition-all duration-300 transform active:scale-95 cursor-pointer"
+            aria-label="Anterior"
+          >
+            <svg
+              xmlns="http://w3.org"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"></path>
+            </svg>
+          </button>
+          <button
+            id="next-slide-btn"
+            class="w-12 h-12 rounded-full border border-slate-600 flex items-center justify-center text-slate-400 hover:text-white hover:border-white transition-all duration-300 transform active:scale-95 cursor-pointer"
+            aria-label="Siguiente"
+          >
+            <svg
+              xmlns="http://w3.org"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Правый блок: Контейнер для изображений -->
+    <div
+      class="lg:col-span-7 relative aspect-4/5 sm:aspect-16/20 lg:h-250 w-full bg-black/40 border border-[#2a2a2a] overflow-hidden rounded-sm"
+    >
+      {
+        slideImages.map((img, index) => {
+          const textData =
+            climaHomeSlides && climaHomeSlides[index]
+              ? climaHomeSlides[index]
+              : { title: "", description: "", link: "#" };
+
+          return (
+            <Image
+              src={img}
+              alt={`Slide ${index + 1}`}
+              id={`slide-img-${index}`}
+              data-title={textData.title}
+              data-description={textData.description}
+              data-link={textData.link}
+              class={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 ${
+                index === 0
+                  ? "opacity-100 scale-100 z-10"
+                  : "opacity-0 scale-105 z-0"
+              }`}
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 6. ФИНАЛЬНАЯ ДВУХКОЛОНОЧНАЯ СЕКЦИЯ С ТЕКСТУРОЙ           -->
+<!-- ======================================================== -->
+<section
+  class="w-full bg-[#141414] text-white pt-16 sm:pt-24 relative overflow-hidden select-none border-t border-[#2a2a2a]/40"
+>
+  <div class="max-w-[1600px] mx-auto px-6 sm:px-12 md:px-20 lg:px-32">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 lg:gap-48 items-start mb-16 sm:mb-24 relative z-10"
+    >
+      <!-- Левый блок -->
+      <div class="space-y-6">
+        <h2
+          class="text-3xl sm:text-4xl font-light tracking-wide uppercase text-slate-100 max-w-md"
+        >
+          {blockContent.final_ecosystem.left_col.title}
+        </h2>
+        <p class="text-base text-slate-400 font-light leading-relaxed max-w-sm">
+          {blockContent.final_ecosystem.left_col.description}
+        </p>
+        <!--<div class="pt-4 sm:pt-6">
+          <a href="#gama-completa" class="inline-flex items-center gap-4 text-xs uppercase tracking-widest text-slate-200 group/link transition-colors duration-300 hover:text-[#c2949c]">
+            <span class="w-8 h-px bg-white group-hover/link:bg-[#c2949c] transition-colors duration-300"></span>
+            {blockContent.final_ecosystem.left_col.button}
+          </a>
+        </div>-->
+      </div>
+
+      <!-- Правый блок -->
+      <div class="space-y-6 md:pt-0">
+        <h2
+          class="text-3xl sm:text-4xl font-light tracking-wide uppercase text-slate-100 max-w-md"
+        >
+          {blockContent.final_ecosystem.right_col.title}
+        </h2>
+        <p class="text-base text-slate-400 font-light leading-relaxed max-w-sm">
+          {blockContent.final_ecosystem.right_col.description}
+        </p>
+        <!--<div class="pt-4 sm:pt-6">
+          <a href="#lineas-esteticas" class="inline-flex items-center gap-4 text-xs uppercase tracking-widest text-slate-200 group/link transition-colors duration-300 hover:text-[#c2949c]">
+            <span class="w-8 h-px bg-white group-hover/link:bg-[#c2949c] transition-colors duration-300"></span>
+            {blockContent.final_ecosystem.right_col.button}
+          </a>
+        </div>-->
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="w-full relative h-64 sm:h-75 md:h-88 overflow-hidden bg-black mt-auto"
+  >
+    <Image
+      src={bgTexture}
+      alt="Textura exclusiva Dolce Stil Novo"
+      class="w-full h-full object-cover object-center opacity-70"
+      loading="lazy"
+    />
+    <div
+      class="absolute inset-0 bg-linear-to-b from-[#141414] via-transparent to-transparent h-24"
+    >
+    </div>
+  </div>
+</section>
+
+<script src="../scripts/climaSlider.js"></script>

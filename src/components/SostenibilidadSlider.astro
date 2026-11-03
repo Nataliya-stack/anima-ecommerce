@@ -1,0 +1,94 @@
+---
+// src/components/SostenibilidadSlider.astro
+import data from "../../db.json";
+
+interface Props {
+  section: "personas" | "medioambiente" | "materiales";
+}
+
+const { section } = Astro.props;
+
+const allCards = data.sostenibilidadCards;
+
+let cards: Array<{
+  id: number;
+  title: string;
+  description: string;
+  link: string;
+}> = [];
+
+switch (section) {
+  case "personas":
+    cards = allCards.slice(0, 3); // Карточки 1, 2, 3 (индексы 0, 1, 2)
+    break;
+  case "medioambiente":
+    cards = allCards.slice(3, 6); // Карточки 4, 5, 6 (индексы 3, 4, 5)
+    break;
+  case "materiales":
+    cards = allCards.slice(6, 9); // Карточки 7, 8, 9 (индексы 6, 7, 8)
+    break;
+  default:
+    cards = [];
+}
+---
+
+<!-- ======================================================== -->
+<!-- 1. БЛОК: ОКНО ПРОСМОТРА И ТРЕК СЛАЙДЕРА КАРТОЧЕК         -->
+<!-- ======================================================== -->
+<section
+  class="w-full bg-white select-none pb-16 relative overflow-hidden js-carousel-container"
+>
+  <div class="max-w-7xl mx-auto px-6 md:px-16 relative">
+    <div class="w-full overflow-hidden">
+      <div
+        class="js-carousel-track flex gap-6 md:gap-8 overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth w-full"
+      >
+        {
+          cards.map((card) => (
+            <div class="w-full md:w-[calc(50%-16px)] shrink-0 snap-start snap-always bg-[#f0f0e6] p-10 md:p-14 min-h-95 md:min-h-105 flex flex-col justify-between text-center text-[#4c5143]">
+              <div class="space-y-6">
+                <h3 class="text-xl sm:text-2xl font-light tracking-[0.15em] uppercase leading-tight text-neutral-800 text-center">
+                  {card.title}
+                </h3>
+                <p class="text-sm sm:text-base font-normal tracking-wide leading-[1.8] text-neutral-600 max-w-sm mx-auto text-center whitespace-normal wrap-break-word">
+                  {card.description}
+                </p>
+              </div>
+
+              <div class="pt-8 border-t border-[#4c5143]/20 w-full flex justify-center">
+                <a
+                  href="javascript:void(0)"
+                  class="group inline-flex flex-col items-center gap-1"
+                >
+                  <span class="text-[11px] font-bold tracking-[0.25em] uppercase text-neutral-800 transition-colors group-hover:text-neutral-500 text-center">
+                    En desarrollo
+                  </span>
+                  <div class="w-12 h-1px bg-neutral-800 transition-all duration-300 group-hover:w-20" />
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- 2. БЛОК: СТРЕЛКИ НАВИГАЦИИ СЛАЙДЕРА                      -->
+    <!-- ======================================================== -->
+    <div class="flex md:block items-center justify-center gap-4 mt-6 md:mt-0">
+      <button
+        class="js-carousel-prev md:absolute md:left-4 md:top-1/2 md:-translate-y-1/2 w-10 h-10 border border-neutral-300 rounded-full flex items-center justify-center bg-white/80 text-neutral-600 hover:bg-neutral-900 hover:text-white hover:border-neutral-900 transition-all duration-300 z-30"
+      >
+        <span class="text-lg font-mono">‹</span>
+      </button>
+
+      <button
+        class="js-carousel-next md:absolute md:right-4 md:top-1/2 md:-translate-y-1/2 w-10 h-10 border border-neutral-300 rounded-full flex items-center justify-center bg-white/80 text-neutral-600 hover:bg-neutral-900 hover:text-white hover:border-neutral-900 transition-all duration-300 z-30"
+      >
+        <span class="text-lg font-mono">›</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script src="../scripts/universalCarousel.js"></script>

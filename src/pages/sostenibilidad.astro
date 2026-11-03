@@ -1,0 +1,293 @@
+---
+// src/pages/guia-cafetera.astro
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import SostenibilidadSlider from "../components/SostenibilidadSlider.astro";
+import ReportesSlider from "../components/ReportesSlider.astro";
+
+import imgSostenibilidad from "../assets/categories/banner-sostenibilidad.jpg";
+import imgPersonas from "../assets/categories/personas-sostenibilidad.jpg";
+import imgMedioambiente from "../assets/categories/medioambiente.jpg";
+import imgProductos from "../assets/categories/productos.jpg";
+
+import videoSostenibilidad from "../assets/video/video-sostenibilidad.mp4";
+---
+
+<Layout title="SOSTENIBILIDAD | ÁNIMA">
+  <main
+    class="w-full min-h-screen bg-white text-neutral-950 font-sans select-none pt-20 lg:pt-40"
+  >
+    <!-- ======================================================= -->
+    <!-- 1. ПОЛНОЭКРАННЫЙ ГЛАВНЫЙ БАННЕР -->
+    <!-- ======================================================= -->
+    <section
+      class="component is-herobanner-slider relative w-full aspect-192/95 md:aspect-192/58 bg-[#e8f4fa] overflow-hidden select-none"
+    >
+      <!-- Изображение-фон: Заполняет весь блок -->
+      <div class="absolute inset-0 w-full h-full z-0">
+        <Image
+          src={imgSostenibilidad}
+          alt="Sostenibilidad - Smeg"
+          class="w-full h-full object-cover object-center opacity-100"
+        />
+      </div>
+
+      <!-- НАВИГАЦИОННАЯ СТРЕЛА -->
+      <div class="absolute top-6 left-0 w-full px-6 md:px-16 z-20">
+        <nav
+          class="max-w-[1700px] mx-auto text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2"
+        >
+          <a
+            href="/"
+            class="hover:text-black transition-colors flex items-center gap-1"
+          >
+            ← Página principal
+          </a>
+          <span class="mx-1">/</span>
+          <span class="text-white font-normal">Sostenibilidad</span>
+        </nav>
+      </div>
+
+      <!-- БЛОК ТЕКСТА БАННЕРА -->
+      <div
+        class="absolute inset-0 w-full h-full z-10 flex items-center pt-10 px-6 md:px-16"
+      >
+        <div class="w-full max-w-[1700px] mx-auto flex justify-start">
+          <div
+            class="w-full sm:max-w-100 md:max-w-[50%] text-left space-y-4 md:space-y-6"
+          >
+            <h1
+              class="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-light tracking-wide uppercase text-white leading-tight"
+            >
+              SOSTENIBILIDAD
+            </h1>
+            <p
+              class="text-xs sm:text-sm md:text-[16px] text-white font-normal tracking-wide leading-relaxed max-w-[90%]"
+            >
+              Diseñar belleza, para las personas y el planeta
+            </p>
+            <div class="pt-2">
+              <span
+                class="text-[11px] tracking-[0.2em] uppercase font-semibold text-white block"
+                >Desplázate</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 2. СЕКЦИЯ: ВИДЕОПЛЕЕР И ВВОДНОЙ ТЕКСТ -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pb-24 pt-16">
+      <div class="w-full max-w-[1700px] mx-auto px-6 md:px-16">
+        <div
+          class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
+        >
+          <video controls class="w-full h-full object-cover">
+            <source src={videoSostenibilidad} type="video/mp4" />
+            Tu navegador no soporta vídeos.
+          </video>
+        </div>
+
+        <div class="w-full max-w-200 mx-auto text-center mt-20">
+          <p
+            class="text-lg sm:text-2xl md:text-[32px] font-light tracking-wide leading-loose"
+          >
+            Todo lo que hacemos se inspira en los valores que compartimos
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 3. СЕКЦИЯ: SOSTENIBILIDAD - PERSONAS -->
+    <!-- ======================================================= -->
+    <section
+      class="w-full min-h-135 grid grid-cols-1 md:grid-cols-2 overflow-hidden select-none"
+    >
+      <!-- ЛЕВАЯ ПОЛОВИНА: Текст -->
+      <div
+        class="bg-[#f0f0e6] flex items-center justify-start px-8 sm:px-16 md:px-20 lg:px-28 py-16 md:py-0"
+      >
+        <div class="w-full max-w-xl text-left space-y-8 text-neutral-800">
+          <h2
+            class="text-3xl sm:text-4xl md:text-5xl font-light tracking-widest uppercase text-neutral-400"
+          >
+            PERSONAS
+          </h2>
+          <div
+            class="text-sm sm:text-base md:text-[17px] font-light tracking-wide leading-loose text-neutral-700 max-w-lg"
+          >
+            <p>
+              Para Ánima, el <span class="font-medium text-black"
+                >desarrollo sostenible</span
+              > significa invertir en la <span class="font-medium text-black"
+                >calidad de vida</span
+              > de sus empleados, estableciendo un diálogo permanente con ellos bajo
+              el signo de la <span class="font-medium text-black"
+                >transparencia y la cooperación</span
+              >.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ПРАВАЯ ПОЛОВИНА: Картинка -->
+      <div class="w-full h-120 md:h-full relative overflow-hidden">
+        <Image
+          src={imgPersonas}
+          alt="Sostenibilidad Smeg - Personas"
+          class="w-full h-full object-cover object-center opacity-100"
+        />
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 4. СЕКЦИЯ: ИНФО-БАННЕР (PERSONAS) -->
+    <!-- ======================================================= -->
+    <section class="w-full min-h-50 my-16 bg-[#f0f0e6]">
+      <div
+        class="py-16 w-full max-w-[1700px] mx-auto flex flex-col items-center justify-center text-[#4c5143] px-6"
+      >
+        <h2
+          class="text-2xl sm:text-3xl md:text-4xl text-center font-light tracking-widest text-[#4c5143] leading-relaxed max-w-3xl"
+        >
+          Más de 24.000 horas de formación del personal.
+        </h2>
+      </div>
+    </section>
+
+    <SostenibilidadSlider section="personas" />
+
+    <!-- ======================================================= -->
+    <!-- 5. СЕКЦИЯ: SOSTENIBILIDAD - MEDIOAMBIENTE -->
+    <!-- ======================================================= -->
+    <section
+      class="w-full min-h-135 grid grid-cols-1 md:grid-cols-2 overflow-hidden select-none"
+    >
+      <!-- ЛЕВАЯ ПОЛОВИНА: Картинка -->
+      <div class="w-full h-120 md:h-full relative overflow-hidden">
+        <Image
+          src={imgMedioambiente}
+          alt="Sostenibilidad Smeg - Medioambiente"
+          class="w-full h-full object-cover object-center opacity-100"
+        />
+      </div>
+
+      <!-- ПРАВАЯ ПОЛОВИНА: Текст -->
+      <div
+        class="bg-[#f0f0e6] flex items-center justify-start px-8 sm:px-16 md:px-20 lg:px-28 py-16 md:py-0"
+      >
+        <div class="w-full max-w-xl text-left space-y-8 text-neutral-800">
+          <h2
+            class="text-3xl sm:text-4xl md:text-5xl font-light tracking-widest uppercase text-neutral-400"
+          >
+            MEDIOAMBIENTE
+          </h2>
+          <div
+            class="text-sm sm:text-base md:text-[17px] font-light tracking-wide leading-loose text-neutral-700 max-w-lg"
+          >
+            <p>
+              Para Ánima, el desarrollo sostenible significa asegurar <span
+                class="font-medium text-black">un planeta sano y habitable</span
+              > para las generaciones futuras, y garantizarles el <span
+                class="font-medium text-black"
+                >acceso a todos los recursos naturales</span
+              > mediante un enfoque regenerativo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 6. СЕКЦИЯ: ИНФО-БАННЕР (MEDIOAMBIENTE) -->
+    <!-- ======================================================= -->
+    <section class="w-full min-h-50 my-16 bg-[#f0f0e6]">
+      <div
+        class="py-16 w-full max-w-[1700px] mx-auto flex flex-col items-center justify-center text-[#4c5143] px-6"
+      >
+        <h2
+          class="text-2xl sm:text-3xl md:text-4xl text-center font-light tracking-widest text-[#4c5143] leading-relaxed max-w-3xl"
+        >
+          Más del 70% de la electricidad consumida procede de fuentes
+          renovables.
+        </h2>
+      </div>
+    </section>
+
+    <SostenibilidadSlider section="medioambiente" />
+
+    <!-- ======================================================= -->
+    <!-- 7. СЕКЦИЯ: SOSTENIBILIDAD - PRODUCTOS -->
+    <!-- ======================================================= -->
+    <section
+      class="w-full min-h-135 grid grid-cols-1 md:grid-cols-2 overflow-hidden select-none"
+    >
+      <!-- ЛЕВАЯ ПОЛОВИНА: Текст -->
+      <div
+        class="bg-[#f0f0e6] flex items-center justify-start px-8 sm:px-16 md:px-20 lg:px-28 py-16 md:py-0"
+      >
+        <div class="w-full max-w-xl text-left space-y-8 text-neutral-800">
+          <h2
+            class="text-3xl sm:text-4xl md:text-5xl font-light tracking-widest uppercase text-neutral-400"
+          >
+            PRODUCTOS
+          </h2>
+          <div
+            class="text-sm sm:text-base md:text-[17px] font-light tracking-wide leading-loose text-neutral-700 max-w-lg"
+          >
+            <p>
+              Para Ánima, desarrollo sostenible significa diseñar <span
+                class="font-medium text-black"
+                >grandes y pequeños electrodomésticos</span
+              > de forma responsable y con visión de futuro. Diseño y tecnología se
+              unen en una
+              <span class="font-medium text-black"
+                >amplia gama de productos</span
+              > pensados para durar, fruto de una
+              <span class="font-medium text-black">visión a largo plazo</span> derivada
+              de la arquitectura.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ПРАВАЯ ПОЛОВИНА: Картинка -->
+      <div class="w-full h-120 md:h-full relative overflow-hidden">
+        <Image
+          src={imgProductos}
+          alt="Sostenibilidad Smeg - Productos"
+          class="w-full h-full object-cover object-center opacity-100"
+        />
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 8. СЕКЦИЯ: ИНФО-БАННЕР (MATERIALES) -->
+    <!-- ======================================================= -->
+    <section class="w-full min-h-50 my-16 bg-[#f0f0e6]">
+      <div
+        class="py-16 w-full max-w-[1700px] mx-auto flex flex-col items-center justify-center text-[#4c5143] px-6"
+      >
+        <h2
+          class="text-2xl sm:text-3xl md:text-4xl text-center font-light tracking-widest text-[#4c5143] leading-relaxed max-w-3xl"
+        >
+          Uso de materiales ecológicos en los envases de pequeños
+          electrodomésticos
+        </h2>
+      </div>
+    </section>
+
+    <SostenibilidadSlider section="materiales" />
+
+    <!-- ======================================================= -->
+    <!-- 9. СЕКЦИЯ: ОТЧЕТЫ И СЛАЙДЕР -->
+    <!-- ======================================================= -->
+    <section class="w-full">
+      <ReportesSlider />
+    </section>
+  </main>
+</Layout>

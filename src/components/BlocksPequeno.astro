@@ -1,0 +1,170 @@
+---
+// src/components/BlocksPequeno.astro
+import { Image } from "astro:assets";
+
+import bannerInspiracion from "../assets/categories/banner_inspiracion.png";
+import bgRobot from "../assets/categories/robot_de_cosina.jpg";
+import bgSicily from "../assets/categories/sicily_love.jpg";
+import bgFinalPanorama from "../assets/categories/smeg.jpg";
+
+import dataDB from "../../db.json";
+const blockContent = dataDB.home.blocks_pequeno;
+---
+
+<!-- ======================================================== -->
+<!-- 1. БЛОК: ПОЛНОСТЬЮ НЕЗАВИСИМЫЙ БЛОК: КОФЕМАШИНЫ          -->
+<!-- ======================================================== -->
+<section class="w-full my-8 sm:my-20 select-none bg-white px-6 sm:px-0">
+  <div
+    class="max-w-[1700px] mx-auto px-2 sm:px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center"
+  >
+    <!-- ТЕКСТ -->
+    <div
+      class="order-2 md:order-1 md:col-start-2 md:col-span-3 space-y-6 max-w-md text-left w-full"
+    >
+      <h2
+        class="text-3xl sm:text-4xl font-light text-neutral-900 tracking-wide leading-tight whitespace-normal"
+      >
+        {blockContent.cafeteras.title}
+      </h2>
+      <p
+        class="text-neutral-700 text-[15px] sm:text-[17px] font-light tracking-wide leading-[1.8]"
+      >
+        {blockContent.cafeteras.description}
+      </p>
+      <!--<div class="pt-2 sm:pt-4">
+        <a href="/noticias/del-grano-a-la-taza" class="inline-flex items-center gap-4 text-[11px] font-bold tracking-[0.2em] text-neutral-900 uppercase group">
+          <span class="w-8 h-px bg-neutral-900 group-hover:w-12 transition-all duration-300"></span>
+          {blockContent.cafeteras.button}
+        </a>
+      </div>-->
+    </div>
+
+    <!-- КАРТИНКА -->
+    <div
+      class="order-1 md:order-2 md:col-start-6 md:col-span-7 w-full aspect-16/11 overflow-hidden rounded-xl sm:rounded-none"
+    >
+      <Image
+        src={bannerInspiracion}
+        alt="Cafeteras automáticas ÁNIMA"
+        class="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-[1.01]"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 2. БЛОК: ЗЕРКАЛЬНЫЙ БЛОК: КУХОННЫЙ КОМБАЙН               -->
+<!-- ======================================================== -->
+<section
+  class="max-w-[1700px] mx-auto my-8 sm:my-20 select-none bg-white px-6 sm:px-0"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center px-2 sm:px-6 md:px-12"
+  >
+    <!-- ЛЕВАЯ КОЛОНКА: Фотография миксера -->
+    <div
+      class="md:col-span-7 w-full aspect-16/11 overflow-hidden rounded-xl sm:rounded-none"
+    >
+      <Image
+        src={bgRobot}
+        alt="Robot de cocina ÁNIMA"
+        class="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-[1.01]"
+      />
+    </div>
+
+    <!-- ПРАВАЯ КОЛОНКА: Текст комбайна -->
+    <div
+      class="md:col-span-4 md:col-start-8 space-y-6 max-w-md text-left w-full"
+    >
+      <h2
+        class="text-3xl sm:text-[34px] font-light text-neutral-900 tracking-wide leading-tight uppercase whitespace-normal"
+      >
+        {blockContent.robot.title}
+      </h2>
+      <span
+        class="text-[11px] uppercase tracking-[0.2em] text-neutral-500 font-bold block"
+      >
+        {blockContent.robot.badge}
+      </span>
+      <p
+        class="text-neutral-700 text-[15px] sm:text-[17px] font-light tracking-wide leading-[1.8]"
+      >
+        El robot de cocina con recipiente de cristal te permite controlar los alimentos
+        mientras se están procesando a la vez que desarrolla el máximo rendimiento.
+        <strong class="font-bold text-neutral-900"
+          >La capacidad de 4,8 litros</strong
+        > lo hace perfecto para tus mezclas y masas voluminosas, y en el bol cuentas
+        con marcas para líquidos.
+      </p>
+      <!--<div class="pt-2 sm:pt-4">
+        <a href="/noticias/robot-de-cocina" class="inline-flex items-center gap-4 text-[10px] font-bold tracking-[0.2em] text-neutral-900 uppercase group">
+          <span class="w-8 h-px bg-neutral-900 group-hover:w-12 transition-all duration-300"></span>
+          {blockContent.robot.button}
+        </a>
+      </div>-->
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 3. БЛОК: КОЛЛЕКЦИИ DOLCE & GABBANA                       -->
+<!-- ======================================================== -->
+<section
+  class="max-w-[1700px] mx-auto my-8 sm:my-20 select-none bg-white px-6 sm:px-0"
+>
+  <div
+    class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center px-2 sm:px-6 md:px-12"
+  >
+    <!-- ТЕКСТ D&G -->
+    <div
+      class="order-2 md:order-1 md:col-start-2 md:col-span-3 space-y-6 max-w-md text-left w-full"
+    >
+      <h2
+        class="text-3xl sm:text-[34px] font-light text-neutral-900 tracking-wide leading-tight whitespace-normal"
+      >
+        {blockContent.sicily.title}
+      </h2>
+      <p
+        class="text-neutral-700 text-[15px] sm:text-[17px] font-light tracking-wide leading-[1.8]"
+      >
+        <strong class="font-bold text-neutral-900"
+          >La colección del pequeño electrodoméstico</strong
+        > creado por <strong class="font-bold text-neutral-900">Smeg</strong> con
+        la inconfundible creatividad de <strong
+          class="font-bold text-neutral-900">Dolce & Gabbana</strong
+        >.
+      </p>
+      <!--<div class="pt-2 sm:pt-4">
+        <a href="/noticias/sicily-is-my-love" class="inline-flex items-center gap-4 text-[10px] font-bold tracking-[0.2em] text-neutral-900 uppercase group">
+          <span class="w-8 h-px bg-neutral-900 group-hover:w-12 transition-all duration-300"></span>
+          {blockContent.sicily.button}
+        </a>
+      </div>-->
+    </div>
+
+    <!-- КАРТИНКА D&G -->
+    <div
+      class="order-1 md:order-2 md:col-start-6 md:col-span-7 w-full aspect-16/11 overflow-hidden rounded-xl sm:rounded-none"
+    >
+      <Image
+        src={bgSicily}
+        alt="Colección Sicily is my love SMEG"
+        class="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-[1.01]"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 4. БЛОК: ФИНАЛЬНАЯ ПАНОРАМА НА ВЕСЬ ЭКРАН                -->
+<!-- ======================================================== -->
+<section
+  class="w-full mt-12 sm:mt-32 mb-0 select-none overflow-hidden bg-neutral-50 relative z-10 left-0 right-0"
+>
+  <Image
+    src={bgFinalPanorama}
+    alt="Gama completa de electrodomésticos ÁNIMA"
+    class="w-full h-auto object-cover transition-transform duration-1000 ease-out hover:scale-[1.01]"
+  />
+</section>

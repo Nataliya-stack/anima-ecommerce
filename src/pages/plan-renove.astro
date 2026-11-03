@@ -1,0 +1,593 @@
+---
+// src/pages/plan-renove.astro
+import Layout from "../layouts/Layout.astro";
+import comprarOnline1 from "../assets/categories/comprar_online1.jpg";
+import renoveSteps from "../assets/categories/renove_steps.jpg";
+import beneficio1 from "../assets/categories/beneficio1.png";
+import beneficio2 from "../assets/categories/beneficio2.png";
+import beneficio3 from "../assets/categories/beneficio3.png";
+import beneficio4 from "../assets/categories/beneficio4.png";
+---
+
+<Layout title="Plan Renove SMEG | ÁNIMA">
+  <main
+    class="w-full min-h-screen bg-[#fcfcfc] text-[#141414] font-sans antialiased select-none"
+  >
+    <!-- ======================================================= -->
+    <!-- 1. ГЛАВНЫЙ БАННЕР PLAN RENOVE (Сетка 50/50 и хлебные крошки) -->
+    <!-- ======================================================= -->
+    <section
+      class="relative h-auto lg:h-190 group/slider overflow-hidden pt-20 lg:pt-30 bg-[#fcfcfc]"
+    >
+      <!-- Лента слайдера (Нативный скролл) -->
+      <div
+        id="comprar-slider"
+        class="flex overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth h-full w-full relative min-h-105 lg:min-h-0"
+      >
+        <!-- Фоновое изображение Plan Renove на весь экран -->
+        <img
+          src={comprarOnline1.src}
+          alt="Plan Renove SMEG"
+          class="absolute inset-0 w-full h-full object-cover select-none block z-0"
+        />
+
+        <!-- Сетка 50/50: левая половина автоматически центрирует контент -->
+        <div
+          class="absolute inset-0 grid grid-cols-1 lg:grid-cols-2 z-10 bg-transparent text-neutral-900"
+        >
+          <!-- Левый текстовый контейнер -->
+          <div
+            class="w-full h-full flex flex-col justify-center items-center px-6 lg:px-12 relative"
+          >
+            <div
+              class="w-full max-w-2xl space-y-10 text-left lg:pl-12 pt-0 lg:pt-6"
+            >
+              <!-- Навигационная стрелка -->
+              <nav
+                class="text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2"
+              >
+                <a
+                  href="/"
+                  class="hover:text-black transition-colors flex items-center gap-1"
+                >
+                  ← Página principal
+                </a>
+                <span class="mx-1">/</span>
+                <a
+                  href="/mundo-editorial"
+                  class="hover:text-black transition-colors"
+                >
+                  Mundo Editorial
+                </a>
+                <span class="mx-1">/</span>
+                <span class="text-neutral-800 font-normal"
+                  >Plan Renove SMEG</span
+                >
+              </nav>
+
+              <span
+                class="text-[12px] lg:text-[14px] uppercase tracking-[0.25em] text-neutral-500 font-semibold block"
+              >
+                Sostenibilidad
+              </span>
+
+              <h1
+                class="text-2xl sm:text-4xl lg:text-[46px] font-light tracking-wide uppercase leading-tight whitespace-normal lg:whitespace-nowrap"
+              >
+                Plan Renove SMEG
+              </h1>
+
+              <div
+                class="space-y-2 lg:space-y-4 text-neutral-600 text-sm lg:text-lg font-light tracking-wide leading-relaxed max-w-md mx-auto lg:mx-0"
+              >
+                <p>
+                  Renueva tu cocina cuidando el planeta y obtén un -20% de
+                  descuento.
+                </p>
+                <p class="italic font-normal text-neutral-800">
+                  Promoción válida hasta el 31/12/2026
+                </p>
+              </div>
+
+              <div class="pt-2 lg:pt-4">
+                <a
+                  href="/simulador"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 lg:gap-4 text-[12px] lg:text-[14px] uppercase tracking-[0.25em] font-bold text-black border-b border-black pb-1 hover:opacity-70 transition-all duration-300"
+                >
+                  <span class="w-4 lg:w-6 h-px bg-current"></span>RECICLA Y
+                  OBTÉN TU DESCUENTO
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Правая половина -->
+          <div class="hidden lg:block w-full h-full"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 2. СЕКЦИЯ: ЦЕНТРИРОВАННЫЙ ЗАГОЛОВОК-ПРИЗЫВ -->
+    <!-- ======================================================= -->
+    <section
+      class="w-full max-w-[1800px] mx-auto lg:px-12 bg-white py-8 lg:py-24 px-6 select-none font-sans antialiased"
+    >
+      <div class="max-w-4xl mx-auto text-center">
+        <h2
+          class="text-xl sm:text-3xl lg:text-[34px] font-light text-neutral-800 tracking-wide leading-snug lg:leading-[1.35] uppercase"
+        >
+          Recicla tu pequeño electrodoméstico y <br class="hidden sm:inline" />
+          obtén un -20% de descuento para tu <br class="hidden sm:inline" />
+          próxima compra.
+        </h2>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 3. СЕКЦИЯ: ASÍ DE FÁCIL ES RECICLAR Y GANAR -->
+    <!-- ======================================================= -->
+    <section
+      class="w-full max-w-[1800px] mx-auto px-6 lg:px-12 pr-6 lg:pr-0 py-8 lg:py-28 grid grid-cols-1 lg:grid-cols-[35%_75%] bg-[#fcfcfc] select-none font-sans antialiased overflow-hidden gap-8 lg:gap-0"
+    >
+      <!-- Левая колонка -->
+      <div class="w-full flex flex-col justify-center lg:pr-12 py-2 lg:py-6">
+        <div
+          class="w-full max-w-xl space-y-6 lg:space-y-10 lg:pl-12 text-center lg:text-left mx-auto lg:mx-0"
+        >
+          <h2
+            class="text-2xl sm:text-4xl lg:text-[46px] font-light text-neutral-900 tracking-wide uppercase leading-[1.15]"
+          >
+            Así de fácil es reciclar <br class="hidden sm:inline" /> y ganar
+          </h2>
+
+          <ol
+            class="space-y-4 lg:space-y-6 text-neutral-600 text-sm lg:text-xl font-light tracking-wide leading-relaxed text-left max-w-md mx-auto lg:mx-0"
+          >
+            <li class="flex items-start gap-3">
+              <span class="shrink-0 font-normal">1.</span>
+              <span
+                >Solicita el envío de tu pequeño electrodoméstico a un punto
+                limpio.</span
+              >
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="shrink-0 font-normal">2.</span>
+              <span>Entrega tu producto.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="shrink-0 font-normal">3.</span>
+              <span
+                >Recibe tu descuento Smeg y utilízalo en tu próxima compra.</span
+              >
+            </li>
+          </ol>
+
+          <!--<div class="pt-2 lg:pt-6 flex justify-center lg:justify-start">
+            <a 
+              href="#formulario-renove" 
+              class="inline-flex items-center gap-3 lg:gap-4 text-[11px] lg:text-sm uppercase tracking-[0.25em] font-bold text-black border-b border-black pb-1.5 hover:opacity-70 transition-all duration-300"
+            >
+              <span class="w-4 lg:w-6 h-px bg-current"></span>
+              RECICLA Y CONSIGUE TU DESCUENTO
+            </a>
+          </div>-->
+        </div>
+      </div>
+
+      <!-- Правая колонка: Картинка -->
+      <div
+        class="w-full h-auto min-h-0 sm:h-100 lg:h-180 lg:min-h-120 bg-[#f0ede6]/50 relative overflow-hidden flex items-center justify-center p-6 lg:p-0 rounded-lg lg:rounded-none"
+      >
+        <img
+          src={renoveSteps.src}
+          alt="Pasos para reciclar"
+          class="w-full max-w-md lg:max-w-none h-auto lg:h-full object-contain lg:object-cover select-none mx-auto"
+        />
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 4. СЕКЦИЯ: ¿QUÉ BENEFICIOS TIENE EL PLAN RENOVE? -->
+    <!-- ======================================================= -->
+    <section
+      class="w-full max-w-[1800px] mx-auto px-6 lg:px-16 py-10 lg:py-28 bg-white select-none font-sans antialiased"
+    >
+      <h2
+        class="text-xl sm:text-3xl lg:text-[34px] font-light text-neutral-800 tracking-wide uppercase text-center mb-8 lg:mb-24"
+      >
+        ¿Qué beneficios tiene el Plan Renove Smeg?
+      </h2>
+
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4 text-center"
+      >
+        <!-- КОЛОНКА 1 -->
+        <div
+          class="flex flex-col items-center h-full justify-between space-y-4 lg:space-y-8"
+        >
+          <h3
+            class="text-lg sm:text-3xl font-light text-neutral-800 tracking-wide leading-tight max-w-60 min-h-0 lg:min-h-16 flex items-center justify-center"
+          >
+            Recicla y obtén un descuento exclusivo
+          </h3>
+          <div
+            class="w-full aspect-square max-w-70 lg:max-w-85 bg-[#f0ede6]/40 flex items-center justify-center p-8 lg:p-12 transition-colors duration-300 hover:bg-[#f0ede6]/60"
+          >
+            <img
+              src={beneficio1.src}
+              alt="Descuento exclusivo"
+              class="w-full h-full object-contain block select-none"
+            />
+          </div>
+        </div>
+
+        <!-- КОЛОНКА 2 -->
+        <div
+          class="flex flex-col items-center h-full justify-between space-y-4 lg:space-y-8"
+        >
+          <h3
+            class="text-lg sm:text-3xl font-light text-neutral-800 tracking-wide leading-tight max-w-60 min-h-0 lg:min-h-16 flex items-center justify-center"
+          >
+            Recicla de forma responsable
+          </h3>
+          <div
+            class="w-full aspect-square max-w-70 lg:max-w-85 bg-[#f0ede6]/40 flex items-center justify-center p-8 lg:p-12 transition-colors duration-300 hover:bg-[#f0ede6]/60"
+          >
+            <img
+              src={beneficio2.src}
+              alt="Responsable"
+              class="w-full h-full object-contain block select-none"
+            />
+          </div>
+        </div>
+
+        <!-- КОЛОНКА 3 -->
+        <div
+          class="flex flex-col items-center h-full justify-between space-y-4 lg:space-y-8"
+        >
+          <h3
+            class="text-lg sm:text-3xl font-light text-neutral-800 tracking-wide leading-tight max-w-60 min-h-0 lg:min-h-16 flex items-center justify-center"
+          >
+            Reduce tu huella ecológica haciendo compras responsables
+          </h3>
+          <div
+            class="w-full aspect-square max-w-70 lg:max-w-85 bg-[#f0ede6]/40 flex items-center justify-center p-8 lg:p-12 transition-colors duration-300 hover:bg-[#f0ede6]/60"
+          >
+            <img
+              src={beneficio3.src}
+              alt="Huella ecológica"
+              class="w-full h-full object-contain block select-none"
+            />
+          </div>
+        </div>
+
+        <!-- КОЛОНКА 4 -->
+        <div
+          class="flex flex-col items-center h-full justify-between space-y-4 lg:space-y-8"
+        >
+          <h3
+            class="text-lg sm:text-3xl font-light text-neutral-800 tracking-wide leading-tight max-w-60 min-h-16 flex items-center justify-center"
+          >
+            Recicla rápido y fácil
+          </h3>
+          <div
+            class="w-full aspect-square max-w-70 lg:max-w-85 bg-[#f0ede6]/40 flex items-center justify-center p-8 lg:p-12 transition-colors duration-300 hover:bg-[#f0ede6]/60"
+          >
+            <img
+              src={beneficio4.src}
+              alt="Rápido y fácil"
+              class="w-full h-full object-contain block select-none"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 5. СЕКЦИЯ: PREGUNTAS FRECUENTES (FAQ) -->
+    <!-- ======================================================= -->
+    <section
+      class="w-full max-w-[1800px] mx-auto px-6 lg:px-16 py-20 lg:py-28 bg-[#fcfcfc] select-none font-sans antialiased pb-32"
+    >
+      <!-- Заголовок секции -->
+      <h2
+        class="text-2xl sm:text-3xl lg:text-[34px] font-bold text-[#505247] tracking-wide uppercase mb-12 border-b border-neutral-200/60 pb-6"
+      >
+        Preguntas frecuentes | Plan Renove Smeg
+      </h2>
+
+      <!-- Контейнер аккордеона -->
+      <div
+        class="w-full border-t border-neutral-200/60 divide-y divide-neutral-200/60"
+      >
+        <!-- ВОПРОС 1 -->
+        <details class="group w-full bg-white transition-colors duration-300">
+          <summary
+            class="flex items-center justify-between px-6 py-6 lg:py-7 cursor-pointer list-none hover:bg-neutral-50/50 transition-colors"
+          >
+            <span
+              class="text-lg lg:text-2xl font-medium text-[#505247] tracking-wide"
+            >
+              ¿Qué es el Plan Renove Smeg?
+            </span>
+            <span
+              class="relative flex items-center justify-center w-5 h-5 text-[#505247]"
+            >
+              <span
+                class="absolute w-4 h-0.5 bg-current transition-transform duration-300 group-open:rotate-180"
+              ></span>
+              <span
+                class="absolute h-4 w-0.5 bg-current transition-transform duration-300 group-open:scale-y-0"
+              ></span>
+            </span>
+          </summary>
+          <div
+            class="px-6 pb-6 text-lg lg:text-2xl text-[#505247] font-light leading-relaxed"
+          >
+            El Plan Renove Smeg es una iniciativa que ayuda a nuestros clientes
+            a reciclar sus pequeños electrodomésticos antiguos de forma
+            responsable, dándoles una segunda vida a través del reciclaje
+            adecuado. A cambio, el cliente obtiene un descuento para su próxima
+            compra en Smeg, fomentando un consumo más consciente y sostenible.
+          </div>
+        </details>
+
+        <!-- ВОПРОС 2 -->
+        <details class="group w-full bg-white transition-colors duration-300">
+          <summary
+            class="flex items-center justify-between px-6 py-6 lg:py-7 cursor-pointer list-none hover:bg-neutral-50/50 transition-colors"
+          >
+            <span
+              class="text-lg lg:text-2xl font-medium text-[#505247] tracking-wide"
+            >
+              ¿Qué beneficio obtiene el cliente?
+            </span>
+            <span
+              class="relative flex items-center justify-center w-5 h-5 text-[#505247]"
+            >
+              <span
+                class="absolute w-4 h-0.5 bg-current transition-transform duration-300 group-open:rotate-180"
+              ></span>
+              <span
+                class="absolute h-4 w-0.5 bg-current transition-transform duration-300 group-open:scale-y-0"
+              ></span>
+            </span>
+          </summary>
+          <div
+            class="px-6 pb-6 text-lg lg:text-2xl text-[#505247] font-light leading-relaxed"
+          >
+            Al participar en el Plan Renove Smeg, el cliente recibe un -20%
+            descuento exclusivo para utilizar en su próxima compra. De esta
+            forma, renovamos juntos tus electrodomésticos mientras contribuimos
+            a reducir el impacto ambiental.
+          </div>
+        </details>
+
+        <!-- ВОПРОС 3 -->
+        <details class="group w-full bg-white transition-colors duration-300">
+          <summary
+            class="flex items-center justify-between px-6 py-6 lg:py-7 cursor-pointer list-none hover:bg-neutral-50/50 transition-colors"
+          >
+            <span
+              class="text-lg lg:text-2xl font-medium text-[#505247] tracking-wide"
+            >
+              ¿Dónde está disponible esta iniciativa?
+            </span>
+            <span
+              class="relative flex items-center justify-center w-5 h-5 text-[#505247]"
+            >
+              <span
+                class="absolute w-4 h-0.5 bg-current transition-transform duration-300 group-open:rotate-180"
+              ></span>
+              <span
+                class="absolute h-4 w-0.5 bg-current transition-transform duration-300 group-open:scale-y-0"
+              ></span>
+            </span>
+          </summary>
+          <div
+            class="px-6 pb-6 text-lg lg:text-2xl text-[#505247] font-light leading-relaxed"
+          >
+            El programa Plan Renove Smeg se desarrolla en toda la Península,
+            Islas Baleares e Islas Canarias. Por lo tanto, el plan no está
+            disponible en Ceuta y Melilla.
+          </div>
+        </details>
+
+        <!-- ВОПРОС 4 -->
+        <details class="group w-full bg-white transition-colors duration-300">
+          <summary
+            class="flex items-center justify-between px-6 py-6 lg:py-7 cursor-pointer list-none hover:bg-neutral-50/50 transition-colors"
+          >
+            <span
+              class="text-lg lg:text-2xl font-medium text-[#505247] tracking-wide"
+            >
+              ¿El producto que reciclo tiene que ser de la marca Smeg?
+            </span>
+            <span
+              class="relative flex items-center justify-center w-5 h-5 text-[#505247]"
+            >
+              <span
+                class="absolute w-4 h-0.5 bg-current transition-transform duration-300 group-open:rotate-180"
+              ></span>
+              <span
+                class="absolute h-4 w-0.5 bg-current transition-transform duration-300 group-open:scale-y-0"
+              ></span>
+            </span>
+          </summary>
+          <div
+            class="px-6 pb-6 text-lg lg:text-2xl text-[#505247] font-light leading-relaxed"
+          >
+            No necesariamente. Puedes reciclar pequeños electrodomésticos de
+            otras marcas, siempre que entren dentro de las categorías aceptadas
+            por el Plan Renove.
+          </div>
+        </details>
+
+        <!-- ВОПРОС 5 -->
+        <details class="group w-full bg-white transition-colors duration-300">
+          <summary
+            class="flex items-center justify-between px-6 py-6 lg:py-7 cursor-pointer list-none hover:bg-neutral-50/50 transition-colors"
+          >
+            <span
+              class="text-lg lg:text-2xl font-medium text-[#505247] tracking-wide"
+            >
+              ¿Qué productos se pueden reciclar?
+            </span>
+            <span
+              class="relative flex items-center justify-center w-5 h-5 text-[#505247]"
+            >
+              <span
+                class="absolute w-4 h-0.5 bg-current transition-transform duration-300 group-open:rotate-180"
+              ></span>
+              <span
+                class="absolute h-4 w-0.5 bg-current transition-transform duration-300 group-open:scale-y-0"
+              ></span>
+            </span>
+          </summary>
+          <div
+            class="px-6 pb-6 text-lg lg:text-2xl text-[#505247] space-y-6 tracking-wide font-light leading-relaxed"
+          >
+            <p>
+              El Plan Renove está pensado para pequeños electrodomésticos de uso
+              doméstico. Por ejemplo, puedes reciclar:
+            </p>
+            <ul class="space-y-6 list-disc list-outside">
+              <li>Tostadoras</li>
+              <li>Hervidores</li>
+              <li>Batidoras</li>
+              <li>Cafeteras</li>
+              <li>Hornos de sobremesa</li>
+              <li>Robots amasadores</li>
+              <li>Exprimidores</li>
+              <li>Licuadoras</li>
+              <li>Otros pequeños electrodomésticos similares</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- ВОПРОС 6 -->
+        <details class="group w-full bg-white transition-colors duration-300">
+          <summary
+            class="flex items-center justify-between px-6 py-6 lg:py-7 cursor-pointer list-none hover:bg-neutral-50/50 transition-colors"
+          >
+            <span
+              class="text-lg lg:text-2xl font-medium text-[#505247] tracking-wide"
+            >
+              ¿Cómo puedo participar en el Plan Renove?
+            </span>
+            <span
+              class="relative flex items-center justify-center w-5 h-5 text-[#505247]"
+            >
+              <span
+                class="absolute w-4 h-0.5 bg-current transition-transform duration-300 group-open:rotate-180"
+              ></span>
+              <span
+                class="absolute h-4 w-0.5 bg-current transition-transform duration-300 group-open:scale-y-0"
+              ></span>
+            </span>
+          </summary>
+          <div
+            class="px-6 pb-6 text-lg lg:text-2xl text-[#505247] font-light leading-relaxed"
+          >
+            Es tan simple como rellenar el formulario de solicitud en esta
+            página, acudir a tu punto limpio más cercano a depositar el aparato
+            antiguo y subir el comprobante de entrega.
+          </div>
+        </details>
+
+        <!-- ВОПРОС 7 -->
+        <details class="group w-full bg-white transition-colors duration-300">
+          <summary
+            class="flex items-center justify-between px-6 py-6 lg:py-7 cursor-pointer list-none hover:bg-neutral-50/50 transition-colors"
+          >
+            <span
+              class="text-lg lg:text-2xl font-medium text-[#505247] tracking-wide"
+            >
+              ¿Por qué Smeg pone en marcha esta iniciativa?
+            </span>
+            <span
+              class="relative flex items-center justify-center w-5 h-5 text-[#505247]"
+            >
+              <span
+                class="absolute w-4 h-0.5 bg-current transition-transform duration-300 group-open:rotate-180"
+              ></span>
+              <span
+                class="absolute h-4 w-0.5 bg-current transition-transform duration-300 group-open:scale-y-0"
+              ></span>
+            </span>
+          </summary>
+          <div
+            class="px-6 pb-6 text-lg lg:text-2xl text-[#505247] font-light leading-relaxed"
+          >
+            Smeg está profundamente comprometida con la sostenibilidad y la
+            economía circular. Esta campaña ayuda a reducir los desechos
+            tecnológicos y premia a los usuarios responsables.
+          </div>
+        </details>
+
+        <!-- ВОПРОС 8 -->
+        <details class="group w-full bg-white transition-colors duration-300">
+          <summary
+            class="flex items-center justify-between px-6 py-6 lg:py-7 cursor-pointer list-none hover:bg-neutral-50/50 transition-colors"
+          >
+            <span
+              class="text-lg lg:text-2xl font-medium text-[#505247] tracking-wide"
+            >
+              ¿Qué ocurre con el electrodoméstico reciclado?
+            </span>
+            <span
+              class="relative flex items-center justify-center w-5 h-5 text-[#505247]"
+            >
+              <span
+                class="absolute w-4 h-0.5 bg-current transition-transform duration-300 group-open:rotate-180"
+              ></span>
+              <span
+                class="absolute h-4 w-0.5 bg-current transition-transform duration-300 group-open:scale-y-0"
+              ></span>
+            </span>
+          </summary>
+          <div
+            class="px-6 pb-6 text-lg lg:text-2xl text-[#505247] font-light leading-relaxed"
+          >
+            Todos los dispositivos entregados son procesados por plantas de
+            reciclaje oficiales, recuperando sus materiales (plásticos, metales,
+            cobre) de forma limpia y segura para el planeta.
+          </div>
+        </details>
+
+        <!-- ВОПРОС 9 -->
+        <details class="group w-full bg-white transition-colors duration-300">
+          <summary
+            class="flex items-center justify-between px-6 py-6 lg:py-7 cursor-pointer list-none hover:bg-neutral-50/50 transition-colors"
+          >
+            <span
+              class="text-lg lg:text-2xl font-medium text-[#505247] tracking-wide"
+            >
+              ¿Cuándo recibiré mi descuento?
+            </span>
+            <span
+              class="relative flex items-center justify-center w-5 h-5 text-[#505247]"
+            >
+              <span
+                class="absolute w-4 h-0.5 bg-current transition-transform duration-300 group-open:rotate-180"
+              ></span>
+              <span
+                class="absolute h-4 w-0.5 bg-current transition-transform duration-300 group-open:scale-y-0"
+              ></span>
+            </span>
+          </summary>
+          <div
+            class="px-6 pb-6 text-lg lg:text-2xl text-[#505247] font-light leading-relaxed"
+          >
+            Una vez validado el justificante de entrega del punto limpio por
+            nuestro equipo, recibirás el código de descuento por correo
+            electrónico en un plazo máximo de 48-72 horas hábiles.
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+</Layout>

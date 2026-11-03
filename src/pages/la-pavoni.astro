@@ -1,0 +1,183 @@
+---
+// src/pages/la-pavoni.astro
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+import pavoniMainImage from "../assets/categories/pavoni_machine.jpg";
+import pavoniBusImage from "../assets/categories/pavoni-bus.jpg";
+import pavoniSecretImage from "../assets/categories/pavoni-secret.png";
+import pavoniGalleryCollage from "../assets/categories/gallery.png";
+---
+
+<Layout title="La Pavoni | ÁNIMA">
+  <main
+    class="w-full min-h-screen bg-[#fcfcfc] text-[#141414] pt-35 lg:pt-30 font-sans antialiased select-none"
+  >
+    <!-- ======================================================= -->
+    <!-- 1. ГЛАВНЫЙ БАННЕР                                       -->
+    <!-- ======================================================= -->
+    <section class="relative w-full block overflow-hidden">
+      <!-- Фоновая картинка -->
+      <Image
+        src={pavoniMainImage}
+        alt="La Pavoni Heritage"
+        class="w-full h-auto block select-none z-0 brightness-[0.85]"
+        priority
+      />
+
+      <!-- Текстовый контейнер поверх фото (Сетка 50/50) -->
+      <div
+        class="absolute inset-20 grid grid-cols-1 lg:grid-cols-2 z-10 bg-transparent text-white"
+      >
+        <!-- Левая половина -->
+        <div
+          class="w-full h-full flex flex-col space-y-10 justify-between items-start px-8 sm:px-16 lg:pl-32"
+        >
+          <!-- Навигационная стрелка -->
+          <nav
+            class="text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2"
+          >
+            <a
+              href="/"
+              class="hover:text-neutral-300 transition-colors flex items-center gap-1"
+            >
+              ← Página principal
+            </a>
+            <span class="mx-1">/</span>
+            <a
+              href="/mundo-editorial"
+              class="hover:text-neutral-300 transition-colors"
+            >
+              Mundo Editorial
+            </a>
+            <span class="mx-1">/</span>
+            <span class="text-neutral-300 font-normal">La Pavoni</span>
+          </nav>
+
+          <!-- Информационный блок по центру высоты -->
+          <div class="w-full max-w-xl my-auto text-left">
+            <h1
+              class="text-4xl sm:text-5xl lg:text-[52px] font-bold tracking-wide uppercase leading-none"
+            >
+              La Pavoni
+            </h1>
+
+            <div
+              class="text-white text-sm lg:text-[20px] font-semibold tracking-wide leading-relaxed max-w-md mt-10"
+            >
+              <p>
+                La marca La Pavoni, uno de los fabricantes de máquinas de café
+                espresso más antiguos del mundo, es originaria de Milán.
+              </p>
+              <p class="mt-4">
+                Disfruta de un espresso bien preparado y eleva tu experiencia
+                del café a nuevos niveles.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 2. СЕКЦИЯ: MADE IN ITALY (30/70) -->
+    <!-- ======================================================= -->
+    <section
+      class="max-w-[1800px] mx-auto flex flex-col lg:grid lg:grid-cols-[32%_68%] items-center bg-[#fcfcfc] pt-20 lg:pt-32 pb-24 overflow-hidden"
+    >
+      <!-- Левая часть: Контент с текстом -->
+      <div
+        class="w-full flex flex-col justify-center px-8 sm:px-16 text-[#141414] mb-10 lg:mb-0"
+      >
+        <h2
+          class="text-3xl lg:text-[40px] font-light tracking-wide uppercase mb-8 leading-none"
+        >
+          Made in Italy
+        </h2>
+
+        <div
+          class="space-y-6 text-neutral-600 text-lg lg:text-[24px] font-light tracking-wide leading-relaxed"
+        >
+          <p>
+            La Pavoni es uno de los fabricantes de máquinas de café espresso más
+            antiguos del mundo y es sinónimo de café italiano desde 1905.
+          </p>
+          <p>
+            La Pavoni transforma las máquinas de café en objetos de lujo y
+            promueve el concepto de Made in Italy con productos que combinan
+            calidad y diseño. Es una marca que siempre estará asociada a la
+            auténtica excelencia italiana y, con una larga historia de pasión y
+            tradición, sus máquinas de café espresso se han hecho famosas en
+            todo el mundo.
+          </p>
+        </div>
+      </div>
+
+      <!-- Правая часть: Фото ретро-автобуса -->
+      <div class="w-full h-full flex justify-end select-none">
+        <Image
+          src={pavoniBusImage}
+          alt="La Pavoni Made in Italy History"
+          class="w-full h-auto object-cover block"
+        />
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 3. СЕКЦИЯ: EL SECRETO DE UN AUTÉNTICO CAFÉ ESPRESSO (68/32) -->
+    <!-- ======================================================= -->
+    <section
+      class="max-w-[1800px] mx-auto flex flex-col-reverse lg:grid lg:grid-cols-[68%_32%] items-center bg-[#fcfcfc] pb-24 overflow-hidden"
+    >
+      <!-- Левая половина с фото кофемашины -->
+      <div class="w-full h-full flex justify-start select-none">
+        <Image
+          src={pavoniSecretImage}
+          alt="El secreto de un auténtico café espresso italiano"
+          class="w-full h-auto object-cover block"
+        />
+      </div>
+
+      <!-- Правая половина с текстом -->
+      <div
+        class="w-full flex flex-col justify-center px-8 sm:px-16 text-[#141414] mt-10 lg:mt-0"
+      >
+        <h2
+          class="text-3xl lg:text-[40px] font-light tracking-wide uppercase mb-8 leading-tight"
+        >
+          El secreto de un auténtico café espresso italiano
+        </h2>
+
+        <div
+          class="space-y-6 text-neutral-600 text-lg lg:text-[24px] font-light tracking-wide leading-relaxed"
+        >
+          <p>
+            Inspirándose en la mejor tradición italiana, la preparación manual
+            incorpora el arte de elaborar un auténtico espresso, para un café de
+            sabor intenso y con cuerpo.
+          </p>
+          <p>
+            La gama se compone de modelos emblemáticos, completamente fabricados
+            a mano en la fábrica de la empresa en Milán. Representan una parte
+            importante de la historia del diseño italiano, que ha convertido el
+            café en un arte exquisito.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 4. СЕКЦИЯ: ГАЛЕРЕЯ-КОЛЛАЖ -->
+    <!-- ======================================================= -->
+    <section class="w-full bg-[#fcfcfc] pb-20">
+      <div class="w-full block select-none overflow-hidden">
+        <Image
+          src={pavoniGalleryCollage}
+          alt="La Pavoni Gallery Collage"
+          class="w-full h-auto block object-contain"
+          priority
+        />
+      </div>
+    </section>
+  </main>
+</Layout>

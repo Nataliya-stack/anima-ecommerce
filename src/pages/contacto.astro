@@ -1,0 +1,370 @@
+---
+// src/pages/contacto.astro
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+import dataDB from "../../db.json";
+const info = dataDB.contacto;
+
+import imgSede from "../assets/categories/sede-pool.avif";
+---
+
+<Layout title="Contacto | ÁNIMA">
+  <main
+    class="w-full min-h-screen bg-black text-white pt-35 lg:pt-50 font-sans"
+  >
+    <!-- Навигационная стрелка) -->
+    <div class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 mb-8">
+      <nav
+        class="text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2"
+      >
+        <a
+          href="/"
+          class="hover:text-white transition-colors flex items-center gap-1"
+        >
+          ← Página principal
+        </a>
+        <span class="mx-1">/</span>
+        <span class="text-neutral-300 font-normal">Contacto</span>
+      </nav>
+    </div>
+
+    <!-- 2. БОЛЬШОЙ ПАНОРАМНЫЙ БЛОК: ФОТО СЛЕВА, КОНТАКТЫ СПРАВА -->
+    <section
+      class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 grid grid-cols-1 lg:grid-cols-[65%_35%] gap-12 items-stretch select-none mb-24"
+    >
+      <!-- Панорамное фото здания -->
+      <div
+        class="w-full aspect-16/10 sm:aspect-video lg:h-full relative overflow-hidden rounded-sm border border-neutral-900 shadow-2xl bg-neutral-900"
+      >
+        <Image
+          src={imgSede}
+          alt="ÁNIMA Sede Central"
+          class="w-full h-full object-cover block"
+        />
+      </div>
+
+      <!-- Контакты на черном фоне справа -->
+      <div
+        class="w-full text-left flex flex-col justify-center space-y-12 lg:pl-8"
+      >
+        <!-- Sede Central -->
+        <div class="space-y-3">
+          <h3
+            class="text-lg uppercase tracking-[0.25em] font-bold text-neutral-400"
+          >
+            - {info.hq.title} -
+          </h3>
+          <p class="text-neutral-200 text-lg font-bold tracking-wide uppercase">
+            {info.hq.name}
+          </p>
+          <p
+            class="text-neutral-400 text-lg font-bold leading-relaxed max-w-xs"
+          >
+            {info.hq.address}
+          </p>
+          <div class="text-lg font-bold space-y-0.5 text-neutral-400 pt-1">
+            <p>
+              Tel. <a
+                href={`tel:${info.hq.phone}`}
+                class="text-neutral-200 hover:text-white transition-all"
+                >{info.hq.phone}</a>
+            </p>
+            <p>
+              <a
+                href={`mailto:${info.hq.email}`}
+                class="text-neutral-300 border-b border-transparent hover:border-white pb-0.5 transition-all font-medium"
+                >{info.hq.email}</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Filial España -->
+        <div class="space-y-3">
+          <h3
+            class="text-lg uppercase tracking-[0.25em] font-bold text-neutral-400"
+          >
+            - {info.filial.title} -
+          </h3>
+          <p
+            class="text-neutral-400 text-lg font-bold leading-relaxed max-w-xs"
+          >
+            {info.filial.address}
+          </p>
+          <div class="text-lg font-bold space-y-0.5 text-neutral-400 pt-1">
+            <p>
+              Tel. <a
+                href={`tel:${info.filial.phone}`}
+                class="text-neutral-200 hover:text-white transition-all"
+                >{info.filial.phone}</a>
+            </p>
+            {info.filial.fax && <p>Fax {info.filial.fax}</p>}
+            <p>
+              <a
+                href={`mailto:${info.filial.email}`}
+                class="text-neutral-300 border-b border-transparent hover:border-white pb-0.5 transition-all font-medium"
+                >{info.filial.email}</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 3. НОВЫЙ БЛОК ФОРМЫ: КОНТРАСТНЫЙ БЕЛЫЙ ФОН И ЧЕРНЫЙ ШРИФТ -->
+    <!-- ======================================================= -->
+    <section
+      class="w-full bg-white text-[#141414] py-20 lg:py-28 select-none border-t border-neutral-200"
+    >
+      <div class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20">
+        <!-- Вводный текст перед формой -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-[35%_65%] gap-8 items-start mb-16 border-b border-neutral-100 pb-12"
+        >
+          <h2
+            class="text-3xl sm:text-4xl font-light tracking-wide text-neutral-900 leading-none"
+          >
+            ¿Cómo te podemos<br />ayudar?
+          </h2>
+          <div
+            class="space-y-4 text-neutral-600 text-lg lg:text-xl font-light leading-relaxed max-w-2xl text-left"
+          >
+            <p>
+              Ponte en contacto con nosotros a través del formulario que tienes
+              más abajo y te contestaremos lo antes posible.
+            </p>
+            <p>
+              Para evitar cualquier retraso innecesario con la resolución de tus
+              dudas o problemas por favor, asegúrate de rellenar los campos
+              obligatorios.
+            </p>
+          </div>
+        </div>
+
+        <!-- Контейнер формы (Центрирован по макету) -->
+        <div class="max-w-4xl mx-auto">
+          <h3
+            class="text-xl sm:text-2xl font-light uppercase tracking-widest text-center text-neutral-800 mb-12"
+          >
+            Formulario de atención al consumidor
+          </h3>
+
+          <form class="space-y-10 text-left" autocomplete="off">
+            <!-- Поле: Мотив обращения -->
+            <div class="w-full space-y-2">
+              <label
+                class="text-[16px] uppercase tracking-widest text-neutral-500 font-bold block"
+                >Motivo de la consulta *</label
+              >
+              <select
+                class="w-full bg-transparent border-b border-neutral-300 focus:border-black py-3 text-lg text-neutral-800 focus:outline-none transition-colors rounded-none font-light"
+              >
+                <option value="">Selecciona una opción</option>
+                <option value="1">Información de producto</option>
+                <option value="2">Asistencia técnica y reparaciones</option>
+                <option value="3">Ventas y proyectos corporativos</option>
+              </select>
+            </div>
+
+            <!-- Имя и Фамилия в две колонки -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
+              <div class="w-full space-y-1">
+                <label
+                  class="text-[16px] uppercase tracking-widest text-neutral-500 font-bold block"
+                  >Nombre *</label
+                >
+                <input
+                  type="text"
+                  required
+                  autocomplete="none"
+                  class="w-full bg-transparent border-b border-neutral-300 focus:border-black py-2.5 text-lg text-neutral-800 focus:outline-none transition-colors"
+                />
+              </div>
+              <div class="w-full space-y-1">
+                <label
+                  class="text-[16px] uppercase tracking-widest text-neutral-500 font-bold block"
+                  >Apellidos *</label
+                >
+                <input
+                  type="text"
+                  required
+                  autocomplete="none"
+                  class="w-full bg-transparent border-b border-neutral-300 focus:border-black py-2.5 text-lg text-neutral-800 focus:outline-none transition-colors"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
+              <div class="w-full space-y-1">
+                <label
+                  class="text-[16px] uppercase tracking-widest text-neutral-500 font-bold block"
+                  >Dirección</label
+                >
+                <input
+                  type="text"
+                  autocomplete="none"
+                  class="w-full bg-transparent border-b border-neutral-300 focus:border-black py-2.5 text-lg text-neutral-800 focus:outline-none transition-colors"
+                />
+              </div>
+              <div class="w-full space-y-1">
+                <label
+                  class="text-[16px] uppercase tracking-widest text-neutral-500 font-bold block"
+                  >Población *</label
+                >
+                <input
+                  type="text"
+                  required
+                  autocomplete="none"
+                  class="w-full bg-transparent border-b border-neutral-300 focus:border-black py-2.5 text-lg text-neutral-800 focus:outline-none transition-colors"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-10">
+              <div class="w-full space-y-1">
+                <label
+                  class="text-[16px] uppercase tracking-widest text-neutral-500 font-bold block"
+                  >Código Postal *</label
+                >
+                <input
+                  type="text"
+                  id="postal-code-input"
+                  required
+                  autocomplete="new-password"
+                  class="w-full bg-transparent border-b border-neutral-300 focus:border-black py-2.5 text-lg text-neutral-800 focus:outline-none transition-colors"
+                />
+              </div>
+              <div class="w-full space-y-1">
+                <label
+                  class="text-[16px] uppercase tracking-widest text-neutral-500 font-bold block"
+                  >Correo electrónico *</label
+                >
+                <input
+                  type="email"
+                  required
+                  autocomplete="none"
+                  class="w-full bg-transparent border-b border-neutral-300 focus:border-black py-2.5 text-lg text-neutral-800 focus:outline-none transition-colors"
+                />
+              </div>
+              <div class="w-full space-y-1">
+                <label
+                  class="text-[16px] uppercase tracking-widest text-neutral-500 font-bold block"
+                  >Teléfono de contacto *</label
+                >
+                <input
+                  type="tel"
+                  required
+                  autocomplete="none"
+                  class="w-full bg-transparent border-b border-neutral-300 focus:border-black py-2.5 text-lg text-neutral-800 focus:outline-none transition-colors"
+                />
+              </div>
+            </div>
+
+            <!-- Поле: Описание сообщения -->
+            <div class="w-full space-y-1">
+              <label
+                class="text-[16px] uppercase tracking-widest text-neutral-500 font-bold block"
+                >Breve descripción *</label
+              >
+              <textarea
+                rows="4"
+                required
+                class="w-full bg-transparent border-b border-neutral-300 focus:border-black py-2.5 text-lg text-neutral-800 focus:outline-none transition-colors font-light resize-none h-28"
+              ></textarea>
+            </div>
+
+            <!-- БЛОК: ЗАГРУЗКА ДОКУМЕНТОВ -->
+            <div class="w-full pt-4 space-y-2 border-b border-neutral-300 pb-4">
+              <label
+                class="text-[16px] uppercase tracking-widest text-neutral-500 font-bold block"
+              >
+                Adjuntar documentación
+              </label>
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-1"
+              >
+                <div class="space-y-1 text-left">
+                  <p class="text-lg text-neutral-400 font-light">
+                    Extensiones de archivo aceptadas (máximo 5 Mb): .jpg, .jpeg,
+                    .pdf, .png
+                  </p>
+                  <!-- Сюда JavaScript будет вставлять имя выбранного файла -->
+                  <span
+                    id="file-name-display"
+                    class="text-xs text-red-600 font-medium block pt-1"></span>
+                </div>
+                <label
+                  class="cursor-pointer border border-neutral-400 px-6 py-2 text-[16px] uppercase tracking-wider font-bold text-neutral-700 hover:bg-neutral-900 hover:text-white hover:border-black transition-all rounded-sm whitespace-nowrap"
+                >
+                  Carga el archivo
+                  <input
+                    type="file"
+                    id="file-input"
+                    class="hidden"
+                    accept=".jpg,.jpeg,.pdf,.png"
+                  />
+                </label>
+              </div>
+            </div>
+
+            <!-- ЧЕКБОКСЫ И СОГЛАШЕНИЯ -->
+            <div class="space-y-4 pt-4 select-none">
+              <!-- Чекбокс 1: Политика конфиденциальности -->
+              <div class="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  id="privacy"
+                  required
+                  class="mt-0.5 w-4 h-4 accent-black border border-neutral-400 rounded-sm"
+                />
+                <label
+                  for="privacy"
+                  class="text-lg text-neutral-600 leading-relaxed"
+                >
+                  Acepto la <a
+                    href="/politica-privacidad"
+                    class="text-neutral-900 border-b border-neutral-400 font-normal hover:text-black transition-colors"
+                    >política de privacidad</a
+                  >. *
+                </label>
+              </div>
+
+              <!-- Чекбокс 2: Маркетинговые рассылки -->
+              <div class="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  id="marketing"
+                  class="mt-0.5 w-4 h-4 accent-black border border-neutral-400 rounded-sm"
+                />
+                <label
+                  for="marketing"
+                  class="text-lg text-neutral-600 leading-relaxed"
+                >
+                  Deseo recibir comunicaciones comerciales y promocionales, por
+                  correo electrónico o SMS personalizados, tal y como se recoge
+                  en la <a
+                    href="/politica-privacidad"
+                    class="text-neutral-900 border-b border-neutral-400 font-normal hover:text-black transition-colors"
+                    >Política de privacidad</a
+                  >.
+                </label>
+              </div>
+            </div>
+
+            <!-- КНОПКА ОТПРАВКИ ФОРМЫ  -->
+            <div class="pt-8 flex justify-center sm:justify-end">
+              <button
+                type="submit"
+                class="w-full sm:w-auto inline-flex items-center justify-center border-2 border-black px-12 py-3.5 text-lg uppercase tracking-[0.25em] font-black text-black hover:bg-black hover:text-white transition-all duration-300 rounded-sm"
+              >
+                Enviar formulario
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../scripts/contacto.js"></script>
+</Layout>

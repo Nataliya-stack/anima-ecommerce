@@ -1,0 +1,166 @@
+---
+// src/pages/distribuidores/[id].astro
+import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+// 1. Импортируем данные из единого db.json
+import dataDB from "../../../db.json";
+
+// 2. В режиме SSR мы получаем id открытой страницы напрямую из параметров URL
+const { id } = Astro.params;
+
+// 3. Находим нужный магазин в массиве по его id
+const shop = dataDB.distribuidores.find(
+  (item) => String(item.id) === String(id),
+);
+
+import imgBcn from "../../assets/categories/store-barcelona.jpg";
+import imgMad from "../../assets/categories/store-madrid.jpg";
+import imgCordoba from "../../assets/categories/store-cordoba.jpg";
+import imgMalaga from "../../assets/categories/store-malaga.jpg";
+
+// Карта соответствия картинок строкам из JSON
+const storeImages: Record<string, ImageMetadata> = {
+  "store-barcelona.jpg": imgBcn,
+  "store-madrid.jpg": imgMad,
+  "store-cordoba.jpg": imgCordoba,
+  "store-malaga.jpg": imgMalaga,
+};
+
+import logoSmeg from "../../assets/categories/anima_logo.png";
+---
+
+<Layout title={`${shop?.name || "Distribuidor"} | ÁNIMA`}>
+  <main
+    class="w-full min-h-[calc(100vh-120px)] mt-30 bg-black text-white pt-10 pb-24 font-sans"
+  >
+    <!-- Стрелка навигации -->
+    <div
+      class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 mb-12 mt-20 text-left"
+    >
+      <nav
+        class="text-[16px] lg:tracking-[0.2em] text-white uppercase font-light select-none"
+      >
+        <a href="/" class="hover:text-white transition-colors"
+          >Página principal</a
+        >
+        <span class="mx-1">/</span>
+        <a
+          href="/encuentra-distribuidores"
+          class="hover:text-white transition-colors">Stores locator</a
+        >
+        <span class="mx-1">/</span>
+        <span class="text-neutral-300 font-normal">{shop?.name}</span>
+      </nav>
+
+      <!-- Заголовок магазина -->
+      <h1
+        class="text-4xl sm:text-5xl lg:text-[52px] font-light tracking-wide uppercase mt-8 mb-2 text-neutral-100"
+      >
+        {shop?.name}
+      </h1>
+
+      <!-- Подзаголовок типа дистрибьютора -->
+      <div
+        class="flex items-center gap-2 text-xs uppercase tracking-widest text-neutral-400 mt-4"
+      >
+        <span class="w-2 h-2 rounded-full bg-white"></span> GRAN CONSUMO
+      </div>
+    </div>
+
+    <!-- ДВУХКОЛОНОЧНЫЙ БЛОК: КАРТОЧКА СЛЕВА, ФОТО СПРАВА -->
+    <section class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 mt-12">
+      <div
+        class="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-12 lg:gap-20 items-start"
+      >
+        <!-- ЛЕВАЯ КОЛОНКА: Официальный блок контактов в серой рамке -->
+        <div
+          class="w-full bg-[#111111] border border-neutral-800 p-8 sm:p-12 text-left space-y-8 rounded-sm shadow-xl"
+        >
+          <div
+            class="w-44 sm:w-52 h-auto select-none border-b border-neutral-800/60 pb-2"
+          >
+            <Image
+              src={logoSmeg}
+              alt="Brand Logo"
+              class="w-full h-auto object-contain block"
+            />
+          </div>
+
+          <!-- Контактные данные -->
+          <div
+            class="space-y-4 text-lg sm:text-2xl text-neutral-300 font-light tracking-wide leading-relaxed"
+          >
+            <p class="text-neutral-400">
+              {shop?.address}
+            </p>
+
+            <div class="space-y-1 pt-2">
+              <p>
+                <strong class="font-medium text-neutral-400">T. </strong>
+                <a
+                  href={`tel:${shop?.phone}`}
+                  class="text-neutral-200 hover:text-white border-b border-transparent hover:border-white pb-0.5 transition-all"
+                >
+                  {shop?.phone}
+                </a>
+              </p>
+
+              {
+                shop?.email && (
+                  <p>
+                    <strong class="font-medium text-neutral-400">
+                      Email:{" "}
+                    </strong>
+                    <a
+                      href={`mailto:${shop?.email}`}
+                      class="text-neutral-200 hover:text-white border-b border-transparent hover:border-white pb-0.5 transition-all"
+                    >
+                      {shop?.email}
+                    </a>
+                  </p>
+                )
+              }
+
+              {
+                shop?.hours && (
+                  <p>
+                    <strong class="font-medium text-neutral-400">
+                      Horario:{" "}
+                    </strong>
+                    <span class="text-neutral-300">{shop?.hours}</span>
+                  </p>
+                )
+              }
+            </div>
+          </div>
+
+          <!-- Кнопка возврата к общему списку -->
+          <div class="pt-4">
+            <a
+              href="/encuentra-distribuidores"
+              class="inline-flex items-center justify-center border border-neutral-700 px-8 py-3 text-xs uppercase tracking-[0.2em] font-bold text-neutral-200 hover:bg-white hover:text-black hover:border-white transition-all duration-300"
+            >
+              Volver al buscador
+            </a>
+          </div>
+        </div>
+
+        <!-- ПРАВАЯ КОЛОНКА: Большое интерьерное фото магазина -->
+        <div
+          class="w-full aspect-4/3 sm:aspect-16/10 relative rounded-sm overflow-hidden border border-neutral-800 shadow-2xl bg-neutral-900 select-none group"
+        >
+          {
+            shop?.imgName && storeImages[shop.imgName] && (
+              <Image
+                src={storeImages[shop.imgName]}
+                alt={`Showroom ${shop.name}`}
+                class="w-full h-full object-cover block group-hover:scale-102 transition-transform duration-700 ease-out"
+              />
+            )
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

@@ -1,0 +1,121 @@
+---
+// src/pages/lineas-esteticas.astro
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+import dataDB from '../../db.json';
+
+import imgMusa from '../assets/categories/musa.jpg';
+import imgIsola from '../assets/categories/isola.jpg';
+import imgDolce from '../assets/categories/dolce-stil-novo.jpg';
+import imgLinea from '../assets/categories/linea.jpg';
+import imgClasica from '../assets/categories/clasica.jpg';
+import img50s from '../assets/categories/50s-style.jpg';
+import imgPiano from '../assets/categories/piano-design.jpg';
+import imgPortofino from '../assets/categories/portofino.gif';
+import imgCortina from '../assets/categories/cortina.jpg';
+import imgVictoria from '../assets/categories/victoria.jpg';
+import imgColonial from '../assets/categories/colonial.jpg';
+import imgSeleccion from '../assets/categories/seleccion.jpg';
+import imgContemporanea from '../assets/categories/contemporanea.jpg';
+
+const aestheticImages: Record<string, ImageMetadata> = {
+  "musa.jpg": imgMusa,
+  "isola.jpg": imgIsola,
+  "dolce-stil-novo.jpg": imgDolce,
+  "linea.jpg": imgLinea,
+  "clasica.jpg": imgClasica,
+  "50s-style.jpg": img50s,
+  "piano-design.jpg": imgPiano,
+  "portofino.jpg": imgPortofino,
+  "cortina.jpg": imgCortina,
+  "victoria.jpg": imgVictoria,
+  "colonial.jpg": imgColonial,
+  "seleccion.jpg": imgSeleccion,
+  "contemporanea.jpg": imgContemporanea
+};
+---
+
+<Layout title="Líneas Estéticas | ÁNIMA">
+  <main class="w-full h-[calc(100vh-120px)] mt-10 lg:mt-40 bg-black text-white relative overflow-hidden select-none">
+    
+    {dataDB.lineasEsteticas.map((item, index) => (
+      <div class={`aesthetic-slide absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none z-0'}`}>
+        
+        <!-- Фоновое фото на весь экран -->
+        <Image 
+          src={aestheticImages[item.imgName]} 
+          alt={item.title} 
+          class="absolute inset-0 w-full h-full object-cover z-0 brightness-[0.75]" 
+          priority={index === 0}
+        />
+
+        <!-- Текстовый слой поверх фото -->
+        <div class="absolute inset-0 z-10 bg-transparent flex flex-col justify-between items-start px-8 sm:px-16 lg:pl-32 py-12 lg:py-20 mt-10">
+          
+          <!-- Навигационная стрелка -->
+          <nav class="max-w-[1700px] w-full mx-auto text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2">
+            <a href="/" class="hover:text-white transition-colors flex items-center gap-1">
+              ← Página principal
+            </a>
+            <span class="mx-1">/</span> 
+            <span class="text-white/80 font-normal">Líneas Estéticas</span>
+          </nav>
+
+          <!-- Информационный блок посередине высоты слайдера -->
+          <div class="w-full max-w-xl my-auto space-y-6 text-left">
+            <h1 class="text-4xl sm:text-5xl lg:text-[56px] font-light tracking-wide uppercase leading-none">
+              {item.title}
+            </h1>
+            
+            <!-- Описание товара, которое выводится под названием -->
+            <p class="text-white/80 text-lg lg:text-xl font-light tracking-wide leading-relaxed max-w-md">
+              {item.desc}
+            </p>
+            
+            <!--<div class="pt-2">
+              <a 
+                href={item.link} 
+                class="inline-flex items-center gap-4 text-[16px] uppercase tracking-[0.25em] font-bold text-white border-b border-white pb-1 hover:opacity-70 transition-all duration-300"
+              >
+                {item.btnText}
+              </a>
+            </div>-->
+          </div>
+          
+          <div class="hidden lg:block h-4"></div>
+        </div>
+
+      </div>
+    ))}
+
+    <!-- ======================================================= -->
+    <!-- ПРАВАЯ ПАНЕЛЬ НАВИГАЦИИ (Индикатор страниц и стрелки) -->
+    <!-- ======================================================= -->
+    <div class="absolute right-8 sm:right-12 lg:right-16 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-4 text-white font-light text-sm select-none">
+      
+      <!-- Стрелка ВВЕРХ -->
+      <button id="slide-up-btn" class="w-15 h-15 flex items-center justify-center text-white/50 hover:text-white transition-colors duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-10 h-10">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+        </svg>
+      </button>
+
+      <!-- Текстовый счетчик страниц -->
+      <div id="slide-counter" class="tracking-widest font-sans text-2xl py-2 border-y border-white/10 my-1">
+        1/{dataDB.lineasEsteticas.length}
+      </div>
+
+      <!-- Стрелка ВНИЗ -->
+      <button id="slide-down-btn" class="w-15 h-15 flex items-center justify-center text-white/50 hover:text-white transition-colors duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-10 h-10">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
+      </button>
+
+    </div>
+
+  </main>
+
+  <script src="../scripts/aesthetic-slider.js"></script>
+</Layout>

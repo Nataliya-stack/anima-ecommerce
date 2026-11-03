@@ -1,0 +1,319 @@
+---
+// src/pages/informacion-envios.astro
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Información sobre envíos | ÁNIMA">
+  <main
+    class="w-full bg-[#0b0b0b] text-white min-h-screen py-20 lg:py-40 px-6 sm:px-12 lg:px-20"
+  >
+    <div class="max-w-300 mx-auto space-y-12">
+      <!-- Навигационные стрелки -->
+      <nav
+        class="text-xs text-neutral-400 flex items-center space-x-2 font-light tracking-wide"
+      >
+        <a href="/" class="hover:text-white transition-colors"
+          >Página principal</a
+        >
+        <span>/</span>
+        <span class="text-neutral-200">Información sobre envíos</span>
+      </nav>
+
+      <!-- Главный заголовок и подзаголовок с вертикальной линией слева -->
+      <div class="border-l border-white pl-6 lg:pl-12 space-y-4 my-8">
+        <h1
+          class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-white"
+        >
+          Información sobre envíos
+        </h1>
+        <p
+          class="text-neutral-400 text-sm sm:text-base font-light tracking-wide"
+        >
+          Encuentra a continuación toda la información sobre los métodos de
+          envío para cada tipo de producto.
+        </p>
+      </div>
+
+      <div class="w-full h-px bg-neutral-800"></div>
+
+      <!-- Контентная часть (Блоки вопросов и ответов) -->
+      <div
+        class="space-y-12 text-sm sm:text-base font-light text-neutral-300 leading-relaxed tracking-wide max-w-250"
+      >
+        <!-- Секция 1: ¿Dónde enviamos? -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            ¿Dónde enviamos?
+          </h2>
+          <p>
+            Realizamos envíos a todas las direcciones de España excepto a las
+            Islas Canarias, Ceuta y Melilla. No ofrecemos envíos
+            internacionales; los pedidos realizados desde la tienda online de <span
+              class="whitespace-nowrap">ÁNIMA España</span
+            > solo podrán entregarse a direcciones de España (exceptuando Islas Canarias,
+            Ceuta y Melilla).
+          </p>
+
+          <div class="pt-2 space-y-2">
+            <h3 class="text-base font-medium text-white">
+              ¿Quieres hacer un pedido a las Islas Canarias?
+            </h3>
+            <p>
+              Para realizar un pedido a las Islas Canarias por favor, ponte en
+              contacto con nosotros enviando un correo a &nbsp
+              <a
+                href="mailto:info@anima.es"
+                class="underline hover:text-white transition-colors text-white font-normal"
+                >info@anima.es</a
+              >
+              &nbsp o llamando al <span
+                class="whitespace-nowrap text-white font-normal"
+                >+34 935 650 250</span
+              >.
+            </p>
+          </div>
+        </section>
+
+        <!-- Секция 2: ¿Cuáles son los plazos de entrega? -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            ¿Cuáles son los plazos de entrega?
+          </h2>
+          <p class="font-medium text-white">
+            El plazo general de entrega en territorio Peninsular es de 2 a 9
+            días laborales.
+          </p>
+          <p>
+            No obstante, para campañas específicas y según disponibilidad de
+            stock, el envío puede extenderse hasta 10 días laborales excluyendo
+            sábados, domingos y festivos. Este plazo puede variar según el tipo
+            de producto, como, por ejemplo, en producto etiquetado como
+            "Reserva", el cual está sujeto a condiciones especiales y cuyo
+            tiempo de entrega puede ser superior al resto de los productos.
+          </p>
+          <p>
+            Para asegurar una rápida entrega de su pedido, la tienda online <span
+              class="whitespace-nowrap">www.anima.es</span
+            > se asocia con las mejores empresas de transporte seleccionadas según
+            la región de destino y los tipos de productos. En el caso de no poderse
+            realizar la entrega, <span class="whitespace-nowrap">ÁNIMA</span> contactará
+            con el usuario para acordar una solución satisfactoria.
+          </p>
+        </section>
+
+        <!-- Секция 3: ¿Cuáles son los gastos de envío? -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            ¿Cuáles son los gastos de envío?
+          </h2>
+          <ul class="list-disc pl-5 space-y-3 text-neutral-300">
+            <li>
+              <strong class="text-white font-normal"
+                >Pequeño aparato electrodoméstico, menaje y accesorios (NACEX):</strong
+              > 4,99€ IVA incl. Incluido.
+            </li>
+            <li>
+              <strong class="text-white font-normal"
+                >Gran aparato electrodoméstico:</strong
+              >
+              <ul class="list-circle pl-6 mt-2 space-y-2 text-neutral-400">
+                <li>
+                  Entrega a pie de calle: <span class="text-white font-medium"
+                    >GRATIS</span>
+                </li>
+                <li>
+                  Entrega y recogida del antiguo a pie de calle: <span
+                    class="text-white font-medium">GRATIS</span>
+                </li>
+                <li>
+                  Entrega en domicilio: <span class="text-white font-medium"
+                    >30,00€ IVA incl.</span>
+                </li>
+                <li>
+                  Entrega y recogida del antiguo en domicilio: <span
+                    class="text-white font-medium">30,00€ IVA incl.</span>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Секция 4: ¿Cómo funciona la entrega? -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            ¿Cómo funciona la entrega?
+          </h2>
+          <p>
+            El envío se realiza desde nuestros almacenes <span
+              class="whitespace-nowrap">ÁNIMA</span
+            > hasta el domicilio especificado por el comprador siempre y cuando se
+            encuentre en España Peninsular o en Baleares y se pueda acceder por las
+            puertas, escaleras y/o ascensor sin ningún problema.
+          </p>
+          <p>
+            Todas las entregas, tanto de pequeño electrodoméstico como de gran
+            electrodoméstico se efectuarán de lunes a viernes.
+          </p>
+
+          <div class="pt-4 space-y-4">
+            <p class="font-medium text-white">
+              Disponemos de diferentes modalidades de entrega según el producto:
+            </p>
+
+            <div class="space-y-2">
+              <p class="text-white font-normal">
+                1) Pequeño aparato electrodoméstico, menaje y accesorios:
+                Entrega en Domicilio a través de NACEX.
+              </p>
+              <p class="pl-4 text-neutral-400">
+                El plazo de entrega es de 2 a 4 días laborales.
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <p class="text-white font-normal">
+                2) Gran aparato electrodoméstico:
+              </p>
+              <p class="pl-4 text-neutral-400">
+                El plazo de entrega es de 3 a 9 días laborales.
+              </p>
+            </div>
+
+            <ul class="list-disc pl-5 space-y-3 pt-2 text-neutral-300">
+              <li>
+                <strong class="text-white font-normal"
+                  >Entrega a pie de calle:</strong
+                > el transportista no subirá ni instalará la mercancía en su vivienda,
+                consiguiendo de esa forma reducir los costes del transporte y que
+                te beneficies de un ahorro significativo.
+              </li>
+              <li>
+                <strong class="text-white font-normal"
+                  >Entrega a pie de calle y recogida del antiguo:</strong
+                > el transportista no subirá ni instalará la mercancía en su vivienda,
+                consiguiendo de esa forma reducir los costes del transporte y que
+                te beneficies de un ahorro significativo. El transportista podrá recoger
+                el antiguo electrodoméstico si de igual forma el cliente lo tiene
+                a pie de calle.
+              </li>
+              <li>
+                <strong class="text-white font-normal"
+                  >Entrega en domicilio y recogida del antiguo:</strong
+                > El transportista subirá el nuevo electrodoméstico al domicilio y,
+                de ser solicitado, lo instalará* y retirará el antiguo electrodoméstico.
+                La retirada del electrodoméstico usado sólo puede llevarse a cabo
+                en el momento de la entrega del nuevo y deberá estar desconectado,
+                desinstalado, vacío y seco cuando el personal de reparto acceda al
+                domicilio.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Секция 5: Установка и списки техники -->
+        <section
+          class="space-y-4 bg-neutral-900/40 p-6 sm:p-8 rounded-sm border border-neutral-800"
+        >
+          <h3 class="text-base sm:text-lg font-medium text-white">
+            *¿En caso de instalarse, (requiere confirmación por nuestra parte),
+            qué productos pueden ser instalados por nuestros transportistas?
+          </h3>
+
+          <ul class="list-disc pl-5 space-y-1 text-neutral-300">
+            <li>Lavadoras</li>
+            <li>Lavavajillas</li>
+            <li>Secadoras</li>
+            <li>Congeladores</li>
+            <li>Frigoríficos y Combis</li>
+          </ul>
+
+          <p class="text-xs sm:text-sm text-neutral-400 pt-2">
+            Serán instalados siempre y cuando el lugar esté perfectamente
+            habilitado para ello, las conexiones eléctricas, y de entrada y
+            salida de agua lo permitan y estén en perfecto estado.
+          </p>
+          <p class="text-xs sm:text-sm font-medium text-white pt-1">
+            Todos los productos de encastre (encimeras, hornos, campanas...),
+            integrados, cocinas y aparatos que requieran una instalación
+            especializada, <span class="underline">no se instalarán</span>.
+          </p>
+          <p class="text-xs sm:text-sm text-neutral-400 pt-2">
+            Si necesita más información acerca de nuestras condiciones de
+            entrega, puesta en marcha y recogida del viejo electrodoméstico
+            llámenos al <span class="text-white">+34 935 650 250</span> o envíanos
+            una consulta vía mail a <a
+              href="mailto:info@anima.es"
+              class="underline text-white">info@anima.es</a
+            >.
+          </p>
+        </section>
+
+        <!-- Секция 6: Elaboración del pedido -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            Elaboración del pedido
+          </h2>
+          <p>
+            Los pedidos se procesan de Lunes a Viernes de 9:00 a 16:00. Todos
+            los pedidos realizados los viernes después de las 16:00 se
+            procesarán al lunes siguiente. Una vez procesados los productos que
+            figuran en nuestra tienda con disponibilidad, serán enviados dentro
+            de los siguientes 1-3 días laborales.
+          </p>
+        </section>
+
+        <!-- Секция 7: Controle su pedido -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            Controle su pedido
+          </h2>
+          <p>
+            Para verificar la información correspondiente a su pedido y
+            visualizar el estado de este, por favor, acceda a su cuenta, haga
+            clic en "Mis pedidos" y seleccione el número del pedido para ver los
+            detalles.
+          </p>
+          <p>
+            Cuando su pedido sea enviado, recibirá un correo electrónico
+            informándole de que su pedido está en camino a su domicilio.
+          </p>
+          <p>
+            Con su pedido de pequeño electrodoméstico recibirá un correo
+            electrónico con el número de seguimiento con el que podrá controlar
+            y seguir el estado de su envío.
+          </p>
+          <p>
+            Si ha comprado un electrodoméstico y necesita información, puede
+            contactar con nosotros a través del formulario de contacto
+            indicándonos el número de pedido.
+          </p>
+          <p class="text-neutral-400 italic">
+            Recuerde que al recibir su producto, debe revisarlo entre las
+            primeras 24h y 48h para poder reclamar daños o desperfectos del
+            transporte. Además, de conservar los embalajes originales.
+          </p>
+        </section>
+
+        <!-- Секция 8: Impuestos y aranceles aduaneros -->
+        <section class="space-y-4 pt-4 border-t border-neutral-800">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            Impuestos y aranceles aduaneros
+          </h2>
+          <div class="space-y-2">
+            <h3 class="text-base font-medium text-white">
+              Dentro de la Unión Europea
+            </h3>
+            <p>
+              No hay impuestos adicionales o aranceles para los productos
+              comercializados en los Países dentro de la Unión Europea. Los
+              clientes no deben pagar nada en el momento de la entrega.
+            </p>
+          </div>
+          <p class="text-xs text-neutral-500 pt-6">
+            Última actualización: 24 de febrero de 2025.
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+</Layout>

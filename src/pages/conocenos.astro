@@ -1,0 +1,411 @@
+---
+// src/pages/conocenos.astro
+import Layout from "../layouts/Layout.astro";
+
+import empresaHeroImg from "../assets/categories/empresa-hero.jpg";
+import tecnologiaImg from "../assets/categories/tecnologia-banner.png";
+import estiloItalianoImg from "../assets/categories/estilo-italiano.jpg";
+import treesBannerImg from "../assets/categories/trees-blueprint.jpg";
+import sedeImg from "../assets/categories/sede-anima.jpg";
+
+import empresaVideo from "../assets/video/empresa-video.mp4";
+
+import slide1 from "../assets/categories/conocenos-slide-1.jpg";
+import slide2 from "../assets/categories/conocenos-slide-2.jpg";
+import slide3 from "../assets/categories/conocenos-slide-3.jpg";
+import slide4 from "../assets/categories/conocenos-slide-4.jpg";
+import slide5 from "../assets/categories/conocenos-slide-5.jpg";
+
+// Массив слайдов
+const conocenosSlides = [
+  { image: slide1, alt: "ÁNIMA Conócenos Slide 1" },
+  { image: slide2, alt: "ÁNIMA Conócenos Slide 2" },
+  { image: slide3, alt: "ÁNIMA Conócenos Slide 3" },
+  { image: slide4, alt: "ÁNIMA Conócenos Slide 4" },
+  { image: slide5, alt: "ÁNIMA Conócenos Slide 5" },
+];
+---
+
+<Layout title="Nuestra Empresa | ÁNIMA">
+  <main class="w-full bg-[#0b0b0b] text-white">
+    <!-- СЕКЦИЯ 1: Главный баннер (Nuestra Empresa) -->
+    <section
+      class="relative w-full h-125 sm:h-150 lg:h-175 overflow-hidden flex items-center justify-center"
+    >
+      <!-- Фоновая картинка -->
+      <img
+        src={empresaHeroImg.src}
+        alt="ÁNIMA Headquarters"
+        class="absolute inset-0 w-full h-full object-cover block"
+      />
+      <!-- Затемнение для контраста -->
+      <div class="absolute inset-0 bg-black/50"></div>
+
+      <!-- Заголовок и текст по центру -->
+      <div class="relative z-10 text-center max-w-4xl px-6 space-y-6">
+        <h1
+          class="text-4xl sm:text-6xl lg:text-7xl font-light tracking-wider uppercase text-white"
+        >
+          Nuestra empresa
+        </h1>
+        <p
+          class="text-neutral-200 text-base sm:text-lg lg:text-xl font-light tracking-wide leading-relaxed max-w-2xl mx-auto"
+        >
+          ÁNIMA redefine el concepto de diseño y tecnología, fusionando una
+          estética minimalista con un rendimiento superior. Con una visión
+          vanguardista, creamos piezas que transforman los espacios cotidianos
+          en experiencias extraordinarias.
+        </p>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ 2: Una marca internacional -->
+    <section class="w-full py-12 lg:py-20 px-6 sm:px-12 lg:px-20">
+      <div class="max-w-[1700px] mx-auto">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start"
+        >
+          <!-- Левая колонка: Заголовок (5 колонок) -->
+          <div class="lg:col-span-5">
+            <h2
+              class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-white leading-tight"
+            >
+              Una marca global
+            </h2>
+            <div class="w-12 h-px bg-neutral-600 mt-6"></div>
+          </div>
+
+          <!-- Правая колонка: Подробный текст (7 колонок) -->
+          <div
+            class="lg:col-span-7 space-y-6 text-neutral-300 text-sm sm:text-base font-light tracking-wide leading-relaxed"
+          >
+            <p>
+              ÁNIMA opera a través de una <span class="whitespace-nowrap"
+                >red internacional</span
+              > de estudios, oficinas de desarrollo y colaboradores selectos alrededor
+              del mundo. Nuestro enfoque trasciende el diseño convencional, integrando
+              soluciones innovadoras tanto para el entorno residencial como para proyectos
+              profesionales exclusivos.
+            </p>
+            <p>
+              Cada colección está concebida bajo estrictos estándares de
+              calidad, precisión y elegancia atemporal, consolidando a <span
+                class="whitespace-nowrap">ÁNIMA</span
+              > como un referente de sofisticación.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ: Полноэкранное локальное видео с элементами управления -->
+    <section class="w-full bg-black py-12 lg:py-20 px-6 sm:px-12 lg:px-20">
+      <div class="max-w-[1700px] mx-auto">
+        <div
+          class="relative w-full h-137.5 sm:h-175 lg:h-212.5 bg-black overflow-hidden shadow-2xl"
+        >
+          <video
+            src={empresaVideo}
+            autoplay
+            muted
+            loop
+            playsinline
+            controls
+            class="w-full h-full object-cover block"></video>
+        </div>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ: Tecnología con estilo -->
+    <section
+      class="w-full bg-[#0b0b0b] text-white py-12 lg:py-20 px-6 sm:px-12 lg:px-20"
+    >
+      <div class="max-w-[1700px] mx-auto space-y-16 lg:space-y-24">
+        <!-- Верхняя часть: Двухколоночный текст (Заголовок слева, описание справа) -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start"
+        >
+          <!-- Левая колонка: Заголовок (5 колонок) -->
+          <div class="lg:col-span-5">
+            <h2
+              class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-white leading-tight"
+            >
+              Tecnología con <br class="hidden sm:inline" />estilo
+            </h2>
+            <div class="w-12 h-px bg-neutral-600 mt-6"></div>
+          </div>
+
+          <!-- Правая колонка: Текст-описание (7 колонок) -->
+          <div
+            class="lg:col-span-7 space-y-6 text-neutral-300 text-sm sm:text-base font-light tracking-wide leading-relaxed"
+          >
+            <p>
+              Los laboratorios certificados de <span class="whitespace-nowrap"
+                >ÁNIMA</span
+              > estudian soluciones para responder a las demandas del estilo de vida
+              actual, partiendo de una filosofía basada en la innovación y la tecnología
+              más avanzada. Calidades esenciales como la resiliencia, seguridad, flexibilidad
+              y <span class="whitespace-nowrap">líneas estéticas</span> puras pueden
+              encontrarse en cada producto gracias al riguroso proceso de diseño de
+              nuestra marca.
+            </p>
+            <p>
+              El exigente proceso de pruebas durante la producción garantiza que <span
+                class="whitespace-nowrap">ÁNIMA</span
+              > cree dispositivos robustos y de total confianza. Prestamos especial
+              atención a la ergonomía de todos nuestros componentes para asegurar
+              su facilidad de uso, optimizando el consumo y maximizando la eficiencia
+              energética.
+            </p>
+          </div>
+        </div>
+
+        <!-- Нижняя часть: Широкая панорамная фотография техники на всю ширину -->
+        <div class="w-full bg-[#0b0b0b] overflow-hidden flex justify-center">
+          <img
+            src={tecnologiaImg.src}
+            alt="ÁNIMA Technology Collection"
+            class="w-full h-auto block object-contain max-w-[1700px]"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ: Diseño (только текст) -->
+    <section
+      class="w-full bg-[#0b0b0b] text-white py-12 lg:py-20 px-6 sm:px-12 lg:px-20"
+    >
+      <div class="max-w-[1700px] mx-auto">
+        <!-- Двухколоночный текст (Заголовок слева, описание справа) -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start"
+        >
+          <!-- Левая колонка: Заголовок (5 колонок) -->
+          <div class="lg:col-span-5">
+            <h2
+              class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-white leading-tight"
+            >
+              Diseño
+            </h2>
+            <div class="w-12 h-px bg-neutral-600 mt-6"></div>
+          </div>
+
+          <!-- Правая колонка: Текст-описание (7 колонок) -->
+          <div
+            class="lg:col-span-7 space-y-6 text-neutral-300 text-sm sm:text-base font-light tracking-wide leading-relaxed"
+          >
+            <p>
+              Para <span class="whitespace-nowrap">ÁNIMA</span>, el estilo es
+              otra cosa distinta: el modo en que un elemento se comunica con su
+              alrededor y nos permite interactuar con él.
+            </p>
+            <p>
+              Atención al detalle y <span class="whitespace-nowrap"
+                >soluciones de diseño</span
+              > que reflejan la imagen de un hogar y sus habitantes. Con ÁNIMA, los
+              electrodomésticos toman un lugar principal en el corazón de la casa,
+              donde pasan los mejores momentos. La cocina integra todas sus funciones
+              y se convierte en un fondo perfecto para estos instantes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ: Полноширинный адаптивный слайдер -->
+    <section
+      class="w-full bg-[#0b0b0b] py-8 sm:py-12 lg:py-20 relative overflow-hidden select-none js-carousel-container"
+    >
+      <div class="w-full relative group">
+        <!-- Стрелка «Влево» -->
+        <button
+          type="button"
+          class="js-carousel-prev absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-all duration-300 opacity-80 hover:opacity-100 backdrop-blur-sm cursor-pointer"
+          aria-label="Anterior"
+        >
+          <svg
+            class="w-4 h-4 sm:w-5 sm:h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+
+        <!-- Лента слайдов на всю ширину (адаптированные высоты для мобилок) -->
+        <div
+          class="js-carousel-track flex overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth w-full"
+        >
+          {
+            conocenosSlides.map((slide) => (
+              <div class="min-w-full w-full snap-center shrink-0">
+                <div class="w-full h-75 sm:h-125 lg:h-187.5 bg-[#121212] overflow-hidden">
+                  <img
+                    src={slide.image.src}
+                    alt={slide.alt}
+                    class="w-full h-full object-cover block"
+                  />
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Стрелка «Вправо» -->
+        <button
+          type="button"
+          class="js-carousel-next absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-all duration-300 opacity-80 hover:opacity-100 backdrop-blur-sm cursor-pointer"
+          aria-label="Siguiente"
+        >
+          <svg
+            class="w-4 h-4 sm:w-5 sm:h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ: Манифест дизайнера и Estilo Italiano -->
+    <section
+      class="w-full bg-[#0b0b0b] text-white py-12 lg:py-20 px-6 sm:px-12 lg:px-20"
+    >
+      <div class="max-w-[1700px] mx-auto space-y-20 lg:space-y-32">
+        <!-- 1. Верхний вводный текст -->
+        <div class="max-w-6xl mx-auto text-center">
+          <p
+            class="text-neutral-300 text-base sm:text-lg lg:text-xl font-light tracking-wide leading-relaxed"
+          >
+            El estudio interno de diseño de <span class="whitespace-nowrap"
+              >ÁNIMA</span
+            >, que se encarga de investigar en el campo de la moda y el diseño,
+            tiene la colaboración de reconocidos arquitectos y diseñadores
+            internacionales como <span class="text-white font-normal"
+              >Guido Canali, Mario Bellini, Piano Design Studio, Marc Newson,
+              Giancarlo Candeago, Matteo Bazzicalupo y Raffaella Mangiarotti
+              (deepdesign)</span
+            >. Combinar tecnología con estilo es nuestro camino para crear
+            elementos que se conviertan en verdaderos iconos de diseño.
+          </p>
+        </div>
+
+        <!-- 2. Нижний двухколоночный блок (Заголовок и текст слева, картинка справа) -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center"
+        >
+          <!-- Левая колонка: Заголовок и текст (5 колонок) -->
+          <div class="lg:col-span-5 space-y-8">
+            <div>
+              <h2
+                class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-white leading-tight"
+              >
+                Estilo italiano
+              </h2>
+              <div class="w-12 h-px bg-neutral-600 mt-6"></div>
+            </div>
+
+            <div
+              class="space-y-6 text-neutral-300 text-sm sm:text-base font-light tracking-wide leading-relaxed"
+            >
+              <p>
+                Creatividad y estilo: cualidades que exhuman de la <span
+                  class="whitespace-nowrap">identidad de ÁNIMA</span
+                > y caracterizan el esfuerzo de la compañía para dar vida a objetos
+                comunes.
+              </p>
+              <p>
+                ÁNIMA se identifica con la expresión de sus <span
+                  class="whitespace-nowrap">orígenes</span
+                > y la pasión por lo que hace. La marca intenta identificar y reflejar
+                las características que definen al diseño, como la inventiva, la elegancia,
+                la originalidad o el producto de calidad.
+              </p>
+            </div>
+          </div>
+
+          <!-- Правая колонка: Изображение в естественных пропорциях (7 колонок) -->
+          <div
+            class="lg:col-span-7 bg-[#0b0b0b] overflow-hidden flex justify-center"
+          >
+            <img
+              src={estiloItalianoImg.src}
+              alt="ÁNIMA Estilo Italiano"
+              class="w-full h-auto block object-contain shadow-2xl"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ 1: Панорамная картинка -->
+    <section
+      class="w-full bg-[#0b0b0b] overflow-hidden flex justify-center py-6"
+    >
+      <img
+        src={treesBannerImg.src}
+        alt="ÁNIMA Architectural Blueprint"
+        class="w-full h-auto block object-contain"
+      />
+    </section>
+
+    <!-- СЕКЦИЯ 2: Двухколоночный блок «La sede Ánima» -->
+    <section
+      class="w-full bg-[#0b0b0b] text-white py-12 lg:py-20 px-6 sm:px-12 lg:px-20"
+    >
+      <div class="max-w-[1700px] mx-auto">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center"
+        >
+          <!-- Левая колонка: Заголовок и текст (5 колонок) -->
+          <div class="lg:col-span-5 space-y-8">
+            <div>
+              <h2
+                class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-white leading-tight"
+              >
+                La sede Ánima
+              </h2>
+              <div class="w-12 h-px bg-neutral-600 mt-6"></div>
+            </div>
+
+            <div
+              class="space-y-6 text-neutral-300 text-sm sm:text-base font-light tracking-wide leading-relaxed"
+            >
+              <p>
+                En la sede de <span class="whitespace-nowrap">ÁNIMA</span>, muy
+                cerca de nuestro centro de desarrollo, reinterpretamos la
+                arquitectura contemporánea combinando volúmenes puros en un solo
+                plano horizontal formando una isla entre <span
+                  class="whitespace-nowrap">terraplenes ajardinados</span
+                >.
+              </p>
+            </div>
+          </div>
+
+          <!-- Правая колонка: Фото квартиры (7 колонок) -->
+          <div
+            class="lg:col-span-7 bg-[#0b0b0b] overflow-hidden flex justify-center"
+          >
+            <img
+              src={sedeImg.src}
+              alt="La sede Ánima Headquarters"
+              class="w-full h-auto block object-contain shadow-2xl"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="../scripts/universalCarousel.js"></script>
+</Layout>

@@ -1,0 +1,296 @@
+---
+// src/pages/guia-cafetera.astro
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+import imgHeroCafetera from "../assets/categories/banner-cafetera-automatica.jpg";
+
+import videoEncendido from "../assets/video/video-encendido.mp4";
+import videoAlarmaz from "../assets/video/video-alarmaz.mp4";
+import videoLimpieza from "../assets/video/video-limpieza.mp4";
+import videoDescalficasion from "../assets/video/video-descalficasion.mp4";
+
+const pageTitle = "Guía de usuario para Cafetera Espresso Manual ECF02 | ÁNIMA";
+---
+
+<Layout title={pageTitle}>
+  <main
+    class="w-full h-auto bg-white text-neutral-950 font-sans pb-40 select-none"
+  >
+    <!-- ======================================================= -->
+    <!-- ПОЛНОЭКРАННЫЙ ГЛАВНЫЙ БАННЕР -->
+    <!-- ======================================================= -->
+    <section
+      class="component is-herobanner-slider relative w-full aspect-192/95 md:aspect-192/58 bg-[#e8f4fa] overflow-hidden select-none"
+    >
+      <!-- Изображение-фон: Заполняет весь блок -->
+      <div class="absolute inset-0 w-full h-full z-0">
+        <Image
+          src={imgHeroCafetera}
+          alt="Cafetera Espresso Manual ECF02 - Smeg"
+          class="w-full h-full object-cover object-center opacity-100"
+        />
+      </div>
+
+      <!-- НАВИГАЦИРННЫЕ СТРЕЛКИ -->
+      <div class="absolute top-6 left-0 w-full px-6 md:px-16 z-20">
+        <nav
+          class="max-w-[1700px] mx-auto text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2"
+        >
+          <a
+            href="/"
+            class="hover:text-black transition-colors flex items-center gap-1"
+          >
+            ← Página principal
+          </a>
+          <span class="mx-1">/</span>
+          <span class="text-neutral-800 font-normal">BCC13 guía de usuario</span
+          >
+        </nav>
+      </div>
+
+      <!-- БЛОК ТЕКСТА БАННЕРА -->
+      <div
+        class="absolute inset-0 w-full h-full z-10 flex items-center px-6 md:px-16"
+      >
+        <div class="w-full max-w-[1700px] mx-auto flex justify-start">
+          <div
+            class="w-full sm:max-w-100 md:max-w-[50%] text-left space-y-4 md:space-y-6"
+          >
+            <h1
+              class="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-light tracking-wide uppercase text-neutral-900 leading-tight"
+            >
+              Manual de uso de la<br />cafetera superautomática <br />BCC
+            </h1>
+            <p
+              class="text-xs sm:text-sm md:text-[16px] text-neutral-800 font-normal tracking-wide leading-relaxed max-w-[90%]"
+            >
+              Descubre cómo obtener los mejores resultados con tu <span
+                class="font-medium text-black"
+                >BCC13 para preparar bebidas de café y de leche</span
+              > en pocos y sencillos pasos.
+            </p>
+            <div class="pt-2">
+              <span
+                class="text-[11px] tracking-[0.2em] uppercase font-semibold text-black block"
+                >Desplázate</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- СЕКЦИЯ ВВОДНОГО ЗАГОЛОВКА ПОД БАННЕРОМ -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pt-24 pb-16">
+      <div
+        class="w-full max-w-[1700px] mx-auto px-6 md:px-16 space-y-8 text-center text-neutral-900"
+      >
+        <!-- Крупный заголовок секции -->
+        <h2
+          class="text-xl sm:text-2xl md:text-[32px] font-light tracking-wide text-black text-center max-w-220 mx-auto leading-loose"
+        >
+          Esta guía te dará consejos para todos los pasos, desde el encendido
+          hasta el mantenimiento periódico adecuado, para garantizar siempre los
+          mejores resultados.
+        </h2>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- СЕКЦИЯ: ENCENDIDO Y USO -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pb-24 pt-12">
+      <div class="w-full max-w-[1700px] mx-auto px-6 md:px-16">
+        <div
+          class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center"
+        >
+          <!-- Левая колонка: Текст -->
+          <div class="w-full md:col-span-4 text-left space-y-6">
+            <h2
+              class="text-2xl sm:text-3xl md:text-[34px] font-light tracking-wide uppercase text-black leading-loose"
+            >
+              ENCENDIDO Y USO
+            </h2>
+            <p
+              class="text-sm sm:text-base md:text-[16px] font-light text-neutral-800 tracking-wide leading-loose max-w-sm"
+            >
+              Preparar tu bebida es <strong class="font-medium text-black"
+                >simple y rápido.
+              </strong>Llena el tanque con agua fresca y ajusta la configuración
+              del molinillo de café. Agrega los granos de café y coloca la taza
+              (puedes ajustar el dispensador a la altura correcta). Conecta el
+              tubo de leche al dispensador e inserta el otro extremo
+              directamente en la botella de leche, que ya habrás llenado con
+              leche fría.
+            </p>
+            <p
+              class="text-sm sm:text-base md:text-[16px] font-light text-neutral-800 tracking-wide leading-loose max-w-sm"
+            >
+              Finalmente, selecciona y disfruta tu <strong
+                class="font-medium text-black"
+                >bebida favorita de café con leche
+              </strong>del menú blanco o naranja.
+            </p>
+          </div>
+
+          <!-- Правая колонка: Плеер -->
+          <div class="w-full md:col-span-8">
+            <div
+              class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
+            >
+              <video controls class="w-full h-full object-cover">
+                <source src={videoEncendido} type="video/mp4" />
+                Tu navegador no soporta vídeos.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- СЕКЦИЯ: LIMPIEZA -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pb-24 pt-12">
+      <div class="w-full max-w-[1700px] mx-auto px-6 md:px-16">
+        <div
+          class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center"
+        >
+          <div class="w-full md:col-span-4 text-left space-y-6">
+            <h2
+              class="text-2xl sm:text-3xl md:text-[34px] font-light tracking-wide uppercase text-black leading-loose"
+            >
+              LIMPIЕZA
+            </h2>
+            <p
+              class="text-sm sm:text-base md:text-[16px] font-light text-neutral-800 tracking-wide leading-loose max-w-sm"
+            >
+              Para asegurar los mejores resultados, se recomienda realizar una
+              limpieza completa del sistema de leche después de preparar cada
+              bebida a base de leche. La
+              <strong class="font-medium text-black"
+                >función de Limpieza Fácil
+              </strong>será rápida y sencilla. Sigue los simples pasos de
+              limpieza del video para asegurar un rendimiento óptimo.
+            </p>
+            <p
+              class="text-sm sm:text-base md:text-[16px] font-light italic text-neutral-800 tracking-wide leading-loose max-w-sm"
+            >
+              Se aconseja realizar todas las operaciones de limpieza con la
+              máquina encendida.
+            </p>
+          </div>
+
+          <!-- Правая колонка: Второе видео -->
+          <div class="w-full md:col-span-8">
+            <div
+              class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
+            >
+              <video controls class="w-full h-full object-cover">
+                <source src={videoAlarmaz} type="video/mp4" />
+                Tu navegador no soporta vídeos.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- СЕКЦИЯ: DESCALCIFICACIÓN -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pb-32 pt-12">
+      <div class="w-full max-w-[1700px] mx-auto px-6 md:px-16">
+        <div
+          class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center"
+        >
+          <!-- Левая колонка: Текст -->
+          <div
+            class="w-full md:col-span-4 text-left space-y-6 text-neutral-800"
+          >
+            <h2
+              class="text-2xl sm:text-3xl md:text-[34px] font-light tracking-wide uppercase text-black leading-loose"
+            >
+              DESCALCIFICACIÓN
+            </h2>
+
+            <div
+              class="text-sm sm:text-base md:text-[16px] font-light text-neutral-800 tracking-wide leading-loose space-y-6"
+            >
+              <p>
+                Iniciar el proceso de descalcificación es fácil gracias al botón
+                retroiluminado ubicado en el panel de control, que se ilumina
+                una vez que se solicita la función de descalcificación.
+              </p>
+              <p>Mira el video para aprender cómo activar el proceso.</p>
+            </div>
+          </div>
+
+          <!-- Правая колонка: Третье видео -->
+          <div class="w-full md:col-span-8">
+            <div
+              class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
+            >
+              <video controls class="w-full h-full object-cover">
+                <source src={videoLimpieza} type="video/mp4" />
+                Tu navegador no soporta vídeos.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- СЕКЦИЯ: ALARMAS -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pb-32 pt-12">
+      <div class="w-full max-w-[1700px] mx-auto px-6 md:px-16">
+        <div
+          class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center"
+        >
+          <!-- Левая колонка: Текст предупреждений -->
+          <div
+            class="w-full md:col-span-4 text-left space-y-6 text-neutral-800"
+          >
+            <h2
+              class="text-2xl sm:text-3xl md:text-[34px] font-light tracking-wide uppercase text-black leading-loose"
+            >
+              ALARMAS
+            </h2>
+
+            <div
+              class="text-sm sm:text-base md:text-[16px] font-light text-neutral-800 tracking-wide leading-loose space-y-6"
+            >
+              <p>
+                Cuando se requiera una acción, el icono correspondiente se
+                iluminará de manera simple e intuitiva en el panel de control.
+                El video te guiará a través de las distintas alarmas disponibles
+                en la máquina.
+              </p>
+              <p>
+                Sigue los sencillos pasos del video para realizar una limpieza
+                adecuada del circuito.
+              </p>
+            </div>
+          </div>
+
+          <!-- Правая колонка: Четвертое видео -->
+          <div class="w-full md:col-span-8">
+            <div
+              class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
+            >
+              <video controls class="w-full h-full object-cover">
+                <source src={videoDescalficasion} type="video/mp4" />
+                Tu navegador no soporta vídeos.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

@@ -1,0 +1,328 @@
+---
+// src/pages/guia-cafetera.astro
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+import imgHeroCafetera from "../assets/categories/banner-cafetera.jpg";
+
+import videoInstalacion from "../assets/video/video-instalacion.mp4";
+import videoAjustes from "../assets/video/video-ajustes.mp4";
+import videoAlarmas from "../assets/video/video-alarmas.mp4";
+
+const pageTitle = "Guía de usuario para Cafetera Espresso Manual ECF02 | ÁNIMA";
+---
+
+<Layout title={pageTitle}>
+  <main
+    class="w-full min-h-screen bg-white text-neutral-950 font-sans pb-40 select-none pt-35 lg:pt-50"
+  >
+    <!-- ======================================================= -->
+    <!-- 1. ПОЛНОЭКРАННЫЙ ГЛАВНЫЙ БАННЕР -->
+    <!-- ======================================================= -->
+    <section
+      class="component is-herobanner-slider relative w-full aspect-192/95 md:aspect-192/58 bg-[#e8f4fa] overflow-hidden select-none"
+    >
+      <!-- Изображение-фон: Заполняет весь блок -->
+      <div class="absolute inset-0 w-full h-full z-0">
+        <Image
+          src={imgHeroCafetera}
+          alt="Cafetera Espresso Manual ECF02 - Smeg"
+          class="w-full h-full object-cover object-center opacity-100"
+        />
+      </div>
+
+      <!-- НАВИГАЦИОННАЯ СТРЕЛКА -->
+      <div class="absolute top-6 left-0 w-full px-6 md:px-16 z-20">
+        <nav
+          class="max-w-[1700px] mx-auto text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2"
+        >
+          <a
+            href="/"
+            class="hover:text-black transition-colors flex items-center gap-1"
+          >
+            ← Página principal
+          </a>
+          <span class="mx-1">/</span>
+          <span class="text-neutral-800 font-normal">Guía de usuario ECF02</span
+          >
+        </nav>
+      </div>
+
+      <!-- БЛОК ТЕКСТА БАННЕРА -->
+      <div
+        class="absolute inset-0 w-full h-full z-10 flex items-center px-6 md:px-16"
+      >
+        <div class="w-full max-w-[1700px] mx-auto flex justify-start">
+          <div
+            class="w-full sm:max-w-100 md:max-w-[50%] text-left space-y-4 md:space-y-6"
+          >
+            <h1
+              class="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-light tracking-wide uppercase text-neutral-900 leading-tight"
+            >
+              Guía de usuario para<br />Cafetera Espresso Manual
+            </h1>
+            <p
+              class="text-xs sm:text-sm md:text-[16px] text-neutral-800 font-normal tracking-wide leading-relaxed max-w-[90%]"
+            >
+              Si ha adquirido una <span class="font-medium text-black"
+                >Cafetera Espresso Manual ECF02</span
+              >, su viaje hacia la taza de café perfecta no ha hecho más que
+              empezar.
+            </p>
+            <div class="pt-2">
+              <span
+                class="text-[11px] tracking-[0.2em] uppercase font-semibold text-black block"
+                >Desplázate</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 2. СЕКЦИЯ ВВОДНОГО ЗАГОЛОВКА ПОД БАННЕРОМ -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pt-24 pb-16">
+      <div
+        class="w-full max-w-[1700px] mx-auto px-6 md:px-16 space-y-8 text-center text-neutral-900"
+      >
+        <!-- Крупный заголовок секции -->
+        <h2
+          class="text-xl sm:text-2xl md:text-[28px] font-light tracking-wide uppercase text-black text-center leading-tight"
+        >
+          GUÍA RÁPIDA DE LA CAFETERА ESPRESSO MANUAL ECF02
+        </h2>
+
+        <!-- Основной контент с воздушными просторными строками -->
+        <div
+          class="space-y-6 text-sm sm:text-base md:text-[16px] font-normal text-center tracking-wide leading-relaxed max-w-8xl text-neutral-800 mx-auto"
+        >
+          <p>
+            Si has comprado una <span class="font-medium text-black"
+              >Cafetera Espresso Manual ECF02</span
+            >, tu viaje hacia una taza de café perfecta no ha hecho más que
+            empezar.
+          </p>
+          <p>
+            Aquí encontrarás una <span class="font-medium text-black"
+              >guía completa sobre cómo utilizar la Máquina de Café Espresso
+              ECF02</span
+            > que cubre todo, desde la puesta en marcha hasta el mantenimiento rutinario,
+            garantizando los mejores resultados.
+          </p>
+        </div>
+
+        <div
+          class="pt-4 border-t border-neutral-100 max-w-8xl text-center mx-auto"
+        >
+          <p
+            class="text-sm sm:text-base md:text-[16px] font-normal text-neutral-800 tracking-wide leading-relaxed"
+          >
+            Descubre cómo utilizar mejor tu cafetera espresso con molinillo de
+            café integrado:
+            <span
+              class="font-medium text-black underline decoration-1 underline-offset-4"
+            >
+              Instalación</span
+            >,
+            <span
+              class="font-medium text-black underline decoration-1 underline-offset-4"
+            >
+              Ajustes de la máquina
+            </span>
+            y
+            <span
+              class="font-medium text-black underline decoration-1 underline-offset-4"
+            >
+              Descalcificación</span
+            >.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 3. СЕКЦИЯ: INSTALACIÓN -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pb-24 pt-12">
+      <div class="w-full max-w-[1700px] mx-auto px-6 md:px-16">
+        <div
+          class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center"
+        >
+          <!-- Левая колонка: Текст -->
+          <div class="w-full md:col-span-4 text-left space-y-6">
+            <h2
+              class="text-2xl sm:text-3xl md:text-[34px] font-light tracking-wide uppercase text-black leading-loose"
+            >
+              INSTALACIÓN
+            </h2>
+            <p
+              class="text-sm sm:text-base md:text-[16px] font-light text-neutral-800 tracking-wide leading-loose max-w-sm"
+            >
+              Aprende a preparar el café perfecto, desde la selección del filtro
+              adecuado hasta la elección de tu función espresso preferida.
+            </p>
+          </div>
+
+          <!-- Правая колонка: Плеер -->
+          <div class="w-full md:col-span-8">
+            <div
+              class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
+            >
+              <video controls class="w-full h-full object-cover">
+                <source src={videoInstalacion} type="video/mp4" />
+                Tu navegador no soporta vídeos.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 4. СЕКЦИЯ: AJUSTES -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pb-24 pt-12">
+      <div class="w-full max-w-[1700px] mx-auto px-6 md:px-16">
+        <div
+          class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center"
+        >
+          <!-- Левая колонка: Текст и параметры -->
+          <div
+            class="w-full md:col-span-4 text-left space-y-6 text-neutral-800"
+          >
+            <h2
+              class="text-2xl sm:text-3xl md:text-[34px] font-light tracking-wide uppercase text-black leading-loose"
+            >
+              AJUSTES
+            </h2>
+
+            <div
+              class="text-sm sm:text-base md:text-[15px] font-light text-neutral-800 tracking-wide leading-loose"
+            >
+              <p class="align-middle">
+                Para ajustar los diferentes parámetros desde el menú de
+                configuración, mantenga pulsado el botón
+                <img
+                  src="/egf03_7.png"
+                  alt="botón 1"
+                  class="w-8 h-8 inline-block align-middle mx-1"
+                />
+                durante 5 segundos y, a continuación, seleccione el ajuste deseado:
+              </p>
+            </div>
+
+            <!-- Иллюстрированный список параметров настроек -->
+            <ul
+              class="space-y-4 text-xs sm:text-sm md:text-[15px] font-light tracking-wide leading-loose text-neutral-700 pl-1"
+            >
+              <li class="flex items-center gap-3">
+                <img
+                  src="/egf03_2.png"
+                  alt="egf03_2"
+                  class="w-10 h-10 inline-block align-middle mx-1"
+                />
+                <span
+                  ><strong class="font-medium text-black"
+                    >temperatura del café
+                  </strong> (baja, medio, alta)</span
+                >
+              </li>
+              <li class="flex items-center gap-3">
+                <img
+                  src="/egf03_8.png"
+                  alt="egf03_3"
+                  class="w-10 h-10 inline-block align-middle mx-1"
+                />
+                <span
+                  ><strong class="font-medium text-black"
+                    >dureza del agua</strong
+                  > (suave, medio, fuerte)</span
+                >
+              </li>
+              <li class="flex items-center gap-3">
+                <img
+                  src="/egf03_4.png"
+                  alt="egf03_4"
+                  class="w-10 h-10 inline-block align-middle mx-1"
+                />
+                <span
+                  ><strong class="font-medium text-black"
+                    >tiempo de espera</strong
+                  > (10 min, 30 min, 1 hora)</span
+                >
+              </li>
+            </ul>
+
+            <div
+              class="text-sm sm:text-base md:text-[15px] font-light text-neutral-800 tracking-wide leading-relaxed pt-2"
+            >
+              <p>Sigue el vídeo para personalizar y guardar los ajustes.</p>
+            </div>
+          </div>
+
+          <!-- Правая колонка: Второе видео -->
+          <div class="w-full md:col-span-8">
+            <div
+              class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
+            >
+              <video controls class="w-full h-full object-cover">
+                <source src={videoAjustes} type="video/mp4" />
+                Tu navegador no soporta vídeos.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 5. СЕКЦИЯ: ALARMAS -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pb-32 pt-12">
+      <div class="w-full max-w-[1700px] mx-auto px-6 md:px-16">
+        <div
+          class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center"
+        >
+          <!-- Левая колонка: Текст предупреждений -->
+          <div
+            class="w-full md:col-span-4 text-left space-y-6 text-neutral-800"
+          >
+            <h2
+              class="text-2xl sm:text-3xl md:text-[34px] font-light tracking-wide uppercase text-black leading-loose"
+            >
+              ALARMAS
+            </h2>
+
+            <div
+              class="text-sm sm:text-base md:text-[16px] font-light text-neutral-800 tracking-wide leading-loose space-y-6"
+            >
+              <p>
+                La cafetera ECF02 te avisará con una señal luminosa cuando
+                necesite mantenimiento. La descalcificación es un paso
+                importante para preservar la pureza de los sabores.
+              </p>
+              <p>
+                Sigue los sencillos pasos del vídeo para limpiar a fondo los
+                circuitos y seguir disfrutando de tu café perfecto.
+              </p>
+            </div>
+          </div>
+
+          <!-- Правая колонка: Третье видео -->
+          <div class="w-full md:col-span-8">
+            <div
+              class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
+            >
+              <video controls class="w-full h-full object-cover">
+                <source src={videoAlarmas} type="video/mp4" />
+                Tu navegador no soporta vídeos.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

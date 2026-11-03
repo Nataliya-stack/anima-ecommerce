@@ -1,0 +1,366 @@
+---
+// src/pages/connect.astro
+import Layout from '../layouts/Layout.astro';
+import { supabase } from "../lib/supabase";
+
+import dataDB from '../../db.json';
+const sliderSlides = dataDB.connectSlider;
+
+import bannerImg from '../assets/categories/connect-banner.jpg';
+import appPreviewImg from '../assets/categories/connect-app.jpg';
+import sharePassionsImg from '../assets/categories/oven-connect.jpg';
+
+import hornSlideImg from '../assets/categories/horn-slide.jpg';
+import wineSlideImg from '../assets/categories/wine-slide.jpg';
+import dishwasherSlideImg from '../assets/categories/dishwasher-slide.jpg';
+import footerBannerImg from '../assets/categories/connect-footer-banner.jpg';
+
+// Массив картинок по порядку слайдов
+const slideImages = [hornSlideImg, wineSlideImg, dishwasherSlideImg];
+
+const accessToken = Astro.cookies.get('sb-access-token');
+const refreshToken = Astro.cookies.get('sb-refresh-token');
+
+let isAuthenticated = false;
+
+if (accessToken && refreshToken) {
+  const { data } = await supabase.auth.setSession({
+    access_token: accessToken.value,
+    refresh_token: refreshToken.value,
+  });
+  if (data.user) {
+    isAuthenticated = true;
+  }
+}
+---
+
+<Layout title="ÁNIMA Connect | ÁNIMA">
+  <main class="w-full min-h-screen bg-white text-[#141414] font-sans select-none">
+    
+    <!-- ШИРОКОФОРМАТНЫЙ БАННЕР -->
+    <section class="relative w-full h-120 lg:h-165 overflow-hidden bg-black">
+      
+      <!-- Готовая фоновая картинка (слева черная, справа рисунок) -->
+      <img 
+        src={bannerImg.src} 
+        alt="ÁNIMA Connect" 
+        class="absolute inset-0 w-full h-full object-cover object-left lg:object-center"
+      />
+
+      <!-- Текст и навигационные стрелки, наложенные поверх черного фона слева -->
+      <div class="relative z-10 max-w-[1700px] h-full mx-auto px-6 sm:px-12 lg:px-20 flex flex-col justify-around pt-12 lg:pt-24 lg:pb-12">
+        
+        <!-- Навигационные стрелки (светлые для черного фона) -->
+        <nav class="text-sm text-neutral-400 font-light flex items-center gap-2">
+          <a href="/" class="hover:text-white transition-colors">Página principal</a>
+          <span>/</span>
+          <span class="text-neutral-200 font-normal">ÁNIMA Connect</span>
+        </nav>
+
+        <!-- Заголовок и подзаголовок слева -->
+        <div class="space-y-4 max-w-lg">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-light tracking-wide uppercase text-white">
+            ÁNIMA Connect
+          </h1>
+          <p class="text-neutral-300 text-sm sm:text-base font-light tracking-wide leading-relaxed">
+            La nueva generación de electrodomésticos ÁNIMA conectados.
+          </p>
+          <div class="pt-2">
+            <a 
+              href="/search" 
+              class="inline-block border-b border-white pb-0.5 text-xs uppercase font-bold tracking-[0.2em] text-white hover:opacity-70 transition-opacity"
+            >
+              VER TODO EL PRODUCTO
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ: ИНФОРМАЦИЯ О ПРИЛОЖЕНИИ -->
+    <section class="w-full bg-[#141414] text-white py-12 sm:py-16 lg:py-20">
+        <div class="max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20">
+    
+            <!-- Сетка: 7 колонок под фото, 5 под текст (чтобы фото было больше, а текст уже) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+                <!-- ЛЕВАЯ КОЛОНКА: Изображение (7 из 12 колонок) -->
+                <div class="lg:col-span-7 relative p-6 sm:p-10 lg:p-12 border border-neutral-800 rounded-sm">
+                    <div class="overflow-hidden">
+                        <img 
+                         src={appPreviewImg.src} 
+                        alt="ÁNIMA × Smeg Connect App" 
+                        class="w-full h-auto object-contain mx-auto"
+                        />
+                    </div>
+                </div>
+
+                <!-- ПРАВАЯ КОЛОНКА: Текст (5 из 12 колонок) -->
+                <div class="lg:col-span-5 space-y-8 max-w-md">
+        
+                    <!-- Заголовок -->
+                    <h2 class="text-3xl sm:text-4xl lg:text-[42px] font-light tracking-wide leading-[1.15] text-white">
+                        ÁNIMA Connect te permite sacar el máximo provecho a tu electrodoméstico
+                    </h2>
+
+                    <!-- Текстовый блок с упоминанием коллаборации -->
+                    <div class="space-y-6 text-neutral-300 text-sm sm:text-[15px] font-light tracking-wide leading-relaxed">
+                        <p>
+                            <strong class="font-normal text-white">ÁNIMA Connect</strong> es la app inteligente desarrollada en colaboración con <strong class="font-normal text-white">Smeg</strong>, que te permite conectarte con tus electrodomésticos y controlarlos desde tu teléfono o tablet, cuando quieras y donde quieras.
+                        </p>
+                        <p>
+                            En el estilo de vida actual estas herramientas resultan indispensables, haciendo la vida en la cocina más sencilla y sacando el máximo provecho a tu aparato.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- СЕКЦИЯ С YOUTUBE ВИДЕО ВО ВСЮ ШИРИНУ -->
+    <section class="w-full bg-[#0a0a0a] py-12 sm:py-16 lg:py-20 border-t border-neutral-900">
+        <div class="max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20">
+    
+            <!-- Адаптивный контейнер для видео (сохраняет пропорции 16:9) -->
+            <div class="relative w-full aspect-video rounded-sm overflow-hidden bg-black shadow-2xl">
+                <iframe 
+                class="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/aovKA4F5Nic" 
+                title="SmegConnect, the new generation of connected smeg appliances" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+                </iframe>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- СЕКЦИЯ: COMPARTE TUS PASIONES (ТЕКСТ СЛЕВА, ИЗОБРАЖЕНИЕ СПРАВА) -->
+    <section class="w-full bg-[#141414] text-white border-t border-neutral-900 py-12 sm:py-16 lg:py-20">
+        <div class="max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20">
+    
+            <!-- Сетка: 5 колонок под текст слева, 7 колонок под картинку справа -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+                <!-- ЛЕВАЯ КОЛОНКА: Текст (5 из 12 колонок) -->
+                <div class="lg:col-span-5 space-y-8 max-w-md order-2 lg:order-1">
+        
+                    <!-- Заголовок -->
+                    <h2 class="text-3xl sm:text-4xl lg:text-[42px] font-light tracking-wide leading-[1.15] text-white">
+                        Comparte tus pasiones
+                    </h2>
+
+                    <!-- Текстовый блок -->
+                    <div class="space-y-6 text-neutral-300 text-sm sm:text-[15px] font-light tracking-wide leading-relaxed">
+                        <p>
+                            La app <strong class="font-normal text-white">ÁNIMA Connect</strong> se adapta al mundo de las redes sociales y te permite conectarte con <strong class="font-normal text-white">Facebook</strong> para compartir una receta especial o una carta de vinos.
+                        </p>
+                        <p>
+                            También puedes usar <strong class="font-normal text-white">WhatsApp</strong> y tu correo electrónico para compartir la lista de la compra, para pedir a tus amigos y familiares los ingredientes que te faltan para preparar la comida del día.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- ПРАВАЯ КОЛОНКА: Изображение в рамке (7 из 12 колонок) -->
+                <div class="lg:col-span-7 relative p-6 sm:p-10 lg:p-12 border border-neutral-800 rounded-sm order-1 lg:order-2">
+                    <div class="overflow-hidden">
+                        <img 
+                        src={sharePassionsImg.src} 
+                        alt="Comparte tus pasiones - ÁNIMA Connect" 
+                        class="w-full h-auto object-contain mx-auto"
+                        />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- СЕКЦИЯ-СЛАЙДЕР -->
+    <section class="relative w-full bg-[#141414] text-white overflow-hidden border-t border-neutral-900 py-12 sm:py-16 lg:py-20">
+        <!-- Главный контейнер слайдера -->
+        <div class="js-slider-container max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 relative min-h-125">
+
+            <!-- Кнопка «Назад» -->
+            <button 
+                type="button"
+                class="js-btn-prev absolute left-2 lg:left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/60 border border-neutral-800 flex items-center justify-center text-white hover:bg-neutral-800 transition-colors cursor-pointer"
+                aria-label="Anterior">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+
+            <!-- Кнопка «Вперед» -->
+            <button 
+                type="button"
+                class="js-btn-next absolute right-2 lg:right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/60 border border-neutral-800 flex items-center justify-center text-white hover:bg-neutral-800 transition-colors cursor-pointer"
+                aria-label="Siguiente">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+
+            <!-- Оболочка слайдов -->
+            <div class="relative w-full min-h-120">
+      
+                {sliderSlides.map((slide, index) => (
+                <div 
+                        class={`js-slide-item absolute inset-0 w-full transition-opacity duration-700 ease-in-out grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center px-4 lg:px-12 ${
+                        index === 0 ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none z-0'
+                        }`}
+                    >
+                    <!-- Текст слева -->
+                    <div class="lg:col-span-5 space-y-6 max-w-md">
+                        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-light tracking-wide uppercase text-white">
+                            {slide.title}
+                        </h2>
+            
+                        <p class="text-neutral-300 text-sm sm:text-base font-light tracking-wide leading-relaxed">
+                            {slide.description}
+                        </p>
+
+                        <div class="pt-4">
+                            <a 
+                            href={slide.link} 
+                            class="inline-block border-b border-white pb-0.5 text-xs uppercase font-bold tracking-[0.2em] text-white hover:opacity-70 transition-opacity"
+                            >
+                                {slide.button}
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Картинка справа -->
+                    <div class="lg:col-span-7 bg-black p-3 sm:p-4 border border-neutral-800 rounded-sm flex items-center justify-center overflow-hidden">
+                        <img 
+                        src={slideImages[index].src} 
+                        alt={slide.title} 
+                        class="w-full h-70 sm:h-87.5 object-contain block lg:hidden" 
+                        />
+                        <img 
+                        src={slideImages[index].src} 
+                        alt={slide.title} 
+                        class="w-full h-auto max-h-125 object-contain hidden lg:block" 
+                        />
+                    </div>
+                </div>
+                ))}
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- СЕКЦИЯ: ТРЕБОВАНИЯ К УСТАНОВКЕ И ПОДДЕРЖКА -->
+    <section class="w-full bg-[#141414] text-white border-t border-neutral-900 py-12 sm:py-16 lg:py-20">
+        <div class="max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 space-y-24 lg:space-y-32">
+    
+            <!-- Блок 1: Требования к установке -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                <!-- Заголовок слева (5 колонок) -->
+                <div class="lg:col-span-5">
+                    <h2 class="text-3xl sm:text-4xl lg:text-[42px] font-light tracking-wide leading-[1.15] text-white">
+                        Requerimientos de la instalación
+                    </h2>
+                </div>
+
+                <!-- Список требований справа (7 колонок) -->
+                <div class="lg:col-span-7 space-y-6">
+                    <p class="text-neutral-300 text-sm sm:text-[15px] font-light">
+                        Antes de registrar el producto, comprueba lo siguiente:
+                    </p>
+                    <ol class="list-decimal list-inside space-y-3 text-neutral-300 text-sm sm:text-[15px] font-light leading-relaxed">
+                        <li>Tu electrodoméstico Smeg tiene características de conectividad (Debe ser un producto Smeg Connect).</li>
+                        <li>Tu electrodoméstico está correctamente conectado a la fuente de energía.</li>
+                        <li>El área donde se instalará el electrodoméstico cuenta con una red operativa WLAN (sin cables) con un router dedicado.</li>
+                        <li>El router de tu casa está encendido y con la función Wi-Fi (banda de 2,4 GHz) activada y conectada a internet.</li>
+                        <li>Tener acceso al nombre y la contraseña del Wi-Fi.</li>
+                        <li>El teléfono móvil o la tablet está actualizado con la versión 10.x de iOS o posterior y/o la versión 5.3 de Android o posterior.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Блок 2: Вопросы и поддержка (ведет на страницу contacto) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center border-t border-neutral-800">
+                <!-- Заголовок слева (5 колонок) -->
+                <div class="lg:col-span-5">
+                    <h2 class="text-3xl sm:text-4xl lg:text-[42px] font-light tracking-wide leading-[1.15] text-white">
+                        Tu pregunta... nosotros contestamos
+                    </h2>
+                </div>
+
+                <!-- Текст и кнопка справа (7 колонок) -->
+                <div class="lg:col-span-7 space-y-6">
+                        <p class="text-neutral-300 text-sm sm:text-[15px] font-light leading-relaxed">
+                            Puedes encontrar soporte y consejos para los problemas y las preguntas más habituales en la sección de contacto.
+                        </p>
+                    <div>
+                        <a 
+                           href="/contacto" 
+                           class="inline-flex items-center gap-4 text-xs uppercase font-bold tracking-[0.2em] text-white hover:opacity-70 transition-opacity"
+                           >
+                           <span class="w-8 h-px bg-white"></span>
+                            LEER MÁS
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Блок 3: Seguridad y protección de datos -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start border-t border-neutral-800">
+                <div class="lg:col-span-5">
+                    <h2 class="text-3xl sm:text-4xl lg:text-[42px] font-light tracking-wide leading-[1.15] text-white">
+                        Seguridad y protección de datos
+                    </h2>
+                </div>
+
+                <div class="lg:col-span-7 space-y-6 text-neutral-300 text-sm sm:text-[15px] font-light leading-relaxed">
+                    <p>
+                        Smeg implementa las mejores técnicas para garantizar la seguridad de los datos de todos los electrodomésticos conectados, gracias a un diseño óptimo y actualización constante.
+                    </p>
+                    <p>
+                        Todos los productos Smeg siguen los estándares para los sistemas Wi-Fi, como WPA2 y WPS, también usados por los routers de casa para encriptar los canales de comunicación.
+                    </p>
+                    <p>
+                        Las interacciones entre todos los componentes del sistema SmegConnect - productos, app y información en la nube - están protegidos siguiendo los protocolos TLS, el estándar de seguridad más evolucionado para las comunicaciones internet habituales.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Блок 4: Ley de Datos de la UE -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center border-t border-neutral-800">
+                <div class="lg:col-span-5">
+                    <h2 class="text-3xl sm:text-4xl lg:text-[42px] font-light tracking-wide leading-[1.15] text-white">
+                        Ley de Datos de la UE
+                    </h2>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <p class="text-neutral-300 text-sm sm:text-[15px] font-light leading-relaxed">
+                        Para saber a qué datos generados por tu electrodoméstico y la app SmegConnect puedes acceder, y para acceder a ellos, envía una solicitud a <a href="mailto:info@animaconnect.com" class="text-white underline hover:opacity-70 transition-opacity">info@smegconnect.com</a>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="w-full bg-[#141414] py-12 lg:py-16 border-t border-neutral-900">
+        <div class="max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20">
+    
+            <div class="relative w-full overflow-hidden border border-neutral-800 rounded-sm bg-black shadow-2xl">
+                <img 
+                src={footerBannerImg.src} 
+                alt="ÁNIMA Connect - Cocina inteligente" 
+                class="w-full h-auto object-cover max-h-150 mx-auto"
+                />
+            </div>
+
+        </div>  
+    </section>
+    </main>
+
+    <script src="../scripts/universalCarousel.js"></script>  
+</Layout>

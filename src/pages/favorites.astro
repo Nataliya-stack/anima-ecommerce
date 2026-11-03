@@ -1,0 +1,109 @@
+---
+// src/pages/favorites.astro
+import Layout from "../layouts/Layout.astro";
+import { supabase } from "../lib/supabase";
+
+const accessToken = Astro.cookies.get("sb-access-token");
+const refreshToken = Astro.cookies.get("sb-refresh-token");
+
+let isAuthenticated = false;
+
+if (accessToken && refreshToken) {
+  const { data } = await supabase.auth.setSession({
+    access_token: accessToken.value,
+    refresh_token: refreshToken.value,
+  });
+  if (data.user) {
+    isAuthenticated = true;
+  }
+}
+---
+
+<Layout title="Lista de deseos | ÁNIMA">
+  <main
+    class="w-full min-h-screen bg-white text-[#141414] pt-35 lg:pt-52 pb-24 font-sans select-none"
+  >
+    <!-- Навигационные стрелки -->
+    <div class="max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 mb-6">
+      <nav
+        class="text-sm text-neutral-400 font-light flex items-center gap-2 border-b border-neutral-100 pb-4"
+      >
+        <a href="/" class="hover:text-black transition-colors"
+          >Página principal</a
+        >
+        <span>/</span>
+        <span class="text-neutral-800 font-normal">Lista de deseos</span>
+      </nav>
+    </div>
+
+    <!-- Заголовок и инфо-блок помощи -->
+    <section class="max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 mb-12">
+      <div
+        class="flex flex-col md:flex-row md:items-start md:justify-between border-b border-neutral-100 pb-10 gap-6"
+      >
+        <div class="space-y-3">
+          <h1
+            class="text-3xl sm:text-4xl font-light tracking-wide uppercase text-neutral-900"
+          >
+            Lista de deseos
+          </h1>
+          <p
+            class="text-neutral-500 text-sm sm:text-base font-light tracking-wide max-w-xl leading-relaxed"
+          >
+            En este panel tienes la oportunidad de ver tus actividades y
+            actualizar la información de tu cuenta. Selecciona un enlace a
+            continuación para ver o editar la información.
+          </p>
+        </div>
+
+        <div
+          class="bg-neutral-50 p-6 rounded-2xl border border-neutral-100 text-left md:min-w-75"
+        >
+          <p
+            class="text-[11px] font-semibold uppercase tracking-wider text-neutral-400 mb-1"
+          >
+            ¿Necesitas ayuda?
+          </p>
+          <p class="text-xs font-light text-neutral-600 mb-2">
+            Contacta con el número
+          </p>
+          <a
+            href="tel:935650250"
+            class="text-base font-bold font-mono text-neutral-900 hover:underline"
+          >
+            935 65 02 50
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ С ПУСТЫМ СОСТОЯНИЕМ ИЛИ СПИСКОМ ТОВАРОВ -->
+    <section class="max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20">
+      <!-- Пустая lista de deseos (по умолчанию отображается, пока скрипт не найдет товары) -->
+      <div id="favorites-empty" class="py-20 text-center space-y-6">
+        <p class="text-neutral-500 text-base font-light tracking-wide">
+          Tu lista de deseos está vacía... Déjate inspirar y elige tus productos
+          favoritos.
+        </p>
+        <div>
+          <a
+            href="/"
+            class="inline-block border-b border-black pb-0.5 text-xs uppercase font-bold tracking-[0.2em] hover:opacity-70 transition-opacity"
+          >
+            Descubre los productos ÁNIMA &gt;
+          </a>
+        </div>
+      </div>
+
+      <!-- Контейнер для карточек избранного (скрыт, пока скрипт не подгрузит список) -->
+      <div
+        id="favorites-container"
+        class="hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      >
+        <!-- Товары генерируются динамически скриптом viewFavorites.js -->
+      </div>
+    </section>
+  </main>
+
+  <script src="../scripts/favorites.js"></script>
+</Layout>

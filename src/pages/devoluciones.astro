@@ -1,0 +1,169 @@
+---
+// src/pages/devoluciones.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Cómo realizar una devolución | ÁNIMA">
+  <main class="w-full bg-[#0b0b0b] text-white min-h-screen py-20 lg:py-40 px-6 sm:px-12 lg:px-20">
+    <div class="max-w-250 mx-auto space-y-12">
+      
+      <!-- Навигационные стрелки -->
+      <nav class="text-xs text-neutral-400 flex items-center space-x-2 font-light tracking-wide">
+        <a href="/" class="hover:text-white transition-colors">Página principal</a>
+        <span>/</span>
+        <a href="/politica-devoluciones" class="hover:text-white transition-colors">Política de devoluciones</a>
+        <span>/</span>
+        <span class="text-neutral-200">Devolución online</span>
+      </nav>
+
+      <!-- Заголовок с левой вертикальной линией -->
+      <div class="border-l border-white pl-6 lg:pl-12 space-y-4 my-8">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-white">
+          Cómo realizar una devolución de una compra online
+        </h1>
+        <p class="text-neutral-400 text-sm sm:text-base font-light tracking-wide max-w-2xl">
+          Para realizar una solicitud de devolución de una compra online en&nbsp;<span class="whitespace-nowrap text-white">anima.es</span>, complete el formulario a continuación. Nos pondremos en contacto con usted tan pronto como la solicitud sea procesada.
+        </p>
+      </div>
+
+      <!-- Индикатор шагов (Steppers) -->
+      <div id="stepper-wrapper" class="flex items-center justify-center py-6 relative max-w-xs mx-auto">
+        <div class="w-full h-px bg-neutral-800 absolute top-1/2 -translate-y-1/2 z-0"></div>
+        
+        <div class="flex justify-between w-full relative z-10">
+          <!-- Шаг 1 (Активный) -->
+          <div id="step-1-indicator" class="w-10 h-10 rounded-full border border-white bg-[#0b0b0b] text-white flex items-center justify-center text-sm font-light transition-all duration-300">
+            1
+          </div>
+          <!-- Шаг 2 -->
+          <div id="step-2-indicator" class="w-10 h-10 rounded-full border border-neutral-700 bg-[#0b0b0b] text-neutral-500 flex items-center justify-center text-sm font-light transition-all duration-300">
+            2
+          </div>
+        </div>
+      </div>
+
+      <!-- БЛОК ФОРМЫ -->
+      <div class="pt-4">
+        
+        <!-- ШАГ 1: Поиск заказа -->
+        <form id="returns-form-step-1" class="space-y-10 max-w-2xl mx-auto transition-all duration-300">
+          <div class="space-y-2">
+            <label for="order-number" class="block text-xs uppercase tracking-widest font-medium text-white">
+              NÚMERO DE PEDIDO*
+            </label>
+            <input 
+              type="text" 
+              id="order-number" 
+              required
+              placeholder="Introduzca su número de pedido"
+              class="w-full bg-transparent border-b border-neutral-700 py-3 text-white placeholder:text-neutral-600 focus:outline-none focus:border-white transition-colors text-sm font-light"
+            />
+            <p class="text-xs text-neutral-400 font-light pt-1">
+              Introduzca el número de pedido de 9 dígitos visible en el correo electrónico de confirmación del pedido.
+            </p>
+          </div>
+
+          <div class="space-y-2">
+            <label for="product-code" class="block text-xs uppercase tracking-widest font-medium text-white">
+              CÓDIGO DE PRODUCTO*
+            </label>
+            <input 
+              type="text" 
+              id="product-code" 
+              required
+              placeholder="Introduzca el código del producto"
+              class="w-full bg-transparent border-b border-neutral-700 py-3 text-white placeholder:text-neutral-600 focus:outline-none focus:border-white transition-colors text-sm font-light"
+            />
+          </div>
+
+          <div class="pt-6">
+            <button 
+              type="submit"
+              class="w-full py-4 border border-white text-white hover:bg-white hover:text-black transition-all duration-300 text-sm uppercase tracking-widest cursor-pointer font-normal"
+            >
+              Siguiente
+            </button>
+          </div>
+        </form>
+
+        <!-- ШАГ 2: Причина и подробности (Скрыт по умолчанию) -->
+        <div id="returns-form-step-2" class="hidden space-y-8 max-w-2xl mx-auto transition-all duration-300">
+          <div class="space-y-2 border-b border-neutral-800 pb-4">
+            <h2 class="text-xl font-light text-white tracking-wide">Detalles de la devolución</h2>
+            <p class="text-xs text-neutral-400 font-light">
+              Seleccione el motivo de la devolución y proporcione detalles adicionales si es necesario.
+            </p>
+          </div>
+
+          <form id="final-returns-form" class="space-y-6">
+            <div class="space-y-2">
+              <label for="return-reason" class="block text-xs uppercase tracking-widest text-white">MOTIVO DE LA DEVOLUCIÓN*</label>
+              <select 
+                id="return-reason" 
+                required 
+                class="w-full bg-[#121212] border border-neutral-700 py-3 px-4 text-white text-sm focus:outline-none focus:border-white rounded-none cursor-pointer"
+              >
+                <option value="" disabled selected>Seleccione un motivo...</option>
+                <option value="defective">Producto defectuoso o dañado</option>
+                <option value="wrong_item">Producto incorrecto recibido</option>
+                <option value="not_satisfied">No cumple con mis expectativas</option>
+                <option value="other">Otro motivo</option>
+              </select>
+            </div>
+
+            <div class="space-y-2">
+              <label for="return-comments" class="block text-xs uppercase tracking-widest text-white">COMENTARIOS ADICIONALES</label>
+              <textarea 
+                id="return-comments" 
+                rows="4" 
+                placeholder="Describa el motivo o detalles del estado del producto..."
+                class="w-full bg-[#121212] border border-neutral-700 p-3 text-white text-sm focus:outline-none focus:border-white placeholder:text-neutral-600 font-light"
+              ></textarea>
+            </div>
+
+            <div class="flex gap-4 pt-4">
+              <button 
+                type="button" 
+                id="back-to-step-1"
+                class="w-1/2 py-4 border border-neutral-700 text-neutral-400 hover:text-white hover:border-white transition-all duration-300 text-sm uppercase tracking-widest cursor-pointer"
+              >
+                Anterior
+              </button>
+              <button 
+                type="submit" 
+                class="w-1/2 py-4 bg-white text-black hover:bg-neutral-200 transition-all duration-300 text-sm uppercase tracking-widest font-medium cursor-pointer"
+              >
+                Enviar solicitud
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- ЭКРАН УСПЕШНОЙ ОТПРАВКИ (Скрыт по умолчанию) -->
+        <div id="returns-success-msg" class="hidden text-center py-16 space-y-6 max-w-lg mx-auto">
+          <div class="w-16 h-16 rounded-full border border-white text-white flex items-center justify-center text-2xl mx-auto">
+            ✓
+          </div>
+          <div class="space-y-2">
+            <h2 class="text-2xl sm:text-3xl font-light text-white tracking-wide">Solicitud enviada con éxito</h2>
+            <p class="text-neutral-400 text-sm font-light leading-relaxed">
+              Hemos recibido su solicitud de devolución correctamente. Nuestro equipo de atención al cliente revisará la información y le enviará las instrucciones de recogida a su correo electrónico en un plazo de 24-48 horas.
+            </p>
+          </div>
+          <div class="pt-4">
+            <a 
+              href="/" 
+              class="inline-block py-3 px-8 border border-neutral-700 text-white text-xs uppercase tracking-widest hover:border-white transition-colors"
+            >
+              Volver a la página principal
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../scripts/returns.js"></script>
+</Layout>

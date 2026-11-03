@@ -1,0 +1,248 @@
+---
+// src/pages/login.astro
+import Layout from "../layouts/Layout.astro";
+import { supabase } from '../lib/supabase';
+import pool from '../lib/db'; 
+
+const accessToken = Astro.cookies.get('sb-access-token');
+const refreshToken = Astro.cookies.get('sb-refresh-token');
+
+let user = null;
+let nombreUsuario = null;
+let esNuevoUsuario = false;
+let ordersGrouped: any[] = [];
+ // Массив, где будут храниться сгруппированные заказы
+
+if (accessToken && refreshToken) {
+  const { data } = await supabase.auth.setSession({
+    access_token: accessToken.value,
+    refresh_token: refreshToken.value,
+  });
+  
+  if (data.user) {
+    user = data.user;
+    nombreUsuario = 
+      user.user_metadata?.full_name || 
+      user.user_metadata?.nombre || 
+      user.email;
+
+    const creado = new Date(user.created_at).getTime();
+    const ahora = new Date().getTime();
+    if (ahora - creado < 5 * 60 * 1000) {
+      esNuevoUsuario = true;
+    }
+
+    // ЗАПРОС К ПОСТГРЕСУ: Вытаскиваем историю покупок этого клиента
+    // Сортируем ORDER BY f.fecha_compra DESC, чтобы новые покупки всегда были первыми!
+    try {
+      const query = `
+        SELECT 
+          f.pk_factura,
+          f.fecha_compra,
+          f.total_factura,
+          df.cantidad,
+          df.precio_unitario,
+          p.nombre_producto,
+          p.url_imagen
+        FROM facturas f
+        JOIN detalle_factura df ON f.pk_factura = df.fk_factura
+        JOIN products p ON df.fk_producto = p.pk_producto
+        WHERE f.fk_cliente = $1
+        ORDER BY f.fecha_compra DESC
+      `;
+      
+      const { rows } = await pool.query(query, [user.id]);
+
+      // Группируем плоские строки SQL-ответа по уникальному номеру фактуры (pk_factura)
+      const groups: Record<string, any> = {};
+      rows.forEach((row : any) => {
+        if (!groups[row.pk_factura]) {
+          groups[row.pk_factura] = {
+            id: row.pk_factura,
+            fecha: new Date(row.fecha_compra).toLocaleDateString('es-ES', {
+              day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute:'2-digit'
+            }),
+            total: row.total_factura,
+            productos: []
+          };
+        }
+        groups[row.pk_factura].productos.push({
+          nombre: row.nombre_producto,
+          imagen: row.url_imagen,
+          cantidad: row.cantidad,
+          precio: row.precio_unitario
+        });
+      });
+
+      // Превращаем объект групп обратно в чистый массив для рендеринга
+      ordersGrouped = Object.values(groups).reverse();
+    } catch (err) {
+      console.error("Error загрузки истории заказов:", err);
+    }
+  }
+}
+---
+
+<Layout title="Mi Cuenta | ÁNIMA">
+  <main class="w-full min-h-screen bg-white text-neutral-900 pt-35 lg:pt-50 font-sans pb-32 select-none">
+    
+    {user ? (
+      <div>
+        <!-- Навигационная стрелка -->
+        <div class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 mb-8">
+          <nav class="text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2">
+            <a href="/" class="hover:text-black transition-colors flex items-center gap-1">
+              ← Página principal
+            </a>
+            <span class="mx-1">/</span>
+            <span class="text-neutral-800 font-normal">Mi Cuenta</span>
+          </nav>
+        </div>
+
+        <!-- ======================================================= -->
+        <!-- 1. СЕКЦИЯ: ИНТЕРФЕЙС ЛИЧНОГО КАБИНЕТА -->
+        <!-- ======================================================= -->
+        <section class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20">
+          <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 h-auto pt-2">
+            
+            <!-- ЛЕВАЯ КОЛОНКА: Данные клиента -->
+            <div class="space-y-12 flex flex-col justify-between h-auto">
+              <div class="space-y-8">
+                <div class="space-y-2">
+                  <p class="text-xs tracking-[0.2em] uppercase text-neutral-400 font-semibold">Panel de Cliente</p>
+                  <h2 class="text-3xl md:text-4xl font-light tracking-wide text-black uppercase">¡Hola, {nombreUsuario}!</h2>
+                </div>
+                
+                <div class="pt-4 space-y-6 text-sm tracking-widest text-neutral-900">
+                  <div>
+                    <span class="text-neutral-500 uppercase text-[11px] font-semibold tracking-[0.15em] block mb-1.5">Email de contacto</span> 
+                    <span class="text-base font-light text-black">{user.email}</span>
+                  </div>
+                  
+                  <div class="pt-2 space-y-3">
+                    <span class="text-neutral-500 uppercase text-[11px] font-semibold tracking-[0.15em] block">ID de Cliente (Supabase)</span> 
+                    <div class="bg-neutral-50 border-2 border-neutral-400 p-4 rounded-none select-all break-all">
+                      <code class="font-mono text-sm font-bold text-black tracking-wide">{user.id}</code>
+                    </div>
+                    
+                    <div class="pt-2">
+                      <a 
+                        href="/perfil" 
+                        class="inline-block text-[11px] font-semibold tracking-[0.15em] uppercase text-black bg-transparent hover:text-neutral-500 underline underline-offset-4 transition-colors py-1 w-full text-left"
+                      >
+                        Configurar datos de perfil &gt;
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Кнопка выхода -->
+              <form action="/api/auth/signout" method="POST" class="pt-8 border-t border-neutral-300">
+                <button 
+                  type="submit" 
+                  class="w-full md:w-auto bg-transparent border border-black text-black text-xs tracking-[0.2em] uppercase font-bold py-4 px-10 hover:bg-black hover:text-white transition-all duration-300 cursor-pointer"
+                >
+                  Cerrar Sesión
+                </button>
+              </form>
+            </div>
+
+            <!-- ПРАВАЯ КОЛОНКА: Блок заказов -->
+            <div class="border-t md:border-t-0 md:border-l border-neutral-300 pt-12 md:pt-0 md:pl-20 flex flex-col justify-start space-y-8 h-auto w-full">
+              
+              {esNuevoUsuario ? (
+                <div class="space-y-4">
+                  <h3 class="text-2xl font-light tracking-wide uppercase text-emerald-700">Tu registro se completó con éxito</h3>
+                  <p class="text-sm text-neutral-600 tracking-wide leading-relaxed font-light">
+                    ¡Bienvenido a la comunidad ÁNIMA! Tu account ha sido creada correctamente a través de Google. Ya puedes explorar de forma segura nuestro catálogo, guardar tus productos favoritos y gestionar tus compras.
+                  </p>
+                </div>
+              ) : (
+                <div class="space-y-6 w-full">
+                  <h3 class="text-xs font-bold tracking-[0.2em] uppercase text-black mb-4">Mis Pedidos</h3>
+                  
+                  {ordersGrouped.length === 0 ? (
+                    <p class="text-sm text-neutral-600 tracking-wide leading-relaxed font-light">
+                      Aquí aparecerá el historial de tus compras, estados de envío y facturas oficiales una vez realices tu primer pedido en ÁNIMA Concept Store.
+                    </p>
+                  ) : (
+                    <div class="space-y-8 max-h-150 overflow-y-auto pr-2">
+                      {ordersGrouped.map((order: any) => (
+                        <div class="border border-neutral-200 p-6 bg-neutral-50 rounded-none space-y-4 text-left">
+                          <!-- Шапка накладной -->
+                          <div class="flex flex-wrap justify-between items-center gap-2 border-b border-neutral-200 pb-3 text-xs tracking-wider uppercase text-neutral-500 font-medium">
+                            <span>Pedido №{order.id} — {order.fecha}</span>
+                            <span class="text-emerald-700 font-bold">Pagado</span>
+                          </div>
+                          
+                          <!-- Список товаров -->
+                          <div class="space-y-3">
+                            {order.productos.map((prod: any) => (
+                              <div class="flex items-center justify-between gap-4 text-sm font-light text-neutral-800">
+                                <div class="flex items-center gap-3 truncate">
+                                  <span class="truncate">{prod.nombre}</span>
+                                  <span class="text-neutral-400 font-mono text-xs">x{prod.cantidad}</span>
+                                </div>
+                                <span class="font-mono font-medium text-black shrink-0">{(prod.precio * prod.cantidad).toFixed(2)} €</span>
+                              </div>
+                            ))}
+                          </div>
+                          
+                          <!-- Итоговая сумма -->
+                          <div class="border-t border-neutral-200 pt-3 flex justify-between items-center text-sm font-bold uppercase tracking-wider text-black">
+                            <span>Total factura</span>
+                            <span class="font-mono text-base">{Number(order.total).toFixed(2)} €</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <a href="/" class="inline-block text-xs font-semibold tracking-[0.15em] uppercase text-white bg-black py-4 px-8 text-center hover:bg-neutral-800 transition-colors w-full sm:w-auto self-start mt-4">
+                Explorar todo el producto &gt;
+              </a>
+            </div>
+
+          </div>
+        </section>
+      </div>
+    ) : (
+      <section class="w-full max-w-[1700px] mx-auto px-6 flex items-center justify-center">
+        <div class="max-w-md w-full text-center py-16 px-8 flex flex-col justify-center min-h-100">
+          <div class="space-y-3 mb-10">
+            <h1 class="text-5xl font-light tracking-[0.2em] uppercase text-black">ÁNIMA</h1>
+            <p class="text-xs tracking-[0.15em] uppercase text-neutral-400">Concept Store</p>
+          </div>
+
+          <div class="space-y-8">
+            <p class="text-sm tracking-wide text-neutral-500 leading-relaxed max-w-xs mx-auto font-light">
+              Identifícate para gestionar tus pedidos, acceder a tu perfil rápido y continuar con tus compras.
+            </p>
+            
+            <button 
+              id="login-btn" 
+              class="w-full bg-black border border-black text-white text-xs tracking-[0.2em] uppercase font-semibold py-4.5 px-6 hover:bg-neutral-900 transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer"
+            >
+              <svg class="w-4 h-4 text-white fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.24 10.285V13.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l2.427-2.334C17.955 2.192 15.34 1 12.24 1 6.133 1 1.143 5.925 1.143 12s4.99 11 11.097 11c6.373 0 10.606-4.414 10.606-10.8 0-.727-.078-1.282-.172-1.915H12.24z"/>
+              </svg>
+              Iniciar Sesión con Google
+            </button>
+            <p class="text-[14px] text-neutral-400 tracking-wide font-light leading-relaxed pt-2 max-w-xs mx-auto">
+              Al iniciar sesión, aceptas nuestra &nbsp;
+              <a href="/politica-privacidad" target="_blank" rel="noopener noreferrer" class="underline text-neutral-600 font-medium hover:text-black transition-colors">
+                política de privacidad
+              </a> &nbsp;
+              y el tratamiento de tus datos a través de Google Auth.
+            </p>
+          </div>
+        </div>
+      </section>
+    )}
+  </main>
+
+  <script src="../scripts/auth.js"></script>
+</Layout>

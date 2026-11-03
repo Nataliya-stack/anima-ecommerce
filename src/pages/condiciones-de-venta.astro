@@ -1,0 +1,220 @@
+---
+// src/pages/condiciones-de-venta.astro
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Condiciones de Venta Online | ÁNIMA">
+  <main
+    class="w-full bg-[#0b0b0b] text-white min-h-screen py-20 lg:py-40 px-6 sm:px-12 lg:px-20"
+  >
+    <div class="max-w-300 mx-auto space-y-12">
+      <!-- Навигационные стрелки -->
+      <nav
+        class="text-xs text-neutral-400 flex items-center space-x-2 font-light tracking-wide"
+      >
+        <a href="/" class="hover:text-white transition-colors"
+          >Página principal</a
+        >
+        <span>/</span>
+        <span class="text-neutral-200">Condiciones de venta online</span>
+      </nav>
+
+      <!-- Главный заголовок и подзаголовок с вертикальной линией слева -->
+      <div class="border-l border-white pl-6 lg:pl-12 space-y-4 my-8">
+        <h1
+          class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-white"
+        >
+          Condiciones de venta online
+        </h1>
+        <p
+          class="text-neutral-400 text-sm sm:text-base font-light tracking-wide"
+        >
+          Encuentra todos los detalles sobre las condiciones de venta online a
+          continuación:
+        </p>
+      </div>
+
+      <div class="w-full h-px bg-neutral-800"></div>
+
+      <!-- Контентная часть (Блоки условий продажи) -->
+      <div
+        class="space-y-12 text-sm sm:text-base font-light text-neutral-300 leading-relaxed tracking-wide max-w-250"
+      >
+        <!-- 1. OBJETO -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            1. OBJETO
+          </h2>
+          <p>
+            Las presentes condiciones regulan la venta de productos a través de
+            nuestra tienda online, estableciendo los derechos y obligaciones de
+            ambas partes.
+          </p>
+        </section>
+
+        <!-- 2. IDENTIFICACIÓN DEL VENDEDOR -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            2. IDENTIFICACIÓN DEL VENDEDOR
+          </h2>
+          <p>
+            La tienda online es operada por <span class="text-white font-normal"
+              >ÁNIMA España S.A.U.</span
+            >, con domicilio en Calle Hidráulica, 4 en Montcada y Reixac y CIF
+            A59769646. Para cualquier consulta, puede contactar con nuestro
+            servicio de atención al cliente en
+            <a
+              href="mailto:info@anima.es"
+              class="underline hover:text-white transition-colors text-white font-normal mx-1"
+              >info@anima.es</a
+            >
+            o llamando al <span class="whitespace-nowrap text-white font-normal"
+              >+34 935 650 250</span
+            >.
+          </p>
+        </section>
+
+        <!-- 3. PROCESO DE COMPRA -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            3. PROCESO DE COMPRA
+          </h2>
+          <ul class="list-disc pl-5 space-y-2 text-neutral-300">
+            <li>Los productos se seleccionan y añaden al carrito de compra.</li>
+            <li>
+              El usuario debe facilitar los datos necesarios para la facturación
+              y envío.
+            </li>
+            <li>
+              El pago se efectúa a través de los métodos disponibles en la
+              tienda online.
+            </li>
+            <li>
+              Una vez confirmado el pago, se enviará un correo electrónico de
+              confirmación del pedido.
+            </li>
+          </ul>
+        </section>
+
+        <!-- 4. PRECIOS Y FORMAS DE PAGO -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            4. PRECIOS Y FORMAS DE PAGO
+          </h2>
+          <ul class="list-disc pl-5 space-y-2 text-neutral-300">
+            <li>Los precios incluyen IVA y están expresados en euros.</li>
+            <li>
+              Se aceptan pagos mediante tarjeta de crédito/débito, PayPal,
+              transferencia bancaria y pago a plazos con Klarna.
+            </li>
+            <li>
+              La empresa se reserva el derecho de modificar los precios sin
+              previo aviso, salvo en pedidos ya confirmados.
+            </li>
+          </ul>
+        </section>
+
+        <!-- 5. ENVÍO Y ENTREGA -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            5. ENVÍO Y ENTREGA
+          </h2>
+          <ul class="list-disc pl-5 space-y-2 text-neutral-300">
+            <li>
+              Los plazos de entrega varían según la disponibilidad, el tipo de
+              producto y el destino.
+            </li>
+            <li>
+              Los gastos de envío se indicarán antes de finalizar la compra.
+            </li>
+            <li>
+              La empresa no se hace responsable de retrasos ocasionados por
+              causas ajenas a su control.
+            </li>
+          </ul>
+        </section>
+
+        <!-- 6. GARANTÍA Y DEVOLUCIONES -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            6. GARANTÍA Y DEVOLUCIONES
+          </h2>
+          <ul class="list-disc pl-5 space-y-2 text-neutral-300">
+            <li>
+              Todos los productos tienen una garantía legal por falta de
+              conformidad del producto de 3 años según la normativa vigente.
+            </li>
+            <li>
+              En caso de defecto de fabricación manifiestos, el cliente deberá
+              comunicarlo en un plazo de 14 días desde la recepción del pedido.
+            </li>
+            <li>
+              Se aceptan devoluciones en un plazo de 14 días naturales desde la
+              entrega, siempre que el producto no haya sido utilizado y conserve
+              su embalaje original.
+            </li>
+          </ul>
+        </section>
+
+        <!-- 7. DERECHO DE DESISTIMIENTO -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            7. DERECHO DE DESISTIMIENTO
+          </h2>
+          <p>
+            El consumidor tiene derecho a desistir de la compra en un plazo de
+            14 días naturales sin necesidad de justificación.
+          </p>
+          <p>
+            Para ejercer este derecho, deberá cumplimentar el formulario de
+            devoluciones haciendo clic
+            <a
+              href="/devoluciones"
+              class="underline hover:text-white transition-colors text-white font-normal mx-1"
+              >aquí</a
+            >.
+          </p>
+          <p>
+            Se reembolsará el importe del producto en un plazo máximo de 14 días
+            desde la recepción de la devolución.
+          </p>
+        </section>
+
+        <!-- 8. PROTECCIÓN DE DATOS -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            8. PROTECCIÓN DE DATOS
+          </h2>
+          <p>
+            Los datos personales serán tratados conforme a la normativa vigente
+            en materia de protección de datos. Para más información, consulte
+            nuestra
+            <a
+              href="/politica-de-privacidad"
+              class="underline hover:text-white transition-colors text-white font-normal mx-1"
+              >Política de Privacidad</a
+            >.
+          </p>
+        </section>
+
+        <!-- 9. LEGISLACIÓN APLICABLE Y JURISDICCIÓN -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            9. LEGISLACIÓN APLICABLE Y JURISDICCIÓN
+          </h2>
+          <p>
+            Las presentes condiciones se rigen por la legislación española. En
+            caso de conflicto, las partes se someterán a los tribunales de
+            Barcelona, salvo que la ley atribuya un fuero distinto al
+            consumidor, en cuyo caso éste podrá optar por cualquiera de los dos.
+          </p>
+        </section>
+
+        <!-- Última actualización -->
+        <div class="pt-8 text-xs text-neutral-500 font-light tracking-wide">
+          Última actualización: 24 de febrero de 2025.
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

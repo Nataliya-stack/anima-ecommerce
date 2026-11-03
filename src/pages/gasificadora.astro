@@ -1,0 +1,226 @@
+---
+// src/pages/gasificadora.astro
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import ProductSpecs from '../components/ProductSpecs.astro';
+
+import dataDB from '../../db.json';
+const specs = dataDB.gasificadoraSpecs;
+
+import gasificadora1 from '../assets/categories/gasificadora1.jpg';
+import gasificadora2 from '../assets/categories/gasificadora2.jpg';
+import gasificadora3 from '../assets/categories/gasificadora3.jpg';
+import gasificadora4 from '../assets/categories/gasificadora4.jpg';
+import gasificadora5 from '../assets/categories/gasificadora5.jpg';
+import gasificadora6 from '../assets/categories/gasificadora6.jpg';
+
+const productImages = [gasificadora1, gasificadora2, gasificadora3, gasificadora4, gasificadora5, gasificadora6];
+
+import gasificadoraInterior from '../assets/categories/gasificadora_interior.jpg';
+import gasificadoraBlanco from '../assets/categories/gasificadora_blanco.jpg';
+import gasificadoraColores from '../assets/categories/gasificadora_colores.jpg';
+
+import gasificadoraVideo from '../assets/video/gasificadora_bg.mp4';
+
+---
+
+<Layout title="Gasificadora de agua | Ánima">
+  <main class="w-full min-h-screen bg-white text-[#141414] pt-35 lg:pt-50 font-sans antialiased select-none">
+    
+    <!-- Навигационные стрелки -->
+    <div class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 mb-8">
+      <nav class="text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2">
+        <a href="/" class="hover:text-black transition-colors flex items-center gap-1">
+          ← Página principal
+        </a>
+        <span class="mx-1">/</span> 
+        <a href="/mundo-editorial" class="hover:text-black transition-colors">
+          Mundo Editorial
+        </a>
+        <span class="mx-1">/</span>
+        <span class="text-neutral-800 font-normal">Gasificadora de agua</span>
+      </nav>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- 1. ГЛАВНЫЙ ПРОДУКТОВЫЙ БЛОК (Сетка фото и sticky-описание) -->
+    <!-- ======================================================= -->
+    <section class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 pb-24">
+      <div class="grid items-start grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-20">
+        
+        {/* ЛЕВАЯ КОЛОНКА: Сетка из 4-х ракурсов товара (7 колонок из 12) */}
+        <div class="grid grid-cols-2 gap-4 bg-white lg:col-span-7 sm:gap-6">
+          {productImages.map((img, idx) => (
+            <div class="aspect-3/4 w-full overflow-hidden bg-[#fbfbfb] rounded-sm border border-neutral-100 flex items-center justify-center p-4 group relative">
+              <img 
+                src={img.src} 
+                alt={`Gasificadora de agua - Vista ${idx + 1}`} 
+                class="object-contain max-w-full max-h-full transition-transform duration-700 ease-out group-hover:scale-102"
+                loading={idx === 0 ? "eager" : "lazy"}
+              />
+              {/* Иконка лупы на первом главном фото */}
+              {idx === 0 && (
+                <div class="absolute top-5 left-5 text-neutral-400 opacity-60">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.603 10.603zM10.5 7.5v6m3-3h-6" />
+                  </svg>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* ПРАВАЯ КОЛОНКА: Информационный блок (5 колонок из 12) */}
+        <div class="space-y-8 lg:col-span-5 lg:sticky lg:top-36">
+          
+          {/* Заголовок и коллекция */}
+          <div class="space-y-2">
+            <h1 class="text-3xl sm:text-4xl lg:text-[40px] font-light tracking-wide text-neutral-900 leading-tight">
+              Gasificadora de agua
+            </h1>
+            <span class="block text-sm sm:text-lg uppercase tracking-[0.2em] text-neutral-400 font-medium">
+              Collezione
+            </span>
+          </div>
+
+          {/* Премиальное описание и буллиты преимуществ */}
+          <div class="space-y-6 text-sm font-light leading-relaxed tracking-wide sm:text-lg text-neutral-600">
+            <p>
+              Desata tu deseo de efervescencia con la Gasificadora de agua. Diseñada para combinar funcionalidad innovadora y un diseño distintivo, hacer agua con gas se convierte en un gesto simple, intuitivo y refinado gracias a la singularidad de su perilla frontal.
+            </p>
+            
+            <ul class="pt-4 pl-5 space-y-3 list-disc border-t border-neutral-100 text-neutral-500">
+              <li>Mando frontal intuitivo para iniciar el proceso de gasificación, integrado de manera fluida en el diseño del producto.</li>
+              <li>Botella de plástico Tritan™ Renew procedente de fuentes responsables: resistente y duradera, sin BPA y apta para lavavajillas.</li>
+              <li>Ajuste manual del nivel de carbonatación, personalizable según tu gusto.</li>
+              <li>Funciona con cilindro de CO2 – NO INCLUIDO. Compatible con cilindros estándar de CO2 roscados de 400-425 g / 60 L-80 L.</li>
+              <li>No requiere electricidad - conveniente para colocar o mover en la encimera de la cocina o en el carrito de bar.</li>
+              <li>Botella adicional disponible como accesorio opcional (código de producto SKSB01).</li>
+            </ul>          
+          </div>        
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 3. БЛОК: ИННОВАЦИОННЫЙ ДИЗАЙН (Серый фон) -->
+    <!-- ======================================================= -->
+    <section class="bg-[#f9f9f9] text-[#141414] py-20 sm:py-28 md:py-32 px-6 sm:px-12 md:px-16 lg:px-20 select-none border-t border-slate-200/60 font-sans antialiased">
+      <div class="max-w-[1700px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        {/* ЛЕВАЯ ЧАСТЬ: Массивное фото (8 колонок из 12) */}
+        <div class="w-full lg:col-span-8">
+          <div class="overflow-hidden bg-white border rounded-sm shadow-sm aspect-16/10 sm:aspect-video lg:aspect-16/10 border-slate-200/40">
+            <Image 
+              src={gasificadoraInterior} 
+              alt="Innovación intuitiva en el diseño de la gasificadora" 
+              class="object-cover object-center w-full h-full transition-transform duration-700 ease-out hover:scale-101"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        {/* ПРАВАЯ ЧАСТЬ: Колонка с текстом (4 колонки из 12) */}
+        <div class="flex flex-col justify-center w-full space-y-6 lg:col-span-4 lg:pl-4">
+          <h3 class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[#141414] leading-[1.2]">
+            Innovación intuitiva para una experiencia personalizada
+          </h3>
+
+          <p class="text-base font-light leading-loose tracking-wide sm:text-lg text-slate-600">
+            El innovador mando de control de <strong class="font-medium text-black">carbonatación</strong> es el núcleo del diseño de este producto. Este sistema intuitivo permite ajustar el nivel de CO₂, <strong class="font-medium text-black">personalizando cada bebida según tu gusto</strong>, ya sea que prefieras un agua ligeramente con gas o muy gasificada. La <strong class="font-medium text-black">bandeja antigoteo con cierre magnético</strong> garantiza que la encimera se mantenga siempre limpia. Gracias a su practicidad, el carbonatador es ideal para el uso diario, perfecto para quienes disfrutan de bebidas con gas en cualquier momento del día.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 4. БЛОК:                                                -->
+    <!-- ======================================================= -->
+    <section class="bg-white text-[#141414] py-20 sm:py-28 md:py-32 px-6 sm:px-12 md:px-16 lg:px-20 select-none font-sans antialiased">
+      <div class="max-w-[1700px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        {/* ЛЕВАЯ ЧАСТЬ: Большое фото на белом фоне (8 колонок из 12) */}
+        <div class="w-full lg:col-span-8">
+          <div class="flex items-center justify-center overflow-hidden bg-white rounded-sm aspect-16/10 sm:aspect-video lg:aspect-16/10">
+            <Image 
+              src={gasificadoraBlanco} 
+              alt="Versatilidad en tu rutina diaria" 
+              class="object-contain object-center w-full h-full transition-transform duration-700 ease-out hover:scale-101"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        {/* ПРАВАЯ ЧАСТЬ: Колонка с текстом (4 колонки из 12) */}
+        <div class="flex flex-col justify-center w-full space-y-6 lg:col-span-4 lg:pl-4">
+          <h3 class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[#141414] leading-[1.2]">
+            Versatilidad en tu rutina diaria
+          </h3>
+
+          <p class="text-base font-light leading-loose tracking-wide sm:text-lg text-slate-600">
+            La botella de 800 ml está fabricada con Tritan™ Renew, un innovador plástico compuesto en un 50 % por material reciclado. <strong class="font-medium text-black">Resistente, transparente y apta para lavavajillas</strong>, representa una excelente alternativa a las botellas de plástico de un solo uso. El carbonatador también es compatible con la mayoría de los cilindros de CO₂ de rosca de entre 400-425 g / 60 L para uso doméstico, y no requiere instalación para su primer uso. Elegir el Soda Maker de Smeg es apostar por la practicidad y la innovación, en un estilo de vida moderno y comprometido con un consumo consciente.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 5. БЛОК: ЦВЕТОВАЯ ГАММА И ЭСТЕТИКА (Серый фон) -->
+    <!-- ======================================================= -->
+    <section class="bg-[#f9f9f9] text-[#141414] py-20 sm:py-28 md:py-32 px-6 sm:px-12 md:px-16 lg:px-20 select-none border-t border-slate-200/60 font-sans antialiased">
+      <div class="max-w-[1700px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        {/* ЛЕВАЯ ЧАСТЬ: Панорамное фото цветов (8 колонок из 12) */}
+        <div class="w-full lg:col-span-8">
+          <div class="overflow-hidden bg-white border rounded-sm shadow-sm aspect-16/10 sm:aspect-video lg:aspect-16/10 border-slate-200/40">
+            <Image 
+              src={gasificadoraColores} 
+              alt="Gama de colores de la gasificadora Smeg" 
+              class="object-cover object-center w-full h-full transition-transform duration-700 ease-out hover:scale-101"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        {/* ПРАВАЯ ЧАСТЬ: Колонка с текстом (4 колонки из 12) */}
+        <div class="flex flex-col justify-center w-full space-y-6 lg:col-span-4 lg:pl-4">
+          <h3 class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight text-[#141414] leading-[1.2]">
+            Un balance perfecto entre diseño y funcionalidad
+          </h3>
+
+          <p class="text-base font-light leading-loose tracking-wide sm:text-lg text-slate-600">
+            El carbonatador de agua combina a la perfección <strong class="font-medium text-black">elegancia e innovación</strong>. Con sus líneas continuas y estética limpia, es compacto, integrándose armoniosamente en cualquier ambiente y enriqueciéndolo con su estilo refinado. Disponible en <strong class="font-medium text-black">cuatro acabados exclusivos mate</strong>: blanco, verde esmeralda, azul tormenta y negro.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 6. ТЕХНИЧЕСКИЕ ХАРАКТЕРИСТИКИ ТОВАРА -->
+    <!-- ======================================================= -->
+    <section class="w-full">
+      <ProductSpecs specsData={specs} />
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 7. ПОЛНОЭКРАННЫЙ ВИДЕО-БАННЕР -->
+    <!-- ======================================================= -->
+    <section class="relative w-full h-[65vh] min-h-112.5 sm:h-[75vh] md:h-[80vh] bg-[#141414] overflow-hidden select-none border-t border-slate-200/40">
+      <video 
+        src={gasificadoraVideo} 
+        autoplay 
+        loop 
+        muted 
+        playsinline
+        class="absolute inset-0 z-0 object-cover w-full h-full pointer-events-none"
+      >
+      </video>
+      <div class="absolute inset-0 z-10 bg-black/10"></div>
+      <div class="absolute bottom-0 left-0 w-full h-24 bg-linear-to-t from-[#141414]/30 to-transparent z-20 pointer-events-none"></div>
+    </section>
+
+  </main>
+</Layout>

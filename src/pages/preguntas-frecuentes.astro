@@ -1,0 +1,75 @@
+---
+// src/pages/preguntas-frecuentes.astro
+import Layout from "../layouts/Layout.astro";
+import dataDB from "../../db.json";
+
+// Получаем категории FAQ из единого файла базы данных
+const faqCategories = dataDB.faqCategories;
+---
+
+<Layout title="Preguntas frecuentes | ÁNIMA">
+  <main
+    class="w-full bg-[#0b0b0b] text-white min-h-screen py-20 lg:py-40 px-6 sm:px-12 lg:px-20"
+  >
+    <div class="max-w-300 mx-auto space-y-12">
+      <!-- Навигационные стрелки -->
+      <nav
+        class="text-xs text-neutral-400 flex items-center space-x-2 font-light tracking-wide"
+      >
+        <a href="/" class="hover:text-white transition-colors"
+          >Página principal</a
+        >
+        <span>/</span>
+        <span class="text-neutral-200">FAQ</span>
+      </nav>
+
+      <!-- Главный заголовок с левой вертикальной линией -->
+      <div class="border-l border-neutral-700 pl-6 lg:pl-8 space-y-4 my-8">
+        <h1
+          class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-white uppercase"
+        >
+          TU PREGUNTA... NOSOTROS CONTESTAMOS
+        </h1>
+        <p
+          class="text-neutral-400 text-xs sm:text-sm font-light tracking-widest uppercase"
+        >
+          INFORMACIÓN ÚTIL Y CONSEJOS PRÁCTICOS PARA SACAR EL MÁXIMO PROVECHO A
+          TUS ELECTRODOMÉSTICOS
+        </p>
+      </div>
+
+      <!-- Карточки категорий -->
+      <div class="space-y-4 pt-4 max-w-250 mx-auto">
+        {
+          faqCategories.map((category) => (
+            <a
+              href={category.link}
+              class="group block w-full bg-[#141414] hover:bg-[#1a1a1a] border border-neutral-800/80 hover:border-neutral-600 transition-all duration-300 py-10 px-8 sm:px-12 relative overflow-hidden"
+            >
+              <div class="flex items-center justify-between">
+                <h2 class="text-lg sm:text-xl lg:text-2xl font-light text-white tracking-wide group-hover:translate-x-1 transition-transform duration-300">
+                  {category.title}
+                </h2>
+
+                <div class="text-neutral-400 group-hover:text-white group-hover:translate-x-2 transition-all duration-300">
+                  <svg
+                    class="w-6 h-6 stroke-[1.2]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</Layout>

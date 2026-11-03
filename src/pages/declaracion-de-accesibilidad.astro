@@ -1,0 +1,180 @@
+---
+// src/pages/declaracion-de-accesibilidad.astro
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Declaración de Accesibilidad | ÁNIMA">
+  <main
+    class="w-full bg-[#0b0b0b] text-white min-h-screen py-20 lg:py-40 px-6 sm:px-12 lg:px-20"
+  >
+    <div class="max-w-300 mx-auto space-y-12">
+      <!-- Навигационные стрелки -->
+      <nav
+        class="text-xs text-neutral-400 flex items-center space-x-2 font-light tracking-wide"
+      >
+        <a href="/" class="hover:text-white transition-colors"
+          >Página principal</a
+        >
+        <span>/</span>
+        <span class="text-neutral-200">Accesibilidad</span>
+      </nav>
+
+      <!-- Главный заголовок и подзаголовок с вертикальной линией слева -->
+      <div class="border-l border-white pl-6 lg:pl-12 space-y-4 my-8">
+        <h1
+          class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-white"
+        >
+          Declaración de Accesibilidad
+        </h1>
+        <p
+          class="text-neutral-400 text-sm sm:text-base font-light tracking-wide"
+        >
+          Nuestro compromiso con la inclusión digital y el acceso universal a
+          los contenidos web.
+        </p>
+      </div>
+
+      <div class="w-full h-px bg-neutral-800"></div>
+
+      <!-- Контентная часть (Блоки со всеми юридическими и техническими данными) -->
+      <div
+        class="space-y-12 text-sm sm:text-base font-light text-neutral-300 leading-relaxed tracking-wide max-w-250"
+      >
+        <section class="space-y-4">
+          <p>
+            Creemos firmemente que Internet debe estar disponible y ser
+            accesible para todos, y nos comprometemos a ofrecer un sitio web
+            accesible al mayor número posible de personas, independientemente de
+            sus circunstancias y capacidades.
+          </p>
+          <p>
+            Para ello, nos esforzamos por adherirnos lo más razonablemente
+            posible a las Pautas de Accesibilidad al Contenido en la Web 2.1
+            (WCAG 2.1) del Consorcio World Wide Web (W3C). Estas directrices
+            explican cómo hacer accesibles los contenidos web a personas con una
+            amplia gama de discapacidades. El cumplimiento de estas directrices
+            nos ayuda a garantizar que el sitio web sea accesible para todas las
+            personas: invidentes, personas con deficiencias motrices, visuales y
+            cognitivas, entre otras.
+          </p>
+          <p>
+            Nuestro sitio web utiliza la tecnología AccessiWay, cuyo objetivo es
+            hacerlo tan accesible como sea razonablemente posible en todo
+            momento. Utilizamos una interfaz de accesibilidad que permite a las
+            personas con discapacidades específicas ajustar la IU (interfaz de
+            usuario) del sitio web y diseñarlo para que se adapte a sus
+            necesidades personales.
+          </p>
+        </section>
+
+        <!-- Кнопка скачивания декларации -->
+        <section class="pt-2">
+          <button
+            class="px-5 py-2.5 bg-white text-black text-xs font-medium uppercase tracking-wider hover:bg-neutral-200 transition-colors"
+          >
+            DESCARGAR DECLARACIONES DE ACCESIBILIDAD
+          </button>
+        </section>
+
+        <!-- Списки ресурсов (Сайты и Приложения) -->
+        <section
+          class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4 border-t border-neutral-900"
+        >
+          <div class="space-y-3">
+            <h3
+              class="text-base font-medium text-white tracking-wide uppercase"
+            >
+              Sitios web
+            </h3>
+            <ul class="space-y-1 font-mono text-xs sm:text-sm text-neutral-400">
+              <li>
+                <a
+                  href="https://anima.es"
+                  class="hover:text-white transition-colors underline"
+                  >https://anima.es</a>
+              </li>
+              <li>
+                <a
+                  href="https://anima-professional.com"
+                  class="hover:text-white transition-colors underline"
+                  >https://anima-professional.com</a>
+              </li>
+              <li>
+                <a
+                  href="https://anima-instruments.com"
+                  class="hover:text-white transition-colors underline"
+                  >https://anima-instruments.com</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="space-y-3">
+            <h3
+              class="text-base font-medium text-white tracking-wide uppercase"
+            >
+              Aplicaciones móviles
+            </h3>
+            <ul class="space-y-1 text-sm text-neutral-400">
+              <li>ÁNIMA Aria (iOS)</li>
+              <li>ÁNIMA Aria (Android)</li>
+              <li>ÁNIMA Connect+ (iOS)</li>
+              <li>ÁNIMA Connect+ (Android)</li>
+              <li>ÁNIMA Connect Pro (iOS)</li>
+              <li>ÁNIMA Connect Pro (Android)</li>
+            </ul>
+          </div>
+
+          <div class="space-y-3 md:col-span-2">
+            <h3
+              class="text-base font-medium text-white tracking-wide uppercase"
+            >
+              Aplicaciones web
+            </h3>
+            <ul class="space-y-1 text-sm text-neutral-400">
+              <li>ÁNIMA Connect IoT Dashboard</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- NOTAS, COMENTARIOS Y OPINIONES -->
+        <section class="space-y-4 pt-4 border-t border-neutral-900">
+          <h2
+            class="text-lg sm:text-xl font-normal text-white tracking-wide uppercase"
+          >
+            NOTAS, COMENTARIOS Y OPINIONES
+          </h2>
+          <p>
+            A pesar de nuestros esfuerzos por hacer que todas las páginas y
+            contenidos del sitio web sean plenamente accesibles, es posible que
+            todavía haya páginas o secciones que no lo sean del todo, que estén
+            en proceso de serlo o que carezcan de una solución tecnológica
+            adecuada para hacerlas accesibles.
+          </p>
+          <p>
+            Aun así, mejoramos continuamente nuestra accesibilidad, añadiendo,
+            actualizando y mejorando sus opciones y características, y
+            desarrollando y adoptando nuevas tecnologías.
+          </p>
+          <p>
+            Todo ello con el fin de alcanzar el nivel óptimo de accesibilidad,
+            siguiendo los avances tecnológicos.
+          </p>
+        </section>
+
+        <!-- Блок обратной связи -->
+        <section
+          class="bg-neutral-900/30 border border-neutral-800 p-6 sm:p-8 rounded-sm"
+        >
+          <p class="text-sm sm:text-base font-light text-neutral-300">
+            Si necesita ayuda, póngase en contacto con
+            <a
+              href="mailto:accessibility@anima.es"
+              class="underline hover:text-white transition-colors text-white font-normal mx-1"
+              >accessibility@anima.es</a
+            >.
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+</Layout>

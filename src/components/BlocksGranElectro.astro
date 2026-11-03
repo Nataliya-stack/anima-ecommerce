@@ -1,0 +1,375 @@
+---
+// src/components/BlocksGranElectro.astro
+import { Image } from "astro:assets";
+import dataDB from "../../db.json"; 
+
+import imgTecnologiaMulticook from "../assets/categories/tecnologia-multicooking.png";
+import imgAhorroTiempo from "../assets/categories/ahorro-tiempo.png";
+import imgEstiloVida from "../assets/categories/estilo-vida.png";
+import imgFacilUsar from "../assets/categories/facil-usar.png";
+import imgTiempoLibre from "../assets/categories/tiempo-libre.png";
+
+import videoHornoGalileo from "../assets/video/horno-galileo.mp4";
+import videoOmnichef from "../assets/video/video-omnichef.mp4";
+import videoSpeedwave from "../assets/video/video-speedwave.mp4";
+import videoSteamgeneration from "../assets/video/video-steamgeneration.mp4";
+
+const blockContent = dataDB.home.blocks_gran_electro; 
+const benefitImages = [
+  imgAhorroTiempo,
+  imgEstiloVida,
+  imgFacilUsar,
+  imgTiempoLibre,
+];
+---
+
+<!-- ======================================================== -->
+<!-- 1. БЛОК: ПОЛНОЭКРАННЫЙ ГЛАВНЫЙ БАННЕР С ТЕКСТУРОЙ КОСМОСА-->
+<!-- ======================================================== -->
+<section
+  class="component is-herobanner-slider relative w-full aspect-192/125 md:aspect-192/78 bg-black overflow-hidden select-none mb-0 z-10 left-0 right-0"
+>
+  <!-- КАРТИНКА-ФОН -->
+  <div class="absolute inset-0 w-full h-full z-0">
+    <Image
+      src={imgTecnologiaMulticook}
+      alt="Tecnología Multicooking Galileo - Smeg"
+      class="w-full h-full object-cover object-center opacity-100"
+      priority
+    />
+  </div>
+
+  <!-- БЛОК ТЕКСТА -->
+  <div
+    class="absolute inset-0 w-full h-full z-10 flex items-center px-6 md:px-16"
+  >
+    <div class="w-full max-w-375 mx-auto flex justify-start">
+      <div
+        class="w-full sm:max-w-100 md:max-w-[42%] text-left space-y-4 md:space-y-6 text-white"
+      >
+        <span
+          class="block text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-neutral-400 font-medium"
+        >
+          {blockContent.hero_banner.badge}
+        </span>
+        <h1
+          class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-wide uppercase text-white leading-tight"
+        >
+          {blockContent.hero_banner.title}
+        </h1>
+        <p
+          class="text-xs sm:text-sm md:text-[15px] text-neutral-300 font-light tracking-wide leading-loose"
+        >
+          {blockContent.hero_banner.description}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 2. БЛОК: ЦЕНТРАЛЬНЫЙ ТЕКСТ                               -->
+<!-- ======================================================== -->
+<section
+  class="w-full bg-white my-8 sm:my-20 px-6 md:px-12 select-none text-center"
+>
+  <div class="max-w-[1600px] mx-auto">
+    <div class="max-w-3xl mx-auto">
+      <p
+        class="text-neutral-800 text-xl sm:text-2xl lg:text-[28px] font-light tracking-wide leading-[1.6]"
+      >
+        {blockContent.intro_text.text}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 3. БЛОК: UNA HISTORIA DE COLOR (КИНО-ПАНОРАМА)           -->
+<!-- ======================================================== -->
+<section
+  class="w-full mb-0 select-none overflow-hidden relative left-0 right-0 h-[65vh] sm:h-[75vh] lg:h-[105vh] group/video js-video-wrapper"
+>
+  <div
+    class="w-full h-full relative bg-black border-t-45 border-b-45 lg:border-t-65 lg:border-b-65 border-black transition-all duration-300
+    **:[::-webkit-media-controls-panel]:opacity-0
+    **:[::-webkit-media-controls-panel]:transition-opacity
+    **:[::-webkit-media-controls-panel]:duration-500
+    hover:**:[::-webkit-media-controls-panel]:opacity-100"
+  >
+    <div
+      class="js-video-shield absolute inset-0 w-full h-full z-10 bg-transparent"
+      style="pointer-events: none;"
+    >
+    </div>
+
+    <video
+      id="hogar-video-player"
+      src={videoHornoGalileo}
+      autoplay
+      muted
+      loop
+      playsinline
+      controls
+      class="js-video-iframe w-full h-full object-cover opacity-95 z-10 cursor-pointer"
+      style="pointer-events: auto;"
+    >
+    </video>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 4. БЛОК: UN UNIVERSO DE POSIBILIDADES                    -->
+<!-- ======================================================== -->
+<section
+  class="w-full bg-white my-8 sm:my-20 px-6 md:px-12 select-none text-center"
+>
+  <div
+    class="space-y-6 max-w-lg lg:max-w-4xl relative z-10 text-neutral-900 mx-auto"
+  >
+    <h2
+      class="text-3xl sm:text-4xl lg:text-[38px] font-light tracking-wide uppercase Regal leading-tight"
+    >
+      {blockContent.universe_possibilities.title}
+    </h2>
+    <p
+      class="text-neutral-800 text-[16px] sm:text-[17px] font-light tracking-wide leading-[1.9] opacity-90"
+    >
+      {blockContent.universe_possibilities.description}
+    </p>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 5. БЛОК: СЕТКА ПРЕИМУЩЕСТВ                               -->
+<!-- ======================================================== -->
+<section class="w-full bg-white my-8 sm:my-20 select-none">
+  <div class="max-w-[1600px] mx-auto px-6 md:px-12">
+    <!-- Рендерим карточки преимуществ через один чистый цикл .map с указанием типов -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+      {
+        blockContent.benefit_cards.map((card: any, index: number) => (
+          <div class="flex flex-col justify-center items-center">
+            <div class="w-full aspect-4/5 overflow-hidden rounded-2xl shadow-2xs border border-neutral-100 group cursor-pointer">
+              <Image
+                src={benefitImages[index]}
+                alt={card.alt}
+                class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
+              />
+            </div>
+            <p class="text-neutral-800 text-[22px] sm:text-[26px] lg:text-[30px] font-light tracking-wide leading-tight opacity-90 py-4 text-center max-sm:text-[18px]">
+              {card.title}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 6. БЛОК: РЕВОЛЮЦИЯ GALILEO                               -->
+<!-- ======================================================== -->
+<section
+  class="w-full bg-white my-8 sm:my-20 px-6 md:px-12 select-none text-center"
+>
+  <div class="max-w-[1600px] mx-auto">
+    <div class="max-w-2xl mx-auto">
+      <p
+        class="text-neutral-800 text-2xl sm:text-4xl lg:text-[32px] tracking-wide leading-[1.6]"
+      >
+        {blockContent.revolution_text.text}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 7. БЛОК: ТЕХНОЛОГИЯ OMNICHEF С ВИДЕОПЛЕЕРОМ              -->
+<!-- ======================================================== -->
+<section
+  class="w-full h-auto bg-white select-none my-8 sm:my-20 js-video-wrapper relative z-30 clear-both"
+>
+  <div class="w-full max-w-375 mx-auto px-6 md:px-16 relative">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
+      <!-- ЛЕВАЯ КОЛОНКА: Крупный текст -->
+      <div
+        class="w-full md:col-span-4 text-left space-y-8 text-neutral-800 order-2 md:order-1"
+      >
+        <h2
+          class="text-2xl sm:text-3xl md:text-[36px] font-light tracking-wide text-black uppercase leading-tight"
+          set:html={blockContent.omnichef.title}
+        />
+
+        <div
+          class="text-sm sm:text-base md:text-[15px] font-light text-neutral-700 tracking-wide leading-[1.8] space-y-4"
+        >
+          {
+            blockContent.omnichef.paragraphs.map((p: string) => (
+              <p set:html={p} />
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- ПРАВАЯ КОЛОНКА: Большой встроенный видеоплеер -->
+      <div class="w-full md:col-span-8 relative order-1 md:order-2">
+        <div
+          class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
+        >
+          <div
+            class="js-video-shield absolute inset-0 w-full h-full z-10 bg-transparent"
+            style="pointer-events: none;"
+          >
+          </div>
+          <video
+            controls
+            preload="auto"
+            class="js-video-iframe w-full h-full object-cover relative z-0"
+            style="pointer-events: auto;"
+          >
+            <source src={videoOmnichef} type="video/mp4" />
+            Tu navegador no soporta vídeos.
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 8. БЛОК: ТЕХНОЛОГИЯ SPEEDWAVEXL С ВИДЕОПЛЕЕРОМ           -->
+<!-- ======================================================== -->
+<section
+  class="w-full h-auto bg-white select-none my-8 sm:my-20 relative z-30 clear-both js-video-wrapper"
+>
+  <div class="w-full max-w-375 mx-auto px-6 md:px-16 relative">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
+      <!-- ЛЕВАЯ КОЛОНКА: Большой встроенный видеоплеер -->
+      <div class="w-full md:col-span-8 order-1 md:order-1 relative">
+        <div
+          class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
+        >
+          <div
+            class="js-video-shield absolute inset-0 w-full h-full z-10 bg-transparent"
+            style="pointer-events: none;"
+          >
+          </div>
+          <video
+            controls
+            preload="auto"
+            class="js-video-iframe w-full h-full object-cover relative z-0"
+            style="pointer-events: auto;"
+          >
+            <source src={videoSpeedwave} type="video/mp4" />
+            Tu navegador no soporta vídeos.
+          </video>
+        </div>
+      </div>
+
+      <!-- ПРАВАЯ КОЛОНКА: Крупный текст -->
+      <div
+        class="w-full md:col-span-4 text-left space-y-8 text-neutral-800 order-2 md:order-2"
+      >
+        <h2
+          class="text-2xl sm:text-3xl md:text-[36px] font-light tracking-wide text-black uppercase leading-tight"
+          set:html={blockContent.speedwave.title}
+        />
+
+        <div
+          class="text-sm sm:text-base md:text-[15px] font-light text-neutral-700 tracking-wide leading-[1.8] space-y-4"
+        >
+          {
+            blockContent.speedwave.paragraphs.map((p: string) => (
+              <p set:html={p} />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 9. БЛОК: ТЕХНОЛОГИЯ STEAMGENERATION С ВИДЕОПЛЕЕРОМ       -->
+<!-- ======================================================== -->
+<section
+  class="w-full h-auto bg-white select-none my-8 sm:my-20 relative z-30 clear-both js-video-wrapper"
+>
+  <div class="w-full max-w-375 mx-auto px-6 md:px-16 relative">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
+      <!-- ЛЕВАЯ КОЛОНКА: Крупный текст -->
+      <div
+        class="w-full md:col-span-4 text-left space-y-8 text-neutral-800 order-2 md:order-1"
+      >
+        <h2
+          class="text-2xl sm:text-3xl md:text-[36px] font-light tracking-wide text-black uppercase leading-tight"
+          set:html={blockContent.steamgeneration.title}
+        />
+
+        <div
+          class="text-sm sm:text-base md:text-[15px] font-light text-neutral-700 tracking-wide leading-[1.8] space-y-4"
+        >
+          {
+            blockContent.steamgeneration.paragraphs.map((p: string) => (
+              <p set:html={p} />
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- ПРАВАЯ КОЛОНКА: Встроенный видеоплеер -->
+      <div class="w-full md:col-span-8 relative order-1 md:order-2">
+        <div
+          class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
+        >
+          <div
+            class="js-video-shield absolute inset-0 w-full h-full z-10 bg-transparent"
+            style="pointer-events: none;"
+          >
+          </div>
+          <video
+            controls
+            preload="auto"
+            class="js-video-iframe w-full h-full object-cover relative z-0"
+            style="pointer-events: auto;"
+          >
+            <source src={videoSteamgeneration} type="video/mp4" />
+            Tu navegador no soporta vídeos.
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 10. БЛОК: ФИНАЛЬНЫЙ ВИДЕОБАННЕР НА ВЕСЬ ЭКРАН            -->
+<!-- ======================================================== -->
+<section
+  class="w-full mt-12 sm:mt-32 mb-0 relative h-auto lg:h-[105vh] aspect-video lg:aspect-auto bg-black overflow-hidden select-none z-10 left-0 right-0 js-video-wrapper"
+>
+  <div
+    class="w-full h-full relative bg-black border-0 lg:border-t-65 lg:border-b-65 border-black transition-all duration-300
+    **:[::-webkit-media-controls-panel]:opacity-0
+    **:[::-webkit-media-controls-panel]:transition-opacity
+    **:[::-webkit-media-controls-panel]:duration-500
+    hover:**:[::-webkit-media-controls-panel]:opacity-100"
+  >
+    <div
+      class="js-video-shield absolute inset-0 w-full h-full z-10 bg-transparent"
+      style="pointer-events: none;"
+    >
+    </div>
+
+    <video
+      controls
+      preload="auto"
+      class="js-video-iframe w-full h-auto lg:h-full object-cover relative z-0 cursor-pointer"
+      style="pointer-events: auto;"
+    >
+      <source src={videoSteamgeneration} type="video/mp4" />
+      Tu navegador no soporta vídeos.
+    </video>
+  </div>
+</section>

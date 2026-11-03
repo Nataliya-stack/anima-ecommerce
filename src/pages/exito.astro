@@ -1,0 +1,165 @@
+---
+// src/pages/exito.astro
+import Layout from "../layouts/Layout.astro";
+import { crearFactura } from "../lib/facturas"; 
+import { supabase } from "../lib/supabase"; 
+import { enviarCorreoConfirmacion } from "../lib/email";
+import Stripe from "stripe";
+
+const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
+const sessionId = Astro.url.searchParams.get("session_id");
+
+let pagoExitoso = false;
+let errorMessage = "";
+
+if (!sessionId) {
+  errorMessage = "No se encontró una sesión de pago válida.";
+} else {
+  try {
+    // 1. Получаем сессию оплаты из Stripe вместе со списком купленных товаров
+    const session = await stripe.checkout.sessions.retrieve(sessionId, {
+      expand: ["line_items"],
+    });
+
+    if (session.payment_status === "paid") {
+      const clienteId = session.metadata?.userId;
+
+      // Получаем ID платежа Stripe
+      const paymentIntentId =
+        typeof session.payment_intent === "string"
+          ? session.payment_intent
+          : session.payment_intent?.id;
+
+      if (clienteId && paymentIntentId) {
+        const stripeItems = session.line_items?.data || [];
+        const purchasedItems: any[] = [];
+        let totalAcumulado = 0; // Переменная для подсчета общей суммы заказа
+
+        for (const item of stripeItems) {
+          const itemDescription = item.description;
+          const quantitySold = item.quantity || 1;
+
+          // Нам нужен только ID и цена товара из Supabase, чтобы передать их функции
+          const { data: dbProduct } = await supabase
+            .from("products")
+            .select("pk_producto, precio")
+            .eq("nombre_producto", itemDescription)
+            .single();
+
+          if (dbProduct) {
+            purchasedItems.push({
+              fk_producto: dbProduct.pk_producto,
+              cantidad: quantitySold,
+              precio_unitario: dbProduct.precio,
+            });
+
+            // Суммируем стоимость каждого товара в общую сумму чека
+            totalAcumulado += dbProduct.precio * quantitySold;
+          }
+        }
+
+        // ВЫЗЫВАЕМ ФУНКЦИЮ: Теперь передаем ровно 4 аргумента строго по её типам!
+        const resultado = await crearFactura(
+          clienteId,
+          purchasedItems,
+          paymentIntentId,
+          totalAcumulado,
+        );
+
+        // Проверяем статус ответа от транзакции
+        if (resultado.success) {
+          pagoExitoso = true;
+
+          // ДОБАВИЛИ АВТООТПРАВКУ ПОЧТЫ: Письмо улетит на реальный email покупателя из Google Auth!
+          // Передаем данные в Brevo, включая массив purchasedItems для таблицы чека!
+          if (session.customer_details?.email) {
+            enviarCorreoConfirmacion({
+              emailCliente: session.customer_details.email,
+              nombreCliente: session.customer_details.name || "Cliente ÁNIMA",
+              idFactura: resultado.facturaId,
+              total: totalAcumulado,
+              items: purchasedItems, // ДОБАВИЛИ: Теперь товары улетят в письмо!
+            });
+          }
+        } else {
+          errorMessage =
+            "Error al registrar el pedido en la base de datos: " +
+            resultado.error;
+        }
+      } else {
+        errorMessage = "Faltan datos del cliente o del pago de Stripe.";
+      }
+    } else {
+      errorMessage = "El pago no se ha completado correctamente.";
+    }
+  } catch (error: any) {
+    console.error("Error al procesar el éxito del pago:", error);
+    errorMessage = "Hubo un error al verificar la sesión de pago.";
+  }
+}
+---
+
+<Layout title="¡Compra exitosa! | ÁNIMA">
+  <main
+    class="w-full min-h-screen bg-white text-neutral-900 pt-52 pb-24 flex items-center justify-center select-none"
+  >
+    <!-- ======================================================= -->
+    <!-- КОНТЕЙНЕР СТАТУСА ОПЛАТЫ -->
+    <!-- ======================================================= -->
+    <div
+      id="payment-status-container"
+      data-success={pagoExitoso ? "true" : "false"}
+      class="max-w-125 w-full mx-auto px-6 text-center space-y-6"
+    >
+      {
+        pagoExitoso ? (
+          // Сценарий 1: Успешная покупка
+          <div class="bg-white p-10 border border-neutral-100 shadow-xs space-y-6">
+            <div class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl animate-pulse">
+              ✓
+            </div>
+            <h1 class="text-2xl font-light tracking-[0.2em] uppercase text-neutral-900">
+              ¡Compra exitosa!
+            </h1>
+            <p class="text-sm text-neutral-500 font-light leading-relaxed">
+              Muchas gracias por tu compra. Tu pedido se ha registrado
+              correctamente en nuestro sistema y el inventario ha sido
+              actualizado.
+            </p>
+            <div class="pt-4">
+              <a
+                href="/"
+                class="inline-block w-full bg-black text-white text-[11px] uppercase font-medium tracking-[0.2em] py-4 px-8 text-center hover:bg-neutral-800 transition-colors"
+              >
+                Volver al inicio
+              </a>
+            </div>
+          </div>
+        ) : (
+          // Сценарий 2: Ошибка
+          <div class="bg-white p-10 border border-neutral-100 shadow-xs space-y-6">
+            <div class="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto text-2xl">
+              ✕
+            </div>
+            <h1 class="text-2xl font-light tracking-[0.2em] uppercase text-neutral-900">
+              Algo salió mal
+            </h1>
+            <p class="text-sm text-neutral-400 font-light leading-relaxed">
+              {errorMessage}
+            </p>
+            <div class="pt-4">
+              <a
+                href="/cart"
+                class="inline-block w-full bg-black text-white text-[11px] uppercase font-medium tracking-[0.2em] py-4 px-8 text-center hover:bg-neutral-800 transition-colors"
+              >
+                Volver al carrito
+              </a>
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </main>
+
+  <script src="/src/scripts/clearCart.js"></script>
+</Layout>

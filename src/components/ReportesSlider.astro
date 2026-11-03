@@ -1,0 +1,68 @@
+---
+// src/components/ReportesSlider.astro
+import data from '../../db.json';
+const reportes = data.sustainabilityReports;
+---
+
+<!-- ======================================================== -->
+<!-- 1. БЛОК: ЗАГОЛОВОК СЕКЦИИ ОТЧЕТОВ                        -->
+<!-- ======================================================== -->
+<section class="w-full bg-[#f0f0e6] select-none pt-20 pb-24 relative overflow-hidden border-t border-neutral-200 js-carousel-container">
+  <div class="max-w-7xl mx-auto px-6 md:px-16 text-center space-y-12 relative">
+    
+    <h2 class="text-2xl sm:text-3xl md:text-[36px] font-light tracking-wide uppercase text-neutral-400">
+      Download Sustainability Report
+    </h2>
+
+    <!-- ======================================================== -->
+    <!-- 2. БЛОК: ОКНО ПРОСМОТРА И ТРЕК СЛАЙДЕРА ОТЧЕТОВ          -->
+    <!-- ======================================================== -->
+    <div class="w-full overflow-hidden relative px-4">
+      <div class="js-carousel-track flex transition-transform duration-500 ease-out gap-8 overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth w-full">
+        
+        {reportes.map((grupo) => (
+          <div class="w-full md:w-[calc(33.333%-22px)] shrink-0 flex flex-col space-y-4 snap-start snap-always">
+            
+            <span class="block text-lg font-semibold tracking-widest text-neutral-800 text-center mb-2">
+              {grupo.year}
+            </span>
+
+            <div class="flex flex-col space-y-4 w-full">
+              {grupo.buttons.map((btn) => (
+                <a 
+                  href={btn.pdf} 
+                  target="_blank" 
+                  class="w-full border border-neutral-400 bg-white/60 hover:bg-white hover:border-black py-4 px-6 text-center text-[14px] font-normal tracking-wider text-neutral-800 uppercase transition-all duration-300 min-h-13.5 flex items-center justify-center leading-relaxed"
+                >
+                  {btn.text}
+                </a>
+              ))}
+            </div>
+
+          </div>
+        ))}
+
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- 3. БЛОК: СТРЕЛКИ НАВИГАЦИИ СЛАЙДЕРА                      -->
+    <!-- ======================================================== -->
+    <div class="flex md:block items-center justify-center gap-4 mt-6 md:mt-0">
+      <button 
+        class="js-carousel-prev md:absolute md:left-6 md:top-[55%] md:-translate-y-1/2 w-10 h-10 border border-neutral-300 rounded-full flex items-center justify-center bg-white/80 text-neutral-600 hover:bg-neutral-900 hover:text-white hover:border-neutral-900 transition-all duration-300 z-30"
+      >
+        <span class="text-lg font-mono">‹</span>
+      </button>
+
+      <button 
+        class="js-carousel-next md:absolute md:right-6 md:top-[55%] md:-translate-y-1/2 w-10 h-10 border border-neutral-300 rounded-full flex items-center justify-center bg-white/80 text-neutral-600 hover:bg-neutral-900 hover:text-white hover:border-neutral-900 transition-all duration-300 z-30"
+      >
+        <span class="text-lg font-mono">›</span>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<script src="../scripts/universalCarousel.js"></script>

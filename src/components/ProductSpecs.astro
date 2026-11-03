@@ -1,0 +1,92 @@
+---
+// src/components/ProductSpecs.astro
+
+interface SpecItem {
+  label: string;
+  value: string;
+}
+
+interface SpecCategory {
+  id: string;
+  title: string;
+  left: SpecItem[];
+  right: SpecItem[];
+}
+
+interface Props {
+  specsData: SpecCategory[];
+}
+
+const { specsData } = Astro.props;
+---
+
+<!-- ======================================================== -->
+<!-- 1. БЛОК: СЕКЦИЯ ТЕХНИЧЕСКИХ ХАРАКТЕРИСТИК (СПИСОК SPECS) -->
+<!-- ======================================================== -->
+<section
+  class="bg-white text-[#141414] py-16 px-6 sm:px-12 md:px-20 lg:px-32 select-none font-sans antialiased border-t border-slate-100"
+>
+  <div class="max-w-350 mx-auto space-y-0">
+    {
+      specsData &&
+        specsData.map((spec, index) => (
+          <details
+            open={index === 0}
+            class="group border-b border-neutral-200 py-6 transition-all duration-300 [&_summary::-webkit-details-marker]:hidden"
+          >
+            <summary class="flex items-center justify-between font-normal text-base sm:text-lg tracking-[0.15em] uppercase text-neutral-800 cursor-pointer list-none select-none hover:text-black focus:outline-none">
+              <span>{spec.title}</span>
+              <span class="transition-transform duration-300 transform group-open:rotate-180 text-neutral-400 group-hover:text-black">
+                <svg
+                  xmlns="http://w3.org"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </span>
+            </summary>
+
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 text-sm sm:text-base transition-all duration-300">
+              {/* Левая колонка */}
+              <div class="space-y-4">
+                {spec.left &&
+                  spec.left.map((item) => (
+                    <div class="grid grid-cols-2 gap-4 items-baseline leading-[2.2] tracking-wide">
+                      <span class="text-neutral-400 font-light">
+                        {item.label}
+                      </span>
+                      <span class="text-neutral-800 font-medium">
+                        {item.value}
+                      </span>
+                    </div>
+                  ))}
+              </div>
+
+              {/* Правая колонка */}
+              <div class="space-y-4">
+                {spec.right &&
+                  spec.right.map((item) => (
+                    <div class="grid grid-cols-2 gap-4 items-baseline leading-[2.2] tracking-wide">
+                      <span class="text-neutral-400 font-light">
+                        {item.label}
+                      </span>
+                      <span class="text-neutral-800 font-medium">
+                        {item.value}
+                      </span>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </details>
+        ))
+    }
+  </div>
+</section>

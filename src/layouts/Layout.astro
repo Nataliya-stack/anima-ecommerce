@@ -1,0 +1,722 @@
+---
+// src/layouts/Layout.astro
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+import "../styles/global.css";
+import MenuCategorias from "../components/MenuCategorias.astro";
+import { supabase } from "../lib/supabase";
+import CartIcon from "../components/CartIcon.jsx";
+
+const url = new URL(Astro.request.url);
+const currentCat = url.searchParams.get("cat") || "";
+const accessToken = Astro.cookies.get("sb-access-token");
+const refreshToken = Astro.cookies.get("sb-refresh-token");
+let nombreUsuario = null;
+
+if (accessToken && refreshToken) {
+  const { data } = await supabase.auth.setSession({
+    access_token: accessToken.value,
+    refresh_token: refreshToken.value,
+  });
+  if (data.user) {
+    // Получаем имя из Google, если его нет — подставляем email
+    nombreUsuario =
+      data.user.user_metadata?.full_name ||
+      data.user.user_metadata?.nombre ||
+      data.user.email;
+  }
+}
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <title>{title}</title>
+  </head>
+
+  <body class="bg-[#fcfcfc] text-neutral-900 font-sans antialiased">
+    <!-- HEADER ÁNIMA -->
+    <header
+      class="bg-black text-white font-sans antialiased w-full select-none fixed top-0 left-0 z-50 border-b border-neutral-900 px-6 lg:px-8 py-3 lg:py-3"
+    >
+      <div
+        class="max-w-[1950px] mx-auto w-full flex flex-col lg:gap-4 my-2 lg:my-5"
+      >
+        <!-- ======================================================== -->
+        <!-- УРОВЕНЬ 1: ТРЕХСЕКЦИОННАЯ СТРОКА (ССЫЛКИ ПО БОКАМ, ЛОГОТИП ПО ЦЕНТРУ) -->
+        <!-- ======================================================== -->
+        <div class="w-full flex items-center justify-between relative min-h-10">
+          <!-- Слева: Первые три мелкие служебные ссылки (Только десктоп) -->
+          <div
+            class="hidden lg:flex items-center gap-6 text-[17px] font-light tracking-wider text-white"
+          >
+            <a
+              href="/mundo-editorial"
+              translate="no"
+              class="hover:underline underline-offset-4 transition-colors"
+              >Mundo Editorial</a
+            >
+            <a
+              href="/outlet"
+              translate="no"
+              class="hover:underline underline-offset-4 transition-colors"
+              >Outlet</a
+            >
+            <a
+              href="/encuentra-distribuidores"
+              translate="no"
+              class="hover:underline underline-offset-4 transition-colors"
+              >Encuentra distribuidores</a
+            >
+          </div>
+
+          <!-- По центру на десктопе, слева на мобильном: Фирменный логотип :: ÁNIMA -->
+          <div
+            class="absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 left-0 top-1/2 -translate-y-1/2 flex items-center gap-3"
+          >
+            <div class="grid grid-cols-3 gap-0.5 w-6 h-5 items-center">
+              <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+              <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+            </div>
+            <a
+              href="/"
+              translate="no"
+              class="text-2xl sm:text-4xl font-bold tracking-wider uppercase leading-none hover:opacity-85 transition-opacity"
+            >
+              ÁNIMA
+            </a>
+          </div>
+
+          <!-- Справа: Оставшиеся четыре мелкие служебные ссылки (Только десктоп) -->
+          <div
+            class="hidden lg:flex items-center gap-6 text-[17px] font-light tracking-wider text-white"
+          >
+            <a
+              href="/plan-renove"
+              translate="no"
+              class="hover:underline underline-offset-4 transition-colors"
+              >Plan Renove</a
+            >
+            <a
+              href="/contacto"
+              translate="no"
+              class="hover:underline underline-offset-4 transition-colors"
+              >Contacto</a
+            >
+            <a
+              href="/asistencia-tecnica"
+              translate="no"
+              class="hover:underline underline-offset-4 transition-colors"
+              >Asistencia técnica</a
+            >
+            <a
+              href="/sostenibilidad"
+              translate="no"
+              class="hover:underline underline-offset-4 transition-colors"
+              >Sostenibilidad</a
+            >
+          </div>
+
+          <!-- Мобильный дубликат блока значков и бургера -->
+          <div
+            class="flex lg:hidden items-center justify-end gap-4 text-white ml-auto z-50"
+          >
+            <a
+              href="/search"
+              translate="no"
+              class="hover:text-neutral-400 transition-colors block"
+              aria-label="Buscar"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-4 h-4"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.603 10.601Z"
+                ></path></svg
+              >
+            </a>
+
+            <!-- МОБИЛЬНЫЙ ЛИЧНЫЙ КАБИНЕТ (Сделали ссылкой на /login) -->
+            <a
+              href="/login"
+              translate="no"
+              class="hover:text-neutral-400 transition-colors block"
+              aria-label="Mi cuenta"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-4 h-4"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                ></path></svg
+              >
+            </a>
+
+            <!-- МОБИЛЬНОЕ ИЗБРАННОЕ (Сделали ссылкой на /favorites) -->
+            <a
+              href="/favorites"
+              translate="no"
+              class="hover:text-neutral-400 transition-colors block"
+              aria-label="Favoritos"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-4 h-4"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                ></path></svg
+              >
+            </a>
+
+            <!-- МОБИЛЬНАЯ КОРЗИНА -->
+            <a
+              href="/cart"
+              translate="no"
+              class="hover:text-neutral-400 transition-colors relative block"
+              aria-label="Carrito"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-4 h-4"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+                ></path></svg
+              >
+              <!-- ВСТАВИЛИ КОМПОНЕНТ РЕАКТА -->
+              <CartIcon client:load />
+            </a>
+
+            <span class="w-px h-4 bg-neutral-800 hidden sm:block"></span>
+            <button
+              id="boton-menu-movil"
+              class="relative z-50 flex flex-col justify-center items-center w-6 h-6 focus:outline-none cursor-pointer group"
+              aria-label="Menu"
+            >
+              <span
+                class="w-6 h-0.5 bg-white transition-all duration-300 origin-center in-[.menu-activo]:translate-y-1.5 in-[.menu-activo]:rotate-45"
+              ></span>
+              <span
+                class="w-6 h-0.5 bg-white transition-all duration-300 my-1 in-[.menu-activo]:opacity-0 in-[.menu-activo]:-translate-x-2"
+              ></span>
+              <span
+                class="w-6 h-0.5 bg-white transition-all duration-300 origin-center in-[.menu-activo]:-translate-y-1.5 in-[.menu-activo]:-rotate-45"
+              ></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ======================================================== -->
+        <!-- УРОВЕНЬ 2: ВКЛАДКИ СЛЕВА И ЗНАЧКИ СПРАВА (ДЕСКТОП)       -->
+        <!-- ======================================================== -->
+        <div
+          class="hidden lg:flex w-full items-center justify-between border-t border-neutral-900/40 pt-2"
+        >
+          <!-- Слева на десктопе: Ряд крупных вкладок категорий -->
+          <nav
+            class="hidden lg:flex items-center gap-4 text-[15px] xl:text-[16px] font-bold tracking-widest uppercase"
+          >
+            <MenuCategorias categoriaActivaSlug={currentCat} />
+
+            <a
+              href="/lineas-esteticas"
+              translate="no"
+              class="whitespace-nowrap text-neutral-400 hover:underline underline-offset-4 transition-colors py-1"
+              >Líneas Estéticas</a
+            >
+            <!--<a href="/inspiracion" translate="no" class="whitespace-nowrap text-neutral-400 hover:underline underline-offset-4 transition-colors py-1">Inspiración</a>-->
+          </nav>
+
+          <!-- Справа на десктопе: ПОЛНЫЙ БЛОК ЗНАЧКОВ С ЖИВЫМ ПРИВЕТСТВИЕМ И ССЫЛКАМИ -->
+          <div
+            class="hidden lg:flex items-center justify-end gap-4 sm:gap-5 text-white ml-auto"
+          >
+            <a
+              href="/search"
+              translate="no"
+              class="hover:text-neutral-400 transition-colors block"
+              aria-label="Buscar"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-7 h-7"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.603 10.601Z"
+                ></path></svg
+              >
+            </a>
+
+            <!-- ДЕСКТОПНЫЙ ЛИЧНЫЙ КАБИНЕТ: Выводит динамическое имя {textoUsuario} рядом со значком -->
+            <a
+              href="/login"
+              translate="no"
+              class="hover:text-neutral-400 transition-colors flex items-center"
+              aria-label="Mi cuenta"
+            >
+              <svg
+                xmlns="http://w3.org"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-7 h-7"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.7 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                ></path></svg
+              >
+            </a>
+
+            <!-- ДЕСКТОПНОЕ ИЗБРАННОЕ: Ссылка на /favorites -->
+            <a
+              href="/favorites"
+              translate="no"
+              class="hover:text-neutral-400 transition-colors block"
+              aria-label="Favoritos"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-7 h-7"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                ></path></svg
+              >
+            </a>
+
+            <!-- ДЕСКТОПНАЯ КОРЗИНА -->
+            <a
+              href="/cart"
+              translate="no"
+              class="hover:text-neutral-400 transition-colors relative block"
+              aria-label="Carrito"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-7 h-7"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+                ></path>
+              </svg>
+              <!-- ВСТАВИЛИ КОМПОНЕНТ РЕАКТА -->
+              <CartIcon client:load />
+            </a>
+
+            <span class="w-px h-4 bg-neutral-800 hidden sm:block"></span>
+
+            <!-- Бургер-кнопка для открытия выезжающего меню справа -->
+            <button
+              id="boton-menu-derecha"
+              class="relative z-50 flex flex-col justify-center items-center w-6 h-6 focus:outline-none cursor-pointer group"
+              aria-label="Menu"
+            >
+              <span
+                class="w-6 h-0.5 bg-white transition-all duration-300 origin-center in-[.menu-activo]:translate-y-1.5 in-[.menu-activo]:rotate-45"
+              ></span>
+              <span
+                class="w-6 h-0.5 bg-white transition-all duration-300 my-1 in-[.menu-activo]:opacity-0 in-[.menu-activo]:-translate-x-2"
+              ></span>
+              <span
+                class="w-6 h-0.5 bg-white transition-all duration-300 origin-center in-[.menu-activo]:-translate-y-1.5 in-[.menu-activo]:-rotate-45"
+              ></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- ВЫЕЗЖАЮЩЕЕ БОКОВОЕ МЕНЮ                                  -->
+      <!-- ======================================================== -->
+      <div
+        id="menu-pantalla-completa"
+        class="fixed inset-0 lg:left-auto lg:right-0 w-full lg:max-w-md bg-black z-40 hidden flex-col pt-24 pb-12 px-8 sm:px-16 overflow-y-auto border-l border-neutral-900/50"
+      >
+        <nav
+          class="flex flex-col text-[15px] font-bold tracking-widest uppercase text-white"
+        >
+          <MenuCategorias categoriaActivaSlug={currentCat} esMovil={true} />
+
+          <a
+            href="/lineas-esteticas"
+            translate="no"
+            class="flex justify-between items-center py-4 border-b border-neutral-900/50 text-neutral-400 hover:text-white transition-colors"
+          >
+            <span>Líneas Estéticas</span>
+            <span class="text-neutral-600 font-light">&gt;</span>
+          </a>
+          <!--<a href="/inspiracion" translate="no" class="flex justify-between items-center py-4 border-b border-neutral-900/50 text-neutral-400 hover:text-white transition-colors">
+        <span>Inspiración</span> <span class="text-neutral-600 font-light">&gt;</span>
+      </a>-->
+
+          <div
+            class="flex flex-col pt-4 gap-3 text-[14px] font-normal tracking-wider text-neutral-400 normal-case"
+          >
+            <a
+              href="/mundo-editorial"
+              translate="no"
+              class="hover:text-white transition-colors">Mundo Editorial</a
+            >
+            <a
+              href="/outlet"
+              translate="no"
+              class="hover:text-white transition-colors">Outlet</a
+            >
+            <a
+              href="/encuentra-distribuidores"
+              translate="no"
+              class="hover:text-white transition-colors"
+              >Encuentra distribuidores</a
+            >
+            <a
+              href="/plan-renove"
+              translate="no"
+              class="hover:text-white transition-colors">Plan Renove</a
+            >
+            <a
+              href="/contacto"
+              translate="no"
+              class="hover:text-white transition-colors">Contacto</a
+            >
+            <a
+              href="/asistencia-tecnica"
+              translate="no"
+              class="hover:text-white transition-colors">Asistencia técnica</a
+            >
+            <a
+              href="/sostenibilidad"
+              translate="no"
+              class="hover:text-white transition-colors">Sostenibilidad</a
+            >
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <slot />
+
+    <!-- ======================================================== -->
+    <!-- FOOTER ГЛОБАЛЬНЫЙ                                        -->
+    <!-- ======================================================== -->
+    <footer
+      class="bg-black text-white font-sans antialiased border-t border-neutral-950 select-none"
+    >
+      <div class="w-full bg-[#f3ece0] py-16 px-12 md:px-24 text-neutral-900">
+        <div
+          class="w-full max-w-[1600px] mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-8"
+        >
+          <!-- Левая сторона: заголовок -->
+          <h2 class="text-2xl sm:text-3xl font-light tracking-wide uppercase">
+            Suscríbete a nuestra newsletter
+          </h2>
+
+          <form
+            class="flex flex-col sm:flex-row items-stretch gap-0 w-full lg:max-w-2xl relative"
+          >
+            <div class="flex-1 relative flex flex-col">
+              <input
+                type="email"
+                id="newsletter-email"
+                name="email"
+                autocomplete="email"
+                placeholder="Correo electrónico"
+                class="w-full h-12 bg-white text-black px-4 text-[14px] font-light tracking-wide focus:outline-none border-b border-neutral-300 rounded-none placeholder:text-neutral-400 focus:border-black transition-colors"
+                required
+              />
+              <label
+                class="flex items-start gap-2 mt-4 text-[11px] text-neutral-500 leading-tight cursor-pointer select-none"
+              >
+                <input
+                  type="checkbox"
+                  id="newsletter-terms"
+                  name="terms"
+                  class="mt-0.5 rounded-none bg-white border-neutral-300 text-black focus:ring-0 w-3.5 h-3.5"
+                  required
+                />
+                <span class="text-[14px]"
+                  >Acepto la <a
+                    href="#"
+                    class="underline hover:text-black font-normal"
+                    >política de privacidad</a
+                  ></span
+                >
+              </label>
+            </div>
+            <button
+              type="submit"
+              class="h-12 bg-black text-white hover:bg-neutral-950 text-[11px] font-bold tracking-widest uppercase px-10 transition-colors rounded-none cursor-pointer mt-4 sm:mt-0"
+            >
+              suscribirse
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="w-full py-16 px-12 md:px-24">
+        <div
+          class="w-full max-w-[1600px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12"
+        >
+          <!-- Колонка Логотип -->
+          <div class="space-y-6">
+            <a
+              href="/"
+              class="flex items-center gap-2 hover:opacity-80 transition-opacity"
+            >
+              <div class="grid grid-cols-3 gap-0.5 w-6 h-5 items-center">
+                <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+              </div>
+              <span
+                class="text-2xl font-black tracking-tighter lowercase leading-none"
+                >ánima</span
+              >
+            </a>
+          </div>
+
+          <!-- Колонка SOBRE ÁNIMA -->
+          <div class="space-y-4">
+            <h4
+              class="text-[16px] font-bold tracking-widest text-[#baa483] uppercase"
+            >
+              Sobre Ánima
+            </h4>
+            <ul class="space-y-2.5 text-[14px] text-neutral-300 font-light">
+              <li>
+                <a href="/conocenos" class="hover:text-white transition-colors"
+                  >Conócenos</a>
+              </li>
+              <li>
+                <a
+                  href="/sostenibilidad"
+                  class="hover:text-white transition-colors">Sostenibilidad</a>
+              </li>
+              <li>
+                <a
+                  href="/asistencia-técnica"
+                  class="hover:text-white transition-colors"
+                  >Asistencia técnica</a>
+              </li>
+              <li>
+                <a href="/contacto" class="hover:text-white transition-colors"
+                  >Contacto</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Колонка SÍGUENOS EN -->
+          <div class="space-y-4">
+            <h4
+              class="text-[16px] font-bold tracking-widest text-[#baa483] uppercase"
+            >
+              Síguenos en
+            </h4>
+            <ul class="space-y-2.5 text-[14px] text-neutral-300 font-light">
+              <li>
+                <a
+                  href="#"
+                  onclick="event.preventDefault();"
+                  class="hover:text-white transition-colors">Facebook</a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  onclick="event.preventDefault();"
+                  class="hover:text-white transition-colors">Instagram</a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  onclick="event.preventDefault();"
+                  class="hover:text-white transition-colors">LinkedIn</a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  onclick="event.preventDefault();"
+                  class="hover:text-white transition-colors">YouTube</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Колонка COMPRAS ONLINE + СЕТКА ОПЛАТЫ -->
+          <div class="space-y-5">
+            <h4
+              class="text-[16px] font-bold tracking-widest text-[#baa483] uppercase"
+            >
+              Compras Online
+            </h4>
+            <ul class="space-y-2.5 text-[14px] text-neutral-300 font-light">
+              <li>
+                <a
+                  href="/informacion-envios"
+                  class="hover:text-white transition-colors"
+                  >Información Envíos</a>
+              </li>
+              <li>
+                <a
+                  href="/politica-devoluciones"
+                  class="hover:text-white transition-colors"
+                  >Servicios devoluciones</a>
+              </li>
+              <li>
+                <a
+                  href="/preguntas-frecuentes"
+                  class="hover:text-white transition-colors"
+                  >Preguntas frecuentes</a>
+              </li>
+            </ul>
+
+            <div class="pt-2 space-y-2.5">
+              <span
+                class="text-[14px] font-bold tracking-wider text-neutral-400 uppercase block"
+                >Métodos de pago disponibles:</span
+              >
+              <!-- Заглушки под иконки карт -->
+              <div
+                class="flex flex-wrap gap-2 text-[11px] font-bold text-black uppercase tracking-wider"
+              >
+                <span
+                  class="bg-white px-2.5 py-1 rounded-sm border border-neutral-800"
+                  >Visa</span
+                >
+                <span
+                  class="bg-white px-2.5 py-1 rounded-sm border border-neutral-800"
+                  >Mastercard</span
+                >
+                <span
+                  class="bg-white px-2.5 py-1 rounded-sm border border-neutral-800"
+                  >PayPal</span
+                >
+                <span
+                  class="bg-white px-2.5 py-1 rounded-sm border border-neutral-800 text-pink-600"
+                  >Klarna</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- СЕКЦИЯ САМЫЙ НИЗ: СИСТЕМНЫЕ ССЫЛКИ -->
+      <div
+        class="w-full bg-[#050505] py-6 px-12 md:px-24 border-t border-neutral-950 text-[10px] text-neutral-300 uppercase tracking-wider"
+      >
+        <div
+          class="w-full max-w-[1600px] mx-auto flex flex-wrap gap-x-8 gap-y-3 justify-center md:justify-start"
+        >
+          <a
+            href="/terminos-y-condiciones"
+            class="hover:text-neutral-300 transition-colors"
+            >Términos y condiciones generales</a
+          >
+          <a
+            href="/politica-de-privacidad"
+            class="hover:text-neutral-300 transition-colors"
+            >Política de privacidad</a
+          >
+          <a
+            href="/condiciones-de-venta"
+            class="hover:text-neutral-300 transition-colors"
+            >Condiciones de venta</a
+          >
+          <a
+            href="/uso-de-cookies"
+            class="hover:text-neutral-300 transition-colors"
+            >Uso de cookies</a
+          >
+          <a
+            href="/declaracion-de-accesibilidad"
+            class="hover:text-neutral-300 transition-colors"
+            >Declaración de accesibilidad</a
+          >
+        </div>
+      </div>
+
+      <div
+        class="w-full max-w-[1600px] mx-auto flex flex-col flex-wrap space-y-2 font-light tracking-wide py-6 px-12 md:px-24 pb-15"
+      >
+        <p>© 2026 ÁNIMA España - CIF A59769646</p>
+        <p>
+          Calle Hidráulica, 4 P.I. Ferrería, 08110 Montcada i Reixac (Barcelona)
+        </p>
+
+        <div class="flex flex-col md:flex-row md:items-center">
+          <p>
+            Tel: <a
+              href="tel:+34935650250"
+              class="text-white hover:underline transition-all"
+              >+34 93 56 50 250</a>
+          </p>
+          <span class="hidden md:inline">&nbsp;·&nbsp;</span>
+          <p>
+            E-mail: <a
+              href="mailto:contacto@anima-appliances.es"
+              class="text-white hover:underline transition-all"
+              >contacto@anima-appliances.es</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../scripts/menu.js"></script>
+    <script src="/src/scripts/updateCartCount.js"></script>
+  </body>
+</html>

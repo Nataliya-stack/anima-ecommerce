@@ -1,0 +1,228 @@
+---
+// src/pages/uso-de-cookies.astro
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Uso de las cookies | ÁNIMA">
+  <main
+    class="w-full bg-[#0b0b0b] text-white min-h-screen py-20 lg:py-40 px-6 sm:px-12 lg:px-20"
+  >
+    <div class="max-w-300 mx-auto space-y-12">
+      <!-- Навигационные стрелки -->
+      <nav
+        class="text-xs text-neutral-400 flex items-center space-x-2 font-light tracking-wide"
+      >
+        <a href="/" class="hover:text-white transition-colors"
+          >Página principal</a
+        >
+        <span>/</span>
+        <span class="text-neutral-200">Uso de las cookies</span>
+      </nav>
+
+      <!-- Главный заголовок и подзаголовок с вертикальной линией слева -->
+      <div class="border-l border-white pl-6 lg:pl-12 space-y-4 my-8">
+        <h1
+          class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-white"
+        >
+          Uso de las cookies en esta web
+        </h1>
+        <p class="text-neutral-400 text-xs sm:text-sm font-light tracking-wide">
+          Actualizado: 27/10/2026, 02:38
+        </p>
+      </div>
+
+      <div class="w-full h-px bg-neutral-800"></div>
+
+      <!-- Контентная часть -->
+      <div
+        class="space-y-12 text-sm sm:text-base font-light text-neutral-300 leading-relaxed tracking-wide max-w-250"
+      >
+        <!-- ¿Qué son las cookies? -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            ¿Qué son las cookies?
+          </h2>
+          <p>
+            Las cookies y tecnologías similares son documentos de texto muy
+            pequeños o fragmentos de código que a menudo contienen un código de
+            identificación único. Cuando visitas un sitio web o utilizas una
+            aplicación móvil, un ordenador le pide permiso a tu ordenador o
+            dispositivo móvil para guardar este archivo en tu ordenador o
+            dispositivo móvil y obtener acceso a la información. La información
+            recopilada a través de cookies y tecnologías similares puede incluir
+            la fecha y hora de la visita y la forma en que utilizas un sitio web
+            o una aplicación móvil en particular.
+          </p>
+        </section>
+
+        <!-- ¿Por qué utilizamos cookies? -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            ¿Por qué utilizamos cookies?
+          </h2>
+          <p>
+            Las cookies aseguran que durante tu visita a nuestra tienda en línea
+            permanezcas conectado, que todos los artículos permanezcan
+            almacenados en tu carrito de compras, que puedas comprar de forma
+            segura y que el sitio web siga funcionando sin problemas. Las
+            cookies también aseguran que podamos ver cómo se utiliza nuestro
+            sitio web y cómo podemos mejorarlo. Además, dependiendo de tus
+            preferencias, nuestras propias cookies pueden ser utilizadas para
+            presentarte anuncios específicos que coincidan con tus intereses
+            personales.
+          </p>
+        </section>
+
+        <!-- ¿Qué tipo de cookies utilizamos? -->
+        <section class="space-y-6">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            ¿Qué tipo de cookies utilizamos?
+          </h2>
+
+          <div class="space-y-4 pl-4 border-l border-neutral-800">
+            <div>
+              <h3 class="text-base font-medium text-white mb-1">
+                Cookies necesarias
+              </h3>
+              <p class="mb-2">
+                Estas cookies son necesarias para que el sitio web funcione
+                correctamente. Algunas de las siguientes acciones se pueden
+                realizar utilizando estas cookies:
+              </p>
+              <ul
+                class="list-disc pl-5 space-y-1 text-neutral-400 text-sm sm:text-base"
+              >
+                <li>
+                  Almacenar artículos en un carrito de compras para compras en
+                  línea
+                </li>
+                <li>Guardar tus preferencias de cookies para este sitio web</li>
+                <li>Guardar preferencias de idioma</li>
+                <li>
+                  Iniciar sesión en nuestro portal. Tenemos que comprobar si has
+                  iniciado sesión.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-base font-medium text-white mb-1">
+                Cookies de rendimiento
+              </h3>
+              <p>
+                Estas cookies se utilizan para recopilar información estadística
+                sobre el uso de nuestro sitio web, también llamadas cookies
+                analíticas. Utilizamos estos datos para el rendimiento y la
+                optimización del sitio web.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-base font-medium text-white mb-1">
+                Cookies funcionales
+              </h3>
+              <p class="mb-2">
+                Estas cookies permiten una mayor funcionalidad para los
+                visitantes de nuestro sitio web. Estas cookies pueden ser
+                establecidas por nuestros proveedores de servicios externos o
+                por nuestro propio sitio web. Las siguientes funcionalidades
+                pueden o no ser activadas cuando aceptes esta categoría:
+              </p>
+              <ul
+                class="list-disc pl-5 space-y-1 text-neutral-400 text-sm sm:text-base"
+              >
+                <li>Servicios de chat en vivo</li>
+                <li>Ver videos en línea</li>
+                <li>Botones para compartir redes sociales</li>
+                <li>Iniciar sesión en nuestro sitio web con redes sociales.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-base font-medium text-white mb-1">
+                Publicidad / cookies de seguimiento
+              </h3>
+              <p>
+                Estas cookies son establecidas por socios publicitarios externos
+                y se utilizan para crear perfiles y realizar un seguimiento de
+                los datos en varios sitios web. Si aceptas estas cookies,
+                podemos mostrar nuestros anuncios en otros sitios web en función
+                de tu perfil de usuario y preferencias. Estas cookies también
+                guardan datos sobre cuántos visitantes han visto o hecho clic en
+                nuestros anuncios con el fin de optimizar las campañas
+                publicitarias.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-base font-medium text-white mb-1">
+                Sin clasificar
+              </h3>
+              <p>
+                Estas cookies están todavía en proceso de clasificación.
+                Aparecerán en una de las siguientes categorías: Necesarias, De
+                Rendimiento, Funcionales o de Publicidad.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ¿Cómo puedo desactivar o eliminar las cookies? -->
+        <section class="space-y-4">
+          <h2 class="text-xl sm:text-2xl font-normal text-white tracking-wide">
+            ¿Cómo puedo desactivar o eliminar las cookies?
+          </h2>
+          <p>
+            Puedes optar por no utilizar todas las cookies, excepto las
+            necesarias. En la configuración del navegador, puedes cambiar la
+            configuración para asegurarte de que se bloqueen las cookies. La
+            mayoría de los navegadores te ofrecen una explicación sobre cómo
+            hacerlo en la llamada 'función de ayuda'. Sin embargo, si bloqueas
+            las cookies, es posible que no puedas disfrutar de todas las
+            características técnicas que nuestro sitio web tiene para ofrecer y
+            puede afectar negativamente a tu experiencia de usuario.
+          </p>
+        </section>
+
+        <!-- Gestión de consentimientos -->
+        <section
+          class="space-y-6 bg-neutral-900/30 border border-neutral-800 p-6 sm:p-8 rounded-sm"
+        >
+          <h2 class="text-lg sm:text-xl font-normal text-white tracking-wide">
+            Hemos facilitado la gestión de tus consentimientos.
+          </h2>
+
+          <div class="flex flex-wrap gap-4 pt-2">
+            <button
+              class="px-5 py-2.5 bg-white text-black text-xs font-medium uppercase tracking-wider hover:bg-neutral-200 transition-colors"
+            >
+              Cambiar tu consentimiento
+            </button>
+            <button
+              class="px-5 py-2.5 border border-neutral-700 text-white text-xs font-medium uppercase tracking-wider hover:bg-neutral-800 transition-colors"
+            >
+              Retirar tu consentimiento
+            </button>
+          </div>
+
+          <div class="space-y-2 pt-4 border-t border-neutral-800 text-sm">
+            <p class="text-neutral-400">Esta es tu identificación única:</p>
+            <p
+              class="font-mono text-white bg-neutral-900 px-3 py-1.5 inline-block text-xs select-all border border-neutral-800"
+            >
+              13c84e81-c628-4bf0-b56a-79e654fa3458
+            </p>
+            <p class="text-neutral-400 pt-2">
+              Si deseas ver su historia de consentimientos, ponte en contacto
+              con el administrador del sitio web.
+            </p>
+            <p class="text-xs text-neutral-500 pt-1">
+              Tu último cambio de consentimiento se ha registrado en: 9/9/2026,
+              17:08
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</Layout>

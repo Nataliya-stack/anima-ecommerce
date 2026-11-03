@@ -1,0 +1,405 @@
+---
+// src/pages/50s-style.astro
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import dataDB from '../../db.json';
+
+import sliderImg1 from '../assets/categories/50s-style-mint.jpg';
+import sliderImg2 from '../assets/categories/50s-style-red.jpg';
+import allFridges from '../assets/categories/smeg-fridges-line.jpg';
+import smallAppliancesImg from '../assets/categories/smeg-small-appliances.jpg';
+
+import f1 from '../assets/categories/fridge-slider.jpg';
+import f2 from '../assets/categories/hood-slider.jpg';
+import f3 from '../assets/categories/tap-slider.jpg';
+import f4 from '../assets/categories/washer-slider.jpg';
+import f5 from '../assets/categories/dishwasher-slider.jpg';
+
+import t1 from '../assets/categories/tostadoras.jpg';
+import t2 from '../assets/categories/hervidores.jpg';
+import t3 from '../assets/categories/robots.jpg';
+import t4 from '../assets/categories/batidoras-mano.jpg';
+import t5 from '../assets/categories/licuadoras.jpg';
+import t6 from '../assets/categories/exprimidores.jpg';
+import t7 from '../assets/categories/cafeteras.jpg';
+import t8 from '../assets/categories/espumadores.jpg';
+import t9 from '../assets/categories/molinillos.jpg';
+import t10 from '../assets/categories/batidoras-vaso.jpg';
+
+// Карта картинок, чтобы Astro понимал связь строк из JSON с реальными импортами
+const imagesMap: Record<string, ImageMetadata> = {
+  "fridge-slider.jpg": f1, "hood-slider.jpg": f2, "tap-slider.jpg": f3, "washer-slider.jpg": f4, "dishwasher-slider.jpg": f5,
+  "tostadoras.jpg": t1, "hervidores.jpg": t2, "robots.jpg": t3, "batidoras-mano.jpg": t4, "licuadoras.jpg": t5,
+  "exprimidores.jpg": t6, "cafeteras.jpg": t7, "espumadores.jpg": t8, "molinillos.jpg": t9, "batidoras-vaso.jpg": t10
+};
+
+---
+
+<Layout title="50's style | ÁNIMA">
+  <main class="w-full min-h-screen bg-[#fcfcfc] text-neutral-950 font-sans select-none pt-20 lg:pt-40">
+
+    <!-- ======================================================= -->
+    <!-- 1. ГЛАВНЫЙ БАННЕР-СЛАЙДЕР ВО ВСЮ ШИРИНУ ЭКРАНА -->
+    <!-- ======================================================= -->
+    <section class="relative w-full h-125 sm:h-150 lg:h-200 overflow-hidden bg-[#e0ece4]">
+      
+      <!-- СЛАЙД 1 (Мятный фон - активен по умолчанию) -->
+      <div class="slide-fade absolute inset-0 w-full h-full opacity-100 transition-opacity duration-1000 ease-in-out z-10">
+        
+        <!-- Фоновое изображение: object-left сдвигает картинку влево на мобильных, пряча объект справа -->
+        <Image 
+          src={sliderImg1} 
+          alt="50's style Mint background" 
+          class="absolute inset-0 w-full h-full object-cover object-left lg:object-center select-none z-0" 
+          priority 
+        />
+        
+        <!-- Контент поверх фото (Сетка 50/50 и навигационная стрелка) -->
+        <div class="absolute inset-0 grid grid-cols-1 lg:grid-cols-2 z-10 bg-transparent text-neutral-900 mx-10">
+          
+          <div class="w-full h-full flex flex-col justify-between items-start px-8 sm:px-16 lg:pl-32 py-10 lg:py-14 relative">
+            
+            <nav class="text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2">
+                <a href="/" class="hover:text-black transition-colors flex items-center gap-1">
+                  ← Página principal
+                </a>
+                <span class="mx-1">/</span> 
+                <a href="/mundo-editorial" class="hover:text-black transition-colors">
+                  Mundo Editorial
+                </a>
+                <span class="mx-1">/</span>
+                <span class="text-neutral-800 font-normal">50's Style</span>
+              </nav>
+
+            <!-- Информационный блок -->
+            <div class="w-full max-w-xl space-y-6 text-left my-auto pt-6">
+              <span class="text-[18px] uppercase tracking-[0.25em] text-neutral-500 font-semibold block">Estética</span>
+              <h1 class="text-3xl sm:text-4xl lg:text-[46px] font-bold tracking-wide uppercase leading-none whitespace-nowrap">50's style</h1>
+              <p class="text-neutral-600 text-lg lg:text-2xl font-semibold tracking-wide leading-relaxed max-w-md">
+                Colores vibrantes y designs redondeados equivalen a electrodomésticos con estilo.
+              </p>
+            </div>
+        
+          </div>                    
+        </div>
+
+      </div>
+
+      <!-- СЛАЙД 2 (Красный фон - скрыт по умолчанию) -->
+      <div class="slide-fade absolute inset-0 w-full h-full opacity-0 pointer-events-none transition-opacity duration-1000 ease-in-out z-0">
+        
+        <!-- Фоновое изображение для 2-го слайда -->
+        <Image 
+          src={sliderImg2} 
+          alt="50's style Red background" 
+          class="absolute inset-0 w-full h-full object-cover object-left lg:object-center select-none z-0" 
+        />
+        
+        <!-- Контент поверх фото -->
+        <div class="absolute inset-0 grid grid-cols-1 lg:grid-cols-2 z-10 bg-transparent text-neutral-900 mx-10">
+          
+          <div class="w-full h-full flex flex-col justify-between items-start px-8 sm:px-16 lg:pl-32 py-10 lg:py-14 relative">
+            
+            <nav class="text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2">
+                <a href="/" class="hover:text-black transition-colors flex items-center gap-1">
+                  ← Página principal
+                </a>
+                <span class="mx-1">/</span> 
+                <a href="/mundo-editorial" class="hover:text-black transition-colors">
+                  Mundo Editorial
+                </a>
+                <span class="mx-1">/</span>
+                <span class="text-neutral-800 font-normal">50's Style</span>
+              </nav>
+
+            <!-- Информационный блок второго слайда -->
+            <div class="w-full max-w-xl space-y-6 text-left my-auto">
+              <span class="text-[18px] uppercase tracking-[0.25em] text-neutral-500 font-semibold block">Estética</span>
+              <h1 class="text-3xl sm:text-4xl lg:text-[46px] font-bold tracking-wide uppercase leading-none">Iconos del diseño</h1>
+              <p class="text-neutral-600 text-lg lg:text-2xl font-semibold tracking-wide leading-relaxed max-w-md">
+                Una perfecta fusión de tecnología punta y estética retro para cocinas únicas.
+              </p>
+            </div>
+            
+          </div>          
+        </div>
+
+      </div>
+
+      <!-- Кнопка СЛЕВА -->
+      <button id="retro-prev" class="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/60 text-neutral-800 rounded-full transition-colors duration-300">
+        <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+      </button>
+
+      <!-- Кнопка СПРАВА -->
+      <button id="retro-next" class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/60 text-neutral-800 rounded-full transition-colors duration-300">
+        <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </button>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 2. СЕКЦИЯ ОПИСАНИЯ КОЛЛЕКЦИИ -->
+    <!-- ======================================================= -->
+    <section class="w-full bg-black text-white pt-12 lg:pt-20 flex flex-col items-center overflow-hidden">
+      
+      <!-- Центральный текстовый блок -->
+      <div class="w-full px-6 text-center mb-12 lg:mb-20">
+        <p class="text-lg sm:text-xl lg:text-[46px] tracking-tight leading-relaxed text-white font-sans font-light max-w-4xl mx-auto">
+          Formas redondeadas, detalles cromados y colores brillantes harán que cualquier espacio transpire estilo, carácter y amor por el estilo y el diseño.
+        </p>
+      </div>
+
+      <!-- Картинка со всеми холодильниками -->
+      <div class="w-full px-6 block select-none">
+        <Image 
+          src={allFridges} 
+          alt="Smeg 50's Style Collection" 
+          class="w-full h-auto block object-contain"
+        />
+      </div>
+
+      <!-- Нижний блок: Двухколоночный контент Gama 50's Style -->
+      <div class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 mt-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
+          
+          <!-- Левая колонка: Название гаммы -->
+          <div class="w-full lg:col-span-4">
+            <h2 class="text-3xl sm:text-4xl lg:text-[44px] font-light tracking-wide text-neutral-100 uppercase">
+              Gama 50's Style
+            </h2>
+          </div>
+
+          <!-- Правая колонка: Подробное описание и ссылка -->
+          <div class="w-full lg:col-span-8 max-w-8xl space-y-8 text-left">
+            <div class="space-y-6 text-white text-lg lg:text-[24px] font-light tracking-wide leading-relaxed">
+              <p>
+                La gama 50's Style de Smeg presenta características del diseño vintage cuyas líneas clásicas y redondeadas y colores vibrantes combinan perfectamente con la tecnología de vanguardia.
+              </p>
+              <p>
+                El frigorífico FAB28 de colores original es más que solo un frigorífico. Ocupa un espacio privilegiado, como cualquier otro elemento decorativo. Smeg también ha desarrollado una colección de electrodomésticos con el mismo tema vintage: frigoríficos en varias formas y medidas, varias capacidades de almacenamiento, congeladores, lavadoras y lavavajillas. Se trata de elementos eclécticos, que marcan estándares del diseño de calidad 'Made in Italy' famosos alrededor del mundo por su combinación de arte y funcionalidad.
+              </p>
+            </div>
+
+            <!-- Ссылка DESCUBRE LOS MODELOS -->
+            <!-- <div class="pt-4">
+              <a 
+                href="#modelos" 
+                class="inline-flex items-center gap-4 text-[13px] uppercase tracking-[0.25em] font-bold text-white border-b border-white pb-1 hover:opacity-70 transition-all duration-300"
+              >
+                DESCUBRE LOS MODELOS
+              </a>
+            </div>-->
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 3. СЕКЦИЯ СЛАЙДЕРА КАТЕГОРИЙ                           -->
+    <!-- ======================================================= -->
+    <section class="w-full bg-black py-12 lg:py-20 overflow-hidden select-none">
+      
+      <!-- Контейнер: на мобильных auto, на десктопе фиксированная высота для абсолютных слайдов -->
+      <div class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 relative min-h-137.5 lg:h-170 flex items-center">
+        
+        <div class="w-full relative min-h-125 lg:h-full">
+          {dataDB.fridgeCategorySlider.map((slide, index) => (
+            <div class={`product-category-slide lg:absolute lg:inset-0 grid grid-cols-1 lg:grid-cols-[35%_65%] items-center transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 relative lg:z-10' : 'opacity-0 absolute inset-0 pointer-events-none lg:z-0'}`}>
+              
+              <!-- Текстовый блок -->
+              <div class="w-full pr-0 lg:pr-16 py-6 text-left space-y-4 lg:space-y-6 bg-black flex flex-col justify-center">
+                <h2 class="text-2xl sm:text-3xl lg:text-[42px] font-light tracking-wide text-neutral-100">
+                  {slide.title}
+                </h2>
+                <p class="text-neutral-400 text-base sm:text-lg lg:text-[20px] font-light tracking-wide leading-relaxed max-w-sm">
+                  {slide.desc}
+                </p>
+                <!-- <div class="pt-4">
+                  <a href={slide.link} class="inline-flex items-center gap-4 text-[13px] uppercase tracking-[0.25em] font-bold text-white border-b border-white pb-1 hover:opacity-70 transition-all duration-300">{slide.btnText}</a>
+                </div> -->
+              </div>
+
+              <!-- Блок изображения -->
+              <div class="w-full h-64 sm:h-80 lg:h-full flex items-center justify-center mt-4 lg:mt-0">
+                <Image 
+                  src={imagesMap[slide.imgName]} 
+                  alt={slide.title} 
+                  class="w-full h-full object-contain lg:object-cover block" 
+                />
+              </div>
+
+            </div>
+          ))}
+        </div>
+
+        <!-- Стрелки управления (смещены внутрь на мобильных для удобства) -->
+        <button id="prod-prev" class="absolute left-2 sm:left-4 lg:left-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center bg-black/40 hover:bg-black/70 text-white/70 hover:text-white rounded-full transition-all duration-300">
+          <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 lg:w-8 lg:h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
+        </button>
+        <button id="prod-next" class="absolute right-2 sm:right-4 lg:right-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center bg-black/40 hover:bg-black/70 text-white/70 hover:text-white rounded-full transition-all duration-300">
+          <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 lg:w-8 lg:h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+        </button>
+
+      </div>
+    </section>
+    
+    <!-- ======================================================= -->
+    <!-- 4. СЕКЦИЯ ПЕРВОГО ВИДЕО -->
+    <!-- ======================================================= -->
+    <section class="w-full bg-black text-white py-12 lg:py-20">
+      <div class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20">
+        
+        <div class="video-responsive-wrapper relative w-full aspect-video overflow-hidden rounded-sm shadow-2xl bg-neutral-900 select-none group">
+          <div id="mouse-shield" class="absolute inset-0 w-full h-full bg-transparent style-overlay z-20 pointer-events-none"></div>
+
+          <iframe 
+            id="smeg-yt-player"
+            src="https://www.youtube.com/embed/cCGgPma1FzA" 
+            title="Smeg FABulous range" 
+            class="absolute inset-0 w-full h-full block border-0 z-10"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen
+          >
+          </iframe>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 5. СЕКЦИЯ TU CREATIVIDAD, NUESTRA HERRAMIENTA -->
+    <!-- ======================================================= -->
+    <section class="w-full bg-[#000000] text-white py-12 lg:py-20 overflow-hidden relative">
+      
+      <div class="w-full flex flex-col gap-4 mb-20 lg:mb-28 select-none">
+        <div class="w-full h-2 bg-[#d71921]"></div>
+        <div class="w-full h-2 bg-[#aadcd2]"></div>
+        <div class="w-full h-2 bg-[#f5cad2]"></div>
+        <div class="w-full h-2 bg-[#a7c9ea]"></div>
+        <div class="w-full h-2 bg-[#fadc6c]"></div>        
+      </div>
+
+      <div class="w-full max-w-[1900px] mx-auto px-6 sm:px-12 lg:px-20 flex flex-col items-center text-center">
+        
+        <h2 class="text-2xl sm:text-3xl lg:text-[42px] font-light tracking-wide text-white max-w-4xl mx-auto leading-snug mb-16 lg:mb-20">
+          Tu creatividad, nuestra herramienta.
+        </h2>
+
+        <div class="w-full max-w-[1900px] mx-auto block select-none">
+          <Image 
+            src={smallAppliancesImg} 
+            alt="Smeg Small Appliances Collection" 
+            class="w-full h-auto block object-contain mx-auto"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 6. СЕКЦИЯ LOS NUEVOS ICONOS -->
+    <!-- ======================================================= -->
+    <section class="w-full bg-[#000000] text-white py-12 lg:py-20 overflow-hidden">
+      <div class="w-full max-w-[1900px] mx-auto px-6 sm:px-12 lg:px-20">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-[35%_65%] gap-10 lg:gap-0 items-start">
+          
+          <div class="w-full lg:pl-32 lg:pr-10 text-left">
+            <h2 class="text-3xl sm:text-4xl lg:text-[40px] font-light tracking-wide text-white leading-tight">
+              Los nuevos iconos del espacio doméstico
+            </h2>
+          </div>
+
+          <div class="w-full max-w-6xl space-y-8 text-left lg:pl-4">
+            <div class="space-y-6 text-white text-lg lg:text-[24px] font-light tracking-wide leading-relaxed">
+              <p>
+                La gama del pequeño electrodoméstico Smeg nació de la fusión de tecnología, estilo, funcionalidad y el recuerdo de las formas y la atmósfera del 50's Style. Líneas redondeadas y retro interpretadas con un diseño moderno que los convierte en protagonistas en la cocina.
+              </p>
+              <p>
+                Desde el icónico frigorífico FAB28, hasta la última generación de pequeño aparato electrodoméstico, la gama 50's Style está compuesta por productos únicos y versátiles, y está dedicada a aquellos a los que les gusta estar rodeados de objetos con carácter sin perder de vista el rendimiento de vanguardia.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 7. СЕКЦИЯ СЛАЙДЕРА МАЛЕНЬКОЙ БЫТОВОЙ ТЕХНИКИ            -->
+    <!-- ======================================================= -->
+    <section class="w-full bg-black text-white py-12 lg:py-20 overflow-hidden select-none">
+      
+      <!-- Контейнер: на мобильных auto по высоте, на десктопе фиксированная высота для абсолютных слайдов -->
+      <div class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 relative min-h-137.5 lg:h-155 flex items-center">
+        
+        <div class="w-full relative min-h-125 lg:h-full">
+          {dataDB.smallAppliancesList.map((item, index) => (    
+            <div class={`small-appliance-slide lg:absolute lg:inset-0 grid grid-cols-1 lg:grid-cols-[35%_65%] items-center transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 relative lg:z-10' : 'opacity-0 absolute inset-0 pointer-events-none lg:z-0'}`}>
+              
+              <!-- Текстовый блок -->
+              <div class="w-full pr-0 lg:pr-16 py-6 text-left space-y-4 lg:space-y-6 bg-black flex flex-col justify-center">
+                <h2 class="text-2xl sm:text-3xl lg:text-[42px] font-light tracking-wide text-neutral-100">
+                  {item.title}
+                </h2>
+                <p class="text-neutral-400 text-base sm:text-lg lg:text-[20px] font-light tracking-wide leading-relaxed max-w-sm">
+                  {item.desc}
+                </p>
+              </div>
+
+              <!-- Блок изображения -->
+              <div class="w-full h-64 sm:h-80 lg:h-full flex items-center justify-center mt-4 lg:mt-0">
+                <Image 
+                  src={imagesMap[item.imgName]} 
+                  alt={item.title} 
+                  class="w-full h-full object-contain lg:object-cover block" 
+                />
+              </div>
+
+            </div>
+          ))}
+        </div>
+
+        <!-- Стрелки управления (позиционирование относительно общего контейнера) -->
+        <button id="small-prev" class="absolute left-2 sm:left-4 lg:left-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center bg-black/40 hover:bg-black/70 text-white/70 hover:text-white rounded-full transition-all duration-300">
+          <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 lg:w-8 lg:h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
+        </button>
+        <button id="small-next" class="absolute right-2 sm:right-4 lg:right-0 top-1/2 -translate-y-1/2 z-30 w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center bg-black/40 hover:bg-black/70 text-white/70 hover:text-white rounded-full transition-all duration-300">
+          <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 lg:w-8 lg:h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 8. СЕКЦИЯ ВТОРОГО ВИДЕО -->
+    <!-- ======================================================= -->
+    <section class="w-full bg-black text-white py-12 lg:py-20">
+      <div class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20">
+        
+        <div id="second-video-wrapper" class="video-responsive-wrapper relative w-full aspect-video overflow-hidden rounded-sm shadow-2xl bg-neutral-900 select-none group">
+          <div id="mouse-shield-second" class="absolute inset-0 w-full h-full bg-transparent z-20 pointer-events-none"></div>
+
+          <iframe 
+            id="smeg-yt-player-second"
+            src="https://www.youtube.com/embed/CnDUl0mJphw" 
+            title="Small Domestic Appliances" 
+            class="absolute inset-0 w-full h-full block border-0 z-10"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen
+          >
+          </iframe>
+        </div>
+        
+      </div>
+    </section>
+
+  </main>
+
+  <script src="../scripts/retro-slider.js"></script>
+</Layout>

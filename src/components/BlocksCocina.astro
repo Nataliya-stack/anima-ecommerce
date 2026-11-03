@@ -1,0 +1,229 @@
+---
+// src/components/BlocksCocina.astro
+import { Image } from "astro:assets";
+
+import bgCocinaIntegrada from "../assets/categories/soluciones_integradas.jpg";
+import bgHorizontal from "../assets/categories/smeg_horizontal.jpg";
+import bgColumna from "../assets/categories/smeg_columna.jpg";
+import imgConectados from "../assets/categories/conectados.jpg";
+import imgPiezasArte from "../assets/categories/piezas_de_arte.jpg";
+
+import dataDB from "../../db.json";
+const blockContent = dataDB.home.blocks_cocina;
+---
+
+<!-- ======================================================== -->
+<!-- 1. БЛОК: SOLUCIONES INTEGRADAS (В стиле Smeg)             -->
+<!-- ======================================================== -->
+<section
+  class="w-full bg-black text-white py-12 md:py-24 px-6 md:px-24 select-none border-t border-neutral-900"
+>
+  <div
+    class="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center"
+  >
+    <!-- ЛЕВАЯ КОЛОНКА: Заголовок секции -->
+    <div class="md:col-span-5 text-left">
+      <h2
+        class="text-3xl sm:text-[36px] font-light tracking-wide leading-tight whitespace-normal"
+      >
+        {blockContent.soluciones.title}
+      </h2>
+    </div>
+
+    <!-- ПРАВАЯ КОЛОНКА -->
+    <div class="md:col-span-7 space-y-6 text-left">
+      <p
+        class="text-neutral-300 text-[15px] sm:text-[16px] font-light tracking-wide leading-[1.8] max-w-2xl"
+      >
+        {blockContent.soluciones.description}
+      </p>
+
+      <div class="pt-4">
+        <a
+          href="/lineas-esteticas"
+          class="inline-flex items-center gap-4 text-[10px] font-bold tracking-[0.2em] text-white uppercase group"
+        >
+          <span
+            class="w-8 h-px bg-white group-hover:w-12 transition-all duration-300"
+          ></span>
+          {blockContent.soluciones.button}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 2. БЛОК: КРУПНАЯ ФОТОГРАФИЯ ИНТЕРЬЕРА КУХНИ                    -->
+<!-- ======================================================== -->
+<section
+  class="w-full mb-0 select-none overflow-hidden bg-neutral-50 relative z-10 left-0 right-0"
+>
+  <Image
+    src={bgCocinaIntegrada}
+    alt="Cocina completa de diseño ÁNIMA"
+    class="w-full h-auto object-cover transition-transform duration-1000 ease-out hover:scale-[1.01]"
+  />
+</section>
+
+<!-- ======================================================== -->
+<!-- 3. БЛОК: integrado en horizontal                   -->
+<!-- ======================================================== -->
+<section
+  class="w-full bg-black text-white py-14 md:py-28 px-6 md:px-8 select-none border-t border-neutral-950"
+>
+  <div
+    class="max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-10 items-center"
+  >
+    <!-- ЛЕВАЯ КОЛОНКА -->
+    <div class="md:col-start-2 md:col-span-3 space-y-6 max-w-md text-left">
+      <h2
+        class="text-3xl sm:text-4xl lg:text-[38px] max-sm:text-2xl wrap-break-word font-light tracking-wide leading-tight uppercase"
+      >
+        {blockContent.horizontal.title}
+      </h2>
+
+      <p
+        class="text-neutral-300 text-[16px] sm:text-[19px] font-light tracking-wide leading-[1.9]"
+      >
+        {blockContent.soluciones.description}
+      </p>
+    </div>
+
+    <!-- ПРАВАЯ КОЛОНКА -->
+    <div
+      class="md:col-start-6 md:col-span-7 w-full aspect-16/11 overflow-hidden"
+    >
+      <Image
+        src={bgHorizontal}
+        alt={blockContent.horizontal.title}
+        class="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-[1.01]"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 4. БЛОК: Smeg integrado en columna                     -->
+<!-- ======================================================== -->
+<section
+  class="w-full bg-black text-white py-14 md:py-28 px-6 md:px-8 select-none border-t border-neutral-950"
+>
+  <div
+    class="max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-10 items-center"
+  >
+    <!-- ЛЕВАЯ КОЛОНКА -->
+    <div class="md:col-start-2 md:col-span-3 space-y-6 max-w-md text-left">
+      <h2
+        class="text-3xl sm:text-4xl lg:text-[38px] max-sm:text-2xl wrap-break-word font-light tracking-wide leading-tight uppercase"
+      >
+        {blockContent.columna.title}
+      </h2>
+
+      <p
+        class="text-neutral-300 text-[16px] sm:text-[19px] font-light tracking-wide leading-[1.9]"
+      >
+        {blockContent.soluciones.description}
+      </p>
+    </div>
+
+    <!-- ПРАВАЯ КОЛОНКА -->
+    <div
+      class="md:col-start-6 md:col-span-7 w-full aspect-16/11 overflow-hidden"
+    >
+      <Image
+        src={bgColumna}
+        alt={blockContent.columna.title}
+        class="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-[1.01]"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 5. БЛОК: НИЖНИЙ ДВУХКОЛОНОЧНЫЙ БЛОК: CONECTADOS & PIEZAS DE ARTE -->
+<!-- ======================================================== -->
+<section
+  class="w-full bg-black text-white py-12 md:py-24 px-6 md:px-8 select-none border-t border-neutral-900/30"
+>
+  <div
+    class="max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24"
+  >
+    <!-- ЛЕВАЯ СТОРОНА: ELECTRODOMÉSTICOS CONECTADOS -->
+    <div class="flex flex-col text-left group cursor-pointer">
+      <div class="w-full aspect-16/11 overflow-hidden bg-neutral-950 mb-8">
+        <Image
+          src={imgConectados}
+          alt="Electrodomésticos conectados ÁNIMA"
+          class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.01]"
+        />
+      </div>
+
+      <div class="px-2 space-y-4">
+        <h3
+          class="text-xl sm:text-2xl font-light tracking-wider uppercase leading-tight whitespace-normal"
+        >
+          {blockContent.conectados.title1}
+          <br />{blockContent.conectados.title2}
+        </h3>
+
+        <p
+          class="text-neutral-300 text-[15px] sm:text-[17px] font-light tracking-wide leading-[1.8] max-w-md"
+        >
+          {blockContent.conectados.description}
+        </p>
+
+        <div class="pt-4">
+          <a
+            href="/connect"
+            class="inline-flex items-center gap-4 text-[11px] font-bold tracking-[0.2em] text-white uppercase"
+          >
+            <span
+              class="w-8 h-px bg-white group-hover:w-12 transition-all duration-300"
+            ></span>
+            {blockContent.conectados.button}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ПРАВАЯ СТОРОНА: PIEZAS DE ARTE (DOLCE & GABBANA) -->
+    <div class="flex flex-col text-left group cursor-pointer">
+      <div class="w-full aspect-16/11 overflow-hidden bg-neutral-950 mb-8">
+        <Image
+          src={imgPiezasArte}
+          alt="Piezas de arte ÁNIMA y Dolce & Gabbana"
+          class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.01]"
+        />
+      </div>
+
+      <div class="px-2 space-y-4">
+        <h3
+          class="text-xl sm:text-2xl font-light tracking-wider leading-tight whitespace-normal"
+        >
+          {blockContent.arte.title}
+        </h3>
+
+        <p
+          class="text-neutral-300 text-[15px] sm:text-[17px] font-light tracking-wide leading-[1.8] max-w-md"
+        >
+          <strong class="font-bold text-white">Smeg y Dolce&Gabbana</strong> han hecho
+          equipo para diseñar más que aparatos electrodomésticos, transformándolas
+          en innegables piezas de arte.
+        </p>
+
+        <div class="pt-4">
+          <a
+            href="/special"
+            class="inline-flex items-center gap-4 text-[11px] font-bold tracking-[0.2em] text-white uppercase"
+          >
+            <span
+              class="w-8 h-px bg-white group-hover:w-12 transition-all duration-300"
+            ></span>
+            {blockContent.arte.button}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,285 @@
+---
+// src/components/BlocksPequeno.astro
+import { Image } from "astro:assets";
+import dataDB from "../../db.json";
+
+import imgTecnologiaMulticook from "../assets/categories/banner-pequeno-electro.jpg";
+import imgProcesado from "../assets/categories/aliado-procesado.jpg";
+import imgCafe from "../assets/categories/aliado-cafe.jpg";
+import imgDesayuno from "../assets/categories/aliado-desayuno.jpg";
+import imgDetalleHervidor from "../assets/categories/detalle-hervidor.jpg";
+import imgDetalleExprimidor from "../assets/categories/detalle-exprimidor.jpg";
+import imgDetalleTostador from "../assets/categories/detalle-tostador.jpg";
+import imgInnovacionA from "../assets/categories/innovacion-batidora.jpg";
+import imgInnovacionB from "../assets/categories/innovacion-filtro.jpg";
+import imgInnovacionC from "../assets/categories/innovacion-espresso.jpg";
+
+const aliadosImages = [imgProcesado, imgCafe, imgDesayuno];
+const blockContent = dataDB.home.blocks_pequeno_new;
+const detallesImages = [
+  imgDetalleHervidor,
+  imgDetalleExprimidor,
+  imgDetalleTostador,
+];
+const innovacionImages = [imgInnovacionA, imgInnovacionB, imgInnovacionC];
+---
+
+<!-- ======================================================== -->
+<!-- 1. БЛОК: ПОЛНОЭКРАННЫЙ ГЛАВНЫЙ БАННЕР С ТЕКСТУРОЙ        -->
+<!-- ======================================================== -->
+<section
+  class="component is-herobanner-slider relative w-full aspect-192/125 md:aspect-192/78 bg-black overflow-hidden select-none mb-0 z-10 left-0 right-0"
+>
+  <!-- КАРТИНКА-ФОН -->
+  <div class="absolute inset-0 w-full h-full z-0">
+    <Image
+      src={imgTecnologiaMulticook}
+      alt="Tecnología 50 Style"
+      class="w-full h-full object-cover object-center opacity-100"
+      priority
+    />
+  </div>
+
+  <!-- БЛОК ТЕКСТА -->
+  <div
+    class="absolute inset-0 w-full h-full z-10 flex items-center px-6 md:px-16"
+  >
+    <div class="w-full max-w-350 mx-auto flex justify-start">
+      <div
+        class="w-full sm:max-w-100 md:max-w-[42%] text-left space-y-4 md:space-y-6 text-white"
+      >
+        <span
+          class="block text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-neutral-400 font-medium"
+        >
+          {blockContent.hero_banner.badge}
+        </span>
+        <h1
+          class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-wide uppercase text-white leading-tight"
+        >
+          {blockContent.hero_banner.title}
+        </h1>
+        <p
+          class="text-xs sm:text-sm md:text-[15px] text-neutral-300 tracking-wide leading-loose"
+        >
+          {blockContent.hero_banner.description}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 2. БЛОК: ЦЕНТРАЛЬНЫЙ ТЕКСТ                               -->
+<!-- ======================================================== -->
+<section
+  class="w-full bg-white my-8 sm:my-20 px-6 md:px-12 select-none text-center"
+>
+  <div class="max-w-[1600px] mx-auto">
+    <div class="max-w-3xl mx-auto">
+      <p
+        class="text-neutral-800 text-xl sm:text-2xl lg:text-[28px] font-light tracking-wide leading-[1.6]"
+      >
+        {blockContent.intro_text.text}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 3. БЛОК: ALIADOS PERFECTOS                               -->
+<!-- ======================================================== -->
+<section
+  class="w-full h-auto bg-white select-none my-8 sm:my-20 relative z-30 clear-both"
+>
+  <div class="w-full max-w-375 mx-auto px-6 md:px-16 space-y-12 sm:space-y-16">
+    <!-- Заголовок всей секции -->
+    <div class="w-full text-center">
+      <h2
+        class="text-2xl sm:text-3xl md:text-[36px] font-light tracking-[0.15em] uppercase text-black"
+      >
+        {blockContent.aliados_perfectos.section_title}
+      </h2>
+    </div>
+
+    <!-- Сетка из трёх колонок через чистый цикл -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 items-start">
+      {
+        blockContent.aliados_perfectos.cards.map((card: any, index: number) => (
+          <div class="flex flex-col space-y-6 text-left">
+            <div class="w-full flex items-center justify-center min-h-65 md:min-h-75">
+              <Image
+                src={aliadosImages[index]}
+                alt={card.alt}
+                class="max-h-64 w-auto object-contain"
+              />
+            </div>
+            <h3 class="text-lg sm:text-xl font-normal text-neutral-900 tracking-wide leading-tight">
+              {card.title}
+            </h3>
+            <p class="text-sm sm:text-base font-light text-neutral-600 tracking-wide leading-loose">
+              {card.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 4. БЛОК: PASIÓN POR LOS DETALLES С СЛАЙДЕРОМ             -->
+<!-- ======================================================== -->
+<section
+  class="w-full h-auto bg-white select-none my-8 sm:my-20 relative z-30 clear-both"
+>
+  <div class="w-full max-w-375 mx-auto px-6 md:px-16">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
+      <!-- ЛЕВАЯ КОЛОНКА: Слайдер изображений -->
+      <div
+        class="js-slider-container w-full md:col-span-6 relative group px-4 order-1 md:order-1"
+      >
+        <!-- Окно просмотра картинок слайдера -->
+        <div
+          class="w-full overflow-hidden relative min-h-87.5 sm:min-h-105 flex items-center justify-center"
+        >
+          {
+            blockContent.pasion_detalles.slides.map(
+              (slide: any, index: number) => (
+                <div
+                  class={`js-slide-item w-full flex items-center justify-center transition-all duration-500 absolute inset-0 ${index === 0 ? "opacity-100 z-10" : "opacity-0 z-0"}`}
+                >
+                  <Image
+                    src={detallesImages[index]}
+                    alt={slide.alt}
+                    class="max-h-80 sm:max-h-96 w-auto object-contain"
+                  />
+                </div>
+              ),
+            )
+          }
+        </div>
+
+        <!-- Кнопки управления слайдером -->
+        <button
+          class="js-btn-prev absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 border border-neutral-200 rounded-full flex items-center justify-center bg-white/70 text-neutral-400 hover:bg-neutral-900 hover:text-white hover:border-neutral-900 transition-all duration-300 z-20 font-mono text-lg"
+        >
+          ‹
+        </button>
+        <button
+          class="js-btn-next absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 border border-neutral-200 rounded-full flex items-center justify-center bg-white/70 text-neutral-400 hover:bg-neutral-900 hover:text-white hover:border-neutral-900 transition-all duration-300 z-20 font-mono text-lg"
+        >
+          ›
+        </button>
+      </div>
+
+      <!-- ПРАВАЯ КОЛОНКА: Контентный текст -->
+      <div
+        class="w-full md:col-span-6 text-left space-y-6 md:pl-8 text-neutral-800 order-2 md:order-2"
+      >
+        <h2
+          class="text-2xl sm:text-3xl md:text-[36px] font-light tracking-wide text-black uppercase leading-tight"
+          set:html={blockContent.pasion_detalles.title}
+        />
+        <div
+          class="text-sm sm:text-base md:text-[16px] font-light text-neutral-700 tracking-wide leading-loose max-w-xl"
+        >
+          <p>{blockContent.pasion_detalles.description}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 5. БЛОК: INNOVACIÓN Y RENDIMIENTO С ЗЕРКАЛЬНЫМ СЛАЙДЕРОМ -->
+<!-- ======================================================== -->
+<section
+  class="w-full h-auto bg-white select-none my-8 sm:my-20 relative z-30 clear-both"
+>
+  <div class="w-full max-w-375 mx-auto px-6 md:px-16">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
+      <!-- ЛЕВАЯ КОЛОНКА: Контентный текст -->
+      <div
+        class="w-full md:col-span-6 text-left space-y-6 text-neutral-800 order-2 md:order-1"
+      >
+        <h2
+          class="text-2xl sm:text-3xl md:text-[36px] font-light tracking-wide text-black uppercase leading-tight"
+          set:html={blockContent.innovacion_rendimiento.title}
+        />
+        <div
+          class="text-sm sm:text-base md:text-[16px] font-light text-neutral-700 tracking-wide leading-loose max-w-xl"
+        >
+          <p>{blockContent.innovacion_rendimiento.description}</p>
+        </div>
+      </div>
+
+      <!-- ПРАВАЯ КОЛОНКА: Слайдер изображений -->
+      <div
+        class="js-slider-container w-full md:col-span-6 relative group px-4 order-1 md:order-2"
+      >
+        <!-- Окно просмотра картинок слайдера -->
+        <div
+          class="w-full overflow-hidden relative min-h-87.5 sm:min-h-105 flex items-center justify-center"
+        >
+          {
+            blockContent.innovacion_rendimiento.slides.map(
+              (slide: any, index: number) => (
+                <div
+                  class={`js-slide-item w-full flex items-center justify-center transition-all duration-500 absolute inset-0 ${index === 0 ? "opacity-100 z-10" : "opacity-0 z-0"}`}
+                >
+                  <Image
+                    src={innovacionImages[index]}
+                    alt={slide.alt}
+                    class="max-h-80 sm:max-h-96 w-auto object-contain"
+                  />
+                </div>
+              ),
+            )
+          }
+        </div>
+
+        <!-- Кнопки управления слайдером -->
+        <button
+          class="js-btn-prev absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 border border-neutral-200 rounded-full flex items-center justify-center bg-white/70 text-neutral-400 hover:bg-neutral-900 hover:text-white hover:border-neutral-900 transition-all duration-300 z-20 font-mono text-lg"
+        >
+          ‹
+        </button>
+        <button
+          class="js-btn-next absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 border border-neutral-200 rounded-full flex items-center justify-center bg-white/70 text-neutral-400 hover:bg-neutral-900 hover:text-white hover:border-neutral-900 transition-all duration-300 z-20 font-mono text-lg"
+        >
+          ›
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 6. ФИНАЛЬНЫЙ ВИДЕОБАННЕР YOUTUBE НА ВЕСЬ ЭКРАН           -->
+<!-- ======================================================== -->
+<section
+  class="w-full mt-12 sm:mt-32 mb-0 relative h-auto lg:h-[70vh] aspect-video lg:aspect-auto bg-black overflow-hidden select-none z-10 left-0 right-0 js-video-wrapper"
+>
+  <div class="w-full h-full relative bg-black transition-all duration-300">
+    <!-- Прозрачный щит, который не мешает кликать по плееру YouTube -->
+    <div
+      class="js-video-shield absolute inset-0 w-full h-full z-10 bg-transparent"
+      style="pointer-events: none;"
+    >
+    </div>
+
+    <!-- Видео iframe во весь экран -->
+    <iframe
+      src="https://www.youtube.com/embed/CnDUl0mJphw"
+      title="Small Domestic Appliances - ÁNIMA"
+      class="js-video-iframe absolute inset-0 w-full h-full border-0 opacity-100 object-cover"
+      style="pointer-events: auto;"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    >
+    </iframe>
+  </div>
+</section>
+
+<script src="../scripts/universalCarousel.js"></script>

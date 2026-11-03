@@ -1,0 +1,691 @@
+---
+// src/pages/mundo-editorial.astro
+import Layout from "../layouts/Layout.astro";
+import data from "../../db.json";
+const ambientProducts = data.ambientProducts;
+
+import comprarOnline1 from "../assets/categories/comprar_online1.jpg";
+import comprarOnline1_1 from "../assets/categories/comprar_online11.png";
+import comprarOnline1_2 from "../assets/categories/comprar_online12.jpg";
+import comprarOnline1_3 from "../assets/categories/comprar_online13.jpg";
+import comprarOnline2 from "../assets/categories/comprar_online2.jpg"; 
+import comprarOnline3 from "../assets/categories/comprar_online3.jpg"; 
+import comprarOnline4 from "../assets/categories/comprar_online4.jpg"; 
+import recreaAmbient from "../assets/categories/recrea_ambient.jpg";
+import productKettle from "../assets/categories/product_kettle.jpg";
+import productCafetera from "../assets/categories/product_cafetera.jpg";
+import productToster from "../assets/categories/product_toster.jpg";
+import destacado1 from "../assets/categories/destacado1.png";
+import destacado2 from "../assets/categories/destacado2.jpg";
+import destacado3 from "../assets/categories/destacado3.png";
+---
+
+<Layout title="Tienda online Smeg | ÁNIMA">
+  <!-- ======================================================== -->
+  <!-- СЕКЦИЯ 1: ПОЛНОЭКРАННЫЙ СЛАЙДЕР С КНОПКАМИ НАВИГАЦИИ -->
+  <!-- ======================================================== -->
+  <section
+    class="relative h-130 sm:h-150 lg:h-190 group/slider overflow-hidden pt-20 lg:pt-35 bg-[#fcfcfc]"
+  >
+    <!-- Лента слайдера (Нативный скролл) -->
+    <div
+      id="comprar-slider"
+      class="flex overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth h-full w-full"
+    >
+      <!-- СЛАЙД 1: Descubre La Pavoni -->
+      <div class="slide-item min-w-full h-full snap-start shrink-0 relative">
+        <img
+          src={comprarOnline1_2.src}
+          alt="La Pavoni"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+
+        <div
+          class="absolute inset-0 grid grid-cols-1 lg:grid-cols-2 z-10 bg-transparent text-white mt-12 sm:mt-0"
+        >
+          <div
+            class="w-full h-full flex flex-col justify-center items-center px-12 sm:px-20 relative"
+          >
+            <div class="w-full max-w-2xl space-y-15 text-left lg:pl-12">
+              <!-- Возврат на главную страницу -->
+              <nav
+                class="text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none"
+              >
+                <a href="/" class="hover:text-black transition-colors"
+                  >Página principal</a
+                >
+                <span class="mx-1">/</span>
+              </nav>
+
+              <span
+                class="text-[16px] uppercase tracking-[0.25em] text-neutral-300 font-semibold block"
+              >
+                Cafeteras
+              </span>
+
+              <h1
+                class="text-3xl sm:text-4xl lg:text-[44px] font-light tracking-wide uppercase leading-tight"
+              >
+                Descubre La Pavoni
+              </h1>
+
+              <p
+                class="text-neutral-200 text-xs sm:text-xl font-light tracking-wide leading-[1.75] max-w-md"
+              >
+                Tradición y excellence en cafeteras expresso para los verdaderos
+                amantes del café.
+              </p>
+
+              <div class="pt-4">
+                <a
+                  href="/la-pavoni"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-4 text-[14px] uppercase tracking-wider group"
+                >
+                  <span class="w-6 h-px bg-current"></span>DESCUBRE MÁS
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="hidden lg:block w-full h-full"></div>
+        </div>
+      </div>
+
+      <!-- СЛАЙД 2: Plan Renove SMEG -->
+      <div class="slide-item min-w-full h-full snap-start shrink-0 relative">
+        <img
+          src={comprarOnline1.src}
+          alt="Plan Renove"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+
+        <div
+          class="absolute inset-0 grid grid-cols-1 lg:grid-cols-2 z-10 bg-transparent text-white mt-12 sm:mt-0"
+        >
+          <div
+            class="w-full h-full flex flex-col justify-center items-center px-12 sm:px-20 relative"
+          >
+            <div class="w-full max-w-2xl space-y-15 text-left lg:pl-12">
+              <!-- Возврат на главную страницу -->
+              <nav
+                class="text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none"
+              >
+                <a href="/" class="hover:text-black transition-colors"
+                  >Página principal</a
+                >
+                <span class="mx-1">/</span>
+              </nav>
+
+              <span
+                class="text-[16px] uppercase tracking-[0.25em] text-neutral-500 font-semibold block"
+              >
+                Plan Renove SMEG
+              </span>
+
+              <h1
+                class="text-3xl sm:text-4xl lg:text-[44px] font-light tracking-wide uppercase leading-tight text-neutral-800"
+              >
+                Plan Renove SMEG
+              </h1>
+
+              <p
+                class="text-neutral-500 text-xs sm:text-xl font-light tracking-wide leading-[1.75] max-w-md"
+              >
+                Actualiza tu cocina con la última tecnología y obtén descuentos
+                exclusivos en toda la gama.
+              </p>
+
+              <div class="pt-4">
+                <a
+                  href="/plan-renove"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-4 text-[14px] uppercase tracking-wider text-neutral-800 group"
+                >
+                  <span class="w-6 h-px bg-current"></span>RECICLA Y OBTÉN TU
+                  DESCUENTO
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="hidden lg:block w-full h-full"></div>
+        </div>
+      </div>
+
+      <!-- СЛАЙД 3: Gasificador de agua -->
+      <div class="slide-item min-w-full h-full snap-start shrink-0 relative">
+        <img
+          src={comprarOnline1_1.src}
+          alt="Gasificador"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+
+        <div
+          class="absolute inset-0 grid grid-cols-1 lg:grid-cols-2 z-10 bg-transparent text-white mt-12 sm:mt-0"
+        >
+          <div
+            class="w-full h-full flex flex-col justify-center items-center px-12 sm:px-20 relative"
+          >
+            <div class="w-full max-w-2xl space-y-15 text-left lg:pl-12">
+              <!-- Возврат на главную страницу -->
+              <nav
+                class="text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none"
+              >
+                <a href="/" class="hover:text-black transition-colors"
+                  >Página principal</a
+                >
+                <span class="mx-1">/</span>
+              </nav>
+
+              <span
+                class="text-[16px] uppercase tracking-[0.25em] text-neutral-300 font-semibold block"
+              >
+                Gasificador de agua
+              </span>
+
+              <h1
+                class="text-3xl sm:text-4xl lg:text-[44px] font-light tracking-wide uppercase leading-tight"
+              >
+                Gasificador de agua
+              </h1>
+
+              <p
+                class="text-neutral-200 text-xs sm:text-xl font-light tracking-wide leading-[1.75] max-w-md"
+              >
+                Diseño elegante para disfrutar de agua con gas al instante
+                directamente en tu cocina.
+              </p>
+
+              <div class="pt-4">
+                <a
+                  href="/gasificadora"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-4 text-[14px] uppercase tracking-wider group"
+                >
+                  <span class="w-6 h-px bg-current"></span>DESCUBRE MÁS
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="hidden lg:block w-full h-full"></div>
+        </div>
+      </div>
+
+      <!-- СЛАЙД 4: Haz brillar tu cocina -->
+      <div class="slide-item min-w-full h-full snap-start shrink-0 relative">
+        <img
+          src={comprarOnline1_3.src}
+          alt="Frigorificos"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+
+        <div
+          class="absolute inset-0 grid grid-cols-1 lg:grid-cols-2 z-10 bg-transparent text-white mt-12 sm:mt-0"
+        >
+          <div
+            class="w-full h-full flex flex-col justify-center items-center px-12 sm:px-20 relative"
+          >
+            <div class="w-full max-w-2xl space-y-15 text-left lg:pl-12">
+              <!-- Возврат на главную страницу -->
+              <nav
+                class="text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none"
+              >
+                <a href="/" class="hover:text-black transition-colors"
+                  >Página principal</a
+                >
+                <span class="mx-1">/</span>
+              </nav>
+
+              <span
+                class="text-[16px] uppercase tracking-[0.25em] text-neutral-300 font-semibold block"
+              >
+                Frigoríficos
+              </span>
+
+              <h1
+                class="text-3xl sm:text-4xl lg:text-[44px] font-light tracking-wide uppercase leading-tight"
+              >
+                Haz brillar tu cocina
+              </h1>
+
+              <p
+                class="text-neutral-200 text-xs sm:text-xl font-light tracking-wide leading-[1.75] max-w-md"
+              >
+                Estética retro y máxima conservación para mantener tus alimentos
+                siempre frescos con elegancia.
+              </p>
+
+              <div class="pt-4">
+                <a
+                  href="/50s-style"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-4 text-[14px] uppercase tracking-wider group"
+                >
+                  <span class="w-6 h-px bg-current"></span>DESCUBRE MÁS
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="hidden lg:block w-full h-full"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- КНОПКИ НАВИГАЦИИ СЛАЙДЕРА -->
+    <button
+      id="prev-slide"
+      class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/20 hover:bg-black/50 text-white flex items-center justify-center transition-colors z-20 cursor-pointer"
+      aria-label="Anterior"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 19.5L8.25 12l7.5-7.5"></path>
+      </svg>
+    </button>
+    <button
+      id="next-slide"
+      class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/20 hover:bg-black/50 text-white flex items-center justify-center transition-colors z-20 cursor-pointer"
+      aria-label="Siguiente"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+      </svg>
+    </button>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- СЕКЦИЯ 2: ТРИ БОЛЬШИЕ КАРТОЧКИ КАТЕГОРИЙ                 -->
+  <!-- ======================================================== -->
+  <section
+    class="w-full max-w-[1700px] mx-auto px-6 lg:px-12 pt-20 lg:pt-24 grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12"
+  >
+    <!-- Блок 1 -->
+    <div class="flex flex-col items-center text-center group cursor-pointer">
+      <h2
+        class="text-xl lg:text-3xl font-light text-neutral-900 tracking-wide mb-4"
+      >
+        Gran electrodoméstico
+      </h2>
+      <a
+        href="/catalog?cat=gran-electrodomestico"
+        class="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] font-bold text-black border-b border-black pb-0.5 mb-6 hover:text-neutral-400 hover:border-neutral-400 transition-colors"
+      >
+        <span class="w-4 h-px bg-current"></span>Comprar ahora
+      </a>
+      <div class="w-full aspect-square overflow-hidden bg-neutral-100">
+        <img
+          src={comprarOnline2.src}
+          alt="Gran electrodoméstico"
+          class="w-full h-full object-cover group-hover:scale-101 transition-transform duration-500"
+        />
+      </div>
+    </div>
+    <!-- Блок 2 -->
+    <div class="flex flex-col items-center text-center group cursor-pointer">
+      <h2
+        class="text-xl lg:text-3xl font-light text-neutral-900 tracking-wide mb-4"
+      >
+        Pequeño electrodoméstico
+      </h2>
+      <a
+        href="/catalog?cat=pequeno-electrodomestico"
+        class="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] font-bold text-black border-b border-black pb-0.5 mb-6 hover:text-neutral-400 hover:border-neutral-400 transition-colors"
+      >
+        <span class="w-4 h-px bg-current"></span>Comprar ahora
+      </a>
+      <div class="w-full aspect-square overflow-hidden bg-neutral-100">
+        <img
+          src={comprarOnline3.src}
+          alt="Pequeño electrodoméstico"
+          class="w-full h-full object-cover group-hover:scale-101 transition-transform duration-500"
+        />
+      </div>
+    </div>
+    <!-- Блок 3 -->
+    <div class="flex flex-col items-center text-center group cursor-pointer">
+      <h2
+        class="text-xl lg:text-3xl font-light text-neutral-900 tracking-wide mb-4"
+      >
+        Menaje
+      </h2>
+      <a
+        href="javascript:void(0)"
+        class="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] font-bold text-black border-b border-black pb-0.5 mb-6 hover:text-neutral-400 hover:border-neutral-400 transition-colors"
+      >
+        <span class="w-4 h-px bg-current"></span>
+        En desarrollo
+      </a>
+      <div class="w-full aspect-square overflow-hidden bg-neutral-100">
+        <img
+          src={comprarOnline4.src}
+          alt="Menaje"
+          class="w-full h-full object-cover group-hover:scale-101 transition-transform duration-500"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- СЕКЦИЯ 3: RECREA ESTE AMBIENTE (ПОЛНОСТЬЮ ДИНАМИЧЕСКАЯ) -->
+  <!-- ======================================================== -->
+  <section
+    class="max-w-[1700px] mx-auto px-6 lg:px-12 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 bg-white select-none"
+  >
+    <!-- ЛЕВАЯ КОЛОНКА: Фотография кухни-->
+    <div
+      class="w-full relative aspect-5/4 sm:aspect-16/10 lg:aspect-auto h-full overflow-hidden bg-neutral-50"
+    >
+      <img
+        src={recreaAmbient.src}
+        alt="Ambiente Ánima"
+        class="w-full h-full object-cover block"
+      />
+
+      {
+        ambientProducts.map((prod: any, index: number) => {
+          // Массив жестких координат для идеального позиционирования трех точек на фотографии интерьера
+          const coordinates = [
+            { top: "16%", left: "50%" }, // Чайник
+            { top: "60%", left: "17%" }, // Кофемашина
+            { top: "72%", left: "81%" }, // Тостер
+          ];
+          const pos = coordinates[index] || { top: "50%", left: "50%" };
+
+          return (
+            <div
+              id={`spot-${index}`}
+              data-index={index}
+              data-sku={prod.sku}
+              data-title={prod.title}
+              data-price={prod.price}
+              data-imgkey={prod.imgKey}
+              class="ambient-spot absolute z-20 cursor-pointer -translate-x-1/2 -translate-y-1/2"
+              style={`top: ${pos.top}; left: ${pos.left};`}
+            >
+              {/* Пульсирующий круг активации (для первого элемента index === 0 оставляем видимым по умолчанию) */}
+              <span
+                class={`spot-pulse h-5 w-5 relative ${index === 0 ? "flex" : "hidden"}`}
+              >
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white/40 opacity-75" />
+                <span class="relative inline-flex rounded-full h-5 w-5 bg-white border-4 border-black/20 shadow-md" />
+              </span>
+
+              {/* Маленькая статичная точка ожидания (скрыта для первого элемента, видна для остальных) */}
+              <div
+                class={`spot-dot h-4 w-4 rounded-full bg-white/80 border border-neutral-400 shadow-xs ${index === 0 ? "hidden" : "block"}`}
+              />
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <!-- ПРАВАЯ КОЛОНКА: Витрина меняющегося товара -->
+    <div
+      class="w-full flex flex-col justify-center relative px-4 sm:px-12 lg:px-12"
+    >
+      <!-- Заголовок секции -->
+      <h3
+        class="text-2xl lg:text-3xl font-bold tracking-wide text-neutral-900 uppercase mb-8 lg:mb-12 text-center"
+      >
+        Recrea este ambiente
+      </h3>
+
+      <!-- СТРЕЛОЧКИ НАВИГАЦИИ -->
+      <button
+        id="ambient-prev"
+        class="absolute left-0 top-1/2 lg:top-[55%] -translate-y-1/2 w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center text-neutral-600 transition-all cursor-pointer z-20 shadow-xs"
+        aria-label="Anterior"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="w-4 h-4"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 19.5 8.25 12l7.5-7.5"></path></svg
+        >
+      </button>
+
+      <button
+        id="ambient-next"
+        class="absolute right-0 top-1/2 lg:top-[55%] -translate-y-1/2 w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center text-neutral-600 transition-all cursor-pointer z-20 shadow-xs"
+        aria-label="Siguiente"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="w-4 h-4"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m8.25 4.5 7.5 7.5-7.5 7.5"></path></svg
+        >
+      </button>
+
+      <div
+        class="w-full flex flex-col sm:flex-row items-center gap-8 lg:gap-12 pl-6 pr-6"
+      >
+        <!-- Изображение товара (Сохраняет оригинальные data-источники для подмены картинок) -->
+        <div
+          class="w-full max-w-60 sm:max-w-80 aspect-square flex items-center justify-center overflow-hidden bg-transparent shrink-0"
+        >
+          <img
+            id="ambient-img"
+            src={productKettle.src}
+            data-kettle={productKettle.src}
+            data-cafetera={productCafetera.src}
+            data-toster={productToster.src}
+            alt="Hervidor 50's Style"
+            class="w-full h-full object-contain block transition-all duration-300 select-none"
+          />
+        </div>
+
+        <!-- Текстовый блок товара, цена и кнопки (Первый слайд рендерится из db.json по умолчанию для SSR) -->
+        <div class="flex-1 space-y-4 text-left pt-4 sm:pt-0">
+          <div class="space-y-1">
+            <span
+              id="ambient-sku"
+              class="text-[10px] tracking-widest text-neutral-400 uppercase block font-mono"
+            >
+              {ambientProducts[0]?.sku}
+            </span>
+            <h4
+              id="ambient-title"
+              class="text-sm font-normal text-neutral-800 tracking-wide leading-snug min-h-10"
+            >
+              {ambientProducts[0]?.title}
+            </h4>
+          </div>
+
+          <div
+            id="ambient-price"
+            class="text-xl lg:text-2xl font-semibold text-neutral-900 tracking-tight"
+          >
+            {ambientProducts[0]?.price}
+          </div>
+
+          <div class="flex items-center gap-3 pt-2">
+            <!-- Добавлены Astro data-атрибуты для корзины localStorage -->
+            <button
+              id="btn-add-cesta"
+              data-id="101"
+              data-nombre={ambientProducts[0]?.title}
+              data-precio="209.00"
+              data-imagen={productKettle.src}
+              class="bg-black text-white text-[10px] sm:text-[11px] font-bold tracking-widest uppercase px-6 py-3.5 hover:bg-neutral-800 transition-colors cursor-pointer flex-1 lg:flex-none lg:px-8"
+            >
+              Añadir al carrito
+            </button>
+
+            <button
+              class="w-11 h-11 border border-neutral-200 flex items-center justify-center text-neutral-500 hover:text-black hover:border-black transition-colors cursor-pointer"
+              aria-label="Favoritos"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-5 h-5"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                ></path></svg
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- СЕКЦИЯ 4: LO MÁS DESTACADO (ТРЕХКОЛОНОЧНАЯ ВИТРИНА)      -->
+  <!-- ======================================================== -->
+  <section
+    class="max-w-[1700px] mx-auto px-6 lg:px-12 py-16 lg:py-24 bg-white select-none"
+  >
+    <!-- Заголовок всей секции (Слева, крупный, в оригинальном стиле) -->
+    <h2
+      class="text-3xl font-bold tracking-wide text-neutral-900 uppercase mb-12 border-b border-neutral-100 pb-6"
+    >
+      Lo más destacado
+    </h2>
+
+    <!-- Сетка из трех карточек с тонкими разделительными линиями -->
+    <div
+      class="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-y-0 md:divide-x md:divide-neutral-200/60"
+    >
+      <!-- КАРТОЧКА 1: Prepárate para el verano -->
+      <div
+        class="flex flex-col justify-between pr-0 md:pr-8 lg:pr-12 md:pl-0 h-full group"
+      >
+        <div class="space-y-4">
+          <div class="w-full aspect-4/3 overflow-hidden bg-neutral-50 mb-6">
+            <img
+              src={destacado2.src}
+              alt="Prepárate para el verano"
+              class="w-full h-full object-cover group-hover:scale-101 transition-transform duration-500"
+            />
+          </div>
+          <h3
+            class="text-3xl font-light text-neutral-900 tracking-wide uppercase leading-tight min-h-16 flex items-center"
+          >
+            Prepárate para el verano
+          </h3>
+          <p
+            class="text-neutral-500 text-xs lg:text-xl font-light tracking-wide leading-relaxed min-h-12"
+          >
+            Descubre la colección completa de batidoras Smeg para el verano.
+          </p>
+        </div>
+        <!-- Интерактивная ссылка-кнопка, прижатая к самому низу -->
+        <!-- <div class="pt-8">
+        <a href="/catalog?collection=verano" class="inline-flex items-center gap-4 text-[14px] uppercase tracking-[0.2em] font-bold text-black border-b border-black pb-1 hover:text-neutral-400 hover:border-neutral-400 transition-colors">
+          <span class="w-6 h-px bg-current"></span>
+          COMPRAR AHORA
+        </a>
+      </div>-->
+      </div>
+
+      <!-- КАРТОЧКА 2: Bloque de cuchillos -->
+      <div
+        class="flex flex-col justify-between pr-0 md:pr-8 lg:pr-12 md:pl-0 h-full group"
+      >
+        <div class="space-y-4">
+          <div class="w-full aspect-4/3 overflow-hidden bg-neutral-50 mb-6">
+            <img
+              src={destacado1.src}
+              alt="Bloque de cuchillos"
+              class="w-full h-full object-cover group-hover:scale-101 transition-transform duration-500"
+            />
+          </div>
+          <h3
+            class="text-3xl font-light text-neutral-900 tracking-wide uppercase leading-tight min-h-16 flex items-center"
+          >
+            Bloque de cuchillos
+          </h3>
+          <p
+            class="text-neutral-500 text-xs lg:text-xl font-light tracking-wide leading-relaxed min-h-12"
+          >
+            Diseño y funcionalidad en tu encimera con la gama de corte.
+          </p>
+        </div>
+        <!-- <div class="pt-8">
+        <a href="/catalog?cat=cuchillos" class="inline-flex items-center gap-4 text-[14px] uppercase tracking-[0.2em] font-bold text-black border-b border-black pb-1 hover:text-neutral-400 hover:border-neutral-400 transition-colors">
+          <span class="w-6 h-px bg-current"></span>
+          COMPRAR AHORA
+        </a>
+      </div>-->
+      </div>
+
+      <!-- КАРТОЧКА 3: Limpieza y mantenimiento -->
+      <div
+        class="flex flex-col justify-between pl-0 md:pl-8 lg:pl-12 md:pr-0 h-full group"
+      >
+        <div class="space-y-4">
+          <div class="w-full aspect-4/3 overflow-hidden bg-neutral-50 mb-6">
+            <img
+              src={destacado3.src}
+              alt="Limpieza y mantenimiento"
+              class="w-full h-full object-cover group-hover:scale-101 transition-transform duration-500"
+            />
+          </div>
+          <h3
+            class="text-3xl font-light text-neutral-900 tracking-wide uppercase leading-tight min-h-16 flex items-center"
+          >
+            Limpieza y mantenimiento
+          </h3>
+          <p
+            class="text-neutral-500 text-xs lg:text-xl font-light tracking-wide leading-relaxed min-h-12"
+          >
+            Cuida de tus electrodomésticos Smeg con los mejores accesorios
+            oficiales.
+          </p>
+        </div>
+        <!--<div class="pt-8">
+        <a href="/catalog?cat=mantenimiento" class="inline-flex items-center gap-4 text-[14px] uppercase tracking-[0.2em] font-bold text-black border-b border-black pb-1 hover:text-neutral-400 hover:border-neutral-400 transition-colors">
+          <span class="w-6 h-px bg-current"></span>
+          COMPRAR AHORA
+        </a>
+      </div>-->
+      </div>
+    </div>
+  </section>
+
+  <script src="../scripts/comprarOnline.js"></script>
+  <script src="../scripts/cart.js"></script>
+  <script src="../scripts/universalCarousel.js"></script>
+</Layout>

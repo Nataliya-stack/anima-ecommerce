@@ -1,0 +1,276 @@
+---
+// src/pages/search.astro
+import Layout from "../layouts/Layout.astro";
+import MenuCategorias from "../components/MenuCategorias.astro";
+import { supabase } from "../lib/supabase";
+import { obtenerProductosPorCategoria } from "../lib/productos";
+
+const searchTerm = Astro.url.searchParams.get("q")?.trim() || "";
+const categoriaActiva = Astro.url.searchParams.get("category")?.trim() || "";
+
+let productosList = [];
+let sectionTitle = "Novedades destacadas";
+
+const categoryMap: Record<string, number> = {
+  cocina: 1,
+  "pequeno-aparato": 2,
+  "cuidado-hogar": 3,
+  "clima-confort": 4,
+  "imagen-sonido": 5,
+  "gran-electrodomestico": 6,
+  "pequeno-electrodomestico": 7,
+};
+
+if (searchTerm) {
+  const { data } = await supabase
+    .from("products")
+    .select("*")
+    .ilike("nombre_producto", `%${searchTerm}%`)
+    .limit(12);
+
+  productosList = data || [];
+  sectionTitle = `Resultados para "${searchTerm}" (${productosList.length})`;
+} else if (categoriaActiva && categoryMap[categoriaActiva]) {
+  const categoryIdNum = categoryMap[categoriaActiva];
+  productosList = await obtenerProductosPorCategoria(categoryIdNum);
+  sectionTitle = `Productos de la categoría (${productosList.length})`;
+} else {
+  const { data } = await supabase
+    .from("products")
+    .select("*")
+    .eq("is_new", true)
+    .limit(8);
+
+  productosList = data || [];
+  sectionTitle = "Novedades destacadas";
+}
+---
+
+<Layout title="Búsqueda | ÁNIMA">
+  <main
+    class="w-full min-h-screen bg-white text-[#141414] pt-35 lg:pt-50 font-sans pb-24 select-none"
+  >
+    <!-- Навигационная стрелка) -->
+    <div class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 mb-8">
+      <nav
+        class="text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2"
+      >
+        <a
+          href="/"
+          class="hover:text-black transition-colors flex items-center gap-1"
+        >
+          ← Página principal
+        </a>
+        <span class="mx-1">/</span>
+        <span class="text-neutral-800 font-normal">Búsqueda</span>
+      </nav>
+    </div>
+
+    <!-- 2. ОСНОВНОЙ ПАНОРАМНЫЙ БЛОК ПОИСКА -->
+    <section
+      class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 space-y-12"
+    >
+      <!-- Верхняя строка поиска -->
+      <div
+        class="border-b border-neutral-300 pb-4 flex items-center gap-4 relative"
+      >
+        <svg
+          class="w-6 h-6 text-neutral-800 shrink-0"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+
+        <form
+          id="search-form"
+          action="/search"
+          method="GET"
+          class="w-full flex items-center"
+        >
+          <input
+            id="search-input"
+            type="text"
+            name="q"
+            placeholder="Buscar..."
+            class="w-full text-xl lg:text-2xl outline-none bg-transparent placeholder-neutral-400 font-light text-neutral-900 pr-10"
+            autocomplete="off"
+            autofocus
+          />
+        </form>
+
+        <button
+          type="button"
+          id="clear-input-btn"
+          class="text-neutral-400 hover:text-black text-2xl font-light transition-colors cursor-pointer"
+          title="Limpiar"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Последние поиски -->
+      <div
+        id="recent-searches-container"
+        class="flex flex-wrap items-center gap-3 text-xs lg:text-sm text-neutral-600"
+      >
+        <span class="text-neutral-400 font-bold uppercase tracking-widest"
+          >Últimas búsquedas:</span
+        >
+        <div id="recent-tags-list" class="flex items-center gap-2 flex-wrap">
+        </div>
+        <button
+          type="button"
+          id="clear-all-recent"
+          class="text-neutral-400 hover:text-black uppercase tracking-wider font-bold underline ml-2 cursor-pointer"
+        >
+          Eliminar todas
+        </button>
+      </div>
+
+      <!-- Основная сетка: Меню категорий слева, Слайдер товаров справа -->
+      <div
+        class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-16 items-start pt-6"
+      >
+        <!-- Левая колонка: Меню категорий -->
+        <div
+          class="space-y-10 border-b lg:border-b-0 lg:border-r border-neutral-200 pb-8 lg:pb-0 lg:pr-12"
+        >
+          <div>
+            <h3
+              class="text-xs lg:text-sm font-bold uppercase tracking-[0.25em] text-neutral-400 mb-6"
+            >
+              - Categorías -
+            </h3>
+            <MenuCategorias
+              vertical={true}
+              baseUrl="/search"
+              categoriaActivaSlug={categoriaActiva}
+            />
+          </div>
+
+          <div class="pt-8 border-t border-neutral-200">
+            <h3
+              class="text-xs lg:text-sm font-bold uppercase tracking-[0.25em] text-neutral-400 mb-4"
+            >
+              - Populares -
+            </h3>
+            <ul
+              class="space-y-3 text-sm lg:text-[15px] text-neutral-600 font-light"
+            >
+              <li>
+                <a
+                  href="/search?q=Placa"
+                  class="hover:text-black transition-colors"
+                  >Placa de inducción</a>
+              </li>
+              <li>
+                <a
+                  href="/search?q=Horno"
+                  class="hover:text-black transition-colors"
+                  >Horno pirolítico</a>
+              </li>
+              <li>
+                <a
+                  href="/search?q=cocina"
+                  class="hover:text-black transition-colors">Cocina</a>
+              </li>
+              <li>
+                <a
+                  href="/search?q=electrodomestico"
+                  class="hover:text-black transition-colors"
+                  >Electrodomésticos</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Правая колонка: Слайдер товаров -->
+        <div class="w-full overflow-hidden relative js-carousel-container">
+          <div class="flex items-center justify-between mb-8">
+            <h3
+              class="text-xs lg:text-sm font-bold uppercase tracking-[0.25em] text-neutral-400"
+            >
+              - {sectionTitle} -
+            </h3>
+
+            <!-- Стрелки управления каруселью -->
+            <div class="flex items-center gap-3">
+              <button
+                class="js-carousel-prev w-10 h-10 border border-neutral-300 rounded-sm flex items-center justify-center bg-white text-neutral-700 hover:bg-black hover:text-white hover:border-black transition-all duration-300 cursor-pointer"
+              >
+                <span class="text-base font-mono">‹</span>
+              </button>
+              <button
+                class="js-carousel-next w-10 h-10 border border-neutral-300 rounded-sm flex items-center justify-center bg-white text-neutral-700 hover:bg-black hover:text-white hover:border-black transition-all duration-300 cursor-pointer"
+              >
+                <span class="text-base font-mono">›</span>
+              </button>
+            </div>
+          </div>
+
+          {
+            productosList.length === 0 ? (
+              <div class="py-16 text-neutral-500 text-base font-light">
+                No se encontraron productos en esta sección.
+                <div class="mt-4">
+                  <a
+                    href="/search"
+                    class="text-black font-medium uppercase tracking-wider underline"
+                  >
+                    Ver novedades recomendadas
+                  </a>
+                </div>
+              </div>
+            ) : (
+              <div class="js-carousel-track flex gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth pb-6">
+                {productosList.map((prod: any) => (
+                  <div class="min-w-60 max-w-60 sm:min-w-67.5 sm:max-w-67.5 shrink-0 snap-start border border-neutral-200 p-6 bg-white flex flex-col justify-between group hover:border-black transition-all duration-300 relative rounded-sm shadow-sm">
+                    {prod.is_new && (
+                      <span class="absolute top-3 left-3 bg-black text-white text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 z-10 rounded-xs">
+                        Novedad
+                      </span>
+                    )}
+
+                    <a
+                      href={`/product/${prod.pk_producto}`}
+                      class="flex flex-col h-full justify-between pt-4"
+                    >
+                      <div class="w-full aspect-square bg-[#fcfcfc] mb-6 overflow-hidden flex items-center justify-center p-2">
+                        <img
+                          src={prod.url_imagen}
+                          alt={prod.nombre_producto}
+                          class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+
+                      <div class="space-y-3">
+                        <h4 class="text-xs sm:text-sm font-normal text-neutral-800 line-clamp-2 leading-relaxed group-hover:text-black">
+                          {prod.nombre_producto}
+                        </h4>
+                        <p class="text-base font-bold text-neutral-900 pt-1">
+                          {Number(prod.precio).toFixed(2)} €
+                        </p>
+                      </div>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    import "../scripts/searchPage.js";
+  </script>
+
+  <script src="../scripts/universalCarousel.js"></script>
+</Layout>

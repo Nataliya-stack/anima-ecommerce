@@ -1,0 +1,500 @@
+---
+// src/pages/guia-hervidor.astro
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+import fotoBanner from "../assets/categories/banner-hervidor.jpg";
+import fotoMatt from "../assets/categories/hervidor-matt.jpg";
+import fotoMetallic from "../assets/categories/hervidor-metallic.jpg";
+import fotoMini from "../assets/categories/hervidor-mini.jpg";
+import fotoGrande from "../assets/categories/hervidor-grande.jpg";
+import fotoBase from "../assets/categories/hervidor-base.jpg";
+
+import paso1 from "../assets/categories/paso1.jpg";
+import paso2 from "../assets/categories/paso2.jpg";
+import paso3 from "../assets/categories/paso3.jpg";
+import paso4 from "../assets/categories/paso4.jpg";
+import paso5 from "../assets/categories/paso5.jpg";
+import paso6 from "../assets/categories/paso6.jpg";
+
+const pageTitle = "Instrucciones de mantenimiento del hervidor Smeg | ÁNIMA";
+---
+
+<Layout title={pageTitle}>
+  <main
+    class="w-full min-h-screen bg-white text-neutral-950 font-sans pb-40 select-none pt-35 lg:pt-50"
+  >
+    <!-- ======================================================= -->
+    <!-- 1. ПОЛНОЭКРАННЫЙ ГЛАВНЫЙ БАННЕР -->
+    <!-- ======================================================= -->
+    <section
+      class="component is-herobanner-slider relative w-full aspect-192/95 md:aspect-192/58 bg-[#f7f7f7] overflow-hidden select-none"
+    >
+      <!-- ЕДИНАЯ КАРТИНКА-ФОН -->
+      <div class="absolute inset-0 w-full h-full z-0">
+        <Image
+          src={fotoBanner}
+          alt="Instrucciones de mantenimiento del hervidor Smeg"
+          class="w-full h-full object-cover object-center opacity-100"
+          priority
+        />
+      </div>
+
+      <!-- НАВИГАЦИОННАЯ СТРЕЛКА -->
+      <div class="absolute top-6 left-0 w-full px-6 md:px-16 z-20">
+        <nav
+          class="max-w-[1700px] mx-auto text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2"
+        >
+          <a
+            href="/"
+            class="hover:text-black transition-colors flex items-center gap-1"
+          >
+            ← Página principal
+          </a>
+          <span class="mx-1">/</span>
+          <span class="text-neutral-800 font-normal"
+            >Instrucciones de mantenimiento del hervidor Smeg</span
+          >
+        </nav>
+      </div>
+
+      <!-- БЛОК ТЕКСТА -->
+      <div
+        class="absolute inset-0 w-full h-full z-10 flex items-center px-6 md:px-16"
+      >
+        <div class="w-full max-w-[1700px] mx-auto flex justify-start">
+          <div
+            class="w-full sm:max-w-100 md:max-w-[45%] text-left space-y-4 md:space-y-6"
+          >
+            <h1
+              class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-wide uppercase text-black leading-tight"
+            >
+              Instrucciones de mantenimiento del hervidor Smeg
+            </h1>
+            <p
+              class="text-xs sm:text-sm md:text-base text-neutral-700 font-light tracking-wide leading-relaxed max-w-[90%]"
+            >
+              Descubre cómo cuidar tu hervidor y mantener sus superficies
+              externas en condiciones óptimas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 2. ВВОДНЫЙ КОНТЕНТ (Секция списков) -->
+    <!-- ======================================================= -->
+    <section
+      class="max-w-[1700px] mx-auto px-6 md:px-16 pt-20 pb-12 text-left space-y-6"
+    >
+      <p
+        class="text-sm md:text-base font-light text-neutral-800 leading-relaxed tracking-wide"
+      >
+        Nos alegramos de que se haya decidido por uno de los hervidores Smeg.
+      </p>
+      <div class="space-y-3 pt-2">
+        <h3
+          class="text-[11px] font-bold tracking-[0.2em] uppercase text-neutral-600"
+        >
+          En esta sección, descubrirá información crucial para el mantenimiento
+          sobre:
+        </h3>
+        <ul
+          class="space-y-3 text-xs md:text-sm text-neutral-600 tracking-wide leading-relaxed list-disc pl-5"
+        >
+          <li>
+            Las instrucciones de limpieza y cuidado del hervidor, para mantener
+            el producto y sus superficies externas en condiciones óptimas.
+          </li>
+          <li>
+            El proceso de descalcificación, actividad fundamental para preservar
+            las funcionalidades del producto.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 3. ИНСТРУКЦИИ ПО ОЧИСТКЕ И УХОДУ -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pt-12 pb-16">
+      <div class="w-full max-w-[1700px] mx-auto px-6 md:px-16 space-y-12">
+        <!-- Заголовок и текстовое описание -->
+        <div class="w-full text-left space-y-6">
+          <h2
+            class="text-xl sm:text-2xl md:text-3xl font-light tracking-wide uppercase text-black"
+          >
+            Instrucciones de limpieza y cuidado
+          </h2>
+          <div
+            class="space-y-4 text-xs sm:text-sm md:text-base text-neutral-700 font-light tracking-wide leading-relaxed max-w-4xl"
+          >
+            <p>
+              Para mantener las superficies externas del hervidor en las mejores
+              condiciones, se recomienda limpiarlas regularmente después de cada
+              uso, esperando a que se enfríen primero.
+            </p>
+            <p>
+              Estas instrucciones son especialmente pertinentes para las
+              ediciones de colores especiales, como los mates y las metalizadas.
+            </p>
+          </div>
+        </div>
+
+        <!-- СЕТКА МОДЕЛЕЙ: Две колонки с композициями чайников -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 pt-6">
+          <!-- Левая колонка: MATT EDITION -->
+          <div class="flex flex-col items-center space-y-6 group">
+            <div
+              class="w-full flex items-center justify-center min-h-70 sm:min-h-85"
+            >
+              <Image
+                src={fotoMatt}
+                alt="Hervidores Smeg - Matt Edition"
+                class="w-full h-auto object-contain max-w-105"
+              />
+            </div>
+            <span
+              class="text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-neutral-500 font-medium transition-colors group-hover:text-black"
+            >
+              Matt Edition
+            </span>
+          </div>
+
+          <!-- Правая колонка: METALLIC EDITION -->
+          <div class="flex flex-col items-center space-y-6 group">
+            <div
+              class="w-full flex items-center justify-center min-h-70 sm:min-h-85"
+            >
+              <Image
+                src={fotoMetallic}
+                alt="Hervidores Smeg - Metallic Edition"
+                class="w-full h-auto object-contain max-w-105"
+              />
+            </div>
+            <span
+              class="text-[10px] md:text-[11px] tracking-[0.25em] uppercase text-neutral-500 font-medium transition-colors group-hover:text-black"
+            >
+              Metallic Edition
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 4. ПРАВИЛА И ОГРАНИЧЕНИЯ ОЧИСТКИ -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none py-16">
+      <div
+        class="w-full max-w-[1700px] mx-auto px-6 md:px-16 space-y-10 text-left text-neutral-800"
+      >
+        <!-- Первый абзац: Совет по использованию -->
+        <div class="max-w-8xl">
+          <p
+            class="text-sm sm:text-base md:text-[17px] font-normal tracking-wide leading-relaxed"
+          >
+            Para las operaciones de limpieza, se aconseja verter el detergente
+            sobre un paño húmedo y pasarlo suavemente sobre la superficie. Si es
+            necesario, repita la operación. Inmediatamente después, seque con un
+            paño suave o un paño de microfibra.
+          </p>
+        </div>
+
+        <!-- Блок со списком запрещенных средств -->
+        <div class="space-y-6 max-w-4xl pt-2">
+          <h4
+            class="text-sm sm:text-base md:text-[17px] font-medium tracking-wide text-black uppercase"
+          >
+            Para evitar daños en la superficie, es importante recordar:
+          </h4>
+
+          <ul
+            class="space-y-4 text-xs sm:text-sm md:text-[15px] font-normal tracking-wide leading-relaxed pl-5 list-disc text-neutral-700"
+          >
+            <li>No utilizar chorros de vapor para limpiar el aparato.</li>
+            <li>
+              No utilizar productos de limpieza que contengan cloro, amoníaco o
+              lejía.
+            </li>
+            <li>
+              No utilizar detergentes abrasivos o corrosivos (por ejemplo,
+              productos en polvo, quitamanchas y estropajos metálicos).
+            </li>
+            <li>
+              No utilice materiales ásperos o abrasivos ni rascadores metálicos
+              afilados.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Нижний абзац: Предупреждение про максимальный уровень воды -->
+        <div class="max-w-8xl pt-4 border-t border-neutral-100">
+          <p
+            class="text-sm sm:text-base md:text-[16px] font-normal text-neutral-800 tracking-wide leading-relaxed"
+          >
+            Cuando vierta agua en el hervidor, no debe superar su capacidad
+            máxima para evitar la acumulación de cal en los mecanismos de
+            apertura de la tapa del hervidor. Esto ayudará a preservar la
+            funcionalidad del producto. Puede comprobar la cantidad máxima de
+            agua directamente en el hervidor.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 5. СРАВНЕНИЕ МОДЕЛЕЙ KLF -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none py-16">
+      <div class="w-full max-w-[1700px] mx-auto px-6 md:px-16 space-y-20">
+        <!-- Сетка сравнения чайников KLF05 и KLF03/04 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-end">
+          <!-- Левая колонка: KLF05 (Мини) -->
+          <div class="flex flex-col items-center space-y-6 group">
+            <div
+              class="w-full flex items-center justify-center min-h-60 sm:min-h-70"
+            >
+              <Image
+                src={fotoMini}
+                alt="Smeg Hervidor KLF05"
+                class="w-full h-auto object-contain max-w-90"
+              />
+            </div>
+            <span
+              class="text-[11px] sm:text-xs font-semibold tracking-[0.25em] uppercase text-black"
+            >
+              KLF05
+            </span>
+          </div>
+
+          <!-- Правая колонка: KLF03 и KLF04 (Классика) -->
+          <div class="flex flex-col items-center space-y-6 group">
+            <div
+              class="w-full flex items-center justify-center min-h-60 sm:min-h-70"
+            >
+              <Image
+                src={fotoGrande}
+                alt="Smeg Hervidor KLF03 y KLF04"
+                class="w-full h-auto object-contain max-w-90"
+              />
+            </div>
+            <span
+              class="text-[11px] sm:text-xs font-semibold tracking-[0.25em] uppercase text-black"
+            >
+              KLF03 y KLF04
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 6. ДЕСКАЛЬЦИФИКАЦИЯ (ЧАСТЬ 1) -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none py-16">
+      <div
+        class="w-full max-w-[1700px] mx-auto px-6 md:px-16 space-y-8 text-left text-neutral-800"
+      >
+        <div class="w-full text-left space-y-6 pt-8">
+          <h2
+            class="text-xl sm:text-2xl md:text-3xl font-light tracking-wide uppercase text-black"
+          >
+            Descalcificación correcta
+          </h2>
+          <div
+            class="space-y-4 text-sm sm:text-base md:text-[16px] font-normal text-neutral-800 tracking-wide leading-relaxed max-w-8xl"
+          >
+            <p>
+              La descalcificación del hervidor es una operación crucial y
+              obligatoria para garantizar su mejor rendimiento y eficacia,
+              evitar daños en el producto y fomentar el ahorro de energía.
+            </p>
+            <p>
+              Inicialmente, la cal se acumula en la base interior del hervidor.
+              Debe comprobar esta zona para saber cuándo ha llegado el momento
+              de descalcificar.
+            </p>
+          </div>
+        </div>
+        <div class="py-16 flex flex-col items-start space-y-3">
+          <div class="w-full max-w-85 flex items-center justify-start">
+            <Image
+              src={fotoBase}
+              alt="Ejemplo de la base interior del hervidor Smeg"
+              class="w-full h-auto object-contain"
+            />
+          </div>
+          <span
+            class="text-xs md:text-sm font-normal italic text-neutral-500 tracking-wide"
+          >
+            Ejemplo de la base interior del hervidor
+          </span>
+        </div>
+        <!-- Полное текстовое описание процесса удаления накипи -->
+        <div
+          class="space-y-6 max-w-8xl text-sm sm:text-base md:text-[16px] font-normal tracking-wide leading-relaxed"
+        >
+          <p>
+            La descalcificación debe realizarse <span class="font-bold"
+              >con regularidad y cada vez que aparezca cal</span
+            > en la base del hervidor.
+          </p>
+          <p>
+            El hervidor puede desincrustarse utilizando vinagre doméstico común
+            o un producto desincrustante específico.
+          </p>
+          <p>
+            Siga estas instrucciones si utiliza vinagre doméstico común. Si
+            utiliza un producto desincrustante específico, es posible aplicar el
+            mismo procedimiento, pero es necesario comprobar en sus
+            instrucciones cuál es la cantidad correcta de producto que debe
+            añadirse al agua.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 7. ИЛЛЮСТРИРОВАННЫЕ ШАГИ 1, 2 И 3 -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pb-12 pt-16">
+      <div class="w-full max-w-[1700px] mx-auto px-6 md:px-16">
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 items-start"
+        >
+          <!-- ШАГ 1 -->
+          <div class="flex flex-col space-y-6 text-left">
+            <div
+              class="w-full bg-[#f9f9f9] border border-neutral-100 overflow-hidden flex items-center justify-center aspect-square md:aspect-4/3 max-h-65"
+            >
+              <Image
+                src={paso1}
+                alt="Paso 1: Llenar el hervidor de agua"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p
+              class="text-sm sm:text-base md:text-[15px] font-normal text-neutral-900 tracking-wide leading-loose"
+            >
+              1) Llene el hervidor de agua y conéctelo al enchufe. Para los
+              hervidores KLF03 y KLF04 (1,7 L de capacidad), debe introducir 1 L
+              de agua. Para el hervidor KLF05 (0,8 L de capacidad), se
+              recomienda añadir 0,5 L.
+            </p>
+          </div>
+
+          <!-- ШАГ 2 -->
+          <div class="flex flex-col space-y-6 text-left">
+            <div
+              class="w-full bg-[#f9f9f9] border border-neutral-100 overflow-hidden flex items-center justify-center aspect-square md:aspect-4/3 max-h-65"
+            >
+              <Image
+                src={paso2}
+                alt="Paso 2: Activar el hervidor"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p
+              class="text-sm sm:text-base md:text-[15px] font-normal text-neutral-900 tracking-wide leading-loose"
+            >
+              2) Activa el hervidor y deja que hierva el agua.
+            </p>
+          </div>
+
+          <!-- ШАГ 3 -->
+          <div class="flex flex-col space-y-6 text-left">
+            <div
+              class="w-full bg-[#f9f9f9] border border-neutral-100 overflow-hidden flex items-center justify-center aspect-square md:aspect-4/3 max-h-65"
+            >
+              <Image
+                src={paso3}
+                alt="Paso 3: Añadir vinagre blanco"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p
+              class="text-sm sm:text-base md:text-[15px] font-normal text-neutral-900 tracking-wide leading-loose"
+            >
+              3) Inmediatamente después del ciclo de ebullición, cuando el agua
+              aún esté caliente, añada el vinagre blanco (o el producto
+              desincrustante) directamente en la tetera. Para el KLF03 y KLF04,
+              añada de 100 a 500 ml de vinagre, según la cantidad de cal. Para
+              el KLF05, añada de 100 a 200 ml de vinagre.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 8. ИЛЛЮСТРИРОВАННЫЕ ШАГИ 4, 5 И 6 -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pb-20 pt-16">
+      <div class="w-full max-w-[1700px] mx-auto px-6 md:px-16">
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 items-start"
+        >
+          <!-- ШАГ 4 -->
+          <div class="flex flex-col space-y-6 text-left">
+            <div
+              class="w-full bg-[#f9f9f9] border border-neutral-100 overflow-hidden flex items-center justify-center aspect-square md:aspect-4/3 max-h-65"
+            >
+              <Image
+                src={paso4}
+                alt="Paso 4: Dejar actuar"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p
+              class="text-sm sm:text-base md:text-[15px] font-normal text-neutral-900 tracking-wide leading-[1.85]"
+            >
+              4) Dejar actuar durante 8-10 horas para permitir disolver todos
+              los depósitos de cal en el fondo.
+            </p>
+          </div>
+
+          <!-- ШАГ 5 -->
+          <div class="flex flex-col space-y-6 text-left">
+            <div
+              class="w-full bg-[#f9f9f9] border border-neutral-100 overflow-hidden flex items-center justify-center aspect-square md:aspect-4/3 max-h-65"
+            >
+              <Image
+                src={paso5}
+                alt="Paso 5: Vaciar el hervidor"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p
+              class="text-sm sm:text-base md:text-[15px] font-normal text-neutral-900 tracking-wide leading-[1.85]"
+            >
+              5) Vacía el hervidor por completo, desechando la mezcla de agua y
+              vinagre de forma segura.
+            </p>
+          </div>
+
+          <!-- ШАГ 6 -->
+          <div class="flex flex-col space-y-6 text-left">
+            <div
+              class="w-full bg-[#f9f9f9] border border-neutral-100 overflow-hidden flex items-center justify-center aspect-square md:aspect-4/3 max-h-65"
+            >
+              <Image
+                src={paso6}
+                alt="Paso 6: Enjuagar el hervidor"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p
+              class="text-sm sm:text-base md:text-[15px] font-normal text-neutral-900 tracking-wide leading-[1.85]"
+            >
+              6) Llene el hervidor de agua y hiérvela. Vacía el hervidor,
+              desechando el agua de forma segura. Repita esta operación al menos
+              dos veces para eliminar cualquier resto de sabor o olor a vinagre.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

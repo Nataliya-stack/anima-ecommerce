@@ -1,0 +1,109 @@
+---
+// src/pages/encuentra-distribuidores.astro
+import Layout from '../layouts/Layout.astro';
+
+import dataDB from '../../db.json';
+---
+<Layout title="Encuentra Distribuidores | ÁNIMA">
+  <main class="w-full min-h-[calc(100vh-120px)] lg:h-[calc(100vh-120px)] mt-20 lg:mt-30 bg-black text-white relative overflow-hidden select-none font-sans grid grid-cols-1 lg:grid-cols-[60%_40%]">
+    
+    <!-- ======================================================= -->
+    <!-- 1. БЛОК: СЕКЦИЯ ИНТЕРАКТИВНОЙ КАРТЫ                     -->
+    <!-- ======================================================= -->
+    <section class="w-full h-[60vh] min-h-112.5 lg:h-full relative bg-neutral-900 border-r border-neutral-800">
+      
+      <iframe 
+        id="map-frame"
+        src="https://maps.google.com/maps?q=Madrid,%20Barcelona&t=&z=6&ie=UTF8&iwloc=&output=embed" 
+        class="w-full h-full block border-0 invert-90 hue-rotate-180 brightness-[0.85] contrast-[1.2]"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      >
+      </iframe>
+
+      <!-- Индикатор типа точек в левом нижнем углу карты -->
+      <div class="absolute bottom-6 left-6 z-20 bg-black/80 backdrop-blur-md px-4 py-2 border border-neutral-800 flex items-center gap-2 rounded-sm text-xs font-light tracking-wider text-neutral-300">
+        <span class="w-2 h-2 rounded-full bg-white"></span> GRAN CONSUMO
+      </div>
+
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 2. БЛОК: БОКОВАЯ ПАНЕЛЬ ПОИСКА И СПИСКОВ               -->
+    <!-- ======================================================= -->
+    <section class="w-full h-full flex flex-col bg-[#111111] overflow-y-auto scrollbar-none mt-0 lg:mt-20">
+
+      <!-- Навигационная стрелка -->
+      <div class="w-full max-w-[1700px] mx-auto px-10 mb-6 pt-6 lg:pt-0">
+        <nav class="text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2">
+          <a href="/" class="hover:text-white transition-colors flex items-center gap-1">
+            ← Página principal
+          </a>
+          <span class="mx-1">/</span>
+          <span class="text-neutral-400 font-normal">Distribuidores</span>
+        </nav>
+      </div>
+      
+      <!-- Заголовок и вводный текст панели -->
+      <div class="px-10 border-b border-neutral-800 text-left space-y-2 pb-8">
+        <h1 class="text-3xl lg:text-[46px] font-light tracking-wide uppercase text-neutral-100">
+          - Distribuidores -
+        </h1>
+        <p class="text-neutral-400 text-lg font-light leading-relaxed mt-4">
+          Por favor, usa la lista a continuación para localizar el distribuidor oficial ÁNIMA más adecuado a tu zona.
+        </p>
+      </div>        
+
+      <!-- ======================================================= -->
+      <!-- 3. БЛОК: ЛЕНТА МАГАЗИНОВ (АККОРДЕОНЫ)                  -->
+      <!-- ======================================================= -->
+      <div class="flex-1 w-full divide-y divide-neutral-800/60 pb-32 overflow-y-auto scrollbar-none">
+        {dataDB.distribuidores.map((shop) => (
+          <div class="shop-accordion-item w-full block text-left bg-[#111111]" data-lat={shop.lat} data-lng={shop.lng}>
+            
+            <!-- Шапка карточки магазина -->
+            <button class="shop-trigger w-full p-6 lg:p-8 flex justify-between items-center group hover:bg-neutral-900/40 transition-colors">
+              <div class="space-y-1">
+                <span class="text-[16px] text-left uppercase tracking-[0.2em] text-white font-medium block">
+                  {shop.city}
+                </span>
+                <h3 class="text-[16px] font-semibold tracking-wide uppercase text-white group-hover:text-white transition-colors">
+                  {shop.name}
+                </h3>
+              </div>
+              <span class="shop-plus text-2xl font-light text-neutral-500 group-hover:text-neutral-200 transition-all transform duration-300">
+                +
+              </span>
+            </button>
+
+            <!-- Раскрывающееся тело карточки -->
+            <div class="shop-content h-0 transition-[height,opacity] opacity-0 overflow-hidden duration-300 ease-in-out bg-black/20 px-6 lg:px-8 space-y-4 font-sans text-lg tracking-wide text-neutral-400 font-light">
+              <div class="space-y-2 pt-2">
+                <p><strong class="font-medium text-neutral-300">Dirección:</strong> {shop.address}</p>
+                <p><strong class="font-medium text-neutral-300">Teléfono:</strong> {shop.phone}</p>
+                <p><strong class="font-medium text-neutral-300">Email:</strong> {shop.email}</p>
+              </div>
+              
+              <div class="pb-6 pt-2">
+                <a 
+                  href={`/distribuidores/${shop.id}`}
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="inline-flex items-center justify-center border border-neutral-700 px-6 py-2 text-[10px] uppercase tracking-[0.25em] font-bold text-neutral-200 hover:bg-white hover:text-black hover:border-white transition-all duration-300"
+                >
+                  Detalle
+                </a>
+              </div>
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="../scripts/distribuidores.js"></script>
+</Layout>

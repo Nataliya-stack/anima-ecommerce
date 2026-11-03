@@ -1,0 +1,214 @@
+---
+// src/pages/faq.astro
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Preguntas Frecuentes | ÁNIMA">
+  <main
+    class="w-full min-h-screen bg-white text-[#141414] pt-35 lg:pt-50 font-sans pb-32 select-none"
+  >
+    <!-- Навигационная стрелка) -->
+    <div class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 mb-8">
+      <nav
+        class="text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2"
+      >
+        <a
+          href="/"
+          class="hover:text-black transition-colors flex items-center gap-1"
+        >
+          ← Página principal
+        </a>
+        <span class="mx-1">/</span>
+        <a
+          href="/asistencia-tecnica"
+          class="hover:text-black transition-colors"
+        >
+          Asistencia técnica
+        </a>
+        <span class="mx-1">/</span>
+        <span class="text-neutral-800 font-normal">FAQ</span>
+      </nav>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- ОСНОВНАЯ СЕКЦИЯ ВОПРОСОВ И ОТВЕТОВ (АККОРДЕОН) -->
+    <!-- ======================================================= -->
+    <section class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20">
+      <div class="max-w-3xl mx-auto space-y-12 text-left">
+        <!-- БОЛЬШОЙ ЗАГОЛОВОК СТРАНИЦЫ -->
+        <div class="space-y-4 border-b border-neutral-100 pb-6">
+          <h1
+            class="text-4xl md:text-5xl font-light tracking-wide text-black uppercase"
+          >
+            Preguntas Frecuentes
+          </h1>
+          <p class="text-base text-neutral-500 tracking-wide font-light">
+            Encuentra respuestas rápidas a las dudas más comunes sobre tus
+            electrodomésticos ÁNIMA.
+          </p>
+        </div>
+
+        <!-- СПИСОК ВОПРОСОВ И ОТВЕТОВ -->
+        <div class="w-full space-y-2">
+          <!-- ВОПРОС 1 -->
+          <div
+            class="faq-item border-b border-neutral-300 py-6 group cursor-pointer"
+          >
+            <div class="flex items-center justify-between gap-4">
+              <h3
+                class="text-xl font-medium tracking-wide text-black group-hover:text-neutral-600 transition-colors"
+              >
+                ¿Cómo puedo solicitar asistencia técnica para mi
+                electrodoméstico?
+              </h3>
+              <span
+                class="faq-icon text-2xl font-light text-neutral-400 group-hover:text-black font-mono transition-transform duration-300"
+                >+</span
+              >
+            </div>
+            <div
+              class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+            >
+              <p
+                class="text-base text-neutral-500 font-light tracking-wide leading-relaxed pt-4"
+              >
+                Puede solicitar asistencia técnica directamente desde nuestra
+                página web rellenando el formulario en la sección de <a
+                  href="/asistencia-tecnica"
+                  class="text-black font-medium underline underline-offset-4"
+                  >Asistencia técnica</a
+                >. Nuestro equipo revisará los datos de su producto y se pondrá
+                en contacto con usted en un plazo de 24/48 horas laborables.
+              </p>
+            </div>
+          </div>
+
+          <!-- ВОПРОС 2 -->
+          <div
+            class="faq-item border-b border-neutral-300 py-6 group cursor-pointer"
+          >
+            <div class="flex items-center justify-between gap-4">
+              <h3
+                class="text-xl font-medium tracking-wide text-black group-hover:text-neutral-600 transition-colors"
+              >
+                ¿Cuánto tiempo dura la garantía oficial de los productos ÁNIMA?
+              </h3>
+              <span
+                class="faq-icon text-2xl font-light text-neutral-400 group-hover:text-black font-mono transition-transform duration-300"
+                >+</span
+              >
+            </div>
+            <div
+              class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+            >
+              <p
+                class="text-base text-neutral-500 font-light tracking-wide leading-relaxed pt-4"
+              >
+                Todos los electrodomésticos ÁNIMA adquiridos en España cuentan
+                con una garantía legal oficial de 3 años a partir de la fecha de
+                entrega del producto. Para hacer efectiva la garantía, es
+                imprescindible conservar el comprobante de compra o la factura
+                oficial.
+              </p>
+            </div>
+          </div>
+
+          <!-- ВОПРОС 3 -->
+          <div
+            class="faq-item border-b border-neutral-300 py-6 group cursor-pointer"
+          >
+            <div class="flex items-center justify-between gap-4">
+              <h3
+                class="text-xl font-medium tracking-wide text-black group-hover:text-neutral-600 transition-colors"
+              >
+                ¿Dónde puedo encontrar el número de serie de mi producto?
+              </h3>
+              <span
+                class="faq-icon text-2xl font-light text-neutral-400 group-hover:text-black font-mono transition-transform duration-300"
+                >+</span
+              >
+            </div>
+            <div
+              class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+            >
+              <p
+                class="text-base text-neutral-500 font-light tracking-wide leading-relaxed pt-4"
+              >
+                El número de serie se encuentra impreso en la etiqueta técnica
+                plateada pegada en el propio aparato. En las cafeteras y
+                batidoras suele estar en la parte inferior de la base, mientras
+                que en los hornos y microondas se ubica en el marco interior de
+                la puerta.
+              </p>
+            </div>
+          </div>
+
+          <!-- ВОПРОС 4 -->
+          <div
+            class="faq-item border-b border-neutral-300 py-6 group cursor-pointer"
+          >
+            <div class="flex items-center justify-between gap-4">
+              <h3
+                class="text-xl font-medium tracking-wide text-black group-hover:text-neutral-600 transition-colors"
+              >
+                ¿Qué debo hacer antes de usar mi cafetera espresso por primera
+                vez?
+              </h3>
+              <span
+                class="faq-icon text-2xl font-light text-neutral-400 group-hover:text-black font-mono transition-transform duration-300"
+                >+</span
+              >
+            </div>
+            <div
+              class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+            >
+              <p
+                class="text-base text-neutral-500 font-light tracking-wide leading-relaxed pt-4"
+              >
+                Antes del primer uso, es necesario realizar un ciclo de enjuague
+                completo. Llene el depósito de agua limpia, coloque un
+                recipiente grande bajo el vaporizador y el cabezal de erogación,
+                y haga circular el agua caliente sin colocar café molido. Esto
+                limpiará los circuitos internos de la máquina de cualquier
+                residuo de fabricación.
+              </p>
+            </div>
+          </div>
+
+          <!-- ВОПРОС 5 -->
+          <div
+            class="faq-item border-b border-neutral-300 py-6 group cursor-pointer"
+          >
+            <div class="flex items-center justify-between gap-4">
+              <h3
+                class="text-xl font-medium tracking-wide text-black group-hover:text-neutral-600 transition-colors"
+              >
+                ¿Cómo realizo el mantenimiento diario de mi batidora de alto
+                rendimiento?
+              </h3>
+              <span
+                class="faq-icon text-2xl font-light text-neutral-400 group-hover:text-black font-mono transition-transform duration-300"
+                >+</span
+              >
+            </div>
+            <div
+              class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+            >
+              <p
+                class="text-base text-neutral-500 font-light tracking-wide leading-relaxed pt-4"
+              >
+                Para una limpieza rápida, llene la jarra hasta la mitad con agua
+                tibia, añada una gota de jabón lavavajillas neutro y active el
+                programa de limpieza automática (o pulse la velocidad máxima
+                durante 30 segundos). Luego, enjuague con abundante agua limpia
+                y seque bien las cuchillas con un paño suave.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../scripts/faq.js"></script>
+</Layout>

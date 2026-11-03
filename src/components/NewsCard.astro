@@ -1,0 +1,73 @@
+---
+// src/components/NewsCard.astro
+import { Image } from "astro:assets";
+
+import n1 from "../assets/news/news1.jpg";
+import n2 from "../assets/news/news2.jpg";
+import n3 from "../assets/news/news3.png";
+import n4 from "../assets/news/news4.jpg";
+import n5 from "../assets/news/news5.jpg";
+import n6 from "../assets/news/news6.png";
+import n7 from "../assets/news/news7.jpg";
+import n8 from "../assets/news/news8.jpg";
+import n9 from "../assets/news/news9.jpg";
+import n10 from "../assets/news/news10.jpg";
+
+const newsImages: Record<string, any> = {
+  news1: n1,
+  news2: n2,
+  news3: n3,
+  news4: n4,
+  news5: n5,
+  news6: n6,
+  news7: n7,
+  news8: n8,
+  news9: n9,
+  news10: n10,
+};
+
+interface Props {
+  category: string;
+  title: string;
+  imageKey: string;
+}
+
+const { category, title, imageKey } = Astro.props;
+---
+
+<!-- ======================================================== -->
+<!-- 1. БЛОК: ИЗОБРАЖЕНИЕ НОВОСТИ                             -->
+<!-- ======================================================== -->
+<section class="w-full aspect-square overflow-hidden bg-neutral-900">
+  {
+    newsImages[imageKey] && (
+      <Image
+        src={newsImages[imageKey]}
+        alt={title}
+        class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
+      />
+    )
+  }
+</section>
+
+<!-- ======================================================== -->
+<!-- 2. БЛОК: ИНФОРМАЦИОННЫЙ БЛОК И ЗАГОЛОВОК КАРТОЧКИ        -->
+<!-- ======================================================== -->
+<section
+  class="p-6 md:p-8 flex flex-col justify-between bg-white border-t border-neutral-100 text-left h-auto md:h-44"
+>
+  <div class="flex flex-col h-full justify-between">
+    <div>
+      <span
+        class="text-[10px] font-bold tracking-[0.2em] text-neutral-400 uppercase mb-2 block"
+      >
+        {category}
+      </span>
+      <h3
+        class="text-sm md:text-[15px] font-extrabold text-neutral-950 tracking-tight uppercase leading-snug line-clamp-3 whitespace-normal"
+      >
+        {title}
+      </h3>
+    </div>
+  </div>
+</section>

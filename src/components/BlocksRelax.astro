@@ -1,0 +1,219 @@
+---
+// src/components/BlocksRelax.astro
+import { Image } from 'astro:assets';
+import dataDB from '../../db.json'; 
+
+import tvPortfolio from '../assets/categories/tv_portfolio.jpg';
+import techOled from '../assets/categories/tech_oled.jpg';
+import techSound from '../assets/categories/tech_sound.jpg';
+import techConsole from '../assets/categories/tech_console.jpg';
+import audioCraft from '../assets/categories/audio_craft.jpg';
+import gamingConsole from '../assets/categories/game_console.jpg';
+
+import projectorVideo from '../assets/video/projector_bg.mp4';
+
+const techCardImages = [techOled, techSound, techConsole];
+
+const blockContent = dataDB.home.blocks_relax; 
+---
+
+<!-- ======================================================== -->
+<!-- 1. БЛОК: ГЛАВНЫЙ БАННЕР ПОРТФОЛИО                        -->
+<!-- ======================================================== -->
+<section class="bg-black text-white mb-0 relative overflow-hidden select-none w-full z-10 left-0 right-0">
+  <div class="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6">
+    
+    <div class="relative w-full h-100 sm:h-150 md:h-200 bg-[#141414] rounded-sm overflow-hidden flex items-center border border-[#2a2a2a]/30">
+      
+      <!-- Правая часть: Фоновое изображение интерьера -->
+      <div class="absolute inset-y-0 right-0 w-full lg:w-[65%] h-full z-0">
+        <Image 
+          src={tvPortfolio} 
+          alt="Ecosistema Premium Imagen y Sonido" 
+          class="w-full h-full object-cover object-right sm:object-center"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-linear-to-r from-[#141414] via-[#141414]/80 to-transparent w-full lg:w-[40%] hidden lg:block z-10"></div>
+        <div class="absolute inset-0 bg-linear-to-t from-[#141414] via-[#141414]/40 to-transparent lg:hidden z-10"></div>
+      </div>
+
+      <!-- Левая часть: Информационный блок с текстом -->
+      <div class="relative z-20 w-full lg:w-1/2 h-full flex flex-col justify-center px-8 sm:px-12 md:px-16 lg:px-20 bg-linear-to-r from-[#141414] via-[#141414]/90 to-transparent lg:bg-none">
+        <div class="max-w-md space-y-4">
+          <span class="text-xs uppercase tracking-[0.25em] text-[#c2949c] font-medium block">
+            {blockContent.hero_portfolio.badge}
+          </span>
+
+          <a 
+            href="#portfolio" 
+            class="group inline-flex items-baseline gap-3 text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-slate-100 hover:text-white transition-colors duration-300"
+          >
+            <h2 class="leading-tight">
+              {blockContent.hero_portfolio.title}
+            </h2>
+              <!--<span class="text-xl sm:text-2xl font-light transform group-hover:translate-x-1 transition-transform duration-300 text-slate-400 group-hover:text-white">
+              &gt;
+            </span>-->
+          </a>
+
+          <p class="text-sm sm:text-base text-slate-400 font-light leading-relaxed pt-2">
+            {blockContent.hero_portfolio.description}
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================================================== -->
+<!-- 2. БЛОК: СЕКЦИЯ С КАРТОЧКАМИ ТЕХНОЛОГИЙ                  -->
+<!-- ======================================================== -->
+<section class="bg-[#f9f9f9] text-[#141414]  px-6 sm:px-8 md:px-16 selection:bg-[#141414] selection:text-white select-none border-t border-slate-200">
+  <div class="max-w-[1600px] mx-auto">
+    
+    <div class="max-w-5xl my-16">
+      <span class="text-xs uppercase tracking-[0.25em] text-[#c2949c] font-bold block mb-4">
+        {blockContent.vanguardia_intro.badge}
+      </span>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide uppercase mb-6 text-[#141414] leading-tight">
+        {blockContent.vanguardia_intro.title}
+      </h2>
+      <p class="text-lg sm:text-xl text-slate-600 font-light leading-relaxed max-w-4xl">
+        {blockContent.vanguardia_intro.description}
+      </p>
+    </div>
+
+    <!-- Трехколоночная сетка с карточками технологий через чистый .map -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+      {blockContent.tech_cards.map((card, index) => (
+        <div class="group flex flex-col space-y-6">
+          <div class="border-t border-slate-300 pt-5">
+            <h4 class="text-lg sm:text-xl font-medium tracking-wide text-[#141414]">{card.title}</h4>
+          </div>
+          <div class="aspect-square w-full overflow-hidden bg-slate-200 rounded-sm relative border border-slate-200/60">
+            <Image 
+              src={techCardImages[index]} 
+              alt={card.alt} 
+              class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================================================== -->
+<!-- 3. БЛОК: СЕКЦИЯ: ЗВУК И АКУСТИКА                         -->
+<!-- ======================================================== -->
+<section class="bg-[#f9f9f9] text-[#141414] py-16 sm:py-24 px-6 sm:px-12 md:px-20 lg:px-32 select-none border-t border-slate-200/60">
+  <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    
+    <!-- Левая половина: Текст -->
+    <div class="flex flex-col justify-center space-y-6 md:space-y-8 max-w-xl order-2 lg:order-1">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-[#141414] leading-[1.15]">
+        {blockContent.audio_history.title}
+      </h2>
+      <p class="text-base sm:text-lg text-slate-600 font-light leading-relaxed tracking-wide max-w-md">
+        {blockContent.audio_history.description}
+      </p>
+      <!--<div class="pt-4 sm:pt-6">
+        <a 
+          href="#historia-diseno" 
+          class="inline-block px-8 py-3.5 rounded-full border border-[#141414] text-xs font-medium uppercase tracking-[0.15em] text-[#141414] bg-transparent hover:bg-[#141414] hover:text-white transition-all duration-300 ease-in-out transform active:scale-[0.98]"
+        >
+          {blockContent.audio_history.button}
+        </a>
+      </div> -->
+    </div>
+
+    <!-- Правая половина: Картинка -->
+    <div class="w-full order-1 lg:order-2">
+      <div class="overflow-hidden rounded-sm bg-slate-100 aspect-4/3 sm:aspect-16/11 lg:aspect-5/4 shadow-sm border border-slate-200/40">
+        <Image 
+          src={audioCraft} 
+          alt="Artesanía y diseño acústico de alta gama" 
+          class="w-full h-full object-cover object-center transition-transform duration-700 ease-out hover:scale-102"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================================================== -->
+<!-- 4. БЛОК: СЕКЦИЯ: КОНСОЛИ И ГЕЙМИНГ                       -->
+<!-- ======================================================== -->
+<section class="bg-[#f9f9f9] text-[#141414] py-16 sm:py-24 px-6 sm:px-12 md:px-20 lg:px-32 select-none border-t border-slate-200/60">
+  <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    
+    <!-- Правая половина: Картинка -->
+    <div class="w-full order-1 lg:order-2">
+      <div class="overflow-hidden rounded-sm bg-slate-100 aspect-4/3 sm:aspect-16/11 lg:aspect-5/4 shadow-sm border border-slate-200/40">
+        <Image 
+          src={gamingConsole} 
+          alt="Consolas de última generación y rendimiento premium" 
+          class="w-full h-full object-cover object-center transition-transform duration-700 ease-out hover:scale-102"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <!-- Левая половина: Текст -->
+    <div class="flex flex-col justify-center space-y-6 md:space-y-8 max-w-xl order-2 lg:order-1">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-[#141414] leading-[1.15]">
+        {blockContent.gaming_art.title}
+      </h2>
+      <p class="text-base sm:text-lg text-slate-600 font-light leading-relaxed tracking-wide max-w-md">
+        {blockContent.gaming_art.description}
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================================================== -->
+<!-- 5. БЛОК: ПОЛНОЭКРАННЫЙ ВИДЕОБАННЕР ПРОЕКТОРОВ            -->
+<!-- ======================================================== -->
+<section class="relative w-full h-[70vh] min-h-125 sm:h-[80vh] md:h-[85vh] bg-[#141414] overflow-hidden select-none border-t border-slate-200/40 mb-0 left-0 right-0 z-10">
+  
+  <video 
+    src={projectorVideo} 
+    autoplay 
+    loop 
+    muted 
+    playsinline
+    class="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
+  >
+  </video>
+
+  <div class="absolute inset-0 bg-black/30 z-10"></div>
+
+  <div class="absolute inset-0 z-20 max-w-[1600px] mx-auto px-6 sm:px-12 md:px-20 lg:px-32 flex flex-col justify-end pb-16 sm:pb-24">
+    <div class="max-w-xl space-y-6 text-white">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight leading-[1.15]">
+        {blockContent.projector_banner.title}
+      </h2>
+      <p class="text-sm sm:text-base md:text-lg text-slate-200/90 font-light leading-relaxed max-w-md">
+        {blockContent.projector_banner.description}
+      </p>
+      <!--<div class="pt-2">
+        <a 
+          href="#proyectores" 
+          class="inline-block px-8 py-3.5 rounded-full border border-white text-xs font-medium uppercase tracking-[0.15em] text-white bg-transparent hover:bg-white hover:text-black transition-all duration-300 ease-in-out transform active:scale-[0.98] shadow-md"
+        >
+          {blockContent.projector_banner.button}
+        </a>
+      </div> -->
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,319 @@
+---
+//src/pages/porsche-x-smeg.astro
+import Layout from "../layouts/Layout.astro";
+
+import porscheHeroBanner from "../assets/categories/porsche-banner.png";
+import porscheTrackBanner from "../assets/categories/porsche-lemans.png";
+import legendCollageImg from "../assets/categories/porsche-legend-collage.png";
+import fridgeImg from "../assets/categories/porsche-fridge.png";
+import coffeeImg from "../assets/categories/porsche-coffee.png";
+import fridgeImgBlanco from "../assets/categories/porsche-fridge-blanco.png";
+import fridgeImgGris from "../assets/categories/porsche-fridge-gris.png";
+
+import porscheVideoHero from "../assets/video/porsche-smeg-hero.mp4";
+import porscheVideoFooter from "../assets/video/porsche-smeg-footer.mp4";
+---
+
+<Layout title="Porsche x Smeg | ÁNIMA">
+  <main class="w-full min-h-screen mt-20 lg:mt-40 bg-[#020202]">
+    <!-- Баннер на всю ширину -->
+    <section class="relative w-full mb-16 lg:mb-24">
+      <!-- Навигационные стрелки -->
+      <div
+        class="absolute top-6 left-0 right-0 z-10 max-w-[1920px] mx-auto px-6 sm:px-12 lg:px-20"
+      >
+        <nav class="text-xs tracking-[0.15em] text-white/80 font-light">
+          <a href="/" class="hover:text-white transition-colors"
+            >Página principal</a
+          >
+          <span class="mx-2 text-white/50">/</span>
+          <span class="text-white font-normal">Porsche x smeg</span>
+        </nav>
+      </div>
+
+      <img
+        src={porscheHeroBanner.src}
+        alt="Porsche x Smeg Collection"
+        class="w-full h-80 sm:h-120 lg:h-auto object-cover lg:object-contain block"
+      />
+    </section>
+
+    <!-- Текстовый блок по центру внизу -->
+    <section class="max-w-3xl mx-auto px-6 text-center space-y-6 lg:-mt-10">
+      <h2
+        class="text-xl sm:text-2xl lg:text-3xl font-light tracking-wide leading-relaxed text-white"
+      >
+        Dos marcas, una sola ambición. <br />
+        Impulsadas por la maestría y unidas por un propósito: crear leyendas, ofrecer
+        experiencias que despiertan todos los sentidos. Los sueños se hacen realidad.
+      </h2>
+    </section>
+
+    <!-- СЕКЦИЯ: ПОЛНОЭКРАННЫЙ БАННЕР -->
+    <section class="w-full mt-16 lg:mt-24">
+      <img
+        src={porscheTrackBanner.src}
+        alt="Porsche Le Mans Circuit des 24 Heures"
+        class="w-full h-auto object-contain block"
+      />
+    </section>
+
+    <!-- СЕКЦИЯ: LA LEYENDA TOMA FORMA -->
+    <section class="w-full bg-black text-white py-16 lg:py-24">
+      <div class="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-30">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
+        >
+          <!-- ЛЕВАЯ КОЛОНКА: Текст (5 колонок) -->
+          <div class="lg:col-span-5 space-y-6 max-w-lg">
+            <h2
+              class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-white leading-tight"
+            >
+              La leyenda toma forma
+            </h2>
+
+            <p
+              class="text-neutral-400 text-sm sm:text-base font-light tracking-wide leading-relaxed"
+            >
+              En una fusión inédita de tradición, innovación y excelencia en el
+              diseño, Porsche y SMEG unen estilo e ingenio para crear productos
+              destinados a convertirse en iconos de la vida cotidiana.
+            </p>
+          </div>
+
+          <!-- ПРАВАЯ КОЛОНКА: Изображение-коллаж (7 колонок) -->
+          <div
+            class="lg:col-span-7 flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src={legendCollageImg.src}
+              alt="La leyenda toma forma - Porsche x Smeg details"
+              class="w-full h-auto object-contain block"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="relative w-full h-[65vh] min-h-112.5 sm:h-[75vh] md:h-[80vh] bg-[#141414] select-none"
+    >
+      <video
+        src={porscheVideoHero}
+        controls
+        autoplay
+        loop
+        muted
+        playsinline
+        class="absolute inset-0 z-0 object-cover w-full h-full pointer-events-auto"
+      >
+      </video>
+    </section>
+
+    <!-- СЕКЦИЯ: 917 Salzburg Limited Edition -->
+    <section
+      class="w-full bg-[#0b0b0b] text-white py-20 lg:py-28 px-6 text-center"
+    >
+      <div class="max-w-4xl mx-auto space-y-6">
+        <!-- Заголовок -->
+        <h2
+          class="text-2xl sm:text-4xl lg:text-5xl font-light tracking-wide text-white"
+        >
+          917 Salzburg Limited Edition
+        </h2>
+
+        <!-- Описание -->
+        <p
+          class="text-neutral-300 text-sm sm:text-base lg:text-lg font-light tracking-wide leading-relaxed max-w-3xl mx-auto"
+        >
+          Nacido de una leyenda del automovilismo, reinventado para la vida
+          contemporánea. La edición limitada Porsche x SMEG 917 Salzburg encarna
+          el espíritu de la resistencia y la precisión, rindiendo homenaje a la
+          victoria más icónica de Porsche en Le Mans en 1970.
+        </p>
+
+        <!-- Ссылка / Кнопка с чертой -->
+        <div class="pt-6 flex flex-col items-center">
+          <div class="w-8 h-px bg-neutral-600 mb-6"></div>
+          <a
+            href="/salzburg-collection"
+            class="text-xs uppercase tracking-[0.25em] text-white hover:text-neutral-400 transition-colors duration-300 font-light"
+          >
+            Descubre la colección
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ: КАТЕГОРИИ И ТОВАРЫ (Frigorífico & Cafetera) -->
+    <section
+      class="w-full bg-black text-white pt-6 pb-12 lg:py-24 px-6 sm:px-12 lg:px-20"
+    >
+      <div class="max-w-[1700px] mx-auto">
+        <!-- Сетка из двух колонок -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          <!-- ТОВАР 1: Frigorífico 917 Salzburg -->
+          <div class="flex flex-col space-y-6">
+            <div class="space-y-3">
+              <h3
+                class="text-2xl sm:text-3xl font-light tracking-wide text-white"
+              >
+                Frigorífico 917 Salzburg
+              </h3>
+              <div class="flex items-center space-x-3 pt-2">
+                <div class="w-8 h-px bg-neutral-600"></div>
+                <a
+                  href="/producto/frigorifico-917-salzburg"
+                  class="text-xs uppercase tracking-[0.25em] text-neutral-300 hover:text-white transition-colors duration-300 font-light"
+                >
+                  Ver el producto
+                </a>
+              </div>
+            </div>
+
+            <!-- Картинка товара -->
+            <div class="w-full overflow-hidden bg-[#121212]">
+              <img
+                src={fridgeImg.src}
+                alt="Frigorífico 917 Salzburg"
+                class="w-full h-auto object-cover hover:scale-102 transition-transform duration-500"
+              />
+            </div>
+          </div>
+
+          <!-- ТОВАР 2: Cafetera superautomática 917 Salzburg -->
+          <div class="flex flex-col space-y-6">
+            <div class="space-y-3">
+              <h3
+                class="text-2xl sm:text-3xl font-light tracking-wide text-white"
+              >
+                Cafetera superautomática 917 Salzburg
+              </h3>
+              <div class="flex items-center space-x-3 pt-2">
+                <div class="w-8 h-px bg-neutral-600"></div>
+                <a
+                  href="/producto/cafetera-917-salzburg"
+                  class="text-xs uppercase tracking-[0.25em] text-neutral-300 hover:text-white transition-colors duration-300 font-light"
+                >
+                  See the product
+                </a>
+              </div>
+            </div>
+
+            <!-- Картинка товара -->
+            <div class="w-full overflow-hidden bg-[#121212]">
+              <img
+                src={coffeeImg.src}
+                alt="Cafetera superautomática 917 Salzburg"
+                class="w-full h-auto object-cover hover:scale-102 transition-transform duration-500"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ: Белая полоса с текстовым манифестом -->
+    <section class="w-full bg-white text-neutral-900 py-12 lg:py-24 px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <p
+          class="text-xl sm:text-2xl lg:text-3xl font-light tracking-wide leading-relaxed text-neutral-800"
+        >
+          La pasión no conoce límites; la precisión vive en cada detalle. Cuando
+          dos visiones se alinean, la belleza se convierte en función y la
+          función revela la belleza. Forjada a través de décadas de conocimiento
+          e innovación, la colección Porsche x SMEG es un homenaje al legado y
+          al encanto de los rituales cotidianos.
+        </p>
+      </div>
+    </section>
+
+    <section
+      class="relative w-full h-[65vh] min-h-112.5 sm:h-[75vh] md:h-[80vh] bg-[#141414] select-none"
+    >
+      <video
+        src={porscheVideoFooter}
+        controls
+        autoplay
+        loop
+        muted
+        playsinline
+        class="absolute inset-0 z-0 object-cover w-full h-full pointer-events-auto"
+      >
+      </video>
+    </section>
+
+    <section class="w-full bg-white py-12 lg:py-24 px-6">
+      <div class="max-w-4xl mx-auto space-y-6 text-center">
+        <!-- Заголовок -->
+        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-light tracking-wide">
+          Carrara White y Shade Green Collection
+        </h2>
+
+        <!-- Описание -->
+        <p
+          class="text-xl sm:text-2xl lg:text-3xl font-light tracking-wide leading-relaxed"
+        >
+          Dos acabados distintivos, una filosofía común de precisión y elegancia
+          para la vida cotidiana. Un diseño creado para perdurar más allá del
+          momento.
+        </p>
+
+        <!-- Ссылка / Кнопка с чертой -->
+        <div class="pt-6 flex flex-col items-center">
+          <div class="w-8 h-px bg-neutral-600 mb-6"></div>
+          <a
+            href="#coleccion"
+            class="text-xs uppercase tracking-[0.25em] transition-colors duration-300 font-light"
+          >
+            Descubre la colección
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ: КАТЕГОРИИ И ТОВАРЫ (Frigorífico & Cafetera) -->
+    <section class="w-full bg-white pt-6 pb-12 lg:py-24 px-6 sm:px-12 lg:px-20">
+      <div class="max-w-[1700px] mx-auto">
+        <!-- Сетка из двух колонок -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          <!-- ТОВАР 1: Frigorífico 917 Salzburg -->
+          <div class="flex flex-col space-y-6">
+            <div class="space-y-3">
+              <h3 class="text-2xl sm:text-3xl font-light tracking-wide">
+                Carrara White Colection
+              </h3>
+            </div>
+
+            <!-- Картинка товара -->
+            <div class="w-full overflow-hidden bg-[#121212]">
+              <img
+                src={fridgeImgBlanco.src}
+                alt="Frigorífico 917 Salzburg"
+                class="w-full h-auto object-cover hover:scale-102 transition-transform duration-500"
+              />
+            </div>
+          </div>
+
+          <!-- ТОВАР 2: Cafetera superautomática 917 Salzburg -->
+          <div class="flex flex-col space-y-6">
+            <div class="space-y-3">
+              <h3 class="text-2xl sm:text-3xl font-light tracking-wide">
+                Shade Green Colection
+              </h3>
+            </div>
+
+            <!-- Картинка товара -->
+            <div class="w-full overflow-hidden bg-[#121212]">
+              <img
+                src={fridgeImgGris.src}
+                alt="Cafetera superautomática 917 Salzburg"
+                class="w-full h-auto object-cover hover:scale-102 transition-transform duration-500"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

@@ -1,0 +1,337 @@
+---
+// src/pages/porsche-x-smeg/917-salzburg-collection.astro
+import Layout from "../layouts/Layout.astro";
+
+import salzburgHeroBanner from "../assets/categories/porsche-917-salzburg-banner.png";
+import fab28SalzburgImg from "../assets/categories/porsche-fab28-salzburg.png";
+import bcc12SalzburgImg from "../assets/categories/porsche-bcc12-salzburg.png";
+import footerCircleImg from "../assets/categories/porsche-footer-circle.png";
+
+import porscheVideoHero from "../assets/video/porsche-smeg-hero.mp4";
+
+import slide1 from "../assets/categories/salzburg-slide-1.png";
+import slide2 from "../assets/categories/salzburg-slide-2.png";
+import slide3 from "../assets/categories/salzburg-slide-3.png";
+import slide4 from "../assets/categories/salzburg-slide-4.png";
+import slide5 from "../assets/categories/salzburg-slide-5.png";
+
+// Собираем локальный массив слайдов
+const sliderSlides = [
+  { image: slide1, alt: "Porsche x Smeg Salzburg Slide 1" },
+  { image: slide2, alt: "Porsche x Smeg Salzburg Slide 2" },
+  { image: slide3, alt: "Porsche x Smeg Salzburg Slide 3" },
+  { image: slide4, alt: "Porsche x Smeg Salzburg Slide 4" },
+  { image: slide5, alt: "Porsche x Smeg Salzburg Slide 5" },
+];
+---
+
+<Layout title="917 Salzburg Collection | Porsche x Smeg | ÁNIMA">
+  <main class="w-full bg-black min-h-screen mt-20 lg:mt-40">
+    <!-- Главный баннер коллекции на всю ширину-->
+    <section class="relative w-full">
+      <!-- Навигационные стрелки -->
+      <div
+        class="absolute top-6 left-0 right-0 z-10 max-w-[1920px] mx-auto px-6 sm:px-12 lg:px-20"
+      >
+        <nav
+          class="text-xs tracking-[0.15em] leading-loose text-white/60 font-light"
+        >
+          <a href="/" class="hover:text-white transition-colors"
+            >Página principal</a
+          >
+          <span class="mx-2 text-white/40">/</span>
+          <a href="/porsche-x-smeg" class="hover:text-white transition-colors"
+            >Porsche x smeg</a
+          >
+          <span class="mx-2 text-white/40">/</span>
+          <span class="text-white font-normal white-space: nowrap"
+            >917 Salzburg Collection</span
+          >
+        </nav>
+      </div>
+
+      <!-- Полноразмерное баннерное изображение 917 Salzburg -->
+      <img
+        src={salzburgHeroBanner.src}
+        alt="Porsche x Smeg - 917 Salzburg Collection"
+        class="w-full h-80 sm:h-120 lg:h-auto object-cover lg:object-contain block"
+      />
+    </section>
+
+    <!-- СЕКЦИЯ: Текстовый манифест коллекции (Salzburg 1970) -->
+    <section class="w-full bg-[#0b0b0b] text-white py-20 lg:py-28 px-6">
+      <div class="max-w-3xl mx-auto text-center space-y-8">
+        <!-- Первый абзац -->
+        <p
+          class="text-xl sm:text-2xl lg:text-3xl font-light tracking-wide text-neutral-100 leading-relaxed"
+        >
+          Todo comenzó con una carrera, en 1970, cuando Porsche logró su primera
+          victoria absoluta en las <span class="whitespace-nowrap"
+            >24 Horas</span
+          > de Le Mans con el deportivo <span class="whitespace-nowrap"
+            >917 KH</span
+          > de <span class="whitespace-nowrap">580 CV</span> y el número de salida
+          23.
+        </p>
+
+        <!-- Второй абзац -->
+        <p
+          class="text-xl sm:text-2xl lg:text-3xl font-light tracking-wide text-neutral-100 leading-relaxed"
+        >
+          Esa leyenda del automovilismo ha sido ahora reinventada para la vida
+          contemporánea. La edición limitada 917 Salzburg <span
+            class="whitespace-nowrap">Porsche x SMEG</span
+          > encarna el espíritu de resistencia y precisión que definió la victoria
+          más icónica de Porsche.
+        </p>
+      </div>
+    </section>
+
+    <section
+      class="relative w-full h-[65vh] min-h-112.5 sm:h-[75vh] md:h-[80vh] bg-[#141414] select-none"
+    >
+      <video
+        src={porscheVideoHero}
+        controls
+        autoplay
+        loop
+        muted
+        playsinline
+        class="absolute inset-0 z-0 object-cover w-full h-full pointer-events-auto"
+      >
+      </video>
+    </section>
+
+    <!-- СЕКЦИЯ: Текстовый манифест коллекции (Salzburg 1970) -->
+    <section class="w-full bg-[#0b0b0b] text-white py-20 lg:py-28 px-6">
+      <div class="max-w-3xl mx-auto text-center space-y-8">
+        <!-- Первый абзац -->
+        <p
+          class="text-xl sm:text-2xl lg:text-3xl font-light tracking-wide text-neutral-100 leading-relaxed"
+        >
+          Fuerte en carácter pero refinada en cada detalle, transforma la
+          herencia del rendimiento en una declaración de diseño. <br />
+          Una serie limitada, creada para quienes exigen más que lo ordinario.
+        </p>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ: Rojo como la victoria (FAB28 917 Salzburg) -->
+    <section
+      class="w-full bg-[#0b0b0b] text-white py-16 lg:py-24 px-6 sm:px-12 lg:px-20"
+    >
+      <div class="max-w-[1700px] mx-auto">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
+        >
+          <!-- ЛЕВАЯ КОЛОНКА: Изображение товара с фоном (7 колонок) -->
+          <div
+            class="lg:col-span-7 flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src={fab28SalzburgImg.src}
+              alt="FAB28 917 Salzburg Porsche x SMEG"
+              class="w-full h-auto object-contain block"
+            />
+          </div>
+
+          <!-- ПРАВАЯ КОЛОНКА: Текст и кнопка (5 колонок) -->
+          <div class="lg:col-span-5 space-y-8 max-w-xl">
+            <h2
+              class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-white leading-tight"
+            >
+              Rojo como la victoria, icónico como el número 23
+            </h2>
+
+            <p
+              class="text-neutral-300 text-sm sm:text-base font-light tracking-wide leading-relaxed"
+            >
+              El <span class="whitespace-nowrap">FAB28 917 Salzburg</span>
+              <span class="whitespace-nowrap">Porsche x SMEG</span> luce la legendaria
+              decoración roja con franjas de competición, detalles en negro mate y
+              una placa numerada de autenticidad. Limitado a <span
+                class="whitespace-nowrap">1.970 unidades</span
+              >, es una declaración de legado diseñada para un rendimiento
+              diario.
+            </p>
+
+            <!-- Кнопка с горизонтальной чертой -->
+            <div class="pt-4">
+              <div class="w-8 h-px bg-neutral-600 mb-4"></div>
+              <a
+                href="/producto/fab28-917-salzburg"
+                class="text-xs uppercase tracking-[0.25em] text-white hover:text-neutral-400 transition-colors duration-300 font-light"
+              >
+                Descubre más
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ: Espíritu de competición (Cafetera BCC12 Salzburg) -->
+    <section
+      class="w-full bg-[#0b0b0b] text-white py-16 lg:py-24 px-6 sm:px-12 lg:px-20"
+    >
+      <div class="max-w-[1700px] mx-auto">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
+        >
+          <!-- ЛЕВАЯ КОЛОНКА: Текст и кнопка (5 колонок) -->
+          <div class="lg:col-span-5 space-y-8 max-w-xl">
+            <h2
+              class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-white leading-tight"
+            >
+              Espíritu de competición, diseño refinado
+            </h2>
+
+            <p
+              class="text-neutral-300 text-sm sm:text-base font-light tracking-wide leading-relaxed"
+            >
+              Precisión al gusto. La cafetera superautomática <span
+                class="whitespace-nowrap">Porsche × SMEG</span
+              > combina tecnología avanzada de preparación con el inconfundible lenguaje
+              de diseño de dos iconos. Acabada con detalles en negro mate y diseñada
+              para un rendimiento diario, transforma el ritual del café en un viaje
+              entre la adrenalina y el placer.
+            </p>
+
+            <!-- Кнопка с горизонтальной чертой -->
+            <div class="pt-4">
+              <div class="w-8 h-px bg-neutral-600 mb-4"></div>
+              <a
+                href="/producto/cafetera-bcc12-salzburg"
+                class="text-xs uppercase tracking-[0.25em] text-white hover:text-neutral-400 transition-colors duration-300 font-light"
+              >
+                Descubre más
+              </a>
+            </div>
+          </div>
+
+          <!-- ПРАВАЯ КОЛОНКА: Изображение товара с фоном (7 колонок) -->
+          <div
+            class="lg:col-span-7 flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src={bcc12SalzburgImg.src}
+              alt="Cafetera superautomática Porsche × SMEG 917 Salzburg"
+              class="w-full h-auto object-contain block"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ: Слайдер галереи 917 Salzburg -->
+    <section
+      class="w-full bg-black py-16 lg:py-24 relative overflow-hidden select-none js-carousel-container"
+    >
+      <div class="max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 relative">
+        <div class="relative group">
+          <!-- Стрелка «Влево»  -->
+          <button
+            type="button"
+            class="js-carousel-prev absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-all duration-300 opacity-80 hover:opacity-100 backdrop-blur-sm cursor-pointer"
+            aria-label="Anterior"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+
+          <!-- Лента слайдов -->
+          <div
+            class="js-carousel-track flex gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth"
+          >
+            {
+              sliderSlides.map((slide) => (
+                <div class="min-w-full sm:min-w-[85%] lg:min-w-[75%] snap-center shrink-0">
+                  <div class="w-full h-100 sm:h-137.5 lg:h-175 bg-[#121212] overflow-hidden">
+                    <img
+                      src={slide.image.src}
+                      alt={slide.alt}
+                      class="w-full h-full object-cover block"
+                    />
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+          <!-- Стрелка «Вправо» -->
+          <button
+            type="button"
+            class="js-carousel-next absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-all duration-300 opacity-80 hover:opacity-100 backdrop-blur-sm cursor-pointer"
+            aria-label="Siguiente"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ: Баннер с текстом поверх (Driven by passion) и подписка на рассылку -->
+    <section
+      class="w-full bg-black text-white px-6 sm:px-12 lg:px-20 border-t border-neutral-900"
+    >
+      <div class="max-w-[1700px] mx-auto">
+        <!-- Блок с большой картинкой на всю ширину и наложенным текстом -->
+        <div
+          class="relative w-full h-125 sm:h-150 lg:h-175 overflow-hidden mb-28 shadow-2xl flex items-center"
+        >
+          <!-- Фоновое изображение -->
+          <img
+            src={footerCircleImg.src}
+            alt="Driven by passion, refined by design"
+            class="absolute inset-0 w-full h-full object-cover block"
+          />
+
+          <!-- Затемнение для читаемости текста -->
+          <div class="absolute inset-0 bg-black/40"></div>
+
+          <!-- Текст и кнопка поверх изображения (слева) -->
+          <div class="relative z-10 px-8 sm:px-16 lg:px-20 max-w-4xl space-y-8">
+            <h2
+              class="text-3xl sm:text-4xl lg:text-5xl font-light tracking-wide text-white leading-tight"
+            >
+              Driven by passion, refined by design.
+            </h2>
+
+            <div class="pt-2">
+              <div class="w-12 h-px bg-white/60 mb-6"></div>
+              <a
+                href="/porsche-x-smeg"
+                class="text-xs uppercase tracking-[0.25em] text-white hover:text-neutral-300 transition-colors duration-300 font-light"
+              >
+                Descubre la colección
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../scripts/universalCarousel.js"></script>
+</Layout>

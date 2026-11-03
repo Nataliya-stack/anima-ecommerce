@@ -1,0 +1,449 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import NewsCard from '../components/NewsCard.astro';
+
+import dataDB from '../../db.json';
+const content = dataDB.home;
+
+const trends = import.meta.env.DEV 
+  ? await (await fetch('http://localhost:3000/trends')).json()
+  : dataDB.trends;
+
+const newsList = import.meta.env.DEV 
+  ? await (await fetch('http://localhost:3000/news')).json()
+  : dataDB.news;
+
+import bgVideo from '../assets/video/video2.mp4'; 
+import videoGalileo from '../assets/video/galileo.mp4';
+
+import imgGran from '../assets/categories/imgGran.jpg';
+import imgPequeno from '../assets/categories/imgPequeno.jpg';
+
+import imgFryer from '../assets/trends/trend_fryer.jpg';
+import imgGrill from '../assets/trends/trend_grill.jpg';
+import imgMicro from '../assets/trends/trend_micro.jpg';
+
+import imgTienda from '../assets/categories/tienda_online.jpg';
+import imgDistri from '../assets/categories/distribuidores.jpg';
+
+import imgProf from '../assets/categories/division_professional.jpg';
+import imgInst from '../assets/categories/division_instruments.jpg';
+import imgCafe from '../assets/categories/division_cafe.jpg';
+
+const trendImages: Record<string, any> = {
+  "trend_fryer": imgFryer,
+  "trend_grill": imgGrill,
+  "trend_micro": imgMicro
+};
+
+const videoUrlDG = "https://www.youtube.com/embed/XvIT6tmAJMw";
+const videoUrlSamsung = "https://www.youtube.com/embed/Bsulx9U4xhI";
+---
+<Layout title="ÁNIMA — Electrodomésticos Premium para el Hogar">
+  <main class="w-full min-h-screen bg-white text-neutral-900 select-none">
+
+    <!-- ========================================== -->
+    <!-- СЕКЦИЯ 1: HERO BLOCK (Главный видео-баннер) -->
+    <!-- ========================================== -->
+    <section class="relative h-[calc(100vh-9rem)] w-full overflow-hidden bg-black select-none">
+      
+      <!-- Фоновое видео: Заполняет весь блок баннера -->
+      <div class="absolute inset-0 w-full h-full z-0">
+        <video 
+          autoplay 
+          loop 
+          muted 
+          playsinline 
+          class="w-full h-full object-cover object-center opacity-60"
+        >
+          <source src={bgVideo} type="video/mp4" />
+        </video>
+      </div>
+
+      <!-- Вуаль для читаемости текста -->
+      <div class="absolute inset-0 bg-linear-to-r from-black/50 via-transparent to-black/30 z-10"></div>
+
+      <!-- БЛОК ТЕКСТА: Шрифты, воздушные строки (leading-loose) и отступы один в один как на внутренних страницах -->
+      <div class="absolute inset-0 w-full h-full z-20 flex items-center px-6 md:px-16">
+        <div class="w-full max-w-[1600px] mx-auto flex justify-start">
+          
+          <div class="w-full sm:max-w-100 md:max-w-[42%] text-left space-y-4 md:space-y-6 text-white">
+            
+            <!-- Надзаголовок -->
+            <span class="block text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-neutral-400 font-medium">
+              {content.hero.subtitle}
+            </span>
+
+            <!-- Главный заголовок -->
+            <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-wide uppercase text-white leading-tight">
+              {content.hero.titleBold} <span class="font-light block normal-case tracking-normal text-neutral-200 mt-1">{content.hero.titleLight}</span>
+            </h1>
+            
+            <!-- Описание с воздушным межстрочным интервалом -->
+            <p class="text-xs sm:text-sm md:text-[15px] text-neutral-300 tracking-wide leading-loose">
+              {content.hero.description}
+            </p>           
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================== -->
+    <!-- СЕКЦИЯ 2: CATEGORÍAS (Две основные категории товаров) -->
+    <!-- ========================================== -->
+    <section id="categories" class="w-full bg-white py-20 px-6 md:px-24">
+      <div class="w-full max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+        
+        <!-- Блок ЛЕВО: Gran electrodoméstico -->
+        <div class="flex flex-col items-center text-center group cursor-pointer">
+          <h2 class="text-3xl font-light text-neutral-900 tracking-wide mb-3">
+            {content.categories.gran.title}
+          </h2>
+          
+          <a 
+            href="/catalog?cat=gran-electrodomestico"
+            class="group flex items-center gap-3 mb-8 text-[11px] font-bold tracking-widest text-neutral-500 uppercase transition-colors duration-300 hover:text-black"
+          >
+            <span class="w-6 h-px bg-current transition-colors duration-300"></span>
+            <span>{content.categories.gran.button}</span>
+          </a>
+
+          <div class="w-full aspect-4/3 overflow-hidden bg-neutral-50">
+            <Image 
+              src={imgGran} 
+              alt={content.categories.gran.title} 
+              class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:translate-y-1" 
+            />
+          </div>
+        </div>
+
+        <!-- Блок ПРАВО: Pequeño electrodoméstico -->
+        <div class="flex flex-col items-center text-center group cursor-pointer">
+          <h2 class="text-3xl font-light text-neutral-900 tracking-wide mb-3">
+            {content.categories.pequeno.title}
+          </h2>
+            
+          <a 
+            href="/catalog?cat=pequeno-electrodomestico" 
+            class="group flex items-center gap-3 mb-8 text-[11px] font-bold tracking-widest text-neutral-500 uppercase transition-colors duration-300 hover:text-black"
+          >
+            <span class="w-6 h-px bg-current transition-colors duration-300"></span>
+            <span>{content.categories.pequeno.button}</span>
+          </a>
+          
+          <div class="w-full aspect-4/3 overflow-hidden bg-neutral-50">
+            <Image 
+              src={imgPequeno} 
+              alt={content.categories.pequeno.title} 
+              class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105 group-hover:translate-y-1" 
+            />
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- СЕКЦИЯ 3: TENDENCIAS DEL MOMENTO (Тренды) -->
+    <!-- ========================================== -->
+    <section class="w-full bg-white pb-12 md:pb-24 px-6 md:px-24">
+      <div class="w-full max-w-[1600px] mx-auto">
+        
+        <!-- Заголовок секции -->
+        <h2 class="text-3xl font-light text-neutral-900 tracking-wide mb-12 text-left">
+          Tendencias del momento
+        </h2>
+
+        <!-- Сетка из 3 колонок -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {trends.map((item: any) => (
+            <a href={`/product/${item.id}`} class="flex flex-col group cursor-pointer">
+              
+              <!-- Контейнер картинки -->
+              <div class="w-full aspect-4/3 bg-neutral-50 overflow-hidden relative mb-5">
+                <Image 
+                  src={trendImages[item.imageKey]} 
+                  alt={item.title} 
+                  class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-102"
+                />
+              </div>
+
+              <!-- Текст под фото -->
+              <div class="text-left text-xl font-light text-neutral-900 tracking-wide leading-snug whitespace-normal">
+                {item.tag && (
+                  <span class="font-black text-neutral-950 mr-1.5 uppercase">
+                    {item.tag}
+                  </span>
+                )}
+                <span>{item.title}</span>
+              </div>
+
+            </a>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- СЕКЦИЯ 4: EDICIONES LIMITADAS              -->
+    <!-- ========================================== -->
+    <section class="w-full bg-white py-12 md:py-24 px-6 md:px-24 border-t border-neutral-100">
+      <div class="w-full max-w-[1600px] mx-auto space-y-16 md:space-y-32">
+        
+        <!-- БЛОК 1: Galileo Technology -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          <div class="lg:col-span-5 space-y-6 max-w-md">
+            <h2 class="text-3xl sm:text-4xl font-light text-neutral-900 tracking-wide uppercase leading-tight whitespace-normal">
+              {content.ediciones.galileo.title}
+            </h2>
+            <p class="text-neutral-500 text-sm sm:text-base font-light tracking-wide leading-relaxed">
+              {content.ediciones.galileo.description}
+            </p>          
+          </div>
+
+          <div class="lg:col-span-7 aspect-video bg-neutral-50 overflow-hidden shadow-sm relative">
+            <video controls muted playsinline class="w-full h-full object-cover">
+              <source src={videoGalileo} type="video/mp4" />
+            </video>
+          </div>
+        </div>
+
+        <!-- БЛОК 2: Smeg y Dolce&Gabbana -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          <div class="js-video-wrapper lg:col-span-7 aspect-video bg-neutral-950 overflow-hidden shadow-sm order-2 lg:order-1 relative">
+            <div class="js-video-shield absolute inset-0 z-20" style="pointer-events: auto;"></div>
+            <iframe 
+              class="js-video-iframe absolute top-0 left-0 w-full h-full border-0 scale-y-[1.35] z-10"
+              style="pointer-events: none;"
+              src={videoUrlDG} 
+              title="Smeg y Dolce&Gabbana" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <div class="lg:col-span-5 space-y-6 max-w-md lg:pl-12 order-1 lg:order-2">
+            <h2 class="text-3xl sm:text-4xl font-light text-neutral-900 tracking-wide uppercase leading-tight whitespace-normal">
+              {content.ediciones.dolce.title}
+            </h2>
+            <p class="text-neutral-500 text-sm sm:text-base font-light tracking-wide leading-relaxed">
+              {content.ediciones.dolce.description}
+            </p>          
+          </div>
+        </div>
+
+        <!-- БЛОК 3: TOILETPAPER X Samsung Bespoke -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          <div class="lg:col-span-5 space-y-6 max-w-md">
+            <h2 class="text-3xl sm:text-4xl font-light text-neutral-900 tracking-wide uppercase leading-tight whitespace-normal">
+              {content.ediciones.samsung.title}
+            </h2>
+            <p class="text-neutral-500 text-sm sm:text-base font-light tracking-wide leading-relaxed">
+              {content.ediciones.samsung.description}
+            </p>          
+          </div>
+
+          <div class="js-video-wrapper lg:col-span-7 aspect-video bg-neutral-950 overflow-hidden shadow-sm relative">
+            <div class="js-video-shield absolute inset-0 z-20" style="pointer-events: auto;"></div>
+            <iframe 
+              class="js-video-iframe absolute top-0 left-0 w-full h-full border-0 scale-y-[1.35] z-10"
+              style="pointer-events: none;"
+              src={videoUrlSamsung} 
+              title="Toiletpaper X Bespoke" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- СЕКЦИЯ 5: TIENDA Y DISTRIBUIDORES          -->
+    <!-- ========================================== -->
+    <section class="w-full bg-white py-12 md:py-24 px-6 md:px-24 border-t border-neutral-100">
+      <div class="w-full max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+        
+        <!-- Блок ЛЕВО: Tienda online -->
+        <a href="/catalog" class="flex flex-col text-left group cursor-pointer">
+          <div class="w-full aspect-16/10 overflow-hidden bg-neutral-50 mb-6">
+            <Image 
+              src={imgTienda} 
+              alt={content.tienda.title} 
+              class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-102 group-hover:translate-y-1" 
+            />
+          </div>
+          
+          <h2 class="text-3xl font-light text-neutral-900 tracking-wide mb-3">
+            {content.tienda.title}
+          </h2>
+          <p class="text-neutral-500 text-sm sm:text-base font-light tracking-wide leading-relaxed max-w-sm mb-6">
+            {content.tienda.description}
+          </p>
+          
+          <div class="flex items-center gap-2 text-[11px] font-bold tracking-widest text-neutral-900 uppercase">
+            <span class="group-hover:text-neutral-500 transition-colors">{content.tienda.button}</span>
+          </div>
+        </a>
+
+        <!-- Блок ПРАВО: Distribuidores -->
+        <a href="/encuentra-distribuidores" class="flex flex-col text-left group cursor-pointer">
+          <div class="w-full aspect-16/10 overflow-hidden bg-neutral-50 mb-6">
+            <Image 
+              src={imgDistri} 
+              alt={content.distribuidores.title} 
+              class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-102 group-hover:translate-y-1" 
+            />
+          </div>
+          
+          <h2 class="text-3xl font-light text-neutral-900 tracking-wide mb-3">
+            {content.distribuidores.title}
+          </h2>
+          <p class="text-neutral-500 text-sm sm:text-base font-light tracking-wide leading-relaxed max-w-sm mb-6">
+            {content.distribuidores.description}
+          </p>
+          
+          <div class="flex items-center gap-2 text-[11px] font-bold tracking-widest text-neutral-900 uppercase">
+            <span class="group-hover:text-neutral-500 transition-colors">{content.distribuidores.button}</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- СЕКЦИЯ 6: ÚLTIMAS NOTICIAS                 -->
+    <!-- ========================================== -->
+    <section class="js-carousel-container w-full bg-[#0a0a0a] py-12 md:py-24 px-6 md:px-24 max-sm:px-4 text-white overflow-hidden relative">
+      
+      <div class="group/carousel w-full max-w-[1600px] mx-auto relative">
+        
+        <!-- Шапка секции -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12 border-b border-neutral-900 pb-6">
+          <h2 class="text-3xl font-light tracking-wide uppercase">
+            Últimas noticias
+          </h2>
+          <a href="/noticias" class="inline-flex items-center gap-3 text-[11px] font-bold tracking-widest text-neutral-400 hover:text-white uppercase group transition-colors">
+            <span class="w-6 h-px bg-neutral-600 group-hover:w-10 group-hover:bg-white transition-all duration-300"></span>
+            Descubre todas las noticias
+          </a>
+        </div>
+
+        <!-- Кнопки-стрелки по бокам -->
+        <button 
+          class="js-carousel-prev max-sm:opacity-100 absolute left-1 md:left-4 top-[45%] z-30 w-12 h-12 bg-black/80 border border-neutral-800 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-all backdrop-blur-sm cursor-pointer opacity-0 group-hover/carousel:opacity-100 rounded-none"
+          aria-label="Anterior"
+        >
+          <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" /></svg>
+        </button>
+
+        <button 
+          class="js-carousel-next max-sm:opacity-100 absolute right-1 md:right-4 top-[45%] z-30 w-12 h-12 bg-black/80 border border-neutral-800 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-all backdrop-blur-sm cursor-pointer opacity-0 group-hover/carousel:opacity-100 rounded-none"
+          aria-label="Siguiente"
+        >
+          <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+        </button>
+
+        <!-- Лента карусели -->
+        <div 
+          id="news-carousel" 
+          class="js-carousel-track flex gap-6 overflow-x-auto pb-8 scrollbar-none snap-x snap-mandatory scroll-smooth w-full"
+        >
+          {newsList.map((item: any) => (
+            <div class="w-[85vw] sm:w-90 shrink-0 snap-start flex flex-col">
+              <NewsCard 
+                category={item.category}
+                title={item.title}
+                imageKey={item.imageKey}
+              />
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- СЕКЦИЯ 7: MARCAS Y DIVISIONES (Дивизионы) -->
+    <!-- ========================================== -->
+    <section class="w-full bg-black py-12 md:py-24 px-6 md:px-24 select-none text-white border-t border-neutral-900">
+      <div class="w-full max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        
+        <!-- Блок 1: ÁNIMA Professional -->
+        <div class="flex flex-col text-left group cursor-pointer">
+          <div class="w-full aspect-4/3 bg-white overflow-hidden flex items-center justify-center relative mb-6">
+            <Image 
+              src={imgProf} 
+              alt={content.divisiones.professional.title} 
+              class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+            <!-- Логотип серии поверх фото в левом верхнем углу -->
+            <div class="absolute top-4 left-4 text-xs font-black tracking-tighter uppercase select-none text-black bg-white/80 px-2 py-0.5 backdrop-blur-sm">
+              {content.divisiones.professional.badge}
+            </div>
+          </div>
+          <h3 class="text-3xl font-light tracking-wide mb-6 md:mb-10">
+            {content.divisiones.professional.title}
+          </h3>
+          <p class="text-neutral-400 text-[16px] font-light tracking-wide leading-relaxed mb-6 max-w-xs">
+            {content.divisiones.professional.description}
+          </p>        
+        </div>
+
+        <!-- Блок 2: ÁNIMA Instruments -->
+        <div class="flex flex-col text-left group cursor-pointer">
+          <div class="w-full aspect-4/3 bg-white overflow-hidden flex items-center justify-center relative mb-6">
+            <Image 
+              src={imgInst} 
+              alt={content.divisiones.instruments.title} 
+              class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+            <div class="absolute top-4 left-4 text-xs font-black tracking-tighter uppercase select-none text-black bg-white/80 px-2 py-0.5 backdrop-blur-sm">
+              {content.divisiones.instruments.badge}
+            </div>
+          </div>
+          <h3 class="text-3xl font-light tracking-wide mb-6 md:mb-10">
+            {content.divisiones.instruments.title}
+          </h3>
+          <p class="text-neutral-400 text-[16px] font-light tracking-wide leading-relaxed mb-6 max-w-xs">
+            {content.divisiones.instruments.description}
+          </p>
+        </div>
+
+        <!-- Блок 3: Café Elite -->
+        <div class="flex flex-col text-left group cursor-pointer">
+          <div class="w-full aspect-4/3 bg-white overflow-hidden flex items-center justify-center relative mb-6">
+            <Image 
+              src={imgCafe} 
+              alt={content.divisiones.cafe.title} 
+              class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+            <div class="absolute top-4 left-4 text-[10px] font-bold tracking-widest uppercase select-none text-red-600 bg-white/90 border border-red-600/20 px-2 py-0.5">
+              {content.divisiones.cafe.badge}
+            </div>
+          </div>
+          <h3 class="text-3xl font-light tracking-wide mb-6 md:mb-10">
+            {content.divisiones.cafe.title}
+          </h3>
+          <p class="text-neutral-400 text-[16px] font-light tracking-wide leading-relaxed mb-6 max-w-xs">
+            {content.divisiones.cafe.description}
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="../scripts/universalCarousel.js"></script>
+</Layout>
+
+

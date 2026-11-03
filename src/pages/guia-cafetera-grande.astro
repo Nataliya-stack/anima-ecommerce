@@ -1,0 +1,341 @@
+---
+// src/pages/guia-cafetera.astro
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+import imgHeroCafetera from "../assets/categories/banner-cafetera-grande.jpg";
+
+import videoInstalacion2 from "../assets/video/video-instalacion2.mp4";
+import videoAjustes2 from "../assets/video/video-ajustes2.mp4";
+import videoAlarmas2 from "../assets/video/video-alarmas2.mp4";
+
+const pageTitle = "Guía de usuario para Cafetera Espresso Manual ECF02 | ÁNIMA";
+---
+
+<Layout title={pageTitle}>
+  <main
+    class="w-full h-auto bg-white text-neutral-950 font-sans pb-40 select-none"
+  >
+    <!-- ======================================================= -->
+    <!-- ПОЛНОЭКРАННЫЙ ГЛАВНЫЙ БАННЕР -->
+    <!-- ======================================================= -->
+    <section
+      class="component is-herobanner-slider relative w-full aspect-192/95 md:aspect-192/58 bg-[#e8f4fa] overflow-hidden select-none"
+    >
+      <!-- Изображение-фон: Заполняет весь блок баннера -->
+      <div class="absolute inset-0 w-full h-full z-0">
+        <Image
+          src={imgHeroCafetera}
+          alt="Cafetera Espresso Manual ECF02 - Smeg"
+          class="w-full h-full object-cover object-center opacity-100"
+        />
+      </div>
+
+      <!-- НАВИГАЦИОННЫЕ СТРЕЛКИ -->
+      <div class="absolute top-6 left-0 w-full px-6 md:px-16 z-20">
+        <nav
+          class="max-w-[1700px] mx-auto text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2"
+        >
+          <a
+            href="/"
+            class="hover:text-black transition-colors flex items-center gap-1"
+          >
+            ← Página principal
+          </a>
+          <span class="mx-1">/</span>
+          <span class="text-neutral-800 font-normal">Guía rápida EGF03</span>
+        </nav>
+      </div>
+
+      <!-- БЛОК ТЕКСТА БАННЕРА -->
+      <div
+        class="absolute inset-0 w-full h-full z-10 flex items-center px-6 md:px-16"
+      >
+        <div class="w-full max-w-[1700px] mx-auto flex justify-start">
+          <div
+            class="w-full sm:max-w-100 md:max-w-[50%] text-left space-y-4 md:space-y-6"
+          >
+            <h1
+              class="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-light tracking-wide uppercase text-neutral-900 leading-tight"
+            >
+              Guía del usuario de la<br />cafetera espresso manual <br />con
+              molinillo de café <br />integrado
+            </h1>
+            <p
+              class="text-xs sm:text-sm md:text-[16px] text-neutral-800 font-normal tracking-wide leading-relaxed max-w-[90%]"
+            >
+              Si ha adquirido una <span class="font-medium text-black"
+                >cafetera espresso manual con molinillo de café integrado EGF03</span
+              >, ya está listo para experimentar el ritual de un auténtico
+              barista.
+            </p>
+            <div class="pt-2">
+              <span
+                class="text-[11px] tracking-[0.2em] uppercase font-semibold text-black block"
+                >Desplázate</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- СЕКЦИЯ ВВОДНОГО ЗАГОЛОВКА ПОД БАННЕРОМ -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pt-24 pb-16">
+      <div
+        class="w-full max-w-[1700px] mx-auto px-6 md:px-16 space-y-8 text-left text-neutral-900"
+      >
+        <div
+          class="space-y-6 text-sm sm:text-base md:text-[16px] font-normal text-left tracking-wide leading-relaxed max-w-8xl text-neutral-800"
+        >
+          <p>
+            Aquí encontrarás una <span class="font-medium text-black"
+              >guía completa sobre cómo utilizar la máquina de café esspreso
+              EGF03</span
+            >, abarcando desde el inicio hasta el mantenimiento rutinario,
+            garantizando los mejores resultados.
+          </p>
+        </div>
+
+        <div class="pt-4 max-w-8xl text-left">
+          <p
+            class="text-sm sm:text-base md:text-[16px] font-normal text-neutral-800 tracking-wide leading-relaxed"
+          >
+            Descubre cómo aprovechar al máximo tu máquina de café esspreso con
+            molinillo integrado:
+            <span
+              class="font-medium text-black underline decoration-1 underline-offset-4"
+            >
+              Instalación</span
+            >,
+            <span
+              class="font-medium text-black underline decoration-1 underline-offset-4"
+            >
+              Ajustes de la máquina
+            </span>
+            y
+            <span
+              class="font-medium text-black underline decoration-1 underline-offset-4"
+            >
+              Descalcificación</span
+            >.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- СЕКЦИЯ: INSTALACIÓN -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pb-24 pt-12">
+      <div class="w-full max-w-[1700px] mx-auto px-6 md:px-16">
+        <div
+          class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center"
+        >
+          <!-- Левая колонка: Текст -->
+          <div class="w-full md:col-span-4 text-left space-y-6">
+            <h2
+              class="text-2xl sm:text-3xl md:text-[34px] font-light tracking-wide uppercase text-black leading-loose"
+            >
+              INSTALACIÓN
+            </h2>
+            <p
+              class="text-sm sm:text-base md:text-[16px] font-light text-neutral-800 tracking-wide leading-loose max-w-sm"
+            >
+              Aprende a hacer el café perfecto, desde moler granos frescos hasta
+              elegir el filtro de dispensación que prefieras. Verifica el
+              indicador de presión para asegurarte de tener la presión perfecta
+              y disfrutar de tu café.
+            </p>
+          </div>
+
+          <!-- Правая колонка: Плеер -->
+          <div class="w-full md:col-span-8">
+            <div
+              class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
+            >
+              <video controls class="w-full h-full object-cover">
+                <source src={videoInstalacion2} type="video/mp4" />
+                Tu navegador no soporta vídeos.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- СЕКЦИЯ: AJUSTES -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pb-24 pt-12">
+      <div class="w-full max-w-[1700px] mx-auto px-6 md:px-16">
+        <div
+          class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center"
+        >
+          <!-- Левая колонка: Текст и параметры -->
+          <div
+            class="w-full md:col-span-4 text-left space-y-6 text-neutral-800"
+          >
+            <h2
+              class="text-2xl sm:text-3xl md:text-[34px] font-light tracking-wide uppercase text-black leading-loose"
+            >
+              AJUSTES
+            </h2>
+
+            <div
+              class="text-sm sm:text-base md:text-[15px] font-light text-neutral-800 tracking-wide leading-loose"
+            >
+              <p class="align-middle">
+                Para configurar los diferentes parámetros desde el menú de
+                configuración, presiona
+                <img
+                  src="/egf03_1.png"
+                  alt="botón 1"
+                  class="w-8 h-8 inline-block align-middle mx-1"
+                />
+                <span
+                  class="inline-flex items-center justify-center w-5 h-5 border border-neutral-400 rounded-full font-medium text-[11px] mx-1 text-black bg-neutral-50 align-middle"
+                  >+</span
+                >
+                <img
+                  src="/egf03_6.png"
+                  alt="botón 6"
+                  class="w-8 h-8 inline-block align-middle mx-1"
+                />
+                , mantén presionados los botones simultáneamente durante 5 segundos
+                y luego presiona el botón correspondiente a la configuración deseada:
+              </p>
+            </div>
+
+            <!-- Иллюстрированный список параметров настроек -->
+            <ul
+              class="space-y-4 text-xs sm:text-sm md:text-[15px] font-light tracking-wide leading-loose text-neutral-700 pl-1"
+            >
+              <li class="flex items-center gap-3">
+                <img
+                  src="/egf03_2.png"
+                  alt="egf03_2"
+                  class="w-10 h-10 inline-block align-middle mx-1"
+                />
+                <span
+                  ><strong class="font-medium text-black"
+                    >Tiempo de Stand by
+                  </strong> (Modo Eco: 10 min, 30 min, 40 min o 60 min)</span
+                >
+              </li>
+              <li class="flex items-center gap-3">
+                <img
+                  src="/egf03_3.png"
+                  alt="egf03_3"
+                  class="w-10 h-10 inline-block align-middle mx-1"
+                />
+                <span
+                  ><strong class="font-medium text-black"
+                    >dureza del agua</strong
+                  > (baja, media, alta o muy alta)</span
+                >
+              </li>
+              <li class="flex items-center gap-3">
+                <img
+                  src="/egf03_4.png"
+                  alt="egf03_4"
+                  class="w-10 h-10 inline-block align-middle mx-1"
+                />
+                <span
+                  ><strong class="font-medium text-black"
+                    >Temperatura del café</strong
+                  > (baja, media, excelente o alta)</span
+                >
+              </li>
+              <li class="flex items-center gap-3">
+                <img
+                  src="/egf03_5.png"
+                  alt="egf03_5"
+                  class="w-10 h-10 inline-block align-middle mx-1"
+                />
+                <span
+                  ><strong class="font-medium text-black">
+                    Perfil de preinfusión</strong
+                  > (corta, estándar, larga o gradual)</span
+                >
+              </li>
+            </ul>
+
+            <div
+              class="text-sm sm:text-base md:text-[15px] font-light text-neutral-800 tracking-wide leading-loose pt-2"
+            >
+              <p>
+                Sigue las instrucciones del video para personalizar y guardar
+                las configuraciones.
+              </p>
+            </div>
+          </div>
+
+          <!-- Правая колонка: Второе видео -->
+          <div class="w-full md:col-span-8">
+            <div
+              class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
+            >
+              <video controls class="w-full h-full object-cover">
+                <source src={videoAjustes2} type="video/mp4" />
+                Tu navegador no soporta vídeos.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- СЕКЦИЯ: DESCALCIFICACIÓN -->
+    <!-- ======================================================= -->
+    <section class="w-full h-auto bg-white select-none pb-32 pt-12">
+      <div class="w-full max-w-[1700px] mx-auto px-6 md:px-16">
+        <div
+          class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center"
+        >
+          <!-- Левая колонка: Текст предупреждений -->
+          <div
+            class="w-full md:col-span-4 text-left space-y-6 text-neutral-800"
+          >
+            <h2
+              class="text-2xl sm:text-3xl md:text-[34px] font-light tracking-wide uppercase text-black leading-loose"
+            >
+              DESCALCIFICACIÓN
+            </h2>
+
+            <div
+              class="text-sm sm:text-base md:text-[16px] font-light text-neutral-800 tracking-wide leading-loose space-y-6"
+            >
+              <p>
+                La cafetera EGF03 emitirá una señal luminosa cuando sea
+                necesario realizar un ciclo de descalcificación. Aunque no es
+                obligatorio, recomendamos encarecidamente descalcificarla para
+                disfrutar constantemente de un excelente café y preservar su
+                auténtico sabor.
+              </p>
+              <p>
+                Sigue los sencillos pasos del video para realizar una limpieza
+                adecuada del circuito.
+              </p>
+            </div>
+          </div>
+
+          <!-- Правая колонка: Третье видео -->
+          <div class="w-full md:col-span-8">
+            <div
+              class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
+            >
+              <video controls class="w-full h-full object-cover">
+                <source src={videoAlarmas2} type="video/mp4" />
+                Tu navegador no soporta vídeos.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

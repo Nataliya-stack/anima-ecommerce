@@ -1,0 +1,263 @@
+---
+// src/pages/catalog.astro
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro'; 
+
+import { Image } from 'astro:assets';
+
+// Импортируем нашу SQL-функцию
+import { obtenerProductosPorCategoria } from '../lib/productos';
+
+// 1. ПОЛУЧАЕМ URL И ДОСТАЕМ ТЕКСТОВЫЙ ПАРАМЕТР ИЗ СТРОКИ БРАУЗЕРА
+const url = new URL(Astro.request.url);
+const categoriaActiva = url.searchParams.get('cat') || 'cocina';
+
+import bgCocina from '../assets/categories/hero_cocina2.jpg'; 
+import bgPequeno from '../assets/categories/hero_pequeno.gif'; 
+import bgHogar from '../assets/categories/hero_hogar.jpg';
+import bgClima from '../assets/categories/hero_clima2.png';
+import bgImagen from '../assets/categories/hero_imagen.png';
+import imgHeroGranElectro from '../assets/categories/banner-gran-electro.jpg';
+import imgHeroPequenoElectro from '../assets/categories/banner-pequeno-electro.png'; 
+
+
+import BlocksCocina from '../components/BlocksCocina.astro';
+import BlocksPequeno from '../components/BlocksPequeno.astro';
+import BlocksHogar from '../components/BlocksHogar.astro';
+import BlocksClima from '../components/BlocksClima.astro';
+import BlocksRelax from '../components/BlocksRelax.astro';
+import BlocksGranElectro from '../components/BlocksGranElectro.astro';
+import BlocksPequenoElectro from '../components/BlocksPequenoElectro.astro';
+
+import dataDB from '../../db.json';
+// Находим объект текущей активной категории в массиве categories нашего db.json
+const currentCategory = dataDB.categories.find((item) => item.pk_categoria === categoriaActiva);
+// Достаем тексты для уникальных баннеров каталога
+const catalogContent = dataDB.home.catalog_editions;
+
+// Создаем карту нижних блоков, привязанную к текстовому параметру из URL
+const bloquesInferiores: Record<string, any> = {
+  'cocina': BlocksCocina,           
+  'pequeno-aparato': BlocksPequeno,   
+  'cuidado-hogar': BlocksHogar,
+  'clima-confort': BlocksClima,
+  'imagen-sonido': BlocksRelax,
+  'gran-electrodomestico': BlocksGranElectro,
+  'pequeno-electrodomestico': BlocksPequenoElectro
+};
+
+const CurrentDynamicBlocks = bloquesInferiores[categoriaActiva];
+
+// Создаем карту картинок, привязанную к текстовым параметрам вкладок
+const imagenesHero: Record<string, any> = {
+  'cocina': bgCocina,
+  'pequeno-aparato': bgPequeno,
+  'cuidado-hogar': bgHogar,
+  'clima-confort': bgClima,
+  'imagen-sonido': bgImagen
+};
+
+// Находим нужную картинку из карты. Если вкладка странная, сбрасываем на кухню
+const imagenFondoActual = imagenesHero[categoriaActiva] || bgCocina;
+
+// =====================================================================
+// ⚡ ПРИРАВНИВАНИЕ ТИПОВ (МАППИНГ В ЧИСЛА)
+// =====================================================================
+const categoryMap: Record<string, number> = {
+  'cocina': 1,
+  'pequeno-aparato': 2,
+  'cuidado-hogar': 3,
+  'clima-confort': 4,
+  'imagen-sonido': 5
+};
+
+const categoryIdNum = categoryMap[categoriaActiva] || 1;
+
+// 2. Вызываем SQL-функцию и передаем туда ПРИРАВНЕННОЕ ЧИСЛО вместо текста
+const products = await obtenerProductosPorCategoria(categoryIdNum);
+// =====================================================================
+
+// Создаем карту цветов для рамок вкладок каталога
+const coloresBorde: Record<string, string> = {
+  'cocina': '#010101',          // 1 вкладка
+  'pequeno-aparato': '#666666', // 2 вкладка
+  'cuidado-hogar': '#552529',   // 3 вкладка
+  'clima-confort': '#766650',   // 4 вкладка
+  'imagen-sonido': '#414a51'    // 5 вкладка
+};
+
+// Находим цвет для текущей вкладки. Если вкладка странная, сбрасываем на черный
+const colorBordeActual = coloresBorde[categoriaActiva] || '#010101';
+---
+
+<Layout title="Catálogo Oficial | ÁNIMA">
+  <main class="w-full min-h-screen bg-[#ffffff] text-neutral-900 pt-16 md:pt-20 select-none">
+    
+    <!-- ===================================================================== -->
+    <!-- 1. ВЕРХНИЙ ПРЕМИАЛЬНЫЙ БЛОК (HERO С ДИНАМИЧЕСКИМ ПЕРЕКЛЮЧЕНИЕМ BANNER) -->
+    <!-- ===================================================================== -->
+    {
+      (() => {
+        switch (categoriaActiva) {
+          
+          /* ВАРИАНТ А: КОСМИЧЕСКИЙ БАННЕР GALILEO ДЛЯ КРУПНОЙ ТЕХНИКИ */
+          case 'gran-electrodomestico':
+            return (
+              <section class="component is-herobanner-slider relative w-full aspect-192/95 md:aspect-192/90 min-h-110 md:min-h-120 bg-[#f2f1eb] overflow-hidden">
+                
+                <div class="absolute inset-0 w-full h-full z-0">
+                  <Image 
+                    src={imgHeroGranElectro} 
+                    alt="Tecnología Multicooking Galileo" 
+                    class="w-full h-full object-cover object-bottom opacity-100"  
+                    priority
+                  />
+                </div>
+
+                <!-- ВОЗВРАЩЕНИЕ НА ГЛАВНУЮ СТРАНИЦУ -->
+                <div class="absolute top-6 left-0 w-full px-6 md:px-16 z-20 hidden sm:block">
+                  <nav class="text-[11px] md:text-xs tracking-[0.2em] uppercase text-neutral-400 font-light flex items-center gap-2 max-w-375 mx-auto">
+                    <a href="/" class="hover:text-white transition-colors duration-300">Página principal</a>
+                    <span class="text-neutral-600">/</span>
+                    <span class="text-white font-normal">Gran Electrodoméstico</span>
+                  </nav>
+                </div>
+
+                <!-- БЛОК ТЕКСТА -->
+                <div class="absolute inset-0 w-full h-full z-10 flex items-center px-6 md:px-16">
+                  <div class="w-full max-w-375 mx-auto flex justify-start">
+                    <div class="w-full sm:max-w-100 md:max-w-[42%] text-left space-y-4 md:space-y-6 text-white">      
+                      <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-wide uppercase text-white leading-tight whitespace-normal">
+                        {catalogContent.gran.title}
+                      </h1>
+                      <p class="text-xs sm:text-sm md:text-[15px] text-neutral-300 font-light tracking-wide leading-loose">
+                        {catalogContent.gran.description}
+                      </p>                      
+                    </div>
+                  </div>
+                </div>
+              </section>
+            );
+
+          /* ВАРИАНТ Б: СВЕТЛЫЙ БАННЕР ДЛЯ МЕЛКОЙ ТЕХНИКИ */
+          case 'pequeno-electrodomestico':
+            return (
+              <section class="component is-herobanner-slider relative w-full aspect-192/95 md:aspect-192/90 min-h-110 md:min-h-120 bg-[#f2f1eb] overflow-hidden">
+                
+                <div class="absolute inset-0 w-full h-full z-0">
+                  <Image 
+                    src={imgHeroPequenoElectro} 
+                    alt="Pequeño Electrodoméstico ÁNIMA" 
+                    class="w-full h-full object-cover object-bottom opacity-100" 
+                    priority
+                  />
+                </div>
+
+                <!-- ВОЗВРАЩЕНИЕ НА ГЛАВНУЮ СТРАНИЦУ -->
+                <div class="absolute top-6 left-0 w-full px-6 md:px-16 z-20 hidden sm:block">
+                  <nav class="text-[11px] md:text-xs tracking-[0.2em] uppercase text-neutral-500 font-light flex items-center gap-2 max-w-350 mx-auto">
+                    <a href="/" class="hover:text-black transition-colors duration-300">Página principal</a>
+                    <span class="text-neutral-400">/</span>
+                    <span class="text-black font-normal">Pequeño Electrodoméstico</span>
+                  </nav>
+                </div>
+
+                <!-- БЛОК ТЕКСТА БАННЕРА -->
+                <div class="absolute inset-0 w-full h-full z-10 flex items-start pt-50 px-6 md:px-16">
+                  <div class="w-full max-w-350 mx-auto flex justify-start">
+                    <div class="w-full sm:max-w-100 md:max-w-[40%] text-left space-y-4 md:space-y-6 text-black">
+                      
+                      <span class="block text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-neutral-400 font-medium">
+                        {catalogContent.pequeno.badge}
+                      </span>
+
+                      <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-light tracking-wide uppercase text-white leading-tight whitespace-normal">
+                        {catalogContent.pequeno.title}
+                      </h1>
+                      
+                      <p class="text-xs sm:text-sm md:text-[15px] text-white font-normal tracking-wide leading-loose">
+                        {catalogContent.pequeno.description}
+                      </p>                                           
+                    </div>
+                  </div>
+                </div>
+
+              </section>
+            );
+
+          /* ВАРИАНТ В: БАННЕР С ВУАЛЬЮ ДЛЯ ОСТАЛЬНЫХ 5 ВКЛАДОК (Унифицированный размер) */
+          default:
+            return (
+              <section class="component is-herobanner-slider relative w-full aspect-192/95 md:aspect-192/58 bg-black overflow-hidden select-none mt-4 md:mt-20">
+                
+                <!-- Картинка-фон: Заполняет весь блок баннера абсолютно без швов и сжатия -->
+                <div class="absolute inset-0 w-full h-full z-0">
+                  <Image 
+                    src={imagenFondoActual} 
+                    alt="Fondo de categoría" 
+                    class={`w-full h-full object-cover opacity-90 z-0 ${(categoriaActiva === 'clima-confort' || categoriaActiva === 'pequeno-aparato') ? 'object-[50%_0%]' : 'object-center'}`} 
+                  />
+                </div>
+
+                <!-- Вуаль для идеальной читаемости текста -->
+                <div class="absolute inset-0 bg-black/40 z-10"></div>
+
+                <!-- Возвращение на главную страницу-->
+                <div class="absolute top-6 left-0 w-full px-6 md:px-16 z-20 hidden sm:block">
+                  <nav class="text-[11px] md:text-xs tracking-[0.2em] uppercase text-neutral-400 font-light flex items-center gap-2 max-w-[1600px] mx-auto">
+                    <a href="/" class="hover:text-white transition-colors duration-300">Página principal</a>
+                    <span class="text-neutral-600">/</span>
+                    <span class="text-white font-normal">{currentCategory?.page_title}</span>
+                  </nav>
+                </div>
+
+                <!-- БЛОК ТЕКСТА БАННЕРА -->
+                <div class="absolute inset-0 w-full h-full z-20 flex items-center px-6 md:px-16">
+                  <div class="w-full max-w-[1600px] mx-auto flex justify-start">
+                    <div class="w-full sm:max-w-100 md:max-w-[42%] text-left space-y-4 md:space-y-6 text-white">
+                      
+                      <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-wide uppercase text-white leading-tight whitespace-normal">
+                        {currentCategory?.page_title}
+                      </h1>
+                      
+                      <p class="text-xs sm:text-sm md:text-[15px] text-neutral-300 font-light tracking-wide leading-loose">
+                        {currentCategory?.page_description}
+                      </p>                                           
+                    </div>
+                  </div>
+                </div>
+
+              </section>
+            );
+        }
+      })()
+    }
+
+    <!-- ===================================================================== -->
+    <!-- 2. НИЖНИЙ БЛОК: СЕТКА КАРТОЧЕК НА ИДЕАЛЬНО БЕЛОМ ФОНЕ                 -->
+    <!-- ===================================================================== -->
+    <div class="max-w-[1700px] mx-auto px-6 md:px-12 py-12 md:py-24">
+      
+      <!-- Если в базе данных Supabase не найдено товаров по этой категории -->
+      {(!products || products.length === 0) && (
+        <div class="py-24 text-center border border-dashed border-neutral-200 bg-[#fbfbfb]">
+          <p class="text-xs tracking-widest text-neutral-400 uppercase font-medium">
+            No se han encontrado productos en esta categoría.
+          </p>
+        </div>
+      )}
+
+      <!-- Сетка карточек товаров -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 xl:gap-16">
+        {products && products.map((item: any) => (
+          <ProductCard product={item} bordeColor={colorBordeActual} />
+        ))}
+      </div>   
+    </div>
+
+    <!-- ДИНАМИЧЕСКИЙ ВЫВОД ДОПОЛНИТЕЛЬНЫХ БЛОКОВ КАЖДОЙ КАТЕГОРИИ -->
+    {CurrentDynamicBlocks && <CurrentDynamicBlocks />}
+
+  </main>
+</Layout>
+

@@ -1,0 +1,310 @@
+---
+// src/pages/simulador.astro
+import Layout from "../layouts/Layout.astro";
+import comprarOnline1 from "../assets/categories/comprar_online1.jpg";
+
+import smegLogo from "../assets/categories/smeg_logo.png";
+---
+
+<Layout title="Plan Renove | SIMULATOR SMEG">
+  <!-- ======================================================= -->
+  <!-- 1. ХЕДЕР СТРАНИЦЫ -->
+  <!-- ======================================================= -->
+  <header
+    class="w-full bg-white border-b border-neutral-100 py-6 mb-4 select-none font-sans antialiased"
+  >
+    <div
+      class="max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 flex items-center justify-between"
+    >
+      <div class="w-32 hidden md:block"></div>
+      <div class="flex justify-center md:flex-1">
+        <img
+          src={smegLogo.src}
+          alt="Smeg"
+          class="h-12 sm:h-18 w-auto object-contain block select-none"
+        />
+      </div>
+      <div
+        class="flex items-center gap-4 text-[14px] sm:text-xl text-neutral-600 font-light shrink-0"
+      >
+        <div class="flex items-center gap-2">
+          <span class="text-black font-bold">powered by</span>
+          <img
+            src="/loopos_logo.svg"
+            alt="LoopOS"
+            class="h-6.5 sm:h-8 w-auto object-contain block select-none"
+          />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================= -->
+  <!-- 2. ГЛАВНЫЙ КОНТЕЙНЕР СТРАНИЦЫ И ФОРМА -->
+  <!-- ======================================================= -->
+  <main
+    class="w-full max-w-[1800px] mx-auto px-6 sm:px-12 lg:px-20 pt-6 pb-32 relative select-none font-sans antialiased"
+  >
+    <!-- Центральный фоновый каркас с картинкой кофемашины -->
+    <div
+      class="w-full h-65 sm:h-85 lg:h-110 rounded-3xl overflow-hidden relative z-0"
+    >
+      <img
+        src={comprarOnline1.src}
+        alt="Smeg Coffee Machine"
+        class="w-full h-full object-cover block select-none"
+      />
+    </div>
+
+    <!-- КАРТОЧКА АНКЕТЫ -->
+    <div
+      class="w-full max-w-5xl md:mt-10 bg-white border border-neutral-100 rounded-md shadow-xl p-6 sm:p-8 relative z-10"
+    >
+      <!-- Шапка карточки -->
+      <div
+        class="flex items-center justify-between border-b border-neutral-100 pb-5 mb-8"
+      >
+        <div class="flex items-center gap-4 text-neutral-800">
+          <div
+            class="w-9 h-9 bg-neutral-900 rounded-md flex items-center justify-center text-white"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 15.75V18a2.25 2.25 0 01-2.25 2.25h-6A2.25 2.25 0 015.25 18v-8.25A2.25 2.25 0 017.5 7.5h3m3.308-3.143l1.24-.722a1.125 1.125 0 011.532.392l3.75 6.495a1.125 1.125 0 01-.392 1.532l-1.24.722m-3.44-4.877L13.12 11.54M16.565 8.16l-3.44 5.877m0 0l1.24.722m-1.24-.722a1.125 1.125 0 011.532-.392l3.75 6.495a1.125 1.125 0 01-.392 1.532l-1.24.722"
+              ></path>
+            </svg>
+          </div>
+          <span class="text-2xl font-bold tracking-wide text-neutral-800"
+            >Detalles del Eletrodoméstico</span
+          >
+        </div>
+        <button
+          class="text-neutral-400 hover:text-black transition-colors cursor-pointer"
+          aria-label="Minimize"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2.5"
+            stroke="currentColor"
+            class="w-8 h-8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4.5 15.75l7.5-7.5 7.5 7.5"></path>
+          </svg>
+        </button>
+      </div>
+
+      <form id="renove-form" class="space-y-6">
+        <!-- Поле выбора продукта -->
+        <div class="w-full space-y-2.5">
+          <label
+            for="renove-product-select"
+            class="text-lg font-medium text-neutral-500 tracking-wide block"
+            >Producto *</label
+          >
+          <div class="relative w-full">
+            <select
+              id="renove-product-select"
+              class="w-full bg-[#f0f0f0] border-none rounded-lg px-4 py-4 pr-10 appearance-none focus:outline-none focus:ring-1 focus:ring-neutral-400 text-lg text-neutral-800 cursor-pointer"
+              required
+            >
+              <option value="" disabled selected>Producto</option>
+              <option value="amasadores">Robots amasadores</option>
+              <option value="tostadoras">Tostadoras</option>
+              <option value="exprimidores">Exprimidores</option>
+              <option value="hervidores">Hervidores</option>
+              <option value="espresso">Máquina de café Espresso</option>
+              <option value="goteo">Máquina de café por Goteo</option>
+              <option value="molinillos">Molinillos de café</option>
+              <option value="espumadores">Espumadores de leche</option>
+              <option value="basculas">Básculas de cocina</option>
+              <option value="mano">Batidoras de mano</option>
+              <option value="vaso">Batidoras de vaso</option>
+              <option value="varillas">Batidoras de varillas</option>
+              <option value="induccion">Inducción portátil</option>
+              <option value="hornos">Hornos y microondas de sobremesa</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ДИНАМИЧЕСКИЙ БЛОК -->
+        <div
+          id="extra-fields"
+          class="hidden opacity-0 translate-y-2 transition-all duration-500 space-y-6 pt-4"
+        >
+          <!-- Поле: Referencia -->
+          <div class="w-full space-y-2.5">
+            <div class="flex items-center gap-1.5">
+              <label
+                for="product-ref"
+                class="text-lg font-semibold text-neutral-500 tracking-wide"
+                >Referencia del producto *</label
+              >
+              <div
+                class="w-4 h-4 rounded-full border border-neutral-300 flex items-center justify-center text-[11px] text-neutral-400 font-bold cursor-help"
+              >
+                ?
+              </div>
+            </div>
+            <input
+              type="text"
+              id="product-ref"
+              placeholder="Referencia del producto"
+              class="w-full bg-[#f0f0f0] border-none rounded-lg px-4 py-4 text-lg focus:outline-none focus:ring-1 focus:ring-neutral-400 text-neutral-800 placeholder-neutral-400"
+            />
+          </div>
+
+          <!-- Поле: Marca -->
+          <div class="w-full space-y-2.5">
+            <label
+              for="product-brand"
+              class="text-lg font-semibold text-neutral-500 tracking-wide block"
+              >Marca *</label
+            >
+            <input
+              type="text"
+              id="product-brand"
+              placeholder="Marca"
+              class="w-full bg-[#f0f0f0] border-none rounded-lg px-4 py-4 text-lg focus:outline-none focus:ring-1 focus:ring-neutral-400 text-neutral-800 placeholder-neutral-400"
+              required
+            />
+          </div>
+
+          <!-- Поле: Загрузка фото -->
+          <div class="w-full space-y-2.5">
+            <div class="flex items-center gap-1.5">
+              <label
+                class="text-lg font-semibold text-neutral-500 tracking-wide"
+                >Fotografías del producto (incluyendo número de serie, si es
+                visible) *</label
+              >
+              <div
+                class="w-4 h-4 rounded-full border border-neutral-300 flex items-center justify-center text-lg text-neutral-400 font-bold cursor-help"
+              >
+                ?
+              </div>
+            </div>
+            <label
+              class="w-20 h-20 bg-[#f0f0f0] rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-neutral-200 transition-colors"
+            >
+              <input type="file" accept="image/*" class="hidden" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6 text-neutral-400"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+                ></path>
+              </svg>
+            </label>
+          </div>
+
+          <!-- Поле: Estado -->
+          <div class="w-full space-y-2.5">
+            <label
+              class="text-lg font-medium text-neutral-500 tracking-wide block"
+              >Estado del producto</label
+            >
+            <div class="flex gap-3">
+              <button
+                type="button"
+                data-status="works"
+                class="status-btn px-5 py-3 rounded-lg border border-slate-200 text-lg font-semibold text-neutral-700 bg-white hover:bg-neutral-50 transition-all cursor-pointer"
+              >
+                Funciona
+              </button>
+              <button
+                type="button"
+                data-status="broken"
+                class="status-btn px-5 py-3 rounded-lg border border-slate-200 text-lg font-semibold text-neutral-700 bg-white hover:bg-neutral-50 transition-all cursor-pointer"
+              >
+                No funciona
+              </button>
+            </div>
+            <input type="hidden" id="product-status" required />
+          </div>
+        </div>
+
+        <!-- Кнопка Avanzar / Calculate -->
+        <div
+          class="w-full flex justify-end pt-5 border-t border-neutral-100 mt-6"
+        >
+          <button
+            type="submit"
+            id="calculate-btn"
+            disabled
+            class="px-8 py-3.5 bg-neutral-300 text-white rounded-md text-lg font-bold tracking-widest uppercase transition-all duration-300 cursor-not-allowed"
+          >
+            Avanzar &gt;
+          </button>
+        </div>
+
+        <!-- Вывод результата -->
+        <div
+          id="result-box"
+          class="hidden mt-6 p-5 bg-neutral-50 border border-neutral-200 text-neutral-800 text-lg rounded-md font-medium text-center"
+        >
+          ¡Validación completada! Este producto aplica para un **-20% de
+          descuento**.
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- ======================================================= -->
+  <!-- 3. ФУТЕР СТРАНИЦЫ (ПОДВАЛ) -->
+  <!-- ======================================================= -->
+  <footer
+    class="w-full bg-white border-t border-neutral-100 py-6 select-none font-sans antialiased"
+  >
+    <div
+      class="max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 flex items-center justify-between"
+    >
+      <div class="flex items-center gap-2">
+        <span class="text-black font-bold text-lg sm:text-2xl">powered by</span>
+        <img
+          src="/loopos_logo.svg"
+          alt="LoopOS"
+          class="h-6.5 sm:h-9 w-auto object-contain block select-none"
+        />
+      </div>
+    </div>
+  </footer>
+
+  <!-- ГЛОБАЛЬНЫЙ СТИЛЬ: Надежно прячет дефолтную навигацию сайта только на этой странице -->
+  <style is:global>
+    header:not(.bg-white),
+    .main-header,
+    #main-navigation,
+    nav.relative {
+      display: none !important;
+    }
+    footer:not(.bg-white),
+    .main-footer,
+    #main-navigation,
+    nav.relative {
+      display: none !important;
+    }
+  </style>
+
+  <script src="../scripts/comprarOnline.js"></script>
+</Layout>

@@ -1,0 +1,132 @@
+---
+// src/components/MenuCategorias.astro
+import "../styles/global.css";
+import { getCategorias } from "../lib/categorias";
+
+interface Categoria {
+  id: number;
+  nombre: string;
+  slug: string;
+}
+
+const rawCategorias = await getCategorias();
+// Принимаем baseUrl (по умолчанию '/catalog')
+const {
+  categoriaActivaSlug,
+  esMovil = false,
+  vertical = false,
+  baseUrl = "/catalog",
+} = Astro.props;
+
+function getCategoryInfo(pk: number) {
+  const mapping: Record<number, { nombre: string; slug: string }> = {
+    1: { nombre: "Cocina", slug: "cocina" },
+    2: { nombre: "Pequeño Aparato", slug: "pequeno-aparato" },
+    3: { nombre: "Cuidado del Hogar", slug: "cuidado-hogar" },
+    4: { nombre: "Clima & Confort", slug: "clima-confort" },
+    5: { nombre: "Imagen & Sonido", slug: "imagen-sonido" },
+    6: { nombre: "Gran El.", slug: "gran-electrodomestico" },
+    7: { nombre: "Pequeño El.", slug: "pequeno-electrodomestico" },
+  };
+  return mapping[pk] || { nombre: "Categoría", slug: "unknown" };
+}
+
+const targetSlugs = [
+  "cocina",
+  "pequeno-aparato",
+  "cuidado-hogar",
+  "clima-confort",
+  "imagen-sonido",
+];
+
+const categorias = rawCategorias
+  .map((cat: any) => {
+    const info = getCategoryInfo(Number(cat.pk_categoria));
+    return {
+      id: Number(cat.pk_categoria),
+      nombre: info.nombre,
+      slug: info.slug,
+    };
+  })
+  .filter((cat) => cat.slug !== "unknown")
+  .filter((cat) => (vertical ? targetSlugs.includes(cat.slug) : true))
+  .sort((a, b) => a.id - b.id) as Categoria[];
+
+const activaSlug = String(categoriaActivaSlug);
+---
+
+<!-- ======================================================== -->
+<!-- НАВИГАЦИЯ ПО КАТЕГОРИЯМ (АДАПТИВНЫЙ БЛОК)               -->
+<!-- ======================================================== -->
+<section class="w-full">
+  {
+    esMovil ? (
+      <div class="w-full flex flex-col">
+        {categorias.map((cat) => {
+          const esActivo = cat.slug === activaSlug;
+          const linkHref =
+            baseUrl === "/search"
+              ? `/search?category=${cat.slug}`
+              : `${baseUrl}?cat=${cat.slug}`;
+          return (
+            <a
+              href={linkHref}
+              data-astro-reload
+              translate="no"
+              class={`flex justify-between items-center py-4 border-b border-neutral-900/50 hover:text-neutral-400 transition-colors ${esActivo ? "text-neutral-400" : ""}`}
+            >
+              <span>{cat.nombre}</span>
+              <span class="text-neutral-600 font-light">&gt;</span>
+            </a>
+          );
+        })}
+      </div>
+    ) : vertical ? (
+      <nav class="flex flex-col">
+        <ul class="flex flex-col space-y-4 text-[15px] font-normal tracking-wide text-neutral-800">
+          {categorias.map((cat) => {
+            const esActivo = cat.slug === activaSlug;
+            const linkHref =
+              baseUrl === "/search"
+                ? `/search?category=${cat.slug}`
+                : `${baseUrl}?cat=${cat.slug}`;
+            return (
+              <li>
+                <a
+                  href={linkHref}
+                  class={`block py-1 hover:text-black transition-colors ${esActivo ? "font-bold underline underline-offset-4 text-black" : "text-neutral-600"}`}
+                >
+                  {cat.nombre}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    ) : (
+      <nav class="flex items-center">
+        <ul class="flex items-center gap-4 text-[16px] font-bold tracking-[0.12em] uppercase text-white">
+          {categorias.map((cat) => {
+            const esActivo = cat.slug === activaSlug;
+            const linkHref =
+              baseUrl === "/search"
+                ? `/search?category=${cat.slug}`
+                : `${baseUrl}?cat=${cat.slug}`;
+            return (
+              <li>
+                <a
+                  href={linkHref}
+                  data-astro-reload
+                  translate="no"
+                  class={`text-white hover:underline underline-offset-4 transition-colors py-1 ${esActivo ? "underline" : ""}`}
+                >
+                  {cat.nombre}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    )
+  }
+</section>

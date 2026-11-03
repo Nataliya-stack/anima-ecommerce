@@ -1,0 +1,287 @@
+---
+// src/pages/asistencia-tecnica.astro
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+// 1. Импортируем данные из вашего единого db.json (у вас он лежит в корне)
+import dataDB from '../../db.json';
+
+// 2. Импортируем все 6 картинок из вашей папки categories
+import imgFaq from '../assets/categories/preguntas.jpg';
+import imgBatidora from '../assets/categories/batidora.jpg';
+import imgHervidor from '../assets/categories/hervidor.jpg';
+import imgCafetera1 from '../assets/categories/cafetera-ecf02.jpg';
+import imgCafetera2 from '../assets/categories/cafetera-egf03.jpg';
+import imgCafetera3 from '../assets/categories/cafetera-bcc13.jpg';
+
+// 3. Собираем вашу удобную карту картинок
+const soporteImages: Record<string, ImageMetadata> = {
+  "faq-icon.jpg": imgFaq,
+  "batidora.jpg": imgBatidora,
+  "hervidor.jpg": imgHervidor,
+  "cafetera-ecf02.jpg": imgCafetera1,
+  "cafetera-egf03.jpg": imgCafetera2,
+  "cafetera-bcc13.jpg": imgCafetera3
+};
+
+const url = new URL(Astro.request.url);
+const enviadoExitoso = url.searchParams.get('success') === 'true';
+---
+
+<Layout title="Asistencia Técnica | ÁNIMA">
+  <main class="w-full min-h-screen bg-white text-[#141414] pt-35 lg:pt-60 font-sans pb-24 select-none">
+    
+    <!-- Навигационная стрелка) -->
+    <div class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20 mb-8">
+      <nav class="text-[14px] lg:tracking-[0.2em] text-neutral-400 uppercase font-light font-sans select-none flex items-center gap-2">
+        <a href="/" class="hover:text-black transition-colors flex items-center gap-1">
+          ← Página principal
+        </a>
+        <span class="mx-1">/</span> 
+        <span class="text-neutral-800 font-normal">Asistencia técnica</span>
+      </nav>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 2. ОСНОВНОЙ КОНТЕНТ СТРАНИЦЫ                                          -->
+    <!-- ===================================================================== -->
+    <div class="w-full max-w-[1700px] mx-auto px-6 sm:px-12 lg:px-20">
+
+      {enviadoExitoso ? (
+        <div class="py-20 text-center space-y-8 max-w-2xl mx-auto flex flex-col items-center">
+          <div class="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center border border-emerald-200 shadow-xs mb-2">
+            <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+            </svg>
+          </div>
+          <div class="space-y-3">
+            <h2 class="text-3xl font-light tracking-wide text-black uppercase">¡Tu solicitud se ha enviado con éxito!</h2>
+            <p class="text-sm text-neutral-500 tracking-wide leading-relaxed font-light uppercase">
+              Hemos recibido tus datos correctamente. Nuestro equipo técnico revisará la información de tu electrodoméstico y se pondrá en contacto contigo en un plazo máximo de 24/48 horas laborables.
+            </p>
+          </div>
+          <div class="pt-6">
+            <a href="/" class="inline-block bg-black text-white text-xs tracking-[0.2em] uppercase font-bold py-4 px-12 hover:bg-neutral-800 transition-all duration-300 cursor-pointer text-center">
+              Volver al inicio
+            </a>
+          </div>
+        </div>
+      ) : (
+        <div class="space-y-16">
+          <div class="space-y-4 border-b border-neutral-100 pb-8">
+            <h1 class="text-4xl md:text-5xl font-light tracking-wide text-black uppercase">Solicitud de asistencia técnica</h1>
+            <p class="text-base text-neutral-500 tracking-wide font-light">
+              Completa el siguiente formulario para obtener atención técnica personalizada de tu producto ÁNIMA.
+            </p>
+          </div>
+
+          <form action="/api/soporte" method="POST" class="space-y-16">
+            
+            <!-- БЛОК 1: ДАННЫЕ КЛИЕНТА -->
+            <div class="space-y-8">
+              <h3 class="text-xs lg:text-sm font-bold tracking-[0.25em] uppercase text-neutral-400 border-b border-neutral-200 pb-3">
+                - 1. Datos de contacto -
+              </h3>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <label class="flex flex-col space-y-2">
+                  <span class="text-neutral-900 uppercase text-xs font-bold tracking-[0.15em]">Nombre *</span>
+                  <input type="text" name="nombre" required class="border-2 border-neutral-300 p-4 w-full text-base font-light text-black bg-neutral-50 focus:outline-none focus:border-black transition-colors rounded-none" />
+                </label>
+                
+                <label class="flex flex-col space-y-2">
+                  <span class="text-neutral-900 uppercase text-xs font-bold tracking-[0.15em]">Apellidos *</span>
+                  <input type="text" name="apellidos" required class="border-2 border-neutral-300 p-4 w-full text-base font-light text-black bg-neutral-50 focus:outline-none focus:border-black transition-colors rounded-none" />
+                </label>
+              </div>
+
+              <label class="flex flex-col space-y-2">
+                <span class="text-neutral-900 uppercase text-xs font-bold tracking-[0.15em]">Dirección *</span>
+                <input type="text" name="direccion" required class="border-2 border-neutral-300 p-4 w-full text-base font-light text-black bg-neutral-50 focus:outline-none focus:border-black transition-colors rounded-none" />
+              </label>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <label class="flex flex-col space-y-2">
+                  <span class="text-neutral-900 uppercase text-xs font-bold tracking-[0.15em]">Población *</span>
+                  <input type="text" name="poblacion" required class="border-2 border-neutral-300 p-4 w-full text-base font-light text-black bg-neutral-50 focus:outline-none focus:border-black transition-colors rounded-none" />
+                </label>
+
+                <label class="flex flex-col space-y-2">
+                  <span class="text-neutral-900 uppercase text-xs font-bold tracking-[0.15em]">Código Postal *</span>
+                  <input type="text" name="codigo_postal" required class="border-2 border-neutral-300 p-4 w-full text-base font-light text-black bg-neutral-50 focus:outline-none focus:border-black transition-colors rounded-none" />
+                </label>
+
+                <label class="flex flex-col space-y-2">
+                  <span class="text-neutral-900 uppercase text-xs font-bold tracking-[0.15em]">Provincia *</span>
+                  <select name="provincia" required class="border-2 border-neutral-300 p-4 w-full text-base font-light text-black bg-neutral-50 focus:outline-none focus:border-black transition-colors rounded-none cursor-pointer">
+                    <option value="" disabled selected>Selecciona tu provincia</option>
+                    <option value="Madrid">Madrid</option>
+                    <option value="Barcelona">Barcelona</option>
+                    <option value="Valencia">Valencia</option>
+                    <option value="Sevilla">Sevilla</option>
+                    <option value="Zaragoza">Zaragoza</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <label class="flex flex-col space-y-2">
+                  <span class="text-neutral-900 uppercase text-xs font-bold tracking-[0.15em]">Correo Electrónico *</span>
+                  <input type="email" name="email" required class="border-2 border-neutral-300 p-4 w-full text-base font-light text-black bg-neutral-50 focus:outline-none focus:border-black transition-colors rounded-none" />
+                </label>
+
+                <label class="flex flex-col space-y-2">
+                  <span class="text-neutral-900 uppercase text-xs font-bold tracking-[0.15em]">Teléfono de contacto *</span>
+                  <input type="tel" name="telefono" required class="border-2 border-neutral-300 p-4 w-full text-base font-light text-black bg-neutral-50 focus:outline-none focus:border-black transition-colors rounded-none" />
+                </label>
+              </div>
+            </div>
+
+            <!-- БЛОК 2: ИНФОРМАЦИЯ О ТЕХНИКЕ -->
+            <div class="space-y-8">
+              <h3 class="text-xs lg:text-sm font-bold tracking-[0.25em] uppercase text-neutral-400 border-b border-neutral-200 pb-3">
+                - 2. Información del electrodoméstico -
+              </h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <label class="flex flex-col space-y-2">
+                  <span class="text-neutral-900 uppercase text-xs font-bold tracking-[0.15em]">Modelo *</span>
+                  <input type="text" name="modelo" required placeholder="Ej. Horno microondas ÁNIMA Grill+" class="border-2 border-neutral-300 p-4 w-full text-base font-light text-black bg-neutral-50 focus:outline-none focus:border-black transition-colors rounded-none" />
+                </label>
+
+                <div class="flex flex-col space-y-2">
+                  <label class="flex flex-col space-y-2">
+                    <span class="text-neutral-900 uppercase text-xs font-bold tracking-[0.15em]">Número de Serie *</span>
+                    <input type="text" name="numero_serie" required class="border-2 border-neutral-300 p-4 w-full text-base font-light text-black bg-neutral-50 focus:outline-none focus:border-black transition-colors rounded-none" />
+                  </label>
+                  <span class="text-[11px] text-neutral-400 tracking-wide font-medium">El número se encuentra en la etiqueta plateada del producto.</span>
+                </div>
+              </div>
+
+              <label class="flex flex-col space-y-2 max-w-md">
+                <span class="text-neutral-900 uppercase text-xs font-bold tracking-[0.15em]">Fecha de compra *</span>
+                <input type="date" name="fecha_compra" required class="border-2 border-neutral-300 p-4 w-full text-base font-light text-black bg-neutral-50 focus:outline-none focus:border-black transition-colors rounded-none cursor-pointer" />
+              </label>
+            </div>
+
+            <!-- БЛОК 3: ЗАГРУЗКА ДОКУМЕНТОВ -->
+            <div class="space-y-8">
+              <h3 class="text-xs lg:text-sm font-bold tracking-[0.25em] uppercase text-neutral-400 border-b border-neutral-200 pb-3">
+                - 3. Adjuntar documentación -
+              </h3>
+
+              <div class="space-y-6">
+                <!-- Загрузка чека -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-6 border-2 border-neutral-300 bg-neutral-50 gap-4">
+                  <div class="space-y-1">
+                    <p class="text-sm font-semibold text-neutral-800 tracking-wide uppercase">Comprobante de compra o Factura</p>
+                    <p id="invoice-info-text" class="text-xs text-neutral-400 font-light">Extensiones aceptadas (máximo 2 Mb): .jpg, .jpeg, .pdf, .png</p>
+                  </div>
+                  <input type="file" id="file-invoice" class="hidden" />
+                  <label for="file-invoice" class="bg-white border border-black text-black text-xs tracking-wider uppercase font-bold py-3 px-6 hover:bg-black hover:text-white transition-all duration-300 cursor-pointer text-center shrink-0">
+                    Carga el archivo
+                  </label>
+                </div>
+
+                <!-- Загрузка фото шильдика -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-6 border-2 border-neutral-300 bg-neutral-50 gap-4">
+                  <div class="space-y-1">
+                    <p class="text-sm font-semibold text-neutral-800 tracking-wide uppercase">Fotografía de la etiqueta técnica</p>
+                    <p id="serial-info-text" class="text-xs text-neutral-400 font-light">Extensiones aceptadas (máximo 2 Mb): .jpg, .jpeg, .pdf, .png</p>
+                  </div>
+                  <input type="file" id="file-serial" class="hidden" />
+                  <label for="file-serial" class="bg-white border border-black text-black text-xs tracking-wider uppercase font-bold py-3 px-6 hover:bg-black hover:text-white transition-all duration-300 cursor-pointer text-center shrink-0">
+                    Carga el archivo
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- БЛОК 4: ПОДРОБНОСТИ И ОТПРАВКА -->
+            <div class="space-y-8">
+              <h3 class="text-xs lg:text-sm font-bold tracking-[0.25em] uppercase text-neutral-400 border-b border-neutral-200 pb-3">
+                - 4. Detalles de la solicitud -
+              </h3>
+
+              <label class="flex flex-col space-y-2">
+                <span class="text-neutral-900 uppercase text-xs font-bold tracking-[0.15em]">Mensaje o descripción del problema *</span>
+                <textarea 
+                  name="mensaje" 
+                  required 
+                  rows="6" 
+                  placeholder="Escribe aquí los detalles de tu consulta o el problema con tu electrodoméstico..."
+                  class="border-2 border-neutral-300 p-4 w-full text-base font-light text-black bg-neutral-50 focus:outline-none focus:border-black transition-colors rounded-none resize-y"
+                ></textarea>
+              </label>
+
+              <div class="space-y-4 pt-2">
+                <label class="flex items-start gap-3 cursor-pointer text-sm text-neutral-700 tracking-wide font-light select-none">
+                  <input 
+                    type="checkbox" 
+                    required 
+                    class="w-5 h-5 border-2 border-neutral-400 text-black focus:ring-0 cursor-pointer rounded-none mt-0.5 accent-black" 
+                  />
+                  <span>
+                    Acepto la <a href="/politica-privacidad" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 text-black font-semibold hover:text-neutral-600 transition-colors">política de privacidad</a> de ÁNIMA Concept Store. *
+                  </span>
+                </label>
+              </div>
+
+              <div class="pt-6">
+                <button 
+                  type="submit" 
+                  class="w-full md:w-auto bg-black border border-black text-white text-xs tracking-[0.2em] uppercase font-bold py-4.5 px-12 hover:bg-neutral-800 transition-all duration-300 cursor-pointer text-center rounded-none"
+                >
+                  Enviar solicitud
+                </button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      )}
+
+      <!-- ===================================================================== -->
+      <!-- 3. СЛАЙДЕР В СТИЛЕ HOGAR                                          -->
+      <!-- ===================================================================== -->
+      <section class="w-full pt-20 lg:pt-28 mt-20 border-t border-neutral-200 space-y-8 relative">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl sm:text-2xl lg:text-3xl font-light tracking-wide text-black uppercase">- También te puede interesar -</h2>
+          
+          <div class="flex items-center gap-3 shrink-0">
+            <button id="slide-prev" class="w-10 h-10 border border-neutral-300 text-neutral-400 hover:text-black hover:border-black rounded-full flex items-center justify-center transition-colors cursor-pointer text-lg font-mono">&lt;</button>
+            <button id="slide-next" class="w-10 h-10 border border-neutral-300 text-neutral-400 hover:text-black hover:border-black rounded-full flex items-center justify-center transition-colors cursor-pointer text-lg font-mono">&gt;</button>
+          </div>
+        </div>
+        
+        <div id="slider-track" class="w-full relative h-120 lg:h-150 overflow-hidden select-none">
+          {dataDB.articulos_soporte?.map((art: any) => (
+            <div class="support-slide absolute top-0 w-full lg:w-[calc(33.333%-22px)] flex flex-col space-y-4 lg:space-y-5 text-left group shrink-0">
+              <div class="w-full aspect-4/3 bg-neutral-50 overflow-hidden border border-neutral-100">
+                <Image 
+                  src={soporteImages[art.imgName]} 
+                  alt={art.titulo} 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+              </div>
+
+              <div class="space-y-3 pt-1 flex-1 flex flex-col justify-between">
+                <div class="space-y-2 lg:space-y-3">
+                  <h3 class="text-lg lg:text-xl font-medium tracking-wide text-black leading-tight group-hover:text-neutral-600 transition-colors">{art.titulo}</h3>
+                  <p class="text-sm text-neutral-500 font-light tracking-wide leading-relaxed line-clamp-3">{art.descripcion}</p>
+                </div>
+                <!--  <a href={art.url} class="inline-block text-xs font-bold tracking-[0.15em] uppercase text-black border-b-2 border-black pb-1 pt-2 lg:pt-4 hover:text-neutral-500 hover:border-neutral-500 transition-colors self-start">
+                  {art.textoEnlace}
+                </a> -->
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../scripts/soporte.js"></script>
+</Layout>
+

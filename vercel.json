@@ -1,3 +1,0 @@
-{
-  "buildCommand": "npx vercel-build-git-lfs || (apt-get update && apt-get install -y git-lfs) && git lfs install && git lfs pull && pnpm build"
-}

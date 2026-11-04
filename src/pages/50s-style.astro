@@ -1,7 +1,6 @@
 ---
 // src/pages/50s-style.astro
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
 import dataDB from '../../db.json';
 
 import sliderImg1 from '../assets/categories/50s-style-mint.jpg';
@@ -47,12 +46,13 @@ const imagesMap: Record<string, ImageMetadata> = {
       <div class="slide-fade absolute inset-0 w-full h-full opacity-100 transition-opacity duration-1000 ease-in-out z-10">
         
         <!-- Фоновое изображение: object-left сдвигает картинку влево на мобильных, пряча объект справа -->
-        <Image 
-          src={sliderImg1} 
+        <img 
+          src={sliderImg1.src} 
           alt="50's style Mint background" 
           class="absolute inset-0 w-full h-full object-cover object-left lg:object-center select-none z-0" 
-          priority 
-        />
+          loading="eager" 
+          fetchpriority="high"
+          />
         
         <!-- Контент поверх фото (Сетка 50/50 и навигационная стрелка) -->
         <div class="absolute inset-0 grid grid-cols-1 lg:grid-cols-2 z-10 bg-transparent text-neutral-900 mx-10">
@@ -89,8 +89,8 @@ const imagesMap: Record<string, ImageMetadata> = {
       <div class="slide-fade absolute inset-0 w-full h-full opacity-0 pointer-events-none transition-opacity duration-1000 ease-in-out z-0">
         
         <!-- Фоновое изображение для 2-го слайда -->
-        <Image 
-          src={sliderImg2} 
+        <img 
+          src={sliderImg2.src} 
           alt="50's style Red background" 
           class="absolute inset-0 w-full h-full object-cover object-left lg:object-center select-none z-0" 
         />
@@ -155,8 +155,8 @@ const imagesMap: Record<string, ImageMetadata> = {
 
       <!-- Картинка со всеми холодильниками -->
       <div class="w-full px-6 block select-none">
-        <Image 
-          src={allFridges} 
+        <img 
+          src={allFridges.src} 
           alt="Smeg 50's Style Collection" 
           class="w-full h-auto block object-contain"
         />
@@ -226,8 +226,8 @@ const imagesMap: Record<string, ImageMetadata> = {
 
               <!-- Блок изображения -->
               <div class="w-full h-64 sm:h-80 lg:h-full flex items-center justify-center mt-4 lg:mt-0">
-                <Image 
-                  src={imagesMap[slide.imgName]} 
+                <img 
+                  src={imagesMap[slide.imgName].src} 
                   alt={slide.title} 
                   class="w-full h-full object-contain lg:object-cover block" 
                 />
@@ -292,8 +292,8 @@ const imagesMap: Record<string, ImageMetadata> = {
         </h2>
 
         <div class="w-full max-w-[1900px] mx-auto block select-none">
-          <Image 
-            src={smallAppliancesImg} 
+          <img 
+            src={smallAppliancesImg.src} 
             alt="Smeg Small Appliances Collection" 
             class="w-full h-auto block object-contain mx-auto"
           />
@@ -353,8 +353,8 @@ const imagesMap: Record<string, ImageMetadata> = {
 
               <!-- Блок изображения -->
               <div class="w-full h-64 sm:h-80 lg:h-full flex items-center justify-center mt-4 lg:mt-0">
-                <Image 
-                  src={imagesMap[item.imgName]} 
+                <img 
+                  src={imagesMap[item.imgName].src} 
                   alt={item.title} 
                   class="w-full h-full object-contain lg:object-cover block" 
                 />

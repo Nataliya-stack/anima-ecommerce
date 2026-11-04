@@ -1,7 +1,6 @@
 ---
 // src/pages/guia-cafetera.astro
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
 import SostenibilidadSlider from "../components/SostenibilidadSlider.astro";
 import ReportesSlider from "../components/ReportesSlider.astro";
 
@@ -24,8 +23,8 @@ import imgProductos from "../assets/categories/productos.jpg";
     >
       <!-- Изображение-фон: Заполняет весь блок -->
       <div class="absolute inset-0 w-full h-full z-0">
-        <Image
-          src={imgSostenibilidad}
+        <img
+          src={imgSostenibilidad.src}
           alt="Sostenibilidad - Smeg"
           class="w-full h-full object-cover object-center opacity-100"
         />
@@ -139,8 +138,8 @@ import imgProductos from "../assets/categories/productos.jpg";
 
       <!-- ПРАВАЯ ПОЛОВИНА: Картинка -->
       <div class="w-full h-120 md:h-full relative overflow-hidden">
-        <Image
-          src={imgPersonas}
+        <img
+          src={imgPersonas.src}
           alt="Sostenibilidad Smeg - Personas"
           class="w-full h-full object-cover object-center opacity-100"
         />
@@ -172,8 +171,8 @@ import imgProductos from "../assets/categories/productos.jpg";
     >
       <!-- ЛЕВАЯ ПОЛОВИНА: Картинка -->
       <div class="w-full h-120 md:h-full relative overflow-hidden">
-        <Image
-          src={imgMedioambiente}
+        <img
+          src={imgMedioambiente.src}
           alt="Sostenibilidad Smeg - Medioambiente"
           class="w-full h-full object-cover object-center opacity-100"
         />
@@ -260,8 +259,8 @@ import imgProductos from "../assets/categories/productos.jpg";
 
       <!-- ПРАВАЯ ПОЛОВИНА: Картинка -->
       <div class="w-full h-120 md:h-full relative overflow-hidden">
-        <Image
-          src={imgProductos}
+        <img
+          src={imgProductos.src}
           alt="Sostenibilidad Smeg - Productos"
           class="w-full h-full object-cover object-center opacity-100"
         />

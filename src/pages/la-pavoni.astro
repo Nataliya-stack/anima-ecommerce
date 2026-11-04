@@ -1,7 +1,6 @@
 ---
 // src/pages/la-pavoni.astro
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
 
 import pavoniMainImage from "../assets/categories/pavoni_machine.jpg";
 import pavoniBusImage from "../assets/categories/pavoni-bus.jpg";
@@ -18,11 +17,12 @@ import pavoniGalleryCollage from "../assets/categories/gallery.png";
     <!-- ======================================================= -->
     <section class="relative w-full block overflow-hidden">
       <!-- Фоновая картинка -->
-      <Image
-        src={pavoniMainImage}
+      <img
+        src={pavoniMainImage.src}
         alt="La Pavoni Heritage"
         class="w-full h-auto block select-none z-0 brightness-[0.85]"
-        priority
+        loading="eager"
+        fetchpriority="high"
       />
 
       <!-- Текстовый контейнер поверх фото (Сетка 50/50) -->
@@ -115,8 +115,8 @@ import pavoniGalleryCollage from "../assets/categories/gallery.png";
 
       <!-- Правая часть: Фото ретро-автобуса -->
       <div class="w-full h-full flex justify-end select-none">
-        <Image
-          src={pavoniBusImage}
+        <img
+          src={pavoniBusImage.src}
           alt="La Pavoni Made in Italy History"
           class="w-full h-auto object-cover block"
         />
@@ -131,8 +131,8 @@ import pavoniGalleryCollage from "../assets/categories/gallery.png";
     >
       <!-- Левая половина с фото кофемашины -->
       <div class="w-full h-full flex justify-start select-none">
-        <Image
-          src={pavoniSecretImage}
+        <img
+          src={pavoniSecretImage.src}
           alt="El secreto de un auténtico café espresso italiano"
           class="w-full h-auto object-cover block"
         />
@@ -171,11 +171,12 @@ import pavoniGalleryCollage from "../assets/categories/gallery.png";
     <!-- ======================================================= -->
     <section class="w-full bg-[#fcfcfc] pb-20">
       <div class="w-full block select-none overflow-hidden">
-        <Image
-          src={pavoniGalleryCollage}
+        <img
+          src={pavoniGalleryCollage.src}
           alt="La Pavoni Gallery Collage"
           class="w-full h-auto block object-contain"
-          priority
+          loading="eager"
+          fetchpriority="high"
         />
       </div>
     </section>

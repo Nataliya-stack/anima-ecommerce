@@ -1,7 +1,6 @@
 ---
 // src/pages/guia-batidora.astro
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
 
 import imgHeroBatidora from "../assets/categories/batidora_baner.jpg";
 ---
@@ -18,8 +17,8 @@ import imgHeroBatidora from "../assets/categories/batidora_baner.jpg";
     >
       <!-- ЕДИНАЯ КАРТИНКА-ФОН -->
       <div class="absolute inset-0 w-full h-full z-0">
-        <Image
-          src={imgHeroBatidora}
+        <img
+          src={imgHeroBatidora.src}
           alt="BLC Batidora de alto rendimiento - Smeg"
           class="w-full h-full object-cover object-center opacity-100"
         />
@@ -149,13 +148,13 @@ import imgHeroBatidora from "../assets/categories/batidora_baner.jpg";
           class="w-full lg:w-[65%] aspect-video bg-neutral-100 border border-neutral-200 overflow-hidden relative shrink-0 shadow-2xs"
         >
           <video 
-  src="/video/batidora-servicio.mp4"
-  controls 
-  preload="metadata"
-  class="w-full h-full object-cover"
->
-  Tu navegador no soporta vídeos.
-</video>
+            src="/video/batidora-servicio.mp4"
+            controls 
+            preload="metadata"
+            class="w-full h-full object-cover"
+            >
+            Tu navegador no soporta vídeos.
+          </video>
         </div>
       </div>
 
@@ -189,13 +188,13 @@ import imgHeroBatidora from "../assets/categories/batidora_baner.jpg";
           class="w-full lg:w-[65%] aspect-video bg-neutral-100 border border-neutral-200 overflow-hidden shrink-0 shadow-2xs"
         >
           <video 
-  src="/video/batidora-pulse.mp4"
-  controls 
-  preload="metadata"
-  class="w-full h-full object-cover"
->
-  Tu navegador no soporta vídeos.
-</video>
+            src="/video/batidora-pulse.mp4"
+            controls 
+            preload="metadata"
+            class="w-full h-full object-cover"
+            >
+            Tu navegador no soporta vídeos.
+          </video>
         </div>
       </div>
 
@@ -226,13 +225,13 @@ import imgHeroBatidora from "../assets/categories/batidora_baner.jpg";
           class="w-full lg:w-[65%] aspect-video bg-neutral-100 border border-neutral-200 overflow-hidden shrink-0 shadow-2xs"
         >
           <video 
-  src="/video/batidora-limpieza.mp4"
-  controls 
-  preload="metadata"
-  class="w-full h-full object-cover"
->
-  Tu navegador no soporta vídeos.
-</video>
+            src="/video/batidora-limpieza.mp4"
+            controls 
+            preload="metadata"
+            class="w-full h-full object-cover"
+            >
+            Tu navegador no soporta vídeos.
+          </video>
         </div>
       </div>
 
@@ -267,13 +266,13 @@ import imgHeroBatidora from "../assets/categories/batidora_baner.jpg";
           class="w-full lg:w-[65%] aspect-video bg-neutral-100 border border-neutral-200 overflow-hidden shrink-0 shadow-2xs"
         >
           <video 
-  src="/video/batidora-vacio.mp4"
-  controls 
-  preload="metadata"
-  class="w-full h-full object-cover"
->
-  Tu navegador no soporta vídeos.
-</video>
+            src="/video/batidora-vacio.mp4"
+            controls 
+            preload="metadata"
+            class="w-full h-full object-cover"
+            >
+            Tu navegador no soporta vídeos.
+          </video>
         </div>
       </div>
     </section>

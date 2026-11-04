@@ -1,12 +1,11 @@
 ---
 // src/pages/asistencia-tecnica.astro
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
 
 // 1. Импортируем данные из вашего единого db.json (у вас он лежит в корне)
 import dataDB from '../../db.json';
 
-// 2. Импортируем все 6 картинок из вашей папки categories
+// 2. Импортируем все 6 картинок из папки categories
 import imgFaq from '../assets/categories/preguntas.jpg';
 import imgBatidora from '../assets/categories/batidora.jpg';
 import imgHervidor from '../assets/categories/hervidor.jpg';
@@ -258,8 +257,8 @@ const enviadoExitoso = url.searchParams.get('success') === 'true';
           {dataDB.articulos_soporte?.map((art: any) => (
             <div class="support-slide absolute top-0 w-full lg:w-[calc(33.333%-22px)] flex flex-col space-y-4 lg:space-y-5 text-left group shrink-0">
               <div class="w-full aspect-4/3 bg-neutral-50 overflow-hidden border border-neutral-100">
-                <Image 
-                  src={soporteImages[art.imgName]} 
+                <img 
+                  src={soporteImages[art.imgName].src} 
                   alt={art.titulo} 
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                 />

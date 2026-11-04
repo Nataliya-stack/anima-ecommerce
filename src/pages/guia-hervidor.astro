@@ -1,7 +1,6 @@
 ---
 // src/pages/guia-hervidor.astro
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
 
 import fotoBanner from "../assets/categories/banner-hervidor.jpg";
 import fotoMatt from "../assets/categories/hervidor-matt.jpg";
@@ -32,11 +31,12 @@ const pageTitle = "Instrucciones de mantenimiento del hervidor Smeg | ÁNIMA";
     >
       <!-- ЕДИНАЯ КАРТИНКА-ФОН -->
       <div class="absolute inset-0 w-full h-full z-0">
-        <Image
-          src={fotoBanner}
+        <img
+          src={fotoBanner.src}
           alt="Instrucciones de mantenimiento del hervidor Smeg"
           class="w-full h-full object-cover object-center opacity-100"
-          priority
+          loading="eager"
+          fetchpriority="high"
         />
       </div>
 
@@ -149,8 +149,8 @@ const pageTitle = "Instrucciones de mantenimiento del hervidor Smeg | ÁNIMA";
             <div
               class="w-full flex items-center justify-center min-h-70 sm:min-h-85"
             >
-              <Image
-                src={fotoMatt}
+              <img
+                src={fotoMatt.src}
                 alt="Hervidores Smeg - Matt Edition"
                 class="w-full h-auto object-contain max-w-105"
               />
@@ -167,8 +167,8 @@ const pageTitle = "Instrucciones de mantenimiento del hervidor Smeg | ÁNIMA";
             <div
               class="w-full flex items-center justify-center min-h-70 sm:min-h-85"
             >
-              <Image
-                src={fotoMetallic}
+              <img
+                src={fotoMetallic.src}
                 alt="Hervidores Smeg - Metallic Edition"
                 class="w-full h-auto object-contain max-w-105"
               />
@@ -256,8 +256,8 @@ const pageTitle = "Instrucciones de mantenimiento del hervidor Smeg | ÁNIMA";
             <div
               class="w-full flex items-center justify-center min-h-60 sm:min-h-70"
             >
-              <Image
-                src={fotoMini}
+              <img
+                src={fotoMini.src}
                 alt="Smeg Hervidor KLF05"
                 class="w-full h-auto object-contain max-w-90"
               />
@@ -274,8 +274,8 @@ const pageTitle = "Instrucciones de mantenimiento del hervidor Smeg | ÁNIMA";
             <div
               class="w-full flex items-center justify-center min-h-60 sm:min-h-70"
             >
-              <Image
-                src={fotoGrande}
+              <img
+                src={fotoGrande.src}
                 alt="Smeg Hervidor KLF03 y KLF04"
                 class="w-full h-auto object-contain max-w-90"
               />
@@ -320,8 +320,8 @@ const pageTitle = "Instrucciones de mantenimiento del hervidor Smeg | ÁNIMA";
         </div>
         <div class="py-16 flex flex-col items-start space-y-3">
           <div class="w-full max-w-85 flex items-center justify-start">
-            <Image
-              src={fotoBase}
+            <img
+              src={fotoBase.src}
               alt="Ejemplo de la base interior del hervidor Smeg"
               class="w-full h-auto object-contain"
             />
@@ -369,8 +369,8 @@ const pageTitle = "Instrucciones de mantenimiento del hervidor Smeg | ÁNIMA";
             <div
               class="w-full bg-[#f9f9f9] border border-neutral-100 overflow-hidden flex items-center justify-center aspect-square md:aspect-4/3 max-h-65"
             >
-              <Image
-                src={paso1}
+              <img
+                src={paso1.src}
                 alt="Paso 1: Llenar el hervidor de agua"
                 class="w-full h-full object-cover"
               />
@@ -390,8 +390,8 @@ const pageTitle = "Instrucciones de mantenimiento del hervidor Smeg | ÁNIMA";
             <div
               class="w-full bg-[#f9f9f9] border border-neutral-100 overflow-hidden flex items-center justify-center aspect-square md:aspect-4/3 max-h-65"
             >
-              <Image
-                src={paso2}
+              <img
+                src={paso2.src}
                 alt="Paso 2: Activar el hervidor"
                 class="w-full h-full object-cover"
               />
@@ -408,8 +408,8 @@ const pageTitle = "Instrucciones de mantenimiento del hervidor Smeg | ÁNIMA";
             <div
               class="w-full bg-[#f9f9f9] border border-neutral-100 overflow-hidden flex items-center justify-center aspect-square md:aspect-4/3 max-h-65"
             >
-              <Image
-                src={paso3}
+              <img
+                src={paso3.src}
                 alt="Paso 3: Añadir vinagre blanco"
                 class="w-full h-full object-cover"
               />
@@ -441,8 +441,8 @@ const pageTitle = "Instrucciones de mantenimiento del hervidor Smeg | ÁNIMA";
             <div
               class="w-full bg-[#f9f9f9] border border-neutral-100 overflow-hidden flex items-center justify-center aspect-square md:aspect-4/3 max-h-65"
             >
-              <Image
-                src={paso4}
+              <img
+                src={paso4.src}
                 alt="Paso 4: Dejar actuar"
                 class="w-full h-full object-cover"
               />
@@ -460,8 +460,8 @@ const pageTitle = "Instrucciones de mantenimiento del hervidor Smeg | ÁNIMA";
             <div
               class="w-full bg-[#f9f9f9] border border-neutral-100 overflow-hidden flex items-center justify-center aspect-square md:aspect-4/3 max-h-65"
             >
-              <Image
-                src={paso5}
+              <img
+                src={paso5.src}
                 alt="Paso 5: Vaciar el hervidor"
                 class="w-full h-full object-cover"
               />
@@ -479,8 +479,8 @@ const pageTitle = "Instrucciones de mantenimiento del hervidor Smeg | ÁNIMA";
             <div
               class="w-full bg-[#f9f9f9] border border-neutral-100 overflow-hidden flex items-center justify-center aspect-square md:aspect-4/3 max-h-65"
             >
-              <Image
-                src={paso6}
+              <img
+                src={paso6.src}
                 alt="Paso 6: Enjuagar el hervidor"
                 class="w-full h-full object-cover"
               />

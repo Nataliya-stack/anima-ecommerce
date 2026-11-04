@@ -1,7 +1,6 @@
 ---
 // src/pages/gasificadora.astro
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
 import ProductSpecs from '../components/ProductSpecs.astro';
 
 import dataDB from '../../db.json';
@@ -109,11 +108,12 @@ import gasificadoraColores from '../assets/categories/gasificadora_colores.jpg';
         {/* ЛЕВАЯ ЧАСТЬ: Массивное фото (8 колонок из 12) */}
         <div class="w-full lg:col-span-8">
           <div class="overflow-hidden bg-white border rounded-sm shadow-sm aspect-16/10 sm:aspect-video lg:aspect-16/10 border-slate-200/40">
-            <Image 
-              src={gasificadoraInterior} 
+            <img 
+              src={gasificadoraInterior.src} 
               alt="Innovación intuitiva en el diseño de la gasificadora" 
               class="object-cover object-center w-full h-full transition-transform duration-700 ease-out hover:scale-101"
               loading="lazy"
+              fetchpriority="high"
             />
           </div>
         </div>
@@ -141,8 +141,8 @@ import gasificadoraColores from '../assets/categories/gasificadora_colores.jpg';
         {/* ЛЕВАЯ ЧАСТЬ: Большое фото на белом фоне (8 колонок из 12) */}
         <div class="w-full lg:col-span-8">
           <div class="flex items-center justify-center overflow-hidden bg-white rounded-sm aspect-16/10 sm:aspect-video lg:aspect-16/10">
-            <Image 
-              src={gasificadoraBlanco} 
+            <img 
+              src={gasificadoraBlanco.src} 
               alt="Versatilidad en tu rutina diaria" 
               class="object-contain object-center w-full h-full transition-transform duration-700 ease-out hover:scale-101"
               loading="lazy"
@@ -173,9 +173,9 @@ import gasificadoraColores from '../assets/categories/gasificadora_colores.jpg';
         {/* ЛЕВАЯ ЧАСТЬ: Панорамное фото цветов (8 колонок из 12) */}
         <div class="w-full lg:col-span-8">
           <div class="overflow-hidden bg-white border rounded-sm shadow-sm aspect-16/10 sm:aspect-video lg:aspect-16/10 border-slate-200/40">
-            <Image 
-              src={gasificadoraColores} 
-              alt="Gama de colores de la gasificadora Smeg" 
+            <img
+              src={gasificadoraColores.src}
+              alt="Gama de colores de la gasificadora Smeg"
               class="object-cover object-center w-full h-full transition-transform duration-700 ease-out hover:scale-101"
               loading="lazy"
             />

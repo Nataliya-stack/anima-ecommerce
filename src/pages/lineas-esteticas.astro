@@ -1,8 +1,6 @@
 ---
 // src/pages/lineas-esteticas.astro
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-
 import dataDB from '../../db.json';
 
 import imgMusa from '../assets/categories/musa.jpg';
@@ -43,11 +41,12 @@ const aestheticImages: Record<string, ImageMetadata> = {
       <div class={`aesthetic-slide absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none z-0'}`}>
         
         <!-- Фоновое фото на весь экран -->
-        <Image 
-          src={aestheticImages[item.imgName]} 
+        <img 
+          src={aestheticImages[item.imgName].src} 
           alt={item.title} 
           class="absolute inset-0 w-full h-full object-cover z-0 brightness-[0.75]" 
-          priority={index === 0}
+          loading={index === 0 ? "eager" : "lazy"}
+          fetchpriority={index === 0 ? "high" : "auto"}
         />
 
         <!-- Текстовый слой поверх фото -->

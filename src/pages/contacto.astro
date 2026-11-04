@@ -1,7 +1,6 @@
 ---
 // src/pages/contacto.astro
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
 
 import dataDB from "../../db.json";
 const info = dataDB.contacto;
@@ -37,8 +36,8 @@ import imgSede from "../assets/categories/sede-pool.avif";
       <div
         class="w-full aspect-16/10 sm:aspect-video lg:h-full relative overflow-hidden rounded-sm border border-neutral-900 shadow-2xl bg-neutral-900"
       >
-        <Image
-          src={imgSede}
+        <img
+          src={imgSede.src}
           alt="ÁNIMA Sede Central"
           class="w-full h-full object-cover block"
         />

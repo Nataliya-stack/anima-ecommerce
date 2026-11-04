@@ -1,0 +1,8 @@
+{
+  "outputDirectory": "dist",
+  "framework": "astro",
+  "files": [
+    "public/**/*",
+    "dist/**/*"
+  ]
+}

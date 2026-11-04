@@ -1,6 +1,6 @@
 // src/pages/api/crear-checkout.ts
 import type { APIRoute } from 'astro';
-import { supabase } from '../../lib/supabase'; // Проверьте этот путь до вашего файла supabase.ts
+import { supabase } from '../../lib/supabase';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
@@ -44,15 +44,44 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 
     // 🌟 ФИНАЛЬНЫЙ РУБЕЖ ЗАЩИТЫ: Проверяем сток в базе данных прямо перед оплатой
     for (const item of items) {
-      const { data: dbProduct } = await supabase
+      // 1. Извлекаем ID (проверяем варианты ключей id и pk_producto) и приводим к числу
+      const rawId = item.id ?? item.pk_producto;
+      const productId = Number(rawId);
+
+      if (!productId || isNaN(productId)) {
+        console.error("Некорректный ID товара в корзине:", item);
+        return new Response(JSON.stringify({ 
+          error: `El ID del producto no es válido.` 
+        }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+
+      // 2. Делаем запрос к базе данных Supabase
+      const { data: dbProduct, error: dbError } = await supabase
         .from('products')
         .select('stock, nombre_producto')
-        .eq('pk_producto', item.id)
+        .eq('pk_producto', productId)
         .single();
 
-      if (dbProduct && item.cantidad > dbProduct.stock) {
+      if (dbError || !dbProduct) {
+        console.error(`Товар с pk_producto = ${productId} не найден:`, dbError);
         return new Response(JSON.stringify({ 
-          error: `Lo sentimos, solo quedan ${dbProduct.stock} unidades de "${dbProduct.nombre_producto}". Пожалуйста, уменьшите количество в корзине.` 
+          error: `El producto no fue encontrado en el catálogo.` 
+        }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+
+      // 3. Сравниваем количества, приводя обе стороны к Числу (Number)
+      const stockDisponible = Number(dbProduct.stock ?? 0);
+      const cantidadSolicitada = Number(item.cantidad ?? item.quantity ?? 1);
+
+      if (cantidadSolicitada > stockDisponible) {
+        return new Response(JSON.stringify({ 
+          error: `Lo sentimos, solo quedan ${stockDisponible} unidades de "${dbProduct.nombre_producto}". Por favor, reduce la cantidad en la cesta.` 
         }), {
           status: 400,
           headers: { 'Content-Type': 'application/json' },
@@ -60,28 +89,26 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       }
     }
 
-    // 4. Мапим продукты для Stripe (Исправлено строго под ваши ключи: id, nombre, precio)
+    // 4. Мапим продукты для Stripe
     const lineItems = items.map((item: any) => ({
       price_data: {
         currency: 'eur',
         product_data: {
-          name: item.nombre, // У вас поле называется nombre
+          name: item.nombre,
         },
         unit_amount: Math.round(parseFloat(item.precio) * 100), // Stripe принимает в центах
       },
-      quantity: item.cantidad || 1,
+      quantity: Number(item.cantidad ?? item.quantity ?? 1),
     }));
 
     // 5. Создаем сессию Stripe Checkout
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
       mode: 'payment',
-      // Перенаправление в случае успеха на страницу /exito
       success_url: `${new URL(request.url).origin}/exito?session_id={CHECKOUT_SESSION_ID}`,
-      // Исправлено: перенаправление при отмене на вашу реальную страницу /cart вместо /carrito
       cancel_url: `${new URL(request.url).origin}/cart`,
       metadata: {
-        userId: userId, // Передаем ID пользователя в скрытые метаданные Stripe
+        userId: userId,
       },
     });
 

@@ -256,7 +256,7 @@ async function handleCheckoutClick() {
 
     if (dbProducts) {
       for (const item of rawCarrito) {
-        const prod = dbProducts.find(p => p.pk_producto === item.id);
+        const prod = dbProducts.find(p => Number(p.pk_producto) === Number(item.id));
         if (!prod || prod.stock < item.cantidad) {
           showStockModal();
           renderCartItems();

@@ -2090,8 +2090,8 @@
     "id": 1,
     "title": "Hornos",
     "description": "Los hornos con Wi-Fi y ÁNIMA Connect te permiten operar, controlar y monitorizar tu horno desde la app en tu teléfono móvil o tablet.",
-    "button": "DESCUBRE LOS MODELOS",
-    "link": "/search"
+    "button": "- Aún no disponible -",
+    "link": "#"
   },
   {
     "id": 2,
@@ -2121,14 +2121,14 @@
       "title": "Porsche x SMEG",
       "description": "Una colaboración exclusiva que fusiona el rendimiento legendario con la estética icónica de los electrodomésticos de diseño.",
       "buttonText": "DESCUBRE PORSCHE X SMEG",
-      "buttonLink": "#"
+      "buttonLink": "/porsche-x-smeg"
     },
     {
       "id": 3,
       "title": "Porsche x SMEG",
       "description": "Detalles artesanales y acabados únicos que convierten cada electrodoméstico en una auténtica pieza de colección.",
       "buttonText": "DESCUBRE PORSCHE X SMEG",
-      "buttonLink": "#"
+      "buttonLink": "/porsche-x-smeg"
     }
   ],
   "divinaCucinaSlider": [

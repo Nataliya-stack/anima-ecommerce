@@ -1,7 +1,5 @@
 ---
 // src/components/BlocksHogar.astro
-import { Image } from "astro:assets";
-
 import imgMattBlack from "../assets/categories/hero_fab.jpg";
 import imgPerfectPale from "../assets/categories/frigo_beige.jpg";
 import imgRust from "../assets/categories/frigo_rust.jpg";
@@ -82,8 +80,8 @@ const blockContent = dataDB.home.blocks_hogar;
     <div
       class="hogar-slide absolute inset-0 w-full h-full flex items-center px-12 md:px-24 rounded-2xl overflow-hidden transition-all duration-700 ease-in-out"
     >
-      <Image
-        src={imgMattBlack}
+      <img
+        src={imgMattBlack.src}
         alt="Smeg FAB Matt Black"
         class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
       />
@@ -119,8 +117,8 @@ const blockContent = dataDB.home.blocks_hogar;
     <div
       class="hogar-slide absolute inset-0 w-full h-full flex items-center px-12 md:px-24 rounded-2xl overflow-hidden transition-all duration-700 ease-in-out"
     >
-      <Image
-        src={imgPerfectPale}
+      <img
+        src={imgPerfectPale.src}
         alt="Smeg FAB Perfect Pale"
         class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
       />
@@ -156,8 +154,8 @@ const blockContent = dataDB.home.blocks_hogar;
     <div
       class="hogar-slide absolute inset-0 w-full h-full flex items-center px-12 md:px-24 rounded-2xl overflow-hidden transition-all duration-700 ease-in-out"
     >
-      <Image
-        src={imgRust}
+      <img
+        src={imgRust.src}
         alt="Smeg FAB New Rust"
         class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
       />
@@ -193,8 +191,8 @@ const blockContent = dataDB.home.blocks_hogar;
     <div
       class="hogar-slide absolute inset-0 w-full h-full flex items-center px-8 sm:px-12 md:px-24 rounded-2xl overflow-hidden transition-all duration-700 ease-in-out"
     >
-      <Image
-        src={imgLightBlue}
+      <img
+        src={imgLightBlue.src}
         alt="Smeg FAB Light Blue"
         class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
       />
@@ -248,8 +246,8 @@ const blockContent = dataDB.home.blocks_hogar;
       <div
         class="w-full aspect-4/5 overflow-hidden rounded-2xl shadow-2xs border border-neutral-100 group cursor-pointer"
       >
-        <Image
-          src={imgInteriorRust}
+        <img
+          src={imgInteriorRust.src}
           alt="Ambiente Frigorífico ÁNIMA FAB Rust"
           class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
         />
@@ -259,8 +257,8 @@ const blockContent = dataDB.home.blocks_hogar;
       <div
         class="w-full aspect-4/5 overflow-hidden rounded-2xl shadow-2xs border border-neutral-100 group cursor-pointer"
       >
-        <Image
-          src={imgInteriorBlue}
+        <img
+          src={imgInteriorBlue.src}
           alt="Ambiente Frigorífico ÁNIMA FAB Light Blue"
           class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
         />
@@ -270,8 +268,8 @@ const blockContent = dataDB.home.blocks_hogar;
       <div
         class="w-full aspect-4/5 overflow-hidden rounded-2xl shadow-2xs border border-neutral-100 group cursor-pointer"
       >
-        <Image
-          src={imgInteriorPale}
+        <img
+          src={imgInteriorPale.src}
           alt="Ambiente Frigorífico ÁNIMA FAB Perfect Pale"
           class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
         />
@@ -402,8 +400,8 @@ const blockContent = dataDB.home.blocks_hogar;
       <div
         class="vestidos-slide opacity-100 z-10 absolute inset-0 w-full h-full transition-all duration-700 ease-in-out"
       >
-        <Image
-          src={imgUnionJack}
+        <img
+          src={imgUnionJack.src}
           alt="Smeg"
           class="w-full h-full object-cover object-center select-none pointer-events-none"
         />
@@ -411,8 +409,8 @@ const blockContent = dataDB.home.blocks_hogar;
       <div
         class="vestidos-slide opacity-0 z-0 absolute inset-0 w-full h-full transition-all duration-700 ease-in-out"
       >
-        <Image
-          src={imgItalia}
+        <img
+          src={imgItalia.src}
           alt="Smeg"
           class="w-full h-full object-cover object-center select-none pointer-events-none"
         />
@@ -420,8 +418,8 @@ const blockContent = dataDB.home.blocks_hogar;
       <div
         class="vestidos-slide opacity-0 z-0 absolute inset-0 w-full h-full transition-all duration-700 ease-in-out"
       >
-        <Image
-          src={imgDG}
+        <img
+          src={imgDG.src}
           alt="Smeg"
           class="w-full h-full object-cover object-center select-none pointer-events-none"
         />
@@ -429,8 +427,8 @@ const blockContent = dataDB.home.blocks_hogar;
       <div
         class="vestidos-slide opacity-0 z-0 absolute inset-0 w-full h-full transition-all duration-700 ease-in-out"
       >
-        <Image
-          src={imgMulticolor}
+        <img
+          src={imgMulticolor.src}
           alt="Smeg"
           class="w-full h-full object-cover object-center select-none pointer-events-none"
         />
@@ -438,8 +436,8 @@ const blockContent = dataDB.home.blocks_hogar;
       <div
         class="vestidos-slide opacity-0 z-0 absolute inset-0 w-full h-full transition-all duration-700 ease-in-out"
       >
-        <Image
-          src={imgSpecial}
+        <img
+          src={imgSpecial.src}
           alt="Smeg"
           class="w-full h-full object-cover object-center select-none pointer-events-none"
         />
@@ -456,8 +454,8 @@ const blockContent = dataDB.home.blocks_hogar;
 >
   <!-- ЛЕВАЯ ПОЛОВИНА: ФОТО ИНТЕРЬЕРА -->
   <div class="w-full h-full relative aspect-4/3 lg:min-h-0">
-    <Image
-      src={imgYellowAmbient}
+    <img
+      src={imgYellowAmbient.src}
       alt="Ambiente Frigorífico Amarillo ÁNIMA"
       class="w-full h-full object-cover object-center select-none pointer-events-none"
     />
@@ -545,8 +543,8 @@ const blockContent = dataDB.home.blocks_hogar;
 
   <!-- ПРАВАЯ ПОЛОВИНА: ФОТО С ТРЕМЯ ОРАНЖЕВЫМИ ХОЛОДИЛЬНИКАМИ -->
   <div class="order-1 lg:order-2 w-full h-full relative aspect-4/3 lg:min-h-0">
-    <Image
-      src={imgOrangeGama}
+    <img
+      src={imgOrangeGama.src}
       alt="Gama de frigoríficos naranjas ÁNIMA FAB"
       class="w-full h-full object-cover object-center select-none pointer-events-none"
     />
@@ -559,8 +557,8 @@ const blockContent = dataDB.home.blocks_hogar;
 <section
   class="w-full bg-white mt-12 md:mt-24 mb-8 md:mb-16 select-none relative overflow-hidden left-0 right-0 h-auto"
 >
-  <Image
-    src={imgLinesBackground}
+  <img
+    src={imgLinesBackground.src}
     alt="Tecnología de refrigeración ÁNIMA FAB"
     class="w-full h-auto object-cover select-none block pointer-events-none"
   />
@@ -576,8 +574,8 @@ const blockContent = dataDB.home.blocks_hogar;
   <div
     class="w-full h-full relative aspect-4/3 lg:min-h-0 bg-[#141414] flex items-center justify-center"
   >
-    <Image
-      src={imgCinemaFilm}
+    <img
+      src={imgCinemaFilm.src}
       alt="Smeg FAB en el cine y televisión"
       class="w-full h-full object-cover object-center select-none pointer-events-none"
     />

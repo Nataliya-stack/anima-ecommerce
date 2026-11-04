@@ -1,7 +1,5 @@
 ---
 // src/components/BlocksPequeno.astro
-import { Image } from "astro:assets";
-
 import bannerInspiracion from "../assets/categories/banner_inspiracion.png";
 import bgRobot from "../assets/categories/robot_de_cosina.jpg";
 import bgSicily from "../assets/categories/sicily_love.jpg";
@@ -44,8 +42,8 @@ const blockContent = dataDB.home.blocks_pequeno;
     <div
       class="order-1 md:order-2 md:col-start-6 md:col-span-7 w-full aspect-16/11 overflow-hidden rounded-xl sm:rounded-none"
     >
-      <Image
-        src={bannerInspiracion}
+      <img
+        src={bannerInspiracion.src}
         alt="Cafeteras automáticas ÁNIMA"
         class="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-[1.01]"
       />
@@ -66,8 +64,8 @@ const blockContent = dataDB.home.blocks_pequeno;
     <div
       class="md:col-span-7 w-full aspect-16/11 overflow-hidden rounded-xl sm:rounded-none"
     >
-      <Image
-        src={bgRobot}
+      <img
+        src={bgRobot.src}
         alt="Robot de cocina ÁNIMA"
         class="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-[1.01]"
       />
@@ -147,8 +145,8 @@ const blockContent = dataDB.home.blocks_pequeno;
     <div
       class="order-1 md:order-2 md:col-start-6 md:col-span-7 w-full aspect-16/11 overflow-hidden rounded-xl sm:rounded-none"
     >
-      <Image
-        src={bgSicily}
+      <img
+        src={bgSicily.src}
         alt="Colección Sicily is my love SMEG"
         class="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-[1.01]"
       />
@@ -162,8 +160,8 @@ const blockContent = dataDB.home.blocks_pequeno;
 <section
   class="w-full mt-12 sm:mt-32 mb-0 select-none overflow-hidden bg-neutral-50 relative z-10 left-0 right-0"
 >
-  <Image
-    src={bgFinalPanorama}
+  <img
+    src={bgFinalPanorama.src}
     alt="Gama completa de electrodomésticos ÁNIMA"
     class="w-full h-auto object-cover transition-transform duration-1000 ease-out hover:scale-[1.01]"
   />

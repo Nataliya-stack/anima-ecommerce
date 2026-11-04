@@ -1,7 +1,5 @@
 ---
 // src/components/BlocksCocina.astro
-import { Image } from "astro:assets";
-
 import bgCocinaIntegrada from "../assets/categories/soluciones_integradas.jpg";
 import bgHorizontal from "../assets/categories/smeg_horizontal.jpg";
 import bgColumna from "../assets/categories/smeg_columna.jpg";
@@ -59,8 +57,8 @@ const blockContent = dataDB.home.blocks_cocina;
 <section
   class="w-full mb-0 select-none overflow-hidden bg-neutral-50 relative z-10 left-0 right-0"
 >
-  <Image
-    src={bgCocinaIntegrada}
+  <img
+    src={bgCocinaIntegrada.src}
     alt="Cocina completa de diseño ÁNIMA"
     class="w-full h-auto object-cover transition-transform duration-1000 ease-out hover:scale-[1.01]"
   />
@@ -94,8 +92,8 @@ const blockContent = dataDB.home.blocks_cocina;
     <div
       class="md:col-start-6 md:col-span-7 w-full aspect-16/11 overflow-hidden"
     >
-      <Image
-        src={bgHorizontal}
+      <img
+        src={bgHorizontal.src}
         alt={blockContent.horizontal.title}
         class="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-[1.01]"
       />
@@ -131,8 +129,8 @@ const blockContent = dataDB.home.blocks_cocina;
     <div
       class="md:col-start-6 md:col-span-7 w-full aspect-16/11 overflow-hidden"
     >
-      <Image
-        src={bgColumna}
+      <img
+        src={bgColumna.src}
         alt={blockContent.columna.title}
         class="w-full h-full object-cover transition-transform duration-1000 ease-out hover:scale-[1.01]"
       />
@@ -152,8 +150,8 @@ const blockContent = dataDB.home.blocks_cocina;
     <!-- ЛЕВАЯ СТОРОНА: ELECTRODOMÉSTICOS CONECTADOS -->
     <div class="flex flex-col text-left group cursor-pointer">
       <div class="w-full aspect-16/11 overflow-hidden bg-neutral-950 mb-8">
-        <Image
-          src={imgConectados}
+        <img
+          src={imgConectados.src}
           alt="Electrodomésticos conectados ÁNIMA"
           class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.01]"
         />
@@ -190,8 +188,8 @@ const blockContent = dataDB.home.blocks_cocina;
     <!-- ПРАВАЯ СТОРОНА: PIEZAS DE ARTE (DOLCE & GABBANA) -->
     <div class="flex flex-col text-left group cursor-pointer">
       <div class="w-full aspect-16/11 overflow-hidden bg-neutral-950 mb-8">
-        <Image
-          src={imgPiezasArte}
+        <img
+          src={imgPiezasArte.src}
           alt="Piezas de arte ÁNIMA y Dolce & Gabbana"
           class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.01]"
         />

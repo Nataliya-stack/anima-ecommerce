@@ -1,6 +1,5 @@
 ---
 // src/components/BlocksPequeno.astro
-import { Image } from "astro:assets";
 import dataDB from "../../db.json";
 
 import imgTecnologiaMulticook from "../assets/categories/banner-pequeno-electro.jpg";
@@ -32,12 +31,13 @@ const innovacionImages = [imgInnovacionA, imgInnovacionB, imgInnovacionC];
 >
   <!-- КАРТИНКА-ФОН -->
   <div class="absolute inset-0 w-full h-full z-0">
-    <Image
-      src={imgTecnologiaMulticook}
+    <img
+      src={imgTecnologiaMulticook.src}
       alt="Tecnología 50 Style"
       class="w-full h-full object-cover object-center opacity-100"
-      priority
-    />
+      loading="eager"
+      fetchpriority="high"
+      />
   </div>
 
   <!-- БЛОК ТЕКСТА -->
@@ -107,8 +107,8 @@ const innovacionImages = [imgInnovacionA, imgInnovacionB, imgInnovacionC];
         blockContent.aliados_perfectos.cards.map((card: any, index: number) => (
           <div class="flex flex-col space-y-6 text-left">
             <div class="w-full flex items-center justify-center min-h-65 md:min-h-75">
-              <Image
-                src={aliadosImages[index]}
+              <img
+                src={aliadosImages[index].src}
                 alt={card.alt}
                 class="max-h-64 w-auto object-contain"
               />
@@ -148,8 +148,8 @@ const innovacionImages = [imgInnovacionA, imgInnovacionB, imgInnovacionC];
                 <div
                   class={`js-slide-item w-full flex items-center justify-center transition-all duration-500 absolute inset-0 ${index === 0 ? "opacity-100 z-10" : "opacity-0 z-0"}`}
                 >
-                  <Image
-                    src={detallesImages[index]}
+                  <img
+                    src={detallesImages[index].src}
                     alt={slide.alt}
                     class="max-h-80 sm:max-h-96 w-auto object-contain"
                   />
@@ -227,8 +227,8 @@ const innovacionImages = [imgInnovacionA, imgInnovacionB, imgInnovacionC];
                 <div
                   class={`js-slide-item w-full flex items-center justify-center transition-all duration-500 absolute inset-0 ${index === 0 ? "opacity-100 z-10" : "opacity-0 z-0"}`}
                 >
-                  <Image
-                    src={innovacionImages[index]}
+                  <img
+                    src={innovacionImages[index].src}
                     alt={slide.alt}
                     class="max-h-80 sm:max-h-96 w-auto object-contain"
                   />

@@ -1,7 +1,5 @@
 ---
 // src/components/NewsCard.astro
-import { Image } from "astro:assets";
-
 import n1 from "../assets/news/news1.jpg";
 import n2 from "../assets/news/news2.jpg";
 import n3 from "../assets/news/news3.png";
@@ -41,8 +39,8 @@ const { category, title, imageKey } = Astro.props;
 <section class="w-full aspect-square overflow-hidden bg-neutral-900">
   {
     newsImages[imageKey] && (
-      <Image
-        src={newsImages[imageKey]}
+      <img
+        src={newsImages[imageKey].src}
         alt={title}
         class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-103"
       />

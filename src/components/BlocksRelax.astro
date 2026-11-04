@@ -1,6 +1,5 @@
 ---
 // src/components/BlocksRelax.astro
-import { Image } from 'astro:assets';
 import dataDB from '../../db.json'; 
 
 import tvPortfolio from '../assets/categories/tv_portfolio.jpg';
@@ -25,8 +24,8 @@ const blockContent = dataDB.home.blocks_relax;
       
       <!-- Правая часть: Фоновое изображение интерьера -->
       <div class="absolute inset-y-0 right-0 w-full lg:w-[65%] h-full z-0">
-        <Image 
-          src={tvPortfolio} 
+        <img 
+          src={tvPortfolio.src} 
           alt="Ecosistema Premium Imagen y Sonido" 
           class="w-full h-full object-cover object-right sm:object-center"
           loading="eager"
@@ -92,8 +91,8 @@ const blockContent = dataDB.home.blocks_relax;
             <h4 class="text-lg sm:text-xl font-medium tracking-wide text-[#141414]">{card.title}</h4>
           </div>
           <div class="aspect-square w-full overflow-hidden bg-slate-200 rounded-sm relative border border-slate-200/60">
-            <Image 
-              src={techCardImages[index]} 
+            <img 
+              src={techCardImages[index].src} 
               alt={card.alt} 
               class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
               loading="lazy"
@@ -133,8 +132,8 @@ const blockContent = dataDB.home.blocks_relax;
     <!-- Правая половина: Картинка -->
     <div class="w-full order-1 lg:order-2">
       <div class="overflow-hidden rounded-sm bg-slate-100 aspect-4/3 sm:aspect-16/11 lg:aspect-5/4 shadow-sm border border-slate-200/40">
-        <Image 
-          src={audioCraft} 
+        <img 
+          src={audioCraft.src} 
           alt="Artesanía y diseño acústico de alta gama" 
           class="w-full h-full object-cover object-center transition-transform duration-700 ease-out hover:scale-102"
           loading="lazy"
@@ -155,9 +154,9 @@ const blockContent = dataDB.home.blocks_relax;
     <!-- Правая половина: Картинка -->
     <div class="w-full order-1 lg:order-2">
       <div class="overflow-hidden rounded-sm bg-slate-100 aspect-4/3 sm:aspect-16/11 lg:aspect-5/4 shadow-sm border border-slate-200/40">
-        <Image 
-          src={gamingConsole} 
-          alt="Consolas de última generación y rendimiento premium" 
+        <img
+          src={gamingConsole.src}
+          alt="Consolas de última generación y rendimiento premium"
           class="w-full h-full object-cover object-center transition-transform duration-700 ease-out hover:scale-102"
           loading="lazy"
         />

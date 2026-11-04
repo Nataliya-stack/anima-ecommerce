@@ -162,8 +162,8 @@ const videoUrlSamsung = "https://www.youtube.com/embed/Bsulx9U4xhI";
               
               <!-- Контейнер картинки -->
               <div class="w-full aspect-4/3 bg-neutral-50 overflow-hidden relative mb-5">
-                <Image 
-                  src={trendImages[item.imageKey]} 
+                <img 
+                  src={trendImages[item.imageKey].src} 
                   alt={item.title} 
                   class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-102"
                 />
@@ -205,15 +205,15 @@ const videoUrlSamsung = "https://www.youtube.com/embed/Bsulx9U4xhI";
 
           <div class="lg:col-span-7 aspect-video bg-neutral-50 overflow-hidden shadow-sm relative">
             <video 
-  src="/video/galileo.mp4"
-  controls 
-  muted 
-  playsinline 
-  preload="metadata"
-  class="w-full h-full object-cover"
->
-  Tu navegador no soporta vídeos.
-</video>
+              src="/video/galileo.mp4"
+              controls 
+              muted 
+              playsinline 
+              preload="metadata"
+              class="w-full h-full object-cover"
+              >
+              Tu navegador no soporta vídeos.
+            </video>
           </div>
         </div>
 
@@ -277,8 +277,8 @@ const videoUrlSamsung = "https://www.youtube.com/embed/Bsulx9U4xhI";
         <!-- Блок ЛЕВО: Tienda online -->
         <a href="/catalog" class="flex flex-col text-left group cursor-pointer">
           <div class="w-full aspect-16/10 overflow-hidden bg-neutral-50 mb-6">
-            <Image 
-              src={imgTienda} 
+            <img 
+              src={imgTienda.src} 
               alt={content.tienda.title} 
               class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-102 group-hover:translate-y-1" 
             />
@@ -299,8 +299,8 @@ const videoUrlSamsung = "https://www.youtube.com/embed/Bsulx9U4xhI";
         <!-- Блок ПРАВО: Distribuidores -->
         <a href="/encuentra-distribuidores" class="flex flex-col text-left group cursor-pointer">
           <div class="w-full aspect-16/10 overflow-hidden bg-neutral-50 mb-6">
-            <Image 
-              src={imgDistri} 
+            <img 
+              src={imgDistri.src} 
               alt={content.distribuidores.title} 
               class="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-102 group-hover:translate-y-1" 
             />
@@ -384,8 +384,8 @@ const videoUrlSamsung = "https://www.youtube.com/embed/Bsulx9U4xhI";
         <!-- Блок 1: ÁNIMA Professional -->
         <div class="flex flex-col text-left group cursor-pointer">
           <div class="w-full aspect-4/3 bg-white overflow-hidden flex items-center justify-center relative mb-6">
-            <Image 
-              src={imgProf} 
+            <img 
+              src={imgProf.src} 
               alt={content.divisiones.professional.title} 
               class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
@@ -405,8 +405,8 @@ const videoUrlSamsung = "https://www.youtube.com/embed/Bsulx9U4xhI";
         <!-- Блок 2: ÁNIMA Instruments -->
         <div class="flex flex-col text-left group cursor-pointer">
           <div class="w-full aspect-4/3 bg-white overflow-hidden flex items-center justify-center relative mb-6">
-            <Image 
-              src={imgInst} 
+            <img 
+              src={imgInst.src} 
               alt={content.divisiones.instruments.title} 
               class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
@@ -425,8 +425,8 @@ const videoUrlSamsung = "https://www.youtube.com/embed/Bsulx9U4xhI";
         <!-- Блок 3: Café Elite -->
         <div class="flex flex-col text-left group cursor-pointer">
           <div class="w-full aspect-4/3 bg-white overflow-hidden flex items-center justify-center relative mb-6">
-            <Image 
-              src={imgCafe} 
+            <img 
+              src={imgCafe.src} 
               alt={content.divisiones.cafe.title} 
               class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />

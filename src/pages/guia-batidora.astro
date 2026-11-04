@@ -4,11 +4,6 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 
 import imgHeroBatidora from "../assets/categories/batidora_baner.jpg";
-
-import videoServicio from "../assets/video/batidora-servicio.mp4";
-import videoPulse from "../assets/video/batidora-pulse.mp4";
-import videoLimpieza from "../assets/video/batidora-limpieza.mp4";
-import videoVacio from "../assets/video/batidora-vacio.mp4";
 ---
 
 <Layout title="Guía Batidora de Alto Rendimiento | ÁNIMA">
@@ -154,7 +149,7 @@ import videoVacio from "../assets/video/batidora-vacio.mp4";
           class="w-full lg:w-[65%] aspect-video bg-neutral-100 border border-neutral-200 overflow-hidden relative shrink-0 shadow-2xs"
         >
           <video controls class="w-full h-full object-cover">
-            <source src={videoServicio} type="video/mp4" />
+            <source src="/video/servicio.mp4" type="video/mp4" />
             Tu navegador no soporta vídeos.
           </video>
         </div>
@@ -190,7 +185,7 @@ import videoVacio from "../assets/video/batidora-vacio.mp4";
           class="w-full lg:w-[65%] aspect-video bg-neutral-100 border border-neutral-200 overflow-hidden shrink-0 shadow-2xs"
         >
           <video controls class="w-full h-full object-cover">
-            <source src={videoPulse} type="video/mp4" />
+            <source src="/video/pulse.mp4" type="video/mp4" />
           </video>
         </div>
       </div>
@@ -222,7 +217,7 @@ import videoVacio from "../assets/video/batidora-vacio.mp4";
           class="w-full lg:w-[65%] aspect-video bg-neutral-100 border border-neutral-200 overflow-hidden shrink-0 shadow-2xs"
         >
           <video controls class="w-full h-full object-cover">
-            <source src={videoLimpieza} type="video/mp4" />
+            <source src="/video/limpieza.mp4" type="video/mp4" />
           </video>
         </div>
       </div>
@@ -258,7 +253,7 @@ import videoVacio from "../assets/video/batidora-vacio.mp4";
           class="w-full lg:w-[65%] aspect-video bg-neutral-100 border border-neutral-200 overflow-hidden shrink-0 shadow-2xs"
         >
           <video controls class="w-full h-full object-cover">
-            <source src={videoVacio} type="video/mp4" />
+            <source src="/video/vacio.mp4" type="video/mp4" />
           </video>
         </div>
       </div>

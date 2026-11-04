@@ -5,11 +5,6 @@ import { Image } from "astro:assets";
 
 import imgHeroCafetera from "../assets/categories/banner-cafetera-automatica.jpg";
 
-import videoEncendido from "../assets/video/video-encendido.mp4";
-import videoAlarmaz from "../assets/video/video-alarmaz.mp4";
-import videoLimpieza from "../assets/video/video-limpieza.mp4";
-import videoDescalficasion from "../assets/video/video-descalficasion.mp4";
-
 const pageTitle = "Guía de usuario para Cafetera Espresso Manual ECF02 | ÁNIMA";
 ---
 
@@ -142,7 +137,7 @@ const pageTitle = "Guía de usuario para Cafetera Espresso Manual ECF02 | ÁNIMA
               class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
             >
               <video controls class="w-full h-full object-cover">
-                <source src={videoEncendido} type="video/mp4" />
+                <source src="/video/encendido.mp4" type="video/mp4" />
                 Tu navegador no soporta vídeos.
               </video>
             </div>
@@ -190,7 +185,7 @@ const pageTitle = "Guía de usuario para Cafetera Espresso Manual ECF02 | ÁNIMA
               class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
             >
               <video controls class="w-full h-full object-cover">
-                <source src={videoAlarmaz} type="video/mp4" />
+                <source src="/video/alarmas.mp4" type="video/mp4" />
                 Tu navegador no soporta vídeos.
               </video>
             </div>
@@ -235,7 +230,7 @@ const pageTitle = "Guía de usuario para Cafetera Espresso Manual ECF02 | ÁNIMA
               class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
             >
               <video controls class="w-full h-full object-cover">
-                <source src={videoLimpieza} type="video/mp4" />
+                <source src="/video/limpieza.mp4" type="video/mp4" />
                 Tu navegador no soporta vídeos.
               </video>
             </div>
@@ -284,7 +279,7 @@ const pageTitle = "Guía de usuario para Cafetera Espresso Manual ECF02 | ÁNIMA
               class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
             >
               <video controls class="w-full h-full object-cover">
-                <source src={videoDescalficasion} type="video/mp4" />
+                <source src="/video/descalficasion.mp4" type="video/mp4" />
                 Tu navegador no soporta vídeos.
               </video>
             </div>

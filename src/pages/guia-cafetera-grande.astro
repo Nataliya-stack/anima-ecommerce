@@ -5,10 +5,6 @@ import { Image } from "astro:assets";
 
 import imgHeroCafetera from "../assets/categories/banner-cafetera-grande.jpg";
 
-import videoInstalacion2 from "../assets/video/video-instalacion2.mp4";
-import videoAjustes2 from "../assets/video/video-ajustes2.mp4";
-import videoAlarmas2 from "../assets/video/video-alarmas2.mp4";
-
 const pageTitle = "Guía de usuario para Cafetera Espresso Manual ECF02 | ÁNIMA";
 ---
 
@@ -157,7 +153,7 @@ const pageTitle = "Guía de usuario para Cafetera Espresso Manual ECF02 | ÁNIMA
               class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
             >
               <video controls class="w-full h-full object-cover">
-                <source src={videoInstalacion2} type="video/mp4" />
+                <source src="/video/instalacion.mp4" type="video/mp4" />
                 Tu navegador no soporta vídeos.
               </video>
             </div>
@@ -279,7 +275,7 @@ const pageTitle = "Guía de usuario para Cafetera Espresso Manual ECF02 | ÁNIMA
               class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
             >
               <video controls class="w-full h-full object-cover">
-                <source src={videoAjustes2} type="video/mp4" />
+                <source src="/video/ajustes.mp4" type="video/mp4" />
                 Tu navegador no soporta vídeos.
               </video>
             </div>
@@ -329,7 +325,7 @@ const pageTitle = "Guía de usuario para Cafetera Espresso Manual ECF02 | ÁNIMA
               class="w-full bg-black aspect-video relative overflow-hidden shadow-sm"
             >
               <video controls class="w-full h-full object-cover">
-                <source src={videoAlarmas2} type="video/mp4" />
+                <source src="/video/alarmas.mp4" type="video/mp4" />
                 Tu navegador no soporta vídeos.
               </video>
             </div>

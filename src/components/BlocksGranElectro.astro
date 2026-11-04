@@ -9,11 +9,6 @@ import imgEstiloVida from "../assets/categories/estilo-vida.png";
 import imgFacilUsar from "../assets/categories/facil-usar.png";
 import imgTiempoLibre from "../assets/categories/tiempo-libre.png";
 
-import videoHornoGalileo from "../assets/video/horno-galileo.mp4";
-import videoOmnichef from "../assets/video/video-omnichef.mp4";
-import videoSpeedwave from "../assets/video/video-speedwave.mp4";
-import videoSteamgeneration from "../assets/video/video-steamgeneration.mp4";
-
 const blockContent = dataDB.home.blocks_gran_electro; 
 const benefitImages = [
   imgAhorroTiempo,
@@ -105,7 +100,7 @@ const benefitImages = [
 
     <video
       id="hogar-video-player"
-      src={videoHornoGalileo}
+      src="/video/video-horno-galileo.mp4"
       autoplay
       muted
       loop
@@ -228,7 +223,7 @@ const benefitImages = [
             class="js-video-iframe w-full h-full object-cover relative z-0"
             style="pointer-events: auto;"
           >
-            <source src={videoOmnichef} type="video/mp4" />
+            <source src="/video/video-omnichef.mp4" type="video/mp4" />
             Tu navegador no soporta vídeos.
           </video>
         </div>
@@ -261,7 +256,7 @@ const benefitImages = [
             class="js-video-iframe w-full h-full object-cover relative z-0"
             style="pointer-events: auto;"
           >
-            <source src={videoSpeedwave} type="video/mp4" />
+            <source src="/video/video-speedwave.mp4" type="video/mp4" />
             Tu navegador no soporta vídeos.
           </video>
         </div>
@@ -334,7 +329,7 @@ const benefitImages = [
             class="js-video-iframe w-full h-full object-cover relative z-0"
             style="pointer-events: auto;"
           >
-            <source src={videoSteamgeneration} type="video/mp4" />
+            <source src="/video/video-steamgeneration.mp4" type="video/mp4" />
             Tu navegador no soporta vídeos.
           </video>
         </div>
@@ -368,7 +363,7 @@ const benefitImages = [
       class="js-video-iframe w-full h-auto lg:h-full object-cover relative z-0 cursor-pointer"
       style="pointer-events: auto;"
     >
-      <source src={videoSteamgeneration} type="video/mp4" />
+      <source src="/video/video-steamgeneration.mp4" type="video/mp4" />
       Tu navegador no soporta vídeos.
     </video>
   </div>

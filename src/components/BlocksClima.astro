@@ -1,7 +1,6 @@
 ---
 // src/components/BlocksClima.astro
 import { Image } from "astro:assets";
-import climaVideo from "../assets/video/aspirador.mp4";
 import dataDB from "../../db.json"; 
 
 import aspirador1 from "../assets/categories/aspirador1.avif";
@@ -42,7 +41,7 @@ const blockContent = dataDB.home.block_clima;
 >
   {/* Фоновое видео */}
   <video
-    src={climaVideo}
+    src="/video/aspirador.mp4"
     autoplay
     loop
     muted
